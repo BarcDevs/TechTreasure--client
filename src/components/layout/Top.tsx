@@ -1,6 +1,7 @@
 import {Select, SelectContent, SelectItem, SelectTrigger} from "@/components/ui/select"
 import {useState} from 'react'
 import {Languages} from '@/constants'
+import {Link} from 'react-router-dom'
 
 
 const Top = ({}) => {
@@ -17,9 +18,9 @@ const Top = ({}) => {
                     className="w-fit h-[18px] text-neutral-50 text-sm font-normal font-poppins leading-[21px]">
                     Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
                 </div>
-                <div
+                <Link to={'/'}
                     className="text-center text-neutral-50 text-sm font-semibold font-poppins underline leading-normal">ShopNow
-                </div>
+                </Link>
             </div>
 
             <div className="justify-center items-center gap-[5px] flex w-[100px]">
