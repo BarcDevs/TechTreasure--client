@@ -1,14 +1,15 @@
 import {Select, SelectContent, SelectItem, SelectTrigger} from "@/components/ui/select"
 import {useState} from 'react'
-import {Languages} from '@/constants'
+import {LANGUAGES} from '@/constants'
 import {Link} from 'react-router-dom'
+import {LAYOUT_CAPTIONS} from '@/constants/captions/en.ts'
 
 
 const Top = ({}) => {
-    const [language, setLanguage] = useState(Languages.ENG)
+    const [language, setLanguage] = useState(LANGUAGES.ENG)
 
     const handleSelectLanguage = (lang: string) => {
-        setLanguage(lang as Languages)
+        setLanguage(lang as LANGUAGES)
     }
     return (
         <div className="flex h-fit w-full items-center justify-around bg-black py-3">
@@ -16,10 +17,11 @@ const Top = ({}) => {
             <div className="flex items-center justify-center gap-2">
                 <div
                     className="h-fit w-fit font-poppins text-sm font-normal leading-[21px] text-neutral-50">
-                    Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
+                    {LAYOUT_CAPTIONS.promo}
                 </div>
                 <Link to={'/'}
-                    className="text-center font-poppins text-sm font-semibold leading-normal text-neutral-50 underline max-md:hidden">ShopNow
+                      className="text-center font-poppins text-sm font-semibold leading-normal text-neutral-50 underline max-md:hidden">
+                    {LAYOUT_CAPTIONS.shopNow}
                 </Link>
             </div>
 
@@ -30,7 +32,7 @@ const Top = ({}) => {
                         <span>{language}</span>
                     </SelectTrigger>
                     <SelectContent>
-                        {Object.values(Languages).map(lang => (
+                        {Object.values(LANGUAGES).map(lang => (
                             <SelectItem className={'cursor-pointer hover:bg-neutral-50'} key={lang}
                                         value={lang}>{lang}</SelectItem>
                         ))}
