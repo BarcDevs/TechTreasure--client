@@ -12,7 +12,7 @@ const NavbarLink = ({to, label}: { to: string, label: string }) => {
 
     return (
         <NavLink to={to} end={to === '/'}
-                 className={'text-center text-black text-base font-normal font-poppins leading-normal'}>
+                 className={'text-center text-black text-base font-normal font-poppins leading-normal whitespace-nowrap'}>
             {label}
             {isActive &&
                 <div className="w-full h-[0px] relative opacity-50">
@@ -27,14 +27,14 @@ const DesktopNavbar = ({}) => {
     const isAuthPage = useLocation().pathname === '/login' || useLocation().pathname === '/signup'
 
     return (
-        <nav className={'flex-center w-full'}>
-            <div className={'flex-row justify-between inline-flex w-[75%] mt-10 mb-1'}>
+        <nav className={'flex-center w-full max-md:hidden'}>
+            <div className={'flex-row justify-between inline-flex w-[75vw] max-lg:w-[90vw] mt-10 mb-1'}>
                 {/*logo*/}
-                <div className={'text-black text-2xl font-bold font-inter leading-normal tracking-wide'}>
+                <div className={'mr-2.5 font-inter text-2xl font-bold leading-normal tracking-wide text-black'}>
                     TechTreasure
                 </div>
                 {/*menu*/}
-                <div className={'h-6 gap-12 inline-flex'}>
+                <div className={'flex h-6 w-[50%] justify-around'}>
                     {NAVIGATION_LINKS.map(link => (
                         <NavbarLink key={link.name} to={link.path} label={link.name}/>
                     ))}
@@ -43,10 +43,10 @@ const DesktopNavbar = ({}) => {
                 {/*search & cart*/}
                 <div className={'inline-flex gap-6'}>
                     <div
-                        className={'inline-flex w-[210px] h-6 justify-between no-focus border-none'}>
+                        className={`no-focus inline-flex h-6 w-[210px] justify-between border-none ${isAuthPage ? 'max-lg:[120px]' : 'max-lg:hidden'}`}>
                         <input type="text"
                                placeholder={LAYOUT_CAPTIONS.searchPlaceholder}
-                               className={'w-full text-black text-xs font-normal font-poppins leading-[18px]'}/>
+                               className={'w-full font-poppins text-xs font-normal leading-[18px] text-black'}/>
                         <Icon path={search} name={'search'}/>
                     </div>
                     {!isAuthPage &&
