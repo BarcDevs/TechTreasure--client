@@ -89,6 +89,10 @@
 
     }
 
+    .no-focus {
+        @apply focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important;
+    }
+
     /*region Flex*/
     .flex-center {
         @apply flex items-center justify-center;
