@@ -11,34 +11,34 @@ const Top = ({}) => {
         setLanguage(lang as Languages)
     }
     return (
-        <div className="w-full h-fit py-3 bg-black justify-around items-center flex">
+        <div className="flex h-fit w-full items-center justify-around bg-black py-3">
             <div className={'w-[100px] max-md:hidden'}/>
-            <div className="justify-center items-center gap-2 flex">
+            <div className="flex items-center justify-center gap-2">
                 <div
-                    className="w-fit h-fit text-neutral-50 text-sm font-normal font-poppins leading-[21px]">
+                    className="h-fit w-fit font-poppins text-sm font-normal leading-[21px] text-neutral-50">
                     Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
                 </div>
                 <Link to={'/'}
-                    className="text-center text-neutral-50 text-sm font-semibold font-poppins underline leading-normal max-md:hidden">ShopNow
+                    className="text-center font-poppins text-sm font-semibold leading-normal text-neutral-50 underline max-md:hidden">ShopNow
                 </Link>
             </div>
 
-            <div className="justify-center items-center gap-[5px] flex w-[100px]">
+            <div className="flex w-[100px] items-center justify-center gap-[5px]">
                 <Select onValueChange={handleSelectLanguage}>
                     <SelectTrigger
-                        className={'h-[18px] bg-black inline-flex text-neutral-50 text-sm font-normal font-poppins leading-[21px] border-none no-focus max-md:hidden'}>
+                        className={'no-focus inline-flex h-[18px] border-none bg-black font-poppins text-sm font-normal leading-[21px] text-neutral-50 max-md:hidden'}>
                         <span>{language}</span>
                     </SelectTrigger>
                     <SelectContent>
                         {Object.values(Languages).map(lang => (
-                            <SelectItem className={'hover:bg-neutral-50 cursor-pointer'} key={lang}
+                            <SelectItem className={'cursor-pointer hover:bg-neutral-50'} key={lang}
                                         value={lang}>{lang}</SelectItem>
                         ))}
                     </SelectContent>
                 </Select>
 
                 <Link to={'/'}
-                      className="text-center text-neutral-50 text-sm font-semibold font-poppins underline leading-normal md:hidden">ShopNow
+                      className="text-center font-poppins text-sm font-semibold leading-normal text-neutral-50 underline md:hidden">ShopNow
                 </Link>
 
             </div>
