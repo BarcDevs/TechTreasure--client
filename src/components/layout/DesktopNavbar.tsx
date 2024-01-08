@@ -11,10 +11,10 @@ const NavbarLink = ({to, label, location}: { to: string, label: string, location
 
     return (
         <NavLink to={to} end={to === '/'}
-                 className={'text-center text-black text-base font-normal font-poppins leading-normal whitespace-nowrap'}>
+                 className={'whitespace-nowrap text-center font-poppins text-base font-normal leading-normal text-black'}>
             {label}
             {isActive &&
-                <div className="w-full h-[0px] relative opacity-50">
+                <div className="relative h-[0px] w-full opacity-50">
                     <div className="absolute left-0 top-0 h-[0px] w-full border border-black"/>
                 </div>}
         </NavLink>
@@ -28,13 +28,13 @@ const DesktopNavbar = ({}) => {
 
     return (
         <nav className={'flex-center w-full max-md:hidden'}>
-            <div className={'flex-row justify-between inline-flex w-[75vw] max-lg:w-[90vw] mt-10 mb-1'}>
+            <div className={'mb-1 mt-10 flex w-[90vw] flex-row items-center justify-between'}>
                 {/*logo*/}
                 <div className={'mr-2.5 font-inter text-2xl font-bold leading-normal tracking-wide text-black'}>
                     TechTreasure
                 </div>
                 {/*menu*/}
-                <div className={'flex h-6 w-[50%] justify-around'}>
+                <div className={'flex h-6 w-[50%] max-w-[350px] justify-around'}>
                     {NAVIGATION_LINKS.map(link => (
                         <NavbarLink key={link.name} to={link.path} label={link.name} location={location}/>
                     ))}
@@ -44,7 +44,7 @@ const DesktopNavbar = ({}) => {
                 <div className={'inline-flex gap-6'}>
                     <Search additionalStyles={isAuthPage ? 'max-lg:[120px]' : 'max-lg:hidden'}/>
                     {!isAuthPage &&
-                        <div className={'inline-flex gap-4 h-6 justify-between'}>
+                        <div className={'inline-flex h-6 justify-between gap-4'}>
                             <Icon path={wishlist} name={'wishlist'}/>
                             <Icon path={cart} name={'cart'}/>
                             {isLoggedIn && <Icon path={user} name={'user'}/>}
