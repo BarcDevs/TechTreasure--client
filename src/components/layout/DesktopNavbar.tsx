@@ -1,14 +1,13 @@
 import {NavLink, useLocation} from 'react-router-dom'
 import {NAVIGATION_LINKS} from '@/constants'
 import cart from '/assets/icons/cart.svg'
-import search from '/assets/icons/search.svg'
 import user from '/assets/icons/user.svg'
 import wishlist from '/assets/icons/wishlist.svg'
 import Icon from '@/components/shared/Icon.tsx'
-import {LAYOUT_CAPTIONS} from '@/constants/captions/en.ts'
+import Search from '@/components/shared/Search.tsx'
 
-const NavbarLink = ({to, label}: { to: string, label: string }) => {
-    const isActive = useLocation().pathname === to
+const NavbarLink = ({to, label, location}: { to: string, label: string, location: string }) => {
+    const isActive = location === to
 
     return (
         <NavLink to={to} end={to === '/'}
@@ -24,7 +23,8 @@ const NavbarLink = ({to, label}: { to: string, label: string }) => {
 
 const DesktopNavbar = ({}) => {
     const isLoggedIn = false
-    const isAuthPage = useLocation().pathname === '/login' || useLocation().pathname === '/signup'
+    const location = useLocation().pathname
+    const isAuthPage = location === '/login' || location === '/signup'
 
     return (
         <nav className={'flex-center w-full max-md:hidden'}>
@@ -36,19 +36,13 @@ const DesktopNavbar = ({}) => {
                 {/*menu*/}
                 <div className={'flex h-6 w-[50%] justify-around'}>
                     {NAVIGATION_LINKS.map(link => (
-                        <NavbarLink key={link.name} to={link.path} label={link.name}/>
+                        <NavbarLink key={link.name} to={link.path} label={link.name} location={location}/>
                     ))}
-                    {!isLoggedIn && <NavbarLink to={'/signup'} label={'Sign Up'}/>}
+                    {!isLoggedIn && <NavbarLink to={'/signup'} label={'Sign Up'} location={location}/>}
                 </div>
                 {/*search & cart*/}
                 <div className={'inline-flex gap-6'}>
-                    <div
-                        className={`no-focus inline-flex h-6 w-[210px] justify-between border-none ${isAuthPage ? 'max-lg:[120px]' : 'max-lg:hidden'}`}>
-                        <input type="text"
-                               placeholder={LAYOUT_CAPTIONS.searchPlaceholder}
-                               className={'w-full font-poppins text-xs font-normal leading-[18px] text-black'}/>
-                        <Icon path={search} name={'search'}/>
-                    </div>
+                    <Search additionalStyles={isAuthPage ? 'max-lg:[120px]' : 'max-lg:hidden'}/>
                     {!isAuthPage &&
                         <div className={'inline-flex gap-4 h-6 justify-between'}>
                             <Icon path={wishlist} name={'wishlist'}/>
