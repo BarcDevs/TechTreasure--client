@@ -2,3 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+    /* Heading/36PX SemiBold */
+    .text-big {
+        @apply text-4xl font-semibold font-inter leading-[48px] tracking-wider
+    }
+
+    /* Heading/24PX Bold */
+    .text-large {
+        @apply text-2xl font-bold font-inter leading-normal tracking-wide
+    }
+
+    /* Title/20PX Medium */
+    .text-heading-medium {
+        @apply text-xl font-medium font-poppins leading-7
+    }
+
+    /* Title/20PX Semibold */
+    .text-heading-semibold {
+        @apply text-xl font-semibold font-poppins leading-7
+    }
+
+    /* Title/16PX Regular */
+    .text-body {
+        @apply text-base font-normal font-poppins leading-normal
+    }
+
+    /* Title/16PX Medium */
+    .text-body-medium {
+        @apply text-base font-medium font-poppins leading-normal
+    }
+
+    .text-body-red {
+        @apply text-body-medium text-red-500
+    }
+
+    /* Title/14PX Regular */
+    .text-small {
+        @apply text-sm font-normal font-poppins leading-[21px]
+    }
+
+    /* Title/12PX Medium */
+    .text-tiny {
+        @apply text-xs font-medium font-poppins leading-[18px]
+    }
+}

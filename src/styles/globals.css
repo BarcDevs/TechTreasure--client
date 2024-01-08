@@ -118,6 +118,10 @@
         @apply flex justify-between items-start;
     }
 
+    .flex-col-start {
+        @apply flex flex-col items-start justify-start;
+    }
+
     .flex-responsive {
         @apply flex flex-row max-sm:flex-col;
     }

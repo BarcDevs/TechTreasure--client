@@ -11,7 +11,7 @@ const NavbarLink = ({to, label, location}: { to: string, label: string, location
 
     return (
         <NavLink to={to} end={to === '/'}
-                 className={'whitespace-nowrap text-center font-poppins text-base font-normal leading-normal text-black'}>
+                 className={'whitespace-nowrap text-center text-body text-black'}>
             {label}
             {isActive &&
                 <div className="relative h-[0px] w-full opacity-50">
@@ -30,7 +30,7 @@ const DesktopNavbar = ({}) => {
         <nav className={'flex-center w-full max-md:hidden'}>
             <div className={'mb-1 mt-10 flex w-[90vw] flex-row items-center justify-between'}>
                 {/*logo*/}
-                <div className={'mr-2.5 font-inter text-2xl font-bold leading-normal tracking-wide text-black'}>
+                <div className={'mr-2.5 text-large text-black'}>
                     TechTreasure
                 </div>
                 {/*menu*/}

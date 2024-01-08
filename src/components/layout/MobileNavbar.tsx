@@ -15,7 +15,7 @@ import Search from '@/components/shared/Search.tsx'
 
 const DropdownEntry = ({to, label, className}: { to: string, label: string, className?: string }) => (
     <DropdownMenuLabel key={'profile'}>
-        <Link to={to} className={`${className}`}>
+        <Link to={to} className={`text-body ${className}`}>
             {label}
         </Link>
     </DropdownMenuLabel>
