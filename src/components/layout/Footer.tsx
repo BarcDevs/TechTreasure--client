@@ -2,6 +2,8 @@ import send from '/assets/icons/send.svg'
 import FooterLinkColumn, {FOOTER_LINK_STYLE} from '@/components/layout/FooterLinkColumn.tsx'
 import {FOOTER_LINKS, SUPPORT_DETAILS} from '@/constants/footer.ts'
 import {APP_NAME, LAYOUT_CAPTIONS} from '@/constants/captions/en.ts'
+import Icon from '@/components/shared/Icon.tsx'
+import {SOCIAL_LINKS} from '@/constants'
 
 const Footer = ({}) => (
     <footer
@@ -61,17 +63,20 @@ const Footer = ({}) => (
                                     src="/assets/images/google-play.png"/>
                             </a>
 
-                            <a href={'#'}
-                               className="inline-flex h-10 w-[110px] items-center justify-center bg-black p-[3px]">
-                                <img
-                                    alt={'App Store'}
-                                    className="h-[34px] w-[104px] rounded border border-white"
-                                    src="/assets/images/app-store.png"/>
-                            </a>
+                                <a href={'#'}
+                                   className="inline-flex h-10 w-[110px] items-center justify-center bg-black p-[3px]">
+                                    <img
+                                        alt={'App Store'}
+                                        className="h-[34px] w-[104px] rounded border border-white"
+                                        src="/assets/images/app-store.png"/>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </FooterLinkColumn>
+                        <div className={'inline-flex w-full justify-between px-2'}>
+                            {SOCIAL_LINKS.map(social => (
+                                <a href={social.url} key={social.name}> <Icon path={social.icon} name={social.name}/></a>
+                            ))}
+                        </div>
         </div>
 
         {/* ***************** */}
@@ -80,14 +85,8 @@ const Footer = ({}) => (
                 <div className="h-[0px] w-[1440px] border border-white opacity-40"></div>
             </div>
             <div className="inline-flex items-center justify-start gap-3 opacity-60">
-                <div className="flex items-center justify-start gap-1.5">
-                    <div className="flex h-5 w-5 items-center justify-center p-[1.67px]">
-                        <div className="relative h-[16.67px] w-[16.67px]">
-                        </div>
-                    </div>
-                    <div className="font-poppins text-base font-normal leading-normal text-white">Copyright
-                        Rimel 2022. All right reserved
-                    </div>
+                <div className="font-poppins text-base font-normal leading-normal text-white">
+                    {LAYOUT_CAPTIONS.copyright}
                 </div>
             </div>
         </div>
