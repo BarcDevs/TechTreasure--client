@@ -5,10 +5,10 @@ import search from '/assets/icons/search.svg'
 const Search = ({additionalStyles}: { additionalStyles?: string}) => {
     return (
         <div
-            className={`no-focus inline-flex h-6 w-[210px] justify-between border-none ${additionalStyles}`}>
+            className={`inline-flex h-6 w-[210px] justify-between border-none ${additionalStyles}`}>
             <input type="text"
                    placeholder={LAYOUT_CAPTIONS.searchPlaceholder}
-                   className={'w-full font-poppins text-xs font-normal leading-[18px] text-black'}/>
+                   className={'no-focus w-full font-poppins text-xs font-normal leading-[18px] text-black outline-none'}/>
             <Icon path={search} name={'search'}/>
         </div>
     )
