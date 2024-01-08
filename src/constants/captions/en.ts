@@ -5,5 +5,6 @@ export const LAYOUT_CAPTIONS = {
     shopNow: 'ShopNow',
     searchPlaceholder: 'What are you looking for?',
     subscribe: 'Subscribe',
-    subscribePromo: 'Get 10% off your first order'
+    subscribePromo: 'Get 10% off your first order',
+    copyright: 'Copyright © 2024 TechTreasure. All rights reserved.',
 }
