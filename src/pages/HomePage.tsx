@@ -3,8 +3,8 @@ import Hero from '@/components/home/hero.tsx'
 
 const HomePage = ({}) => {
     return (
-        <main className={'ml-[5vw] mt-10'}>
-            <div className={'flex-row'}>
+        <main className={'my-5 ml-[5vw]'}>
+            <div className={'inline-flex h-fit w-[90vw] justify-start gap-[3.75rem]'}>
                 <Sidebar/>
                 <Hero/>
             </div>

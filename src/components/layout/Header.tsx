@@ -3,7 +3,7 @@ import MobileNavbar from '@/components/layout/MobileNavbar.tsx'
 import Top from '@/components/layout/Top.tsx'
 
 const Header = ({}) => (
-    <header>
+    <header className={'mb-5'}>
         <Top/>
         <DesktopNavbar/>
         <MobileNavbar/>
