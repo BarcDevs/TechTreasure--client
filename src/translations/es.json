@@ -1,0 +1,35 @@
+{
+  "global": {
+    "promo": "¡Venta de verano para todos los trajes de baño y envío exprés gratuito - 50% de descuento!",
+    "shopNow": "CompraAhora",
+    "searchPlaceholder": "¿Qué estás buscando?",
+    "subscribe": "Suscríbete",
+    "subscribePromo": "Obtén un 10% de descuento en tu primera orden",
+    "copyright": "Derechos de autor © 2024 TechTreasure. Todos los derechos reservados.",
+    "support": "Soporte",
+    "account": "Cuenta",
+    "quickLinks": "Enlaces rápidos",
+    "downloadApp": "Descarga la aplicación",
+    "appPromo": "Ahorra $3 con la aplicación, solo para nuevos usuarios",
+    "emailPlaceholder": "Ingresa tu correo electrónico"
+  },
+  "navigationLinks": {
+    "home": "Inicio",
+    "contact": "Contacto",
+    "about": "Acerca de",
+    "login": "Iniciar sesión",
+    "signup": "Registrarse",
+    "logout": "Cerrar sesión"
+  },
+  "footerLinks": {
+    "account": "Mi cuenta",
+    "login": "Iniciar sesión / Registrarse",
+    "cart": "Carrito",
+    "wishlist": "Lista de deseos",
+    "shop": "Tienda",
+    "privacy": "Política de privacidad",
+    "terms": "Términos de uso",
+    "faq": "Preguntas frecuentes",
+    "contact": "Contacto"
+  }
+}
