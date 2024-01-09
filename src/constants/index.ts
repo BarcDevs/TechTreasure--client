@@ -2,16 +2,20 @@ import linkedin from '/assets/icons/linkedin.svg'
 import instagram from '/assets/icons/instagram.svg'
 import twitter from '/assets/icons/twitter.svg'
 import facebook from '/assets/icons/facebook.svg'
-import {LINK, SOCIAL_LINK} from '@/types/constants'
+import {LANGUAGE, LINK, SOCIAL_LINK} from '@/types/constants'
 
 export const APP_NAME = 'TechTreasure'
 
-export enum LANGUAGES {
-    en = 'English',
-    es = 'Español',
+export const LANGUAGES: {[key: string]: LANGUAGE} = {
+    ENG: {
+        name: 'English',
+        code: 'en'
+    },
+    ESP: {
+        name: 'Español',
+        code: 'es'
+    }
 }
-
-export const DEFAULT_LANGUAGE = LANGUAGES.en
 
 export enum GLOBAL_LOCALE_KEYS {
     promo = 'promo',
