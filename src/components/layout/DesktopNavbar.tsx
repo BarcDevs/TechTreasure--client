@@ -1,5 +1,5 @@
 import {NavLink, useLocation} from 'react-router-dom'
-import {NAVIGATION_LINKS} from '@/constants'
+import {I18N_NAMESPACES, NAVIGATION_LINKS} from '@/constants'
 import cart from '/assets/icons/cart.svg'
 import user from '/assets/icons/user.svg'
 import wishlist from '/assets/icons/wishlist.svg'
@@ -24,7 +24,7 @@ const NavbarLink = ({to, label, location}: { to: string, label: string, location
 }
 
 const DesktopNavbar = ({}) => {
-    const {t} = useTranslation('navigationLinks')
+    const {t} = useTranslation(I18N_NAMESPACES.navigationLinks)
     const isLoggedIn = false
     const location = useLocation().pathname
     const isAuthPage = location === '/login' || location === '/signup'

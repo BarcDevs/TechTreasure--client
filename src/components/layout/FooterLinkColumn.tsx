@@ -2,6 +2,7 @@ import {ReactNode} from 'react'
 import {Link} from 'react-router-dom'
 import {LINK} from '@/types/constants'
 import {useTranslation} from 'react-i18next'
+import {I18N_NAMESPACES} from '@/constants'
 
 export const FOOTER_LINK_STYLE = 'text-neutral-50 text-body text-wrap hover:text-white'
 
@@ -11,7 +12,7 @@ const FooterLinkColumn = ({header, links = [], children, additionalStyles}: {
     children?: ReactNode,
     additionalStyles?: string
 }) => {
-    const {t} = useTranslation('footerLinks')
+    const {t} = useTranslation(I18N_NAMESPACES.footerLinks)
 
     return (
         <div className={`inline-flex flex-col items-start justify-start gap-6 ${additionalStyles}`}>

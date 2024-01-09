@@ -1,10 +1,10 @@
 import Icon from '@/components/shared/Icon.tsx'
 import search from '/assets/icons/search.svg'
 import {useTranslation} from 'react-i18next'
-import {GLOBAL_LOCALE_KEYS} from '@/constants'
+import {GLOBAL_LOCALE_KEYS, I18N_NAMESPACES} from '@/constants'
 
 const Search = ({additionalStyles}: { additionalStyles?: string}) => {
-    const {t} = useTranslation('global')
+    const {t} = useTranslation(I18N_NAMESPACES.global)
 
     return (
         <div

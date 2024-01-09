@@ -17,6 +17,13 @@ export const LANGUAGES: {[key: string]: LANGUAGE} = {
     }
 }
 
+export enum I18N_NAMESPACES {
+    global = 'global',
+    navigationLinks = 'navigationLinks',
+    footerLinks = 'footerLinks',
+    categories = 'categories'
+}
+
 export enum GLOBAL_LOCALE_KEYS {
     promo = 'promo',
     shopNow = 'shopNow',
@@ -29,7 +36,7 @@ export enum GLOBAL_LOCALE_KEYS {
     quickLinks = 'quickLinks',
     downloadApp = 'downloadApp',
     appPromo = 'appPromo',
-    "emailPlaceholder" = 'emailPlaceholder'
+    emailPlaceholder = 'emailPlaceholder'
 }
 
 export const NAVIGATION_LINKS: LINK[] = [

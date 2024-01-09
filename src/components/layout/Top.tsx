@@ -1,12 +1,12 @@
 
-import {GLOBAL_LOCALE_KEYS} from '@/constants'
+import {GLOBAL_LOCALE_KEYS, I18N_NAMESPACES} from '@/constants'
 import {Link} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
 import LanguagePicker from '@/components/shared/LanguagePicker.tsx'
 
 
 const Top = ({}) => {
-    const {t} = useTranslation('global')
+    const {t} = useTranslation(I18N_NAMESPACES.global)
 
     return (
         <div className="flex h-fit w-full items-center justify-around bg-black py-3">

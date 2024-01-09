@@ -8,7 +8,7 @@ import {
 import {Link, useLocation} from 'react-router-dom'
 import Icon from "@/components/shared/Icon"
 import hamburger from '/assets/icons/hamburger.svg'
-import {NAVIGATION_LINKS} from '@/constants'
+import {I18N_NAMESPACES, NAVIGATION_LINKS} from '@/constants'
 import cart from '/assets/icons/cart.svg'
 import wishlist from '/assets/icons/wishlist.svg'
 import Search from '@/components/shared/Search.tsx'
@@ -23,7 +23,7 @@ const DropdownEntry = ({to, label, className}: { to: string, label: string, clas
 )
 
 const MobileNavbar = ({}) => {
-    const {t} = useTranslation('navigationLinks')
+    const {t} = useTranslation(I18N_NAMESPACES.navigationLinks)
     const isLoggedIn = true
     const location = useLocation().pathname
     const isAuthPage = location === '/login' || location === '/signup'

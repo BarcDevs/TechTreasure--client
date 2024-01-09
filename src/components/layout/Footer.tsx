@@ -2,11 +2,11 @@ import send from '/assets/icons/send.svg'
 import FooterLinkColumn, {FOOTER_LINK_STYLE} from '@/components/layout/FooterLinkColumn.tsx'
 import {FOOTER_LINKS, SUPPORT_DETAILS} from '@/constants/footer.ts'
 import Icon from '@/components/shared/Icon.tsx'
-import {APP_NAME, GLOBAL_LOCALE_KEYS, SOCIAL_LINKS} from '@/constants'
+import {APP_NAME, GLOBAL_LOCALE_KEYS, I18N_NAMESPACES, SOCIAL_LINKS} from '@/constants'
 import {useTranslation} from 'react-i18next'
 
 const Footer = ({}) => {
-    const {t} = useTranslation('global')
+    const {t} = useTranslation(I18N_NAMESPACES.global)
 
     return (
         <footer
