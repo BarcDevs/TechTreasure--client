@@ -31,5 +31,25 @@
     "terms": "Terms Of Use",
     "faq": "FAQ",
     "contact": "Contact"
+  },
+  "categories": {
+    "devices": "Devices",
+    "componentsAndAccessories": "Components & Accessories",
+    "emergingTech": "Emerging Tech",
+    "softwareAndServices": "Software & Services",
+    "smartphones": "Smartphones",
+    "computers": "Computers",
+    "wearables": "Wearables",
+    "cameras": "Cameras",
+    "audioDevices": "Audio Devices",
+    "gaming": "Gaming",
+    "homeTech": "Home Tech",
+    "computerComponents": "Computer Components",
+    "accessories": "Accessories",
+    "vrArDevices": "VR & AR Devices",
+    "drones": "Drones",
+    "printers3D": "3D Printers",
+    "software": "Software",
+    "techServices": "Tech Services"
   }
 }
