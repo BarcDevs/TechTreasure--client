@@ -1,12 +1,13 @@
 import {Select, SelectContent, SelectItem, SelectTrigger} from "@/components/ui/select"
 import {useState} from 'react'
-import {LANGUAGES} from '@/constants'
+import {LANGUAGES, GLOBAL_LOCALE_KEYS} from '@/constants'
 import {Link} from 'react-router-dom'
-import {LAYOUT_CAPTIONS} from '@/constants/captions/en.ts'
+import {useTranslation} from 'react-i18next'
 
 
 const Top = ({}) => {
-    const [language, setLanguage] = useState(LANGUAGES.ENG)
+    const {t} = useTranslation('global')
+    const [language, setLanguage] = useState(LANGUAGES.en)
 
     const handleSelectLanguage = (lang: string) => {
         setLanguage(lang as LANGUAGES)
@@ -17,11 +18,11 @@ const Top = ({}) => {
             <div className="flex items-center justify-center gap-2">
                 <div
                     className="h-fit w-fit text-small text-neutral-50">
-                    {LAYOUT_CAPTIONS.promo}
+                    {t(GLOBAL_LOCALE_KEYS.promo)}
                 </div>
                 <Link to={'/'}
                       className="text-center font-poppins text-sm font-semibold leading-normal text-neutral-50 underline max-md:hidden">
-                    {LAYOUT_CAPTIONS.shopNow}
+                    {t(GLOBAL_LOCALE_KEYS.shopNow)}
                 </Link>
             </div>
 
@@ -41,7 +42,7 @@ const Top = ({}) => {
 
                 <Link to={'/'}
                       className="text-center font-poppins text-sm font-semibold leading-normal text-neutral-50 underline md:hidden">
-                    {LAYOUT_CAPTIONS.shopNow}
+                    {t(GLOBAL_LOCALE_KEYS.shopNow)}
                 </Link>
             </div>
         </div>

@@ -5,6 +5,8 @@ import user from '/assets/icons/user.svg'
 import wishlist from '/assets/icons/wishlist.svg'
 import Icon from '@/components/shared/Icon.tsx'
 import Search from '@/components/shared/Search.tsx'
+import {APP_NAME} from '@/constants'
+import {useTranslation} from 'react-i18next'
 
 const NavbarLink = ({to, label, location}: { to: string, label: string, location: string }) => {
     const isActive = location === to
@@ -22,6 +24,7 @@ const NavbarLink = ({to, label, location}: { to: string, label: string, location
 }
 
 const DesktopNavbar = ({}) => {
+    const {t} = useTranslation('navigationLinks')
     const isLoggedIn = false
     const location = useLocation().pathname
     const isAuthPage = location === '/login' || location === '/signup'
@@ -30,15 +33,15 @@ const DesktopNavbar = ({}) => {
         <nav className={'flex-center w-full max-md:hidden'}>
             <div className={'mb-1 mt-10 flex w-[90vw] flex-row items-center justify-between'}>
                 {/*logo*/}
-                <div className={'mr-2.5 text-large text-black'}>
-                    TechTreasure
+                <div className={'text-large mr-2.5 text-black'}>
+                    {APP_NAME}
                 </div>
                 {/*menu*/}
                 <div className={'flex h-6 w-[50%] max-w-[350px] justify-around'}>
                     {NAVIGATION_LINKS.map(link => (
-                        <NavbarLink key={link.name} to={link.path} label={link.name} location={location}/>
+                        <NavbarLink key={link.name} to={link.path} label={t(link.key)} location={location}/>
                     ))}
-                    {!isLoggedIn && <NavbarLink to={'/signup'} label={'Sign Up'} location={location}/>}
+                    {!isLoggedIn && <NavbarLink to={'/signup'} label={t('signup')} location={location}/>}
                 </div>
                 {/*search & cart*/}
                 <div className={'inline-flex gap-6'}>

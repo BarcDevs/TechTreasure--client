@@ -12,9 +12,10 @@ import {NAVIGATION_LINKS} from '@/constants'
 import cart from '/assets/icons/cart.svg'
 import wishlist from '/assets/icons/wishlist.svg'
 import Search from '@/components/shared/Search.tsx'
+import {useTranslation} from 'react-i18next'
 
 const DropdownEntry = ({to, label, className}: { to: string, label: string, className?: string }) => (
-    <DropdownMenuLabel key={'profile'}>
+    <DropdownMenuLabel key={label}>
         <Link to={to} className={`text-body ${className}`}>
             {label}
         </Link>
@@ -22,6 +23,7 @@ const DropdownEntry = ({to, label, className}: { to: string, label: string, clas
 )
 
 const MobileNavbar = ({}) => {
+    const {t} = useTranslation('navigationLinks')
     const isLoggedIn = true
     const location = useLocation().pathname
     const isAuthPage = location === '/login' || location === '/signup'
@@ -35,16 +37,16 @@ const MobileNavbar = ({}) => {
                 {/*TODO fix dropdown styling*/}
                 <DropdownMenuContent className={'bg-white border-black'}>
                     {NAVIGATION_LINKS.map(link => (
-                        <DropdownEntry key={link.name} to={link.path} label={link.name}/>
+                        <DropdownEntry key={link.name} to={link.path} label={t(link.key)}/>
                     ))}
                     <DropdownMenuSeparator/>
                     {!isLoggedIn &&
-                        <DropdownEntry to={'/signup'} label={'Sign Up'}/>
+                        <DropdownEntry to={'/signup'} label={t('signup')}/>
                     }
                     {isLoggedIn &&
                         <>
                             <DropdownEntry to={'/profile'} label={'Profile'}/>
-                            <DropdownEntry to={'/logout'} label={'Logout'} className={'text-red-500'}/>
+                            <DropdownEntry to={'/logout'} label={t('logout')} className={'text-red-500'}/>
                         </>
                     }
                 </DropdownMenuContent>

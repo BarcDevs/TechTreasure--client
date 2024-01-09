@@ -1,28 +1,35 @@
 {
-  "appName": "TechTreasure",
-  "layout": {
+  "global": {
     "promo": "Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!",
     "shopNow": "ShopNow",
     "searchPlaceholder": "What are you looking for?",
     "subscribe": "Subscribe",
     "subscribePromo": "Get 10% off your first order",
-    "copyright": "Copyright © 2024 TechTreasure. All rights reserved."
+    "copyright": "Copyright © 2024 TechTreasure. All rights reserved.",
+    "support": "Support",
+    "account": "Account",
+    "quickLinks": "Quick Links",
+    "downloadApp": "Download App",
+    "appPromo": "Save $3 with App, New User Only",
+    "emailPlaceholder": "Enter your email"
   },
   "navigationLinks": {
     "home": "Home",
     "contact": "Contact",
     "about": "About",
-    "faq": "FAQ"
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Logout"
   },
   "footerLinks": {
-      "account": "My Account",
-      "login": "Login / Register",
-      "cart": "Cart",
-      "wishlist": "Wishlist",
-      "shop": "Shop",
-      "privacy": "Privacy Policy",
-      "terms": "Terms Of Use",
-      "faq": "FAQ",
-      "contact": "Contact"
+    "account": "My Account",
+    "login": "Login / Register",
+    "cart": "Cart",
+    "wishlist": "Wishlist",
+    "shop": "Shop",
+    "privacy": "Privacy Policy",
+    "terms": "Terms Of Use",
+    "faq": "FAQ",
+    "contact": "Contact"
   }
 }
