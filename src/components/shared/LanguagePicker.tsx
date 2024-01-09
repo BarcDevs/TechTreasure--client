@@ -14,19 +14,20 @@ const LanguagePicker = ({}) => {
         return LANGUAGES.ENG
     }
 
-    const handleSelectLanguage = async (lang: string) => {
-        await i18n.changeLanguage(lang)
+    const handleSelectLanguage = (lang: string) => {
+        i18n.changeLanguage(lang)
+        localStorage.setItem('language', lang)
     }
 
     return (
         <Select onValueChange={handleSelectLanguage}>
             <SelectTrigger
-                className={'no-focus inline-flex h-[18px] border-none bg-black text-small text-neutral-50 max-md:hidden'}>
+                className={'no-focus text-small inline-flex h-[18px] border-none bg-black text-neutral-50 max-md:hidden'}>
                 <span>{currentLanguage().name}</span>
             </SelectTrigger>
             <SelectContent>
                 {Object.values(LANGUAGES).map(({code, name}) => (
-                    <SelectItem className={'cursor-pointer hover:bg-neutral-50 text-small'} key={code}
+                    <SelectItem className={'text-small cursor-pointer hover:bg-neutral-50'} key={code}
                                 value={code}>{name}</SelectItem>
                 ))}
             </SelectContent>
