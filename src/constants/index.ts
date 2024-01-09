@@ -2,28 +2,32 @@ import linkedin from '/assets/icons/linkedin.svg'
 import instagram from '/assets/icons/instagram.svg'
 import twitter from '/assets/icons/twitter.svg'
 import facebook from '/assets/icons/facebook.svg'
+import {LINK, SOCIAL_LINK} from '@/constants/index.d'
 
 export enum LANGUAGES {
-    ENG = 'English',
-    ESP = 'Español',
+    en = 'English',
+    es = 'Español',
 }
 
-export const NAVIGATION_LINKS = [
+export const NAVIGATION_LINKS: LINK[] = [
     {
         name: 'Home',
+        localKey: 'home',
         path: '/'
     },
     {
         name: 'Contact',
+        localKey: 'contact',
         path: '/contact'
     },
     {
         name: 'About',
+        localKey: 'about',
         path: '/about'
     }
 ]
 
-export const SOCIAL_LINKS = [
+export const SOCIAL_LINKS : SOCIAL_LINK[] = [
     {name: 'Facebook', url: 'https://www.facebook.com', icon: facebook},
     {name: 'Twitter', url: 'https://www.twitter.com', icon: twitter},
     {name: 'Instagram', url: 'https://www.instagram.com', icon: instagram},
