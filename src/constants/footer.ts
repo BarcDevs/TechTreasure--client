@@ -4,49 +4,49 @@ export const FOOTER_LINKS: {[key: string]: LINK[]} = {
     account: [
         {
             name: 'My Account',
-            localKey: 'account',
+            key: 'account',
             path: '/account'
         },
         {
             name: 'Login / Register',
-            localKey: 'login',
+            key: 'login',
             path: '/login'
         },
         {
             name: 'Cart',
-            localKey: 'cart',
+            key: 'cart',
             path: '/cart'
         },
         {
             name: 'Wishlist',
-            localKey: 'wishlist',
+            key: 'wishlist',
             path: '/wishlist'
         },
         {
             name: 'Shop',
-            localKey: 'shop',
+            key: 'shop',
             path: '/shop'
         }
     ],
     quickLinks: [
         {
             name: 'Privacy Policy',
-            localKey: 'privacy',
+            key: 'privacy',
             path: '/policy'
         },
         {
             name: 'Terms Of Use',
-            localKey: 'terms',
+            key: 'terms',
             path: '/terms'
         },
         {
             name: 'FAQ',
-            localKey: 'faq',
+            key: 'faq',
             path: '/faq'
         },
         {
             name: 'Contact',
-            localKey: 'contact',
+            key: 'contact',
             path: '/contact'
         }
     ]

@@ -1,6 +1,6 @@
 export type LINK = {
     name?: string,
-    localKey: string,
+    key: string,
     path: string
 }
 

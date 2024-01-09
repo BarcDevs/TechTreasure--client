@@ -12,17 +12,17 @@ export enum LANGUAGES {
 export const NAVIGATION_LINKS: LINK[] = [
     {
         name: 'Home',
-        localKey: 'home',
+        key: 'home',
         path: '/'
     },
     {
         name: 'Contact',
-        localKey: 'contact',
+        key: 'contact',
         path: '/contact'
     },
     {
         name: 'About',
-        localKey: 'about',
+        key: 'about',
         path: '/about'
     }
 ]
