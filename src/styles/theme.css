@@ -42,6 +42,10 @@
         @apply text-sm font-normal font-poppins leading-[21px]
     }
 
+    .text-small-semibold {
+        @apply text-sm font-semibold font-poppins leading-[21px]
+    }
+
     /* Title/12PX Medium */
     .text-tiny {
         @apply text-xs font-medium font-poppins leading-[18px]

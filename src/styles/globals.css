@@ -1,3 +1,5 @@
+@import "theme.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -122,6 +124,10 @@
         @apply flex flex-col items-start justify-start;
     }
 
+    .flex-row-start {
+        @apply flex flex-row items-start justify-start;
+    }
+
     .flex-responsive {
         @apply flex flex-row max-sm:flex-col;
     }
@@ -138,5 +144,12 @@
         @apply max-sm:flex-col;
     }
 
+    .inline-flex-center {
+        @apply inline-flex items-center justify-center;
+    }
+
+    .inline-flex-start {
+        @apply inline-flex items-start justify-start;
+    }
     /*endregion*/
 }
