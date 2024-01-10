@@ -44,19 +44,19 @@ const Item = ({item}: ItemProps) => {
                 onMouseOver={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}>
                 <CardContent
-                    className={'flex-center relative h-[250px] p-3 cursor-pointer'}
+                    className={'flex-center relative h-[250px] cursor-pointer p-3'}
                     onClick={handleCardClick}>
                     {item.discount && item.discount > 0 &&
                         <div
-                            className="left-3 top-3 absolute z-10 px-3 py-1 bg-red-500 rounded flex-center text-neutral-50">
+                            className="flex-center absolute left-3 top-3 z-10 rounded bg-red-500 px-3 py-1 text-neutral-50">
                             -{item.discount}%
                         </div>
                     }
-                    <div className="w-[34px] right-3 top-3 absolute z-10 flex-col gap-2">
-                        <button className={'h-[34px] flex-center'} onClick={handleFavoriteClick}>
+                    <div className="absolute right-3 top-3 z-10 w-[34px] flex-col gap-2">
+                        <button className={'flex-center h-[34px]'} onClick={handleFavoriteClick}>
                             <Icon path={heart} name={'heart'} size={24}/>
                         </button>
-                        <button className={'h-[34px] flex-center'} onClick={handleViewClick}>
+                        <button className={'flex-center h-[34px]'} onClick={handleViewClick}>
                             <Icon path={eye} name={'eye'} size={24}/>
                         </button>
                     </div>
@@ -65,7 +65,7 @@ const Item = ({item}: ItemProps) => {
                     </div>
                     {isHovered &&
                         <button onClick={handleCartClick}
-                                className="w-full h-10 bg-black rounded-bl rounded-br absolute bottom-3 left-0 text-neutral-50 text-body-semibold flex-center">
+                                className="text-body-medium flex-center absolute bottom-3 left-0 h-10 w-full rounded-b bg-black text-neutral-50">
                             {t('addToCart')}
                         </button>}
                 </CardContent>
@@ -81,7 +81,7 @@ const Item = ({item}: ItemProps) => {
                     <div className="inline-flex-start gap-2">
                         {!item.oldPrice && <div className="text-red-500">${item.price}</div>}
                         <Rating rating={item.rating}/>
-                        <div className="opacity-50 text-black text-small-semibold">({item.votes})</div>
+                        <div className="text-small-semibold text-black opacity-50">({item.votes})</div>
                     </div>
                 </CardFooter>
             </Card>
