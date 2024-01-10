@@ -1,6 +1,6 @@
-import {Item} from '@/types'
+import {Product} from '@/types'
 
-export const ITEMS: Item[] = [
+export const ITEMS: Product[] = [
     {
         id: "i109",
         name: 'HAVIT HV-G92 Gamepad',

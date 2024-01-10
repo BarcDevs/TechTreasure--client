@@ -1,16 +1,16 @@
-import {Card, CardContent, CardFooter} from "@/components/ui/card"
+import {Card, CardContent, CardFooter} from "@/components/ui/card.tsx"
 import Rating from '@/components/shared/Rating.tsx'
 import Icon from '@/components/shared/Icon.tsx'
 import eye from '/assets/icons/eye.svg'
 import heart from '/assets/icons/heart.svg'
-import {Item as Item_T} from '@/types'
+import {Product} from '@/types'
 import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
 import {I18N_NAMESPACES} from '@/constants'
 
 type ItemProps = {
-    item: Item_T
+    item: Product
 }
 
 const Item = ({item}: ItemProps) => {
