@@ -21,7 +21,8 @@ export enum I18N_NAMESPACES {
     global = 'global',
     navigationLinks = 'navigationLinks',
     footerLinks = 'footerLinks',
-    categories = 'categories'
+    categories = 'categories',
+    shop = 'shop'
 }
 
 export enum GLOBAL_LOCALE_KEYS {

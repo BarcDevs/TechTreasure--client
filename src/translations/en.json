@@ -51,5 +51,8 @@
     "printers3D": "3D Printers",
     "software": "Software",
     "techServices": "Tech Services"
+  },
+  "shop": {
+      "addToCart": "Add To Cart"
   }
 }
