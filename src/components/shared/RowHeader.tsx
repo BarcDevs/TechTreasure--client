@@ -13,7 +13,7 @@ const RowHeader = ({name, headline, children}: ListHeaderProps) => {
                 <Icon path={'/assets/icons/rectangle.svg'} name={'rectangle'}/>
                 <p className={'text-body-semibold text-red-500'}>{name}</p>
             </div>
-            <div className={'flex_row items-end justify-start w-full'}>
+            <div className={'flex_row w-full items-end justify-start gap-20'}>
                 <h3 className={'text-big mt-2.5'}>{headline}</h3>
                 {children}
             </div>
