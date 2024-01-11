@@ -12,7 +12,9 @@
     "downloadApp": "Download App",
     "appPromo": "Save $3 with App, New User Only",
     "emailPlaceholder": "Enter your email",
-    "new": "New"
+    "new": "New",
+    "viewAll": "View All",
+    "viewAllProducts": "View All Products"
   },
   "navigationLinks": {
     "home": "Home",
