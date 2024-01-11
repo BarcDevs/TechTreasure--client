@@ -33,9 +33,9 @@ const DesktopNavbar = ({}) => {
         <nav className={'flex-center w-full max-md:hidden'}>
             <div className={'mb-1 mt-10 flex w-[90vw] flex-row items-center justify-between'}>
                 {/*logo*/}
-                <div className={'text-large mr-2.5 text-black'}>
+                <h1 className={'text-large mr-2.5 text-black'}>
                     {APP_NAME}
-                </div>
+                </h1>
                 {/*menu*/}
                 <div className={'flex h-6 w-[50%] max-w-[350px] justify-around'}>
                     {NAVIGATION_LINKS.map(link => (

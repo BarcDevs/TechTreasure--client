@@ -16,7 +16,7 @@ const FooterLinkColumn = ({header, links = [], children, additionalStyles}: {
 
     return (
         <div className={`inline-flex flex-col items-start justify-start gap-6 ${additionalStyles}`}>
-            <div className="text-heading-medium text-neutral-50">{header}</div>
+            <h3 className="text-heading-medium text-neutral-50">{header}</h3>
             <div className="flex-col-start flex gap-4">
                 {children}
                 {links.map(({path, key}) => (

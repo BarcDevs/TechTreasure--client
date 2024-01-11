@@ -35,10 +35,10 @@ const Footer = ({}) => {
                 </div>
 
                 <div className="flex-col-start max-lg:flex-center-row inline-flex gap-6 max-lg:justify-around">
-                    <div
+                    <h2
                         className="text-large text-neutral-50 max-lg:hidden">
                         {APP_NAME}
-                    </div>
+                    </h2>
                     <div className="text-heading-medium text-neutral-50 max-lg:hidden">
                         {t(GLOBAL_LOCALE_KEYS.subscribe)}
                     </div>
