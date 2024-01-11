@@ -11,9 +11,10 @@ type ItemListProps = {
 
 const ItemList = forwardRef<CarouselRef, ItemListProps>(({items, rows = 1}, ref) => {
     // make sure we have at least 5 items in each row
-    const displayRows = (items.length / 5) >= rows ? rows : items.length < 5 ? 1 : (items.length / 5)
+    const displayRows = Math.floor((items.length / 5) >= rows ? rows : items.length < 5 ? 1 : (items.length / 5))
     const itemsPerRow = Math.ceil(items.length / displayRows)
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const refs = [...Array(displayRows)].map(() => useRef<CarouselRef | null>(null))
 
     useImperativeHandle(ref, () => ({
