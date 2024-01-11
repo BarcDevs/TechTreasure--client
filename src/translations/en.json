@@ -11,7 +11,8 @@
     "quickLinks": "Quick Links",
     "downloadApp": "Download App",
     "appPromo": "Save $3 with App, New User Only",
-    "emailPlaceholder": "Enter your email"
+    "emailPlaceholder": "Enter your email",
+    "new": "New"
   },
   "navigationLinks": {
     "home": "Home",

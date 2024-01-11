@@ -37,7 +37,8 @@ export enum GLOBAL_LOCALE_KEYS {
     quickLinks = 'quickLinks',
     downloadApp = 'downloadApp',
     appPromo = 'appPromo',
-    emailPlaceholder = 'emailPlaceholder'
+    emailPlaceholder = 'emailPlaceholder',
+    new = 'new'
 }
 
 export const NAVIGATION_LINKS: LINK[] = [

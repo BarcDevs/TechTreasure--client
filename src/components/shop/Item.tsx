@@ -7,7 +7,7 @@ import {Product} from '@/types'
 import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
-import {I18N_NAMESPACES} from '@/constants'
+import {GLOBAL_LOCALE_KEYS, I18N_NAMESPACES} from '@/constants'
 
 type ItemProps = {
     item: Product
@@ -15,7 +15,7 @@ type ItemProps = {
 
 const Item = ({item}: ItemProps) => {
     const navigate = useNavigate()
-    const {t} = useTranslation(I18N_NAMESPACES.shop)
+    const {t} = useTranslation([I18N_NAMESPACES.shop, I18N_NAMESPACES.global])
     const [isHovered, setIsHovered] = useState(false)
 
     const handleCardClick = () => {
@@ -50,11 +50,15 @@ const Item = ({item}: ItemProps) => {
                         <div
                             className="flex-center absolute left-3 top-3 z-10 rounded bg-red-500 px-3 py-1 text-neutral-50">
                             -{item.discount}%
-                        </div> : null
+                        </div> : item.new &&
+                        <div
+                            className="flex-center absolute left-3 top-3 z-10 rounded bg-green-500 px-3 py-1 text-neutral-50 uppercase">
+                            {t(GLOBAL_LOCALE_KEYS.new, {ns: I18N_NAMESPACES.global})}
+                        </div>
                     }
                     <div className="absolute right-3 top-3 z-10 w-[34px] flex-col gap-2">
                         <button className={'flex-center h-[34px]'} onClick={handleFavoriteClick}>
-                            <Icon path={heart} name={'heart'} size={24}/>
+                        <Icon path={heart} name={'heart'} size={24}/>
                         </button>
                         <button className={'flex-center h-[34px]'} onClick={handleViewClick}>
                             <Icon path={eye} name={'eye'} size={24}/>
