@@ -73,16 +73,23 @@ const Item = ({item}: ItemProps) => {
                     <div className="text-black">
                         {item.name}
                     </div>
-                    {item.oldPrice &&
-                        <div className="inline-flex-start gap-3">
-                            <div className="text-red-500">${item.price}</div>
-                            <div className="text-black line-through opacity-50">${item.oldPrice}</div>
-                        </div>}
+                    <div className="inline-flex-start gap-3">
+                        <div className="text-red-500">${item.price}</div>
+                        {item.oldPrice && <div className="text-black line-through opacity-50">${item.oldPrice}</div>}
+                    </div>
                     <div className="inline-flex-start gap-2">
-                        {!item.oldPrice && <div className="text-red-500">${item.price}</div>}
                         <Rating rating={item.rating}/>
                         <div className="text-small-semibold text-black opacity-50">({item.votes})</div>
                     </div>
+                    {/*{item.colors && item.colors.length > 0 &&*/}
+                    {/*    <div className="inline-flex-start gap-2">*/}
+                    {/*        {item.colors.map(color => (*/}
+                    {/*            <input type={'radio'}*/}
+                    {/*                   key={color.name}*/}
+                    {/*                   className={`h-[15px] w-[15px] rounded-full bg-[${color.hex}]`}*/}
+                    {/*            />*/}
+                    {/*        ))}*/}
+                    {/*    </div>}*/}
                 </CardFooter>
             </Card>
         </article>
