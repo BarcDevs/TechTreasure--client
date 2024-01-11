@@ -37,6 +37,11 @@
         @apply text-body-medium text-red-500
     }
 
+    /* Title/16PX Semibold */
+    .text-body-semibold {
+        @apply text-base font-semibold font-poppins leading-normal
+    }
+
     /* Title/14PX Regular */
     .text-small {
         @apply text-sm font-normal font-poppins leading-[21px]
