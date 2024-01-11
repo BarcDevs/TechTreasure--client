@@ -46,11 +46,11 @@ const Item = ({item}: ItemProps) => {
                 <CardContent
                     className={'flex-center relative h-[250px] cursor-pointer p-3'}
                     onClick={handleCardClick}>
-                    {item.discount && item.discount > 0 &&
+                    {(item.discount && item.discount > 0) ?
                         <div
                             className="flex-center absolute left-3 top-3 z-10 rounded bg-red-500 px-3 py-1 text-neutral-50">
                             -{item.discount}%
-                        </div>
+                        </div> : null
                     }
                     <div className="absolute right-3 top-3 z-10 w-[34px] flex-col gap-2">
                         <button className={'flex-center h-[34px]'} onClick={handleFavoriteClick}>
