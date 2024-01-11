@@ -7,4 +7,6 @@ export interface Product {
     price: number
     discount?: number
     oldPrice?: number
+    colors?: { name: string, hex: string }[]
+    new?: boolean
 }

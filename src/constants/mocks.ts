@@ -48,5 +48,18 @@ export const ITEMS: Product[] = [
         rating: 5,
         votes: 987,
         price: 700,
+    },
+    {
+        id: "i114",
+        name: 'GP11 Shooter USB Gamepad',
+        image: '/assets/images/items/item-6.png',
+        rating: 3.8,
+        votes: 109,
+        price: 120,
+        new: true,
+        colors: [
+            {name: 'Black', hex: '#000000'},
+            {name: 'Red', hex: '#DB4444'}
+        ]
     }
 ]
