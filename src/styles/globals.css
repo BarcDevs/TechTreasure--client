@@ -96,6 +96,14 @@
     }
 
     /*region Flex*/
+    .flex_row {
+        @apply flex flex-row;
+    }
+
+    .flex_col {
+        @apply flex flex-col;
+    }
+
     .flex-center {
         @apply flex items-center justify-center;
     }
