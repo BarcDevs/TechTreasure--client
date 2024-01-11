@@ -1,4 +1,4 @@
-import {CATEGORIES, GROUPED_CATEGORIES} from '@/constants/CATEGORIES.ts'
+import {CATEGORIES, GROUPED_CATEGORIES} from '@/constants/categories.ts'
 import {useTranslation} from 'react-i18next'
 import {I18N_NAMESPACES} from '@/constants'
 import Icon from '@/components/shared/Icon.tsx'
@@ -25,7 +25,7 @@ const SidebarItem = ({category}: { category: CATEGORIES | { name_key: string, su
                     <Icon key={category.name_key} name={'chevron'} path={dropdown}
                           className={'-rotate-90 invert'}
                     />
-                    <DropdownMenuContent align={'end'} alignOffset={-210}>
+                    <DropdownMenuContent align={'end'} alignOffset={-210}  >
                         {category.subcategories.map(subcategory => (
                             <DropdownMenuItem key={subcategory}>
                                 <Link to={subcategory} className="text-body text-center text-black">
