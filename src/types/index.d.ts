@@ -9,4 +9,12 @@ export interface Product {
     oldPrice?: number
     colors?: { name: string, hex: string }[]
     new?: boolean
+    category: string
+}
+
+export interface Category {
+    id: string
+    name: string
+    icon: string
+    items?: Product[] // populated by mongoose
 }

@@ -33,7 +33,7 @@ const ItemRow = ({name, headline, items, rows = 1, timerEnd, scroll}: ItemListPr
                     {timerEnd && <Timer endTime={timerEnd}/>}
                     {scroll !== "none" ?
                         <ScrollArrows ref={listRef}/> :
-                        <button className={'w-fit px-12 py-3 bg-red-500 rounded hover:opacity-90'}>
+                        <button className={'w-fit rounded bg-red-500 px-12 py-3 hover:opacity-90'}>
                             <p className={'text-neutral-50 text-body-medium'}>
                                 {t(GLOBAL_LOCALE_KEYS.viewAll)}
                             </p>

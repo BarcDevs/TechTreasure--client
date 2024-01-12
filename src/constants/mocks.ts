@@ -1,4 +1,5 @@
 import {Product} from '@/types'
+import {Categories} from '@/constants/categories.ts'
 
 export const ITEMS: Product[] = [
     {
@@ -9,7 +10,8 @@ export const ITEMS: Product[] = [
         votes: 584,
         discount: 40,
         price: 120,
-        oldPrice: 160
+        oldPrice: 160,
+        category: Categories.gaming.name
     },
     {
         id: "i110",
@@ -19,7 +21,8 @@ export const ITEMS: Product[] = [
         votes: 283,
         discount: 35,
         price: 960,
-        oldPrice: 1160
+        oldPrice: 1160,
+        category: Categories.accessories.name
     },
     {
         id: "i111",
@@ -29,7 +32,8 @@ export const ITEMS: Product[] = [
         votes: 157,
         price: 370,
         discount: 30,
-        oldPrice: 400
+        oldPrice: 400,
+        category: Categories.screens.name
     },
     {
         id: "i112",
@@ -39,7 +43,8 @@ export const ITEMS: Product[] = [
         votes: 97,
         price: 160,
         discount: 0,
-        oldPrice: 170
+        oldPrice: 170,
+        category: Categories.computerComponents.name
     },
     {
         id: "i113",
@@ -48,6 +53,7 @@ export const ITEMS: Product[] = [
         rating: 5,
         votes: 987,
         price: 700,
+        category: Categories.computers.name
     },
     {
         id: "i114",
@@ -60,6 +66,7 @@ export const ITEMS: Product[] = [
         colors: [
             {name: 'Black', hex: '#000000'},
             {name: 'Red', hex: '#DB4444'}
-        ]
+        ],
+        category: Categories.gaming.name
     }
 ]
