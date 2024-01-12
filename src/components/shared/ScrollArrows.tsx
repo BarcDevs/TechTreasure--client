@@ -6,7 +6,7 @@ import arrowLeft from '/assets/icons/arrow-left.svg'
 
 const ScrollArrows = forwardRef<CarouselRef>(({}, ref) =>
     (
-        <div className={'flex-row'}>
+        <div className={'flex_row flex-nowrap'}>
             <button className={'p-2.5'} onClick={()=> (ref as MutableRefObject<CarouselRef>).current?.prev()}>
                 <Icon path={arrowLeft} name={'arrow-left'} size={24}/>
             </button>
