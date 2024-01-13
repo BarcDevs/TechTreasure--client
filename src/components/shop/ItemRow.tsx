@@ -6,7 +6,7 @@ import {CarouselRef} from '@/types/ui'
 import ScrollArrows from '@/components/shared/ScrollArrows.tsx'
 import Timer from '@/components/shared/Timer.tsx'
 import {useTranslation} from 'react-i18next'
-import {GLOBAL_LOCALE_KEYS, I18N_NAMESPACES} from '@/constants'
+import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 
 type ItemListProps = {
     name: string,
@@ -35,7 +35,7 @@ const ItemRow = ({name, headline, items, rows = 1, timerEnd, scroll}: ItemListPr
                         <ScrollArrows ref={listRef}/> :
                         <button className={'w-fit rounded bg-red-500 px-12 py-3 hover:opacity-90'}>
                             <p className={'text-neutral-50 text-body-medium'}>
-                                {t(GLOBAL_LOCALE_KEYS.viewAll)}
+                                {t(GLOBAL_LOCALES.viewAll)}
                             </p>
                         </button>}
                 </div>
@@ -45,7 +45,7 @@ const ItemRow = ({name, headline, items, rows = 1, timerEnd, scroll}: ItemListPr
                 <div className={'flex-center'}>
                     <button className={'w-fit px-12 py-3 bg-red-500 rounded hover:opacity-90'}>
                         <p className={'text-neutral-50 text-body-medium'}>
-                            {t(GLOBAL_LOCALE_KEYS.viewAllProducts)}
+                            {t(GLOBAL_LOCALES.viewAllProducts)}
                         </p>
                     </button>
                 </div>}

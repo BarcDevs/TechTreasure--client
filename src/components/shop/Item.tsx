@@ -7,7 +7,7 @@ import {Product} from '@/types'
 import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
-import {GLOBAL_LOCALE_KEYS, I18N_NAMESPACES} from '@/constants'
+import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 
 type ItemProps = {
     item: Product
@@ -53,7 +53,7 @@ const Item = ({item}: ItemProps) => {
                         </div> : item.new &&
                         <div
                             className="flex-center absolute left-3 top-3 z-10 rounded bg-green-500 px-3 py-1 uppercase text-neutral-50">
-                            {t(GLOBAL_LOCALE_KEYS.new, {ns: I18N_NAMESPACES.global})}
+                            {t(GLOBAL_LOCALES.new, {ns: I18N_NAMESPACES.global})}
                         </div>
                     }
                     <div className="absolute right-3 top-3 z-10 w-[34px] flex-col gap-2">

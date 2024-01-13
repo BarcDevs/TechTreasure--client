@@ -2,8 +2,9 @@ import send from '/assets/icons/send.svg'
 import FooterLinkColumn, {FOOTER_LINK_STYLE} from '@/components/layout/FooterLinkColumn.tsx'
 import {FOOTER_LINKS, SUPPORT_DETAILS} from '@/constants/footer.ts'
 import Icon from '@/components/shared/Icon.tsx'
-import {APP_NAME, GLOBAL_LOCALE_KEYS, I18N_NAMESPACES, SOCIAL_LINKS} from '@/constants'
+import {APP_NAME, SOCIAL_LINKS} from '@/constants'
 import {useTranslation} from 'react-i18next'
+import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 
 const Footer = ({}) => {
     const {t} = useTranslation(I18N_NAMESPACES.global)
@@ -40,25 +41,25 @@ const Footer = ({}) => {
                         {APP_NAME}
                     </h2>
                     <div className="text-heading-medium text-neutral-50 max-lg:hidden">
-                        {t(GLOBAL_LOCALE_KEYS.subscribe)}
+                        {t(GLOBAL_LOCALES.subscribe)}
                     </div>
                     <div>
                         <div className="text-body pb-1 text-neutral-50">
-                            {t(GLOBAL_LOCALE_KEYS.subscribePromo)}
+                            {t(GLOBAL_LOCALES.subscribePromo)}
                         </div>
                         <div
                             className="inline-flex w-[217px] items-center justify-start rounded border border-neutral-50 py-3">
                             <input
                                 type="email"
                                 className="no-focus w-[180px] bg-black pl-4 font-poppins text-base font-normal leading-normal text-neutral-50 opacity-40 outline-none"
-                                placeholder={t(GLOBAL_LOCALE_KEYS.emailPlaceholder)}/>
+                                placeholder={t(GLOBAL_LOCALES.emailPlaceholder)}/>
                             <img src={send} alt="send"/>
                         </div>
                     </div>
                 </div>
 
                 <div className="flex-start-between mb-[30px] inline-flex h-fit w-[90%] gap-5 max-lg:mb-0">
-                    <FooterLinkColumn header={t(GLOBAL_LOCALE_KEYS.support)}>
+                    <FooterLinkColumn header={t(GLOBAL_LOCALES.support)}>
                         <p className={`${FOOTER_LINK_STYLE} max-w-[200px]`}>{SUPPORT_DETAILS.address}</p>
                         <a href={`mailto:${SUPPORT_DETAILS.email}?subject=Support`}
                            className={FOOTER_LINK_STYLE}>{SUPPORT_DETAILS.email}</a>
@@ -66,14 +67,14 @@ const Footer = ({}) => {
                            className={FOOTER_LINK_STYLE}>{SUPPORT_DETAILS.phone}</a>
                     </FooterLinkColumn>
 
-                    <FooterLinkColumn header={t(GLOBAL_LOCALE_KEYS.account)} links={FOOTER_LINKS.account}/>
-                    <FooterLinkColumn header={t(GLOBAL_LOCALE_KEYS.quickLinks)} links={FOOTER_LINKS.quickLinks}/>
+                    <FooterLinkColumn header={t(GLOBAL_LOCALES.account)} links={FOOTER_LINKS.account}/>
+                    <FooterLinkColumn header={t(GLOBAL_LOCALES.quickLinks)} links={FOOTER_LINKS.quickLinks}/>
 
-                    <FooterLinkColumn header={t(GLOBAL_LOCALE_KEYS.downloadApp)} additionalStyles={'max-md:hidden'}>
+                    <FooterLinkColumn header={t(GLOBAL_LOCALES.downloadApp)} additionalStyles={'max-md:hidden'}>
                         <div className="flex-col-start flex gap-2">
                             <div
                                 className="text-tiny text-neutral-50 opacity-70">
-                                {t(GLOBAL_LOCALE_KEYS.appPromo)}
+                                {t(GLOBAL_LOCALES.appPromo)}
                             </div>
                             <div className="inline-flex items-center justify-start gap-2">
                                 <div className="flex-center h-20 w-20 bg-black p-0.5">
@@ -115,7 +116,7 @@ const Footer = ({}) => {
                 </div>
                 <div className="inline-flex items-center justify-start gap-3 opacity-60">
                     <div className="font-poppins text-base font-normal leading-normal text-white">
-                        {t(GLOBAL_LOCALE_KEYS.copyright)}
+                        {t(GLOBAL_LOCALES.copyright)}
                     </div>
                 </div>
             </div>

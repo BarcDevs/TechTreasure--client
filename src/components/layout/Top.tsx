@@ -1,8 +1,7 @@
-
-import {GLOBAL_LOCALE_KEYS, I18N_NAMESPACES} from '@/constants'
 import {Link} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
 import LanguagePicker from '@/components/shared/LanguagePicker.tsx'
+import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 
 
 const Top = ({}) => {
@@ -14,11 +13,11 @@ const Top = ({}) => {
             <div className="flex items-center justify-center gap-2">
                 <div
                     className="h-fit w-fit text-small text-neutral-50">
-                    {t(GLOBAL_LOCALE_KEYS.promo)}
+                    {t(GLOBAL_LOCALES.promo)}
                 </div>
                 <Link to={'/'}
                       className="text-center font-poppins text-sm font-semibold leading-normal text-neutral-50 underline max-md:hidden">
-                    {t(GLOBAL_LOCALE_KEYS.shopNow)}
+                    {t(GLOBAL_LOCALES.shopNow)}
                 </Link>
             </div>
 
@@ -27,7 +26,7 @@ const Top = ({}) => {
 
                 <Link to={'/'}
                       className="text-center font-poppins text-sm font-semibold leading-normal text-neutral-50 underline md:hidden">
-                    {t(GLOBAL_LOCALE_KEYS.shopNow)}
+                    {t(GLOBAL_LOCALES.shopNow)}
                 </Link>
             </div>
         </div>

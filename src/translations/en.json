@@ -16,6 +16,24 @@
     "viewAll": "View All",
     "viewAllProducts": "View All Products"
   },
+  "homepage": {
+    "flashSalesTitle": "Today's",
+    "flashSalesHeadline": "Flash Sales",
+    "bestSellingTitle": "This Month",
+    "bestSellingHeadline": "Best Selling Products",
+    "categoriesTitle": "Categories",
+    "categoriesHeadline": "Browse By Category",
+    "newArrivalsTitle": "Featured",
+    "newArrivalsHeadline": "New Arrivals",
+    "exploreTitle": "Our Products",
+    "exploreHeadline": "Explore Our Products",
+    "freeDeliveryHeadline": "Free And Fast Delivery",
+    "freeDeliveryText": "Free delivery for all orders over $140",
+    "customerServiceHeadline": "24/7 Customer Service",
+    "customerServiceText": "Friendly 24/7 customer support",
+    "moneyBackHeadline": "Money Back Guarantee",
+    "moneyBackText": "We return money within 30 days"
+  },
   "navigationLinks": {
     "home": "Home",
     "contact": "Contact",
@@ -57,6 +75,6 @@
     "techServices": "Tech Services"
   },
   "shop": {
-      "addToCart": "Add To Cart"
+    "addToCart": "Add To Cart"
   }
 }
