@@ -6,6 +6,7 @@ import ScrollArrows from '@/components/shared/ScrollArrows.tsx'
 import {useTranslation} from 'react-i18next'
 import CategoryList from '@/components/shop/CategoryList.tsx'
 import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
+import Button from '@/components/layout/Button.tsx'
 
 type ItemListProps = {
     name: string,
@@ -26,11 +27,7 @@ const CategoryRow = ({name, headline, categories}: ItemListProps) => {
             </RowHeader>
             <CategoryList ref={listRef} items={categories}/>
                 <div className={'flex-center'}>
-                    <button className={'w-fit px-12 py-3 bg-red-500 rounded hover:opacity-90'}>
-                        <p className={'text-neutral-50 text-body-medium'}>
-                            {t(GLOBAL_LOCALES.viewAll)}
-                        </p>
-                    </button>
+                    <Button text={t(GLOBAL_LOCALES.viewAll)}/>
                 </div>
         </section>
     )
