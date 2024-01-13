@@ -1,6 +1,6 @@
 import {GROUPED_CATEGORIES} from '@/constants/categories.ts'
 import {useTranslation} from 'react-i18next'
-import {I18N_NAMESPACES} from '@/constants'
+import {I18N_NAMESPACES} from '@/constants/locales.ts'
 import Icon from '@/components/shared/Icon.tsx'
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu"
 import dropdown from '/assets/icons/dropdown.svg'
@@ -8,7 +8,7 @@ import {Link} from 'react-router-dom'
 import {Category} from '@/types'
 
 const isCategory = (category: (Category | { name_key: string; subcategories: Category[] })) : category is Category =>
-    !category.hasOwnProperty('subcategories')
+    !!(category as Category).id
 
 const SidebarItem = ({category}: { category: (Category | { name_key: string; subcategories: Category[] }) }) => {
     const {t} = useTranslation(I18N_NAMESPACES.categories)

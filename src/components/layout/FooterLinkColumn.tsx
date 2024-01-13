@@ -2,7 +2,7 @@ import {ReactNode} from 'react'
 import {Link} from 'react-router-dom'
 import {LINK} from '@/types/constants'
 import {useTranslation} from 'react-i18next'
-import {I18N_NAMESPACES} from '@/constants'
+import {I18N_NAMESPACES} from '@/constants/locales.ts'
 
 export const FOOTER_LINK_STYLE = 'text-neutral-50 text-body text-wrap hover:text-white'
 

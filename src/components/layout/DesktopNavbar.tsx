@@ -1,5 +1,5 @@
 import {NavLink, useLocation} from 'react-router-dom'
-import {I18N_NAMESPACES, NAVIGATION_LINKS} from '@/constants'
+import {NAVIGATION_LINKS} from '@/constants'
 import cart from '/assets/icons/cart.svg'
 import user from '/assets/icons/user.svg'
 import wishlist from '/assets/icons/wishlist.svg'
@@ -7,6 +7,7 @@ import Icon from '@/components/shared/Icon.tsx'
 import Search from '@/components/shared/Search.tsx'
 import {APP_NAME} from '@/constants'
 import {useTranslation} from 'react-i18next'
+import {I18N_NAMESPACES} from '@/constants/locales.ts'
 
 const NavbarLink = ({to, label, location}: { to: string, label: string, location: string }) => {
     const isActive = location === to

@@ -8,11 +8,12 @@ import {
 import {Link, useLocation} from 'react-router-dom'
 import Icon from "@/components/shared/Icon"
 import hamburger from '/assets/icons/hamburger.svg'
-import {I18N_NAMESPACES, NAVIGATION_LINKS} from '@/constants'
+import {NAVIGATION_LINKS} from '@/constants'
 import cart from '/assets/icons/cart.svg'
 import wishlist from '/assets/icons/wishlist.svg'
 import Search from '@/components/shared/Search.tsx'
 import {useTranslation} from 'react-i18next'
+import {I18N_NAMESPACES} from '@/constants/locales.ts'
 
 const DropdownEntry = ({to, label, className}: { to: string, label: string, className?: string }) => (
     <DropdownMenuLabel key={label}>
