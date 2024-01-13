@@ -1,6 +1,7 @@
 import {createBrowserRouter} from 'react-router-dom'
 import RootLayout from '@/pages/layouts/RootLayout.tsx'
 import HomePage from '@/pages/HomePage.tsx'
+import NotFoundPage from '@/pages/NotFoundPage.tsx'
 
 export const router = createBrowserRouter([
     {
@@ -34,11 +35,11 @@ export const router = createBrowserRouter([
                 path: 'categories',
                 children: [
                     {
-                        path: '',
+                        path: ''
                         // element: <CategoriesPage/>
                     },
                     {
-                        path: ':id',
+                        path: ':id'
                         // element: <CategoryPage/>
                     }
                 ]
@@ -47,15 +48,15 @@ export const router = createBrowserRouter([
                 path: 'items',
                 children: [
                     {
-                        path: '',
+                        path: ''
                         // element: <ItemsPage/>
                     },
                     {
-                        path: ':id',
+                        path: ':id'
                         // element: <ItemPage/>
                     },
                     {
-                        path: '?search',
+                        path: '?search'
                         // element: <ItemsPage/>
                     }
                 ]
@@ -79,11 +80,11 @@ export const router = createBrowserRouter([
             {
                 path: 'contact'
                 // element: <ContactPage/>
+            },
+            {
+                path: '*',
+                element: <NotFoundPage/>
             }
         ]
-    },
-    {
-        path: '*'
-        // element: <NotFoundPage/>
     }
 ])

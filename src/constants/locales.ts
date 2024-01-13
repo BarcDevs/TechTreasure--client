@@ -22,7 +22,11 @@ export enum GLOBAL_LOCALES {
     emailPlaceholder = 'emailPlaceholder',
     new = 'new',
     viewAll = 'viewAll',
-    viewAllProducts = 'viewAllProducts'
+    viewAllProducts = 'viewAllProducts',
+
+    notFoundHeadline = 'notFoundHeadline',
+    notFoundText = 'notFoundText',
+    backToHome = 'backToHome',
 }
 
 export enum HOMEPAGE_LOCALES {
@@ -41,5 +45,5 @@ export enum HOMEPAGE_LOCALES {
     customerServiceHeadline = 'customerServiceHeadline',
     customerServiceText = 'customerServiceText',
     moneyBackHeadline = 'moneyBackHeadline',
-    moneyBackText = 'moneyBackText'
+    moneyBackText = 'moneyBackText',
 }

@@ -14,7 +14,11 @@
     "emailPlaceholder": "Enter your email",
     "new": "New",
     "viewAll": "View All",
-    "viewAllProducts": "View All Products"
+    "viewAllProducts": "View All Products",
+
+    "notFoundHeadline": "Page Not Found",
+    "notFoundText": "The page you are looking for does not exist.",
+    "backToHome": "Back To Home"
   },
   "homepage": {
     "flashSalesTitle": "Today's",
