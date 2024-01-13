@@ -20,9 +20,70 @@ export const router = createBrowserRouter([
             },
             {
                 index: true,
-                element: <HomePage/>,
-                // children: [{}]
+                element: <HomePage/>
+            },
+            {
+                path: 'account/:id'
+                // element: <AccountPage/>
+            },
+            {
+                path: 'seller/:id'
+                // element: <SellerPage/>
+            },
+            {
+                path: 'categories',
+                children: [
+                    {
+                        path: '',
+                        // element: <CategoriesPage/>
+                    },
+                    {
+                        path: ':id',
+                        // element: <CategoryPage/>
+                    }
+                ]
+            },
+            {
+                path: 'items',
+                children: [
+                    {
+                        path: '',
+                        // element: <ItemsPage/>
+                    },
+                    {
+                        path: ':id',
+                        // element: <ItemPage/>
+                    },
+                    {
+                        path: '?search',
+                        // element: <ItemsPage/>
+                    }
+                ]
+            },
+            {
+                path: 'cart'
+                // element: <CartPage/>
+            },
+            {
+                path: 'wishlist'
+                // element: <WishlistPage/>
+            },
+            {
+                path: 'checkout'
+                // element: <CheckoutPage/>
+            },
+            {
+                path: 'about'
+                // element: <AboutPage/>
+            },
+            {
+                path: 'contact'
+                // element: <ContactPage/>
             }
         ]
+    },
+    {
+        path: '*'
+        // element: <NotFoundPage/>
     }
 ])
