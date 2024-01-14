@@ -1,3 +1,4 @@
+/* TODO: TRANSLATIONS ON HOLD FOR TIME REASONS */
 export enum I18N_NAMESPACES {
     global = 'global',
     homepage = 'homepage',

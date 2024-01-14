@@ -1,5 +1,5 @@
 import * as z from "zod"
-
+// TODO: add translations for error messages
 const signupFormSchema = z.object({
     name: z.string()
         .min(2, {message: "Name must be at least 2 characters long"})
