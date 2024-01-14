@@ -41,7 +41,7 @@ const LoginForm = ({}) => {
                     <Button className={'capitalize'} type="submit" text={t(AUTH_LOCALES.login)}/>
                     <Button className={'text-body bg-neutral-50 px-0 text-red-500'} text={t(AUTH_LOCALES.forgotPassword)}/>
                 </div>
-                <Button className={'w-full border border-black bg-neutral-50 text-black'}
+                <Button className={'w-full'} variant={'white'}
                         text={`${t(AUTH_LOCALES.login)} ${t(AUTH_LOCALES.withGoogle)}`}/>
                 <div className={'flex-center-row gap-4'}>
                     <p className={'text-body'}>{t(AUTH_LOCALES.alreadyHaveAccount)}</p>

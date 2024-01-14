@@ -43,7 +43,7 @@ const SignupForm = ({}) => {
                            formControl={form.control}/>
                 <div className={'flex_col gap-4'}>
                     <Button className={'w-full capitalize'} type="submit" text={t(AUTH_LOCALES.createAccount)}/>
-                    <Button className={'w-full border border-black bg-neutral-50 text-black'}
+                    <Button className={'w-full'} variant={'white'}
                             text={`${t(AUTH_LOCALES.signup)} ${t(AUTH_LOCALES.withGoogle)}`}/>
                 </div>
                 <div className={'flex-center-row gap-4'}>

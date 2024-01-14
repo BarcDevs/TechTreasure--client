@@ -18,6 +18,11 @@
         @apply text-2xl font-bold font-inter leading-normal tracking-wide
     }
 
+    /* Title/20PX Regular */
+    .text-heading {
+        @apply text-xl font-normal font-poppins leading-7
+    }
+
     /* Title/20PX Medium */
     .text-heading-medium {
         @apply text-xl font-medium font-poppins leading-7
