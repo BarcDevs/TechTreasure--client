@@ -1,6 +1,7 @@
 export enum I18N_NAMESPACES {
     global = 'global',
     homepage = 'homepage',
+    authPage = 'auth-page',
     navigationLinks = 'navigationLinks',
     footerLinks = 'footerLinks',
     categories = 'categories',
@@ -46,4 +47,21 @@ export enum HOMEPAGE_LOCALES {
     customerServiceText = 'customerServiceText',
     moneyBackHeadline = 'moneyBackHeadline',
     moneyBackText = 'moneyBackText',
+}
+
+export enum AUTH_LOCALES {
+    headlineLogin = 'headlineLogin',
+    subheadingLogin = 'subheadingLogin',
+    headlineSignup = 'headlineSignup',
+    subheadingSignup = 'subheadingSignup',
+    name = 'name',
+    email = 'email',
+    password = 'password',
+    confirmPassword = 'confirmPassword',
+    login = 'login',
+    signup = 'signup',
+    createAccount = 'createAccount',
+    alreadyHaveAccount = 'alreadyHaveAccount',
+    forgotPassword = 'forgotPassword',
+    withGoogle = 'withGoogle'
 }

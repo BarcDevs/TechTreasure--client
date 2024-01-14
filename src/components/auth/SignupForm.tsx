@@ -6,9 +6,12 @@ import {Form} from "@/components/ui/form"
 import FormInput from '@/components/shared/FormInput.tsx'
 import Button from '@/components/elements/Button.tsx'
 import {Link} from 'react-router-dom'
+import {useTranslation} from 'react-i18next'
+import {AUTH_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 
 const SignupForm = ({}) => {
     const inputStyle = 'p-0 rounded-b-none border-x-0 border-t-0 border-black/50'
+    const {t} = useTranslation(I18N_NAMESPACES.authPage)
     // const submit = useSubmit()
     const form = useForm<SignupFormType>({
         resolver: zodResolver(formSchema),
@@ -28,20 +31,20 @@ const SignupForm = ({}) => {
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-[370px] flex-col gap-10 space-y-8">
                 <div className={'flex-col-start gap-6'}>
-                    <h2 className={'text-big-medium'}>Create an account</h2>
-                    <p className={'text-body'}>Enter your details below</p>
+                    <h2 className={'text-big-medium'}>{t(AUTH_LOCALES.headlineSignup)}</h2>
+                    <p className={'text-body'}>{t(AUTH_LOCALES.subheadingSignup)}</p>
                 </div>
-                <FormInput name={'name'} placeholder={'Name'} className={inputStyle} formControl={form.control}/>
-                <FormInput name={'email'} placeholder={'Email'} type={'email'} className={inputStyle}
+                <FormInput name={'name'} placeholder={t(AUTH_LOCALES.name)} className={inputStyle} formControl={form.control}/>
+                <FormInput name={'email'} placeholder={t(AUTH_LOCALES.email)} type={'email'} className={inputStyle}
                            formControl={form.control}/>
-                <FormInput name={'password'} placeholder={'Password'} type={'password'} className={inputStyle}
+                <FormInput name={'password'} placeholder={t(AUTH_LOCALES.password)} type={'password'} className={inputStyle}
                            formControl={form.control}/>
-                <FormInput name={'passwordConfirm'} placeholder={"Confirm Password"} type={'password'} className={inputStyle}
+                <FormInput name={'passwordConfirm'} placeholder={t(AUTH_LOCALES.confirmPassword)} type={'password'} className={inputStyle}
                            formControl={form.control}/>
                 <div className={'flex_col gap-4'}>
-                    <Button className={'w-full'} type="submit" text={'Create Account'}/>
+                    <Button className={'w-full capitalize'} type="submit" text={t(AUTH_LOCALES.createAccount)}/>
                     <Button className={'w-full border border-black bg-neutral-50 text-black'}
-                            text={'Sign up with Google'}/>
+                            text={`${t(AUTH_LOCALES.signup)} ${t(AUTH_LOCALES.withGoogle)}`}/>
                 </div>
                 <div className={'flex-center-row gap-4'}>
                     <p className={'text-body'}>Already have an account?</p>

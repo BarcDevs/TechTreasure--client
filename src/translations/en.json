@@ -38,6 +38,22 @@
     "moneyBackHeadline": "Money Back Guarantee",
     "moneyBackText": "We return money within 30 days"
   },
+  "auth-page": {
+    "headlineLogin": "Log in",
+    "subheadingLogin": "Enter your details below",
+    "headlineSignup": "Create an account",
+    "subheadingSignup": "Enter your details below",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "login": "Log in",
+    "signup": "Sign up",
+    "createAccount": "Create Account",
+    "alreadyHaveAccount": "Already have an account?",
+    "forgotPassword": "Forgot Password?",
+    "withGoogle": "with Google"
+  },
   "navigationLinks": {
     "home": "Home",
     "contact": "Contact",
