@@ -4,8 +4,13 @@
 
 @layer utilities {
     /* Heading/36PX SemiBold */
-    .text-big {
+    .text-big-semibold {
         @apply text-4xl font-semibold font-inter leading-[48px] tracking-wider
+    }
+
+    /* Heading/36PX Medium */
+    .text-big-medium {
+        @apply text-4xl font-medium font-inter leading-[48px] tracking-wider
     }
 
     /* Heading/24PX Bold */
