@@ -11,7 +11,15 @@ const signupFormSchema = z.object({
         .max(50)
         .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
             {message: "Password must contain at least one uppercase letter, one lowercase letter, and one number"}),
-})
+    passwordConfirm: z.string()
+}).superRefine((({password, passwordConfirm}, ctx) => {
+    if (password !== passwordConfirm) {
+        ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: "Passwords do not match",
+        })
+    }
+}))
 
 const loginFormSchema = z.object({
     email: z.string().email({message: "Invalid email"}),

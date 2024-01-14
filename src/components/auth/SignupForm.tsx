@@ -36,6 +36,8 @@ const SignupForm = ({}) => {
                            formControl={form.control}/>
                 <FormInput name={'password'} placeholder={'Password'} type={'password'} className={inputStyle}
                            formControl={form.control}/>
+                <FormInput name={'passwordConfirm'} placeholder={"Confirm Password"} type={'password'} className={inputStyle}
+                           formControl={form.control}/>
                 <div className={'flex_col gap-4'}>
                     <Button className={'w-full'} type="submit" text={'Create Account'}/>
                     <Button className={'w-full border border-black bg-neutral-50 text-black'}
