@@ -2,6 +2,7 @@ import {createBrowserRouter} from 'react-router-dom'
 import RootLayout from '@/pages/layouts/RootLayout.tsx'
 import HomePage from '@/pages/HomePage.tsx'
 import NotFoundPage from '@/pages/NotFoundPage.tsx'
+import AuthPage from '@/pages/AuthPage.tsx'
 
 export const router = createBrowserRouter([
     {
@@ -11,12 +12,12 @@ export const router = createBrowserRouter([
             {
                 path: '',
                 children: [{
-                    path: 'login'
-                    // element: <LoginPage/>
+                    path: 'login',
+                    element: <AuthPage type={'login'}/>
                 },
                     {
-                        path: 'signup'
-                        // element: <SignupPage/>
+                        path: 'signup',
+                        element: <AuthPage type={'signup'}/>
                     }]
             },
             {
