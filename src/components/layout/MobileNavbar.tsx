@@ -56,9 +56,9 @@ const MobileNavbar = ({}) => {
             <Search/>
 
             {!isAuthPage &&
-                <div className={'inline-flex gap-4 h-6 justify-between'}>
-                    <Icon path={wishlist} name={'wishlist'} size={30}/>
-                    <Icon path={cart} name={'cart'} size={30}/>
+                <div className={'inline-flex h-6 justify-between gap-4'}>
+                    <Icon path={wishlist} name={'wishlist'} size={30} hoverable/>
+                    <Icon path={cart} name={'cart'} size={30} hoverable/>
                 </div>
             }
         </nav>

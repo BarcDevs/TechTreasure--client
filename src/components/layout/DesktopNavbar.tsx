@@ -1,4 +1,4 @@
-import {NavLink, useLocation} from 'react-router-dom'
+import {Link, NavLink, useLocation} from 'react-router-dom'
 import {NAVIGATION_LINKS} from '@/constants'
 import cart from '/assets/icons/cart.svg'
 import user from '/assets/icons/user.svg'
@@ -49,9 +49,9 @@ const DesktopNavbar = ({}) => {
                     <Search additionalStyles={isAuthPage ? 'max-lg:[120px]' : 'max-lg:hidden'}/>
                     {!isAuthPage &&
                         <div className={'inline-flex h-6 justify-between gap-4'}>
-                            <Icon path={wishlist} name={'wishlist'}/>
-                            <Icon path={cart} name={'cart'}/>
-                            {isLoggedIn && <Icon path={user} name={'user'}/>}
+                            <Link to={'/wishlist'}><Icon path={wishlist} name={'wishlist'} hoverable/></Link>
+                            <Link to={'/cart'}><Icon path={cart} name={'cart'} hoverable/></Link>
+                            {isLoggedIn && <Icon path={user} name={'user'} hoverable/>}
                         </div>
                     }
                 </div>

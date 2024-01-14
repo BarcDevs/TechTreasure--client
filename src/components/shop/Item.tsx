@@ -71,15 +71,15 @@ const Item = ({item, variant, onDelete}: ItemProps) => {
                     <div className="absolute right-3 top-3 z-10 w-[34px] flex-col gap-2">
                         {variant !== 'wishlist' && <>
                             <button className={'flex-center h-[34px]'} onClick={handleFavoriteClick}>
-                                <Icon path={heart} name={'heart'} size={24}/>
+                                <Icon path={heart} name={'heart'} size={24} hoverable/>
                             </button>
                             <button className={'flex-center h-[34px]'} onClick={handlePeekClick}>
-                                <Icon path={eye} name={'eye'} size={24}/>
+                                <Icon path={eye} name={'eye'} size={24} hoverable/>
                             </button>
                         </>}
                         {variant === 'wishlist' &&
                             <button className={'flex-center h-[34px]'} onClick={handleDeleteClick}>
-                                <Icon path={trash} name={'trash'} size={24}/>
+                                <Icon path={trash} name={'trash'} size={24} hoverable/>
                             </button>}
                     </div>
                     <div className={'mx-7 my-6'}>
