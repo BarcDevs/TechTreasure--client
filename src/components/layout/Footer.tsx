@@ -1,7 +1,7 @@
 import send from '/assets/icons/send.svg'
 import FooterLinkColumn, {FOOTER_LINK_STYLE} from '@/components/layout/FooterLinkColumn.tsx'
 import {FOOTER_LINKS, SUPPORT_DETAILS} from '@/constants/footer.ts'
-import Icon from '@/components/shared/Icon.tsx'
+import Icon from '@/components/elements/Icon.tsx'
 import {APP_NAME, SOCIAL_LINKS} from '@/constants'
 import {useTranslation} from 'react-i18next'
 import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'

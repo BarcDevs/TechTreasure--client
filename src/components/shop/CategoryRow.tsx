@@ -6,7 +6,7 @@ import ScrollArrows from '@/components/shared/ScrollArrows.tsx'
 import {useTranslation} from 'react-i18next'
 import CategoryList from '@/components/shop/CategoryList.tsx'
 import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
-import Button from '@/components/layout/Button.tsx'
+import Button from '@/components/elements/Button.tsx'
 
 type ItemListProps = {
     name: string,

@@ -1,7 +1,7 @@
 import {GROUPED_CATEGORIES} from '@/constants/categories.ts'
 import {useTranslation} from 'react-i18next'
 import {I18N_NAMESPACES} from '@/constants/locales.ts'
-import Icon from '@/components/shared/Icon.tsx'
+import Icon from '@/components/elements/Icon.tsx'
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu"
 import dropdown from '/assets/icons/dropdown.svg'
 import {Link} from 'react-router-dom'

@@ -1,4 +1,4 @@
-import Icon from '@/components/shared/Icon.tsx'
+import Icon from '@/components/elements/Icon.tsx'
 
 type ListHeaderProps = {
     name: string,

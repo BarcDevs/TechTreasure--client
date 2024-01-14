@@ -1,6 +1,6 @@
 import {forwardRef, MutableRefObject} from 'react'
 import {CarouselRef} from '@/types/ui'
-import Icon from '@/components/shared/Icon.tsx'
+import Icon from '@/components/elements/Icon.tsx'
 import arrowRight from '/assets/icons/arrow-right.svg'
 import arrowLeft from '/assets/icons/arrow-left.svg'
 

@@ -1,6 +1,6 @@
 import {Card, CardContent, CardFooter} from "@/components/ui/card.tsx"
-import Rating from '@/components/shared/Rating.tsx'
-import Icon from '@/components/shared/Icon.tsx'
+import Rating from '@/components/elements/Rating.tsx'
+import Icon from '@/components/elements/Icon.tsx'
 import eye from '/assets/icons/eye.svg'
 import heart from '/assets/icons/heart.svg'
 import {Product} from '@/types'

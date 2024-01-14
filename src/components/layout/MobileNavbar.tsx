@@ -6,7 +6,7 @@ import {
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu"
 import {Link, useLocation} from 'react-router-dom'
-import Icon from "@/components/shared/Icon"
+import Icon from "@/components/elements/Icon.tsx"
 import hamburger from '/assets/icons/hamburger.svg'
 import {NAVIGATION_LINKS} from '@/constants'
 import cart from '/assets/icons/cart.svg'

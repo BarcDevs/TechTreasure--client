@@ -1,7 +1,7 @@
 import {useTranslation} from 'react-i18next'
 import {I18N_NAMESPACES} from '@/constants/locales.ts'
 import {Category} from '@/types'
-import Icon from '@/components/shared/Icon.tsx'
+import Icon from '@/components/elements/Icon.tsx'
 import {Link} from 'react-router-dom'
 
 const CategoryCard = ({category}: { category: Category }) => {

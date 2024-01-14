@@ -1,7 +1,7 @@
 import fullStar from '/assets/icons/star-filled.svg'
 import halfStar from '/assets/icons/star-half.svg'
 import emptyStar from '/assets/icons/star-empty.svg'
-import Icon from '@/components/shared/Icon.tsx'
+import Icon from '@/components/elements/Icon.tsx'
 
 const Rating = ({rating}: { rating: number }) => (
     <div className={'inline-flex'}>

@@ -1,7 +1,7 @@
 import {useTranslation} from 'react-i18next'
 import {I18N_NAMESPACES} from '@/constants/locales.ts'
 import {Link} from 'react-router-dom'
-import Button from '@/components/layout/Button.tsx'
+import Button from '@/components/elements/Button.tsx'
 
 const NotFoundPage = ({}) => {
     const {t} = useTranslation(I18N_NAMESPACES.global)
