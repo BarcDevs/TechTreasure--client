@@ -24,7 +24,7 @@ const RowHeader = ({name, headline, variant = 'red', children}: ListHeaderProps)
         </header>
     ) : (
         <header className={`${children ? 'flex-row-between' : 'flex-row-start'} h-fit w-[90vw]`}>
-            <div className={'flex_row items-end justify-start gap-4'}>
+            <div className={'flex_row items-center justify-start gap-4'}>
                 <Icon path={rectangle} name={'rectangle'}/>
                 <h3 className={textVariant}>{headline}</h3>
             </div>
