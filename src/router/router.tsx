@@ -5,6 +5,7 @@ import NotFoundPage from '@/pages/NotFoundPage.tsx'
 import AuthPage from '@/pages/AuthPage.tsx'
 import WishlistPage from '@/pages/WishlistPage.tsx'
 import CartPage from '@/pages/CartPage.tsx'
+import CheckoutPage from '@/pages/CheckoutPage.tsx'
 
 export const router = createBrowserRouter([
     {
@@ -73,8 +74,8 @@ export const router = createBrowserRouter([
                 element: <WishlistPage/>
             },
             {
-                path: 'checkout'
-                // element: <CheckoutPage/>
+                path: 'checkout',
+                element: <CheckoutPage/>
             },
             {
                 path: 'about'
