@@ -7,6 +7,13 @@ module.exports = {
         './app/**/*.{ts,tsx}',
         './src/**/*.{ts,tsx}'
     ],
+    safelist: [
+        'bg-red-500',
+        'text-red-500',
+        'bg-neutral-50',
+        'text-neutral-50',
+        'text-nowrap',
+    ],
     prefix: '',
     theme: {
         fontFamily: {

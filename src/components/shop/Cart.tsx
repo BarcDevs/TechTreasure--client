@@ -28,7 +28,7 @@ const Cart = ({}) => (
             </TableBody>
             <TableFooter>
             <TableRow className={'text-body-medium'}>
-                <TableCell>
+                <TableCell className={'pl-0'}>
                     <div className={'flex-row-start pl-10 py-6'}>
                         <Button text={'Return to Shop'} variant={'white'}/>
                     </div>
