@@ -11,8 +11,8 @@ const CartItem = ({item}: { item: CartItemType }) => {
     return (
         <TableRow key={item.id} className={'text-body h-[100px] items-center'}>
             <TableCell className={'pl-10'}>
-                <div className={'flex_row justify-start items-center gap-5'}>
-                    <div className={'h-[54px] w-[54px] flex-center'}>
+                <div className={'flex_row items-center justify-start gap-5'}>
+                    <div className={'h-[54px] w-[54px] min-h-9 min-w-9 flex-center'}>
                         <img src={item.image} alt={item.name}/>
                     </div>
                     <p>{item.name}</p>
