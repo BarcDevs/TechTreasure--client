@@ -4,6 +4,7 @@ import HomePage from '@/pages/HomePage.tsx'
 import NotFoundPage from '@/pages/NotFoundPage.tsx'
 import AuthPage from '@/pages/AuthPage.tsx'
 import WishlistPage from '@/pages/WishlistPage.tsx'
+import CartPage from '@/pages/CartPage.tsx'
 
 export const router = createBrowserRouter([
     {
@@ -64,8 +65,8 @@ export const router = createBrowserRouter([
                 ]
             },
             {
-                path: 'cart'
-                // element: <CartPage/>
+                path: 'cart',
+                element: <CartPage/>
             },
             {
                 path: 'wishlist',
