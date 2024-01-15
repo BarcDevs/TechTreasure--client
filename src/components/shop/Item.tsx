@@ -12,7 +12,9 @@ import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 
 type ItemProps = {
     item: Product
-} & WishlistItemProps
+    variant?: never
+    onDelete?: never
+}
 
 type WishlistItemProps = {
     item: Product
@@ -20,7 +22,7 @@ type WishlistItemProps = {
     onDelete: () => void
 }
 
-const Item = ({item, variant, onDelete}: ItemProps) => {
+const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
     const navigate = useNavigate()
     const {t} = useTranslation([I18N_NAMESPACES.shop, I18N_NAMESPACES.global])
     const [isHovered, setIsHovered] = useState(false)
@@ -46,7 +48,7 @@ const Item = ({item, variant, onDelete}: ItemProps) => {
 
     const handleDeleteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation()
-        onDelete()
+        onDelete!()
     }
 
     return (
@@ -83,7 +85,8 @@ const Item = ({item, variant, onDelete}: ItemProps) => {
                             </button>}
                     </div>
                     <div className={'mx-7 my-6'}>
-                        <img className={isHovered || variant === 'wishlist' ? 'max-h-[145px]' : ''} src={item.image} alt="item"/>
+                        <img className={isHovered || variant === 'wishlist' ? 'max-h-[145px]' : ''} src={item.image}
+                             alt="item"/>
                     </div>
                     {isHovered || variant === 'wishlist' &&
                         <button onClick={handleCartClick}
