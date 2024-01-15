@@ -18,7 +18,7 @@ const Wishlist = ({}) => {
             <RowHeader headline={`Wishlist (${wishlistCount})`} variant={'white'}>
                 <Button variant={'white'} text={'Move All To Cart'} onClick={addAllToCart}/>
             </RowHeader>
-            <ul className={'flex-start-between max-sm:flex-center-col flex-row flex-wrap gap-5'}>
+            <ul className={'flex-start-around max-sm:flex-center-col flex-row flex-wrap gap-5'}>
                 {ITEMS.map(item => (
                     <li key={item.id}>
                         <Item item={item} variant={'wishlist'} onDelete={removeFromWishlist}/>
