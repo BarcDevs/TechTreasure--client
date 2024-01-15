@@ -8,14 +8,14 @@ const CartSummary = ({}) => {
     const total = cartSubtotal + shipping
 
     return (
-        <section className={'w-full flex_row items-start justify-between px-10'}>
+        <section className={'flex_row w-full items-start justify-between px-10 max-lg:flex-center-col max-lg:gap-8'}>
             <div className={'flex_row gap-4'}>
-                <Input className={'h-12 border-black no-focus text-body placeholder:opacity-50'}
+                <Input className={'no-focus text-body h-12 border-black placeholder:opacity-50 min-w-[12rem]'}
                        placeholder={'Coupon Code'}/>
                 <Button className={'text-nowrap'} text={'Apply Coupon'}/>
             </div>
-            <div className={'flex-center-col px-6 py-8 gap-4 border border-black rounded text-body'}>
-                <h3 className={'mb-2 text-heading-medium  w-[26.5rem] text-start'}>Cart Total</h3>
+            <div className={'flex-center-col px-6 py-8 gap-4 border border-black rounded text-body lg:ml-10'}>
+                <h3 className={'mb-2 text-heading-medium w-[26.5rem] min-w-[15rem] max-lg:w-[20rem] text-start'}>Cart Total</h3>
                 <div className={'flex-row-between w-full'}>
                     <p>Subtotal:</p>
                     <p>${cartSubtotal}</p>
