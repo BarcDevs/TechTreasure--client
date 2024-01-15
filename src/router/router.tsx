@@ -3,6 +3,7 @@ import RootLayout from '@/pages/layouts/RootLayout.tsx'
 import HomePage from '@/pages/HomePage.tsx'
 import NotFoundPage from '@/pages/NotFoundPage.tsx'
 import AuthPage from '@/pages/AuthPage.tsx'
+import WishlistPage from '@/pages/WishlistPage.tsx'
 
 export const router = createBrowserRouter([
     {
@@ -67,8 +68,8 @@ export const router = createBrowserRouter([
                 // element: <CartPage/>
             },
             {
-                path: 'wishlist'
-                // element: <WishlistPage/>
+                path: 'wishlist',
+                element: <WishlistPage/>
             },
             {
                 path: 'checkout'
