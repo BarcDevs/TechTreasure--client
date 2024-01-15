@@ -12,6 +12,12 @@ export interface Product {
     category: string
 }
 
+export interface CartItem extends Product {
+    quantity: number
+    subtotal: number
+    totalDiscount?: number
+}
+
 export interface Category {
     id: string
     name: string
