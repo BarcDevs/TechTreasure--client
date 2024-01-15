@@ -5,7 +5,6 @@ import eye from '/assets/icons/eye.svg'
 import heart from '/assets/icons/heart.svg'
 import trash from '/assets/icons/trash.svg'
 import {Product} from '@/types'
-import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
 import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
@@ -25,7 +24,6 @@ type WishlistItemProps = {
 const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
     const navigate = useNavigate()
     const {t} = useTranslation([I18N_NAMESPACES.shop, I18N_NAMESPACES.global])
-    const [isHovered, setIsHovered] = useState(false)
 
     const handleCardClick = () => {
         navigate(`/item/${item.id}`)
@@ -54,9 +52,8 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
     return (
         <article>
             <Card
-                className={'w-[270px] gap-4 rounded'}
-                onMouseOver={() => variant !== 'wishlist' && setIsHovered(true)}
-                onMouseLeave={() => variant !== 'wishlist' && setIsHovered(false)}>
+                className={'group w-[270px] gap-4 rounded'}
+            >
                 <CardContent
                     className={'flex-center relative h-[250px] cursor-pointer p-3'}
                     onClick={handleCardClick}>
@@ -85,14 +82,15 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
                             </button>}
                     </div>
                     <div className={'mx-7 my-6'}>
-                        <img className={isHovered || variant === 'wishlist' ? 'max-h-[145px]' : ''} src={item.image}
+                        <img className={variant !== 'wishlist' ? 'group-hover:max-h-[145px]' : 'max-h-[145px]'}
+                             src={item.image}
                              alt="item"/>
                     </div>
-                    {isHovered || variant === 'wishlist' &&
-                        <button onClick={handleCartClick}
-                                className="text-body-medium flex-center absolute bottom-3 left-0 h-10 w-full rounded-b bg-black text-neutral-50">
-                            {t('addToCart')}
-                        </button>}
+                    <button onClick={handleCartClick}
+                            className={`invisible text-body-medium flex-center absolute bottom-3 left-0 h-10 w-full rounded-b bg-black text-neutral-50 ${variant !== 'wishlist' ? 'group-hover:' : ''}visible`}>
+
+                        {t('addToCart')}
+                    </button>
                 </CardContent>
                 <CardFooter className={'text-body-medium flex-col-start'}>
                     <div className="text-black">
