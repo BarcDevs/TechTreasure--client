@@ -1,6 +1,7 @@
 import Button from '@/components/elements/Button.tsx'
 import {Input} from '@/components/ui/input.tsx'
 import {Separator} from '@/components/ui/separator.tsx'
+import {Link} from 'react-router-dom'
 
 const CartSummary = ({}) => {
     const cartSubtotal = 1750
@@ -12,9 +13,9 @@ const CartSummary = ({}) => {
             <div className={'flex_row gap-4'}>
                 <Input className={'no-focus text-body h-12 border-black placeholder:opacity-50 min-w-[12rem]'}
                        placeholder={'Coupon Code'}/>
-                <Button className={'text-nowrap'} text={'Apply Coupon'}/>
+                <Button className={'text-nowrap whitespace-nowrap'} text={'Apply Coupon'}/>
             </div>
-            <div className={'flex-center-col px-6 py-8 gap-4 border border-black rounded text-body lg:ml-10'}>
+            <div className={'flex-center-col text-body gap-4 rounded border border-black px-6 py-8 lg:ml-10'}>
                 <h3 className={'mb-2 text-heading-medium w-[26.5rem] min-w-[15rem] max-lg:w-[20rem] text-start'}>Cart Total</h3>
                 <div className={'flex-row-between w-full'}>
                     <p>Subtotal:</p>
@@ -30,7 +31,9 @@ const CartSummary = ({}) => {
                     <p>Total:</p>
                     <p>${total}</p>
                 </div>
-                <Button text={'Proceed to Checkout'}/>
+                <Link to={'/checkout'}>
+                    <Button text={'Proceed to Checkout'}/>
+                </Link>
             </div>
         </section>
     )
