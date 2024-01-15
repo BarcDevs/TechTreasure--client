@@ -15,7 +15,7 @@ const Icon = ({path, name, size = 20, className, hoverable}: Props) =>
             <img src={path} alt={name} width={size} height={size}
                  className={twMerge('group-hover:invert', className)}/>
         </div> :
-        <img src={path} alt={name} className={className}/>
+        <img src={path} alt={name} className={className}  width={size} height={size}/>
 
 
 export default Icon
