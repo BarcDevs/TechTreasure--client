@@ -1,39 +1,48 @@
 import {CART} from '@/constants/mocks.ts'
 import CartItem from '@/components/shop/CartItem.tsx'
 import Button from '@/components/elements/Button.tsx'
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableFooter,
+    TableHead,
+    TableHeader,
+    TableRow
+} from "@/components/ui/table"
 
 const Cart = ({}) => (
-        <table className={'table-auto'}>
-            <thead>
-            <tr className={'text-body-medium'}>
-                <th className={'py-6 pl-10 text-left'}>Product</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Subtotal</th>
-            </tr>
-            </thead>
-            <tbody>
+        <Table className={'table-fixed'}>
+            <TableHeader>
+            <TableRow className={'text-body-medium'}>
+                <TableHead className={'py-6 pl-10 text-left w-[33%]'}>Product</TableHead>
+                <TableHead className={'text-center'}>Price</TableHead>
+                <TableHead className={'text-center'}>Quantity</TableHead>
+                <TableHead className={'text-center'}>Subtotal</TableHead>
+            </TableRow>
+            </TableHeader>
+            <TableBody>
             {CART.map(item => (
                 <CartItem item={item}/>
             ))}
-            </tbody>
-            <tfoot>
-            <tr>
-                <td>
+            </TableBody>
+            <TableFooter>
+            <TableRow className={'text-body-medium'}>
+                <TableCell>
                     <div className={'flex-row-start pl-10 py-6'}>
                         <Button text={'Return to Shop'} variant={'white'}/>
                     </div>
-                </td>
-                <td/>
-                <td/>
-                <td>
-                    <div className={'flex_row justify-end py-6'}>
+                </TableCell>
+                <TableCell/>
+                <TableCell/>
+                <TableCell>
+                    <div className={'flex-center-row py-6'}>
                         <Button text={'Reset Cart'} variant={'white'}/>
                     </div>
-                </td>
-            </tr>
-            </tfoot>
-        </table>
+                </TableCell>
+            </TableRow>
+            </TableFooter>
+        </Table>
 )
 
 export default Cart
