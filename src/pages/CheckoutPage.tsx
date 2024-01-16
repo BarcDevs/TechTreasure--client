@@ -7,6 +7,7 @@ const CheckoutPage = ({}) => (
         </div>
     </main>
 )
+        <main className={'flex_col ml-[5vw] w-[90vw] gap-20 max-sm:ml-[2.5vw] max-sm:w-[95vw]'}>
 
 
 export default CheckoutPage
