@@ -16,9 +16,13 @@ const checkoutFormSchema = z.object({
     city: z.string()
         .min(3, {message: "City name is too short"})
         .regex(/^[a-zA-Z\s]+$/, {message: "Invalid city"}),
+    country: z.string()
+        .min(2, {message: "Country name is too short"})
+        .regex(/^[a-zA-Z\s]+$/, {message: "Invalid country"}),
+    postcode: z.string(),
     phone: z.string()
-        .min(10)
-        .regex(/^[0-9]+-$/, {message: "Must be a valid phone number"}),
+        .min(10, {message: "Phone number is too short"})
+        .regex(/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/, {message: "Must be a valid phone number"}),
     email: z.string()
         .email({message: "Must be a valid email"})
 })
