@@ -14,10 +14,10 @@ const CartItem = ({item}: { item: CartItemType }) => {
     }
 
     return (
-        <TableRow key={item.id} className={'group text-body h-[100px] items-center'}>
+        <TableRow key={item.id} className={'text-body group h-[100px] items-center'}>
             <TableCell className={'pl-10'}>
                 <div className={'flex_row items-center justify-start gap-5'}>
-                    <div className={'h-[54px] w-[54px] min-h-9 min-w-9 flex-center relative'}>
+                    <div className={'flex-center relative h-[54px] min-h-9 w-[54px] min-w-9'}>
                         <button onClick={handleRemoveItem} className={'invisible group-hover:visible absolute top-[-4px] left-[-10px]'}>
                             <Icon path={'/assets/icons/cancel.svg'} name={'remove'}/>
                         </button>
