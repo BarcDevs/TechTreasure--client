@@ -11,7 +11,6 @@ type CheckoutFormProps = {
     setSaveDetails: (saveDetails: boolean) => void
 }
 
-const CheckoutForm = ({setUserInformation, saveDetails, setSaveDetails}: CheckoutFormProps) => {
 const FIELDS = [
     {name: 'name', label: 'Name', required: true},
     {name: 'company', label: 'Company Name'},
@@ -24,6 +23,7 @@ const FIELDS = [
     {name: 'email', label: 'Email Address', required: true}
 ]
 
+const CheckoutForm = forwardRef(({setUserInformation, saveDetails, setSaveDetails}: CheckoutFormProps) => {
     const form = useForm<CheckoutFormType>({
         resolver: zodResolver(checkoutFormSchema),
         defaultValues: {
