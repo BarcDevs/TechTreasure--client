@@ -21,7 +21,7 @@ const CartItem = ({item}: { item: CartItemType }) => {
                         <button onClick={handleRemoveItem} className={'invisible group-hover:visible absolute top-[-4px] left-[-10px]'}>
                             <Icon path={'/assets/icons/cancel.svg'} name={'remove'}/>
                         </button>
-                        <img src={item.image} alt={item.name}/>
+                        <img src={item.mainImage} alt={item.name}/>
                     </div>
                     <p>{item.name}</p>
                 </div>

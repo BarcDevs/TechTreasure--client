@@ -83,7 +83,7 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
                     </div>
                     <div className={'mx-7 my-6'}>
                         <img className={variant !== 'wishlist' ? 'group-hover:max-h-[145px]' : 'max-h-[145px]'}
-                             src={item.image}
+                             src={item.mainImage}
                              alt="item"/>
                     </div>
                     <button onClick={handleCartClick}

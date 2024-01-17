@@ -5,7 +5,7 @@ export const ITEMS: Product[] = [
     {
         id: "i109",
         name: 'HAVIT HV-G92 Gamepad',
-        image: '/assets/images/items/item-1.png',
+        mainImage: '/assets/images/items/item-1.png',
         rating: 4.3,
         votes: 584,
         discount: 40,
@@ -16,7 +16,7 @@ export const ITEMS: Product[] = [
     {
         id: "i110",
         name: 'AK-900 Wired Keyboard',
-        image: '/assets/images/items/item-2.png',
+        mainImage: '/assets/images/items/item-2.png',
         rating: 4.8,
         votes: 283,
         discount: 35,
@@ -27,7 +27,7 @@ export const ITEMS: Product[] = [
     {
         id: "i111",
         name: 'IPS LCD Gaming Monitor',
-        image: '/assets/images/items/item-3.png',
+        mainImage: '/assets/images/items/item-3.png',
         rating: 4.9,
         votes: 157,
         price: 370,
@@ -38,7 +38,7 @@ export const ITEMS: Product[] = [
     {
         id: "i112",
         name: 'RGB liquid CPU Cooler',
-        image: '/assets/images/items/item-4.png',
+        mainImage: '/assets/images/items/item-4.png',
         rating: 4.1,
         votes: 97,
         price: 160,
@@ -49,7 +49,7 @@ export const ITEMS: Product[] = [
     {
         id: "i113",
         name: 'ASUS FHD Gaming Laptop',
-        image: '/assets/images/items/item-5.png',
+        mainImage: '/assets/images/items/item-5.png',
         rating: 5,
         votes: 987,
         price: 700,
@@ -58,7 +58,7 @@ export const ITEMS: Product[] = [
     {
         id: "i114",
         name: 'GP11 Shooter USB Gamepad',
-        image: '/assets/images/items/item-6.png',
+        mainImage: '/assets/images/items/item-6.png',
         rating: 3.8,
         votes: 109,
         price: 120,
@@ -75,7 +75,7 @@ export const CART : Cart = {
     items: [{
         id: "i109",
         name: 'HAVIT HV-G92 Gamepad',
-        image: '/assets/images/items/item-1.png',
+        mainImage: '/assets/images/items/item-1.png',
         rating: 4.3,
         votes: 584,
         discount: 40,
@@ -89,7 +89,7 @@ export const CART : Cart = {
     {
         id: "i110",
         name: 'AK-900 Wired Keyboard',
-        image: '/assets/images/items/item-2.png',
+        mainImage: '/assets/images/items/item-2.png',
         rating: 4.8,
         votes: 283,
         discount: 35,
@@ -103,7 +103,7 @@ export const CART : Cart = {
     {
         id: "i111",
         name: 'IPS LCD Gaming Monitor',
-        image: '/assets/images/items/item-3.png',
+        mainImage: '/assets/images/items/item-3.png',
         rating: 4.9,
         votes: 157,
         price: 370,

@@ -1,7 +1,8 @@
 export interface Product {
     id: string
     name: string
-    image: string
+    mainImage: string
+    images?: string[]
     rating: number
     votes: number
     price: number
