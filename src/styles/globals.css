@@ -75,6 +75,13 @@
     scroll-behavior: smooth;
 }
 
+.hide-arrows::-webkit-inner-spin-button,
+.hide-arrows::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield;
+}
+
 @layer components {
     .max-container {
         max-width: 1440px;

@@ -14,7 +14,7 @@ const checkoutFormSchema = z.object({
     additional_address: z.string()
         .min(3).optional(),
     city: z.string()
-        .min(3, {message: "City name is too short"})
+        .min(2, {message: "City name is too short"})
         .regex(/^[a-zA-Z\s]+$/, {message: "Invalid city"}),
     country: z.string()
         .min(2, {message: "Country name is too short"})
@@ -29,11 +29,15 @@ const checkoutFormSchema = z.object({
 
 const creditCardFormSchema = z.object({
     card_number: z.string()
+        .min(1, {message: "Card number is required"})
         .regex(CREDIT_CARD_REGEX, {message: "Invalid card number"}),
     cvc: z.string()
+        .min(1, {message: "CVC is required"})
         .regex(/^[0-9]{3,4}$/, {message: "Invalid CVC"}),
-    expiry_date: z.string()
-        .regex(/^(0[1-9]|1[0-2])\/\d{2}$/, {message: "Invalid expiry date"}),
+    expiry_month: z.string()
+        .min(2, {message: "Month is required"}),
+    expiry_year: z.string()
+        .min(2, {message: "Year is required"})
 })
 
 export type CheckoutForm = z.infer<typeof checkoutFormSchema>
