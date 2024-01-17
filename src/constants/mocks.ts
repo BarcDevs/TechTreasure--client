@@ -1,4 +1,4 @@
-import {CartItem, Product} from '@/types'
+import {Cart, Product} from '@/types'
 import {Categories} from '@/constants/categories.ts'
 
 export const ITEMS: Product[] = [
@@ -71,8 +71,8 @@ export const ITEMS: Product[] = [
     }
 ]
 
-export const CART : CartItem[]= [
-    {
+export const CART : Cart = {
+    items: [{
         id: "i109",
         name: 'HAVIT HV-G92 Gamepad',
         image: '/assets/images/items/item-1.png',
@@ -113,5 +113,9 @@ export const CART : CartItem[]= [
         quantity: 1,
         subtotal: 370,
         totalDiscount: 30
-    }
-]
+    }],
+    subtotal: 2880+370+120,
+    cartDiscount: 150,
+    shipping: 0,
+    total: 2880+370+120-150
+}

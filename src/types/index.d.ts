@@ -10,12 +10,21 @@ export interface Product {
     colors?: { name: string, hex: string }[]
     new?: boolean
     category: string
+    shipping?: number
 }
 
 export interface CartItem extends Product {
     quantity: number
     subtotal: number
     totalDiscount?: number
+}
+
+export interface Cart {
+    items: CartItem[]
+    subtotal: number
+    cartDiscount?: number
+    shipping?: number
+    total: number
 }
 
 export interface Category {

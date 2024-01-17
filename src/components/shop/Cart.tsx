@@ -22,7 +22,7 @@ const Cart = ({}) => (
             </TableRow>
             </TableHeader>
             <TableBody>
-            {CART.map(item => (
+            {CART.items.map(item => (
                 <CartItem key={item.id} item={item}/>
             ))}
             </TableBody>

@@ -49,7 +49,10 @@ const CheckoutSummary = ({onSubmit}: CheckoutSummaryProps) => {
             </div>
 
             <div className={'flex-col-start w-full gap-8'}>
-                <Summary subtotal={543} shipping={43} total={543 + 43}/>
+                <Summary subtotal={CART.subtotal}
+                         shipping={CART.shipping || 0}
+                         total={CART.total}
+                         discount={CART.cartDiscount}/>
             </div>
 
             <RadioGroup className={'w-full'} defaultValue={'creditCard'} onValueChange={handleCheckoutRadio}>
