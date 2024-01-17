@@ -3,6 +3,7 @@ import {Input} from '@/components/ui/input.tsx'
 import {ChangeEvent} from 'react'
 import {TableCell, TableRow} from '@/components/ui/table.tsx'
 import Icon from '@/components/elements/Icon.tsx'
+import {isProductWithColors} from '@/lib/utils.ts'
 
 const CartItem = ({item}: { item: CartItemType }) => {
     const handleUpdateCart = (e: ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +22,7 @@ const CartItem = ({item}: { item: CartItemType }) => {
                         <button onClick={handleRemoveItem} className={'invisible group-hover:visible absolute top-[-4px] left-[-10px]'}>
                             <Icon path={'/assets/icons/cancel.svg'} name={'remove'}/>
                         </button>
-                        <img src={item.mainImage} alt={item.name}/>
+                        <img src={isProductWithColors(item) ? item.mainImage[item.defaultColor] : item.mainImage} alt={item.name}/>
                     </div>
                     <p>{item.name}</p>
                 </div>

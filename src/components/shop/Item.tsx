@@ -8,6 +8,7 @@ import {Product} from '@/types'
 import {useNavigate} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
 import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
+import {isProductWithColors} from '@/lib/utils.ts'
 
 type ItemProps = {
     item: Product
@@ -83,7 +84,7 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
                     </div>
                     <div className={'mx-7 my-6'}>
                         <img className={variant !== 'wishlist' ? 'group-hover:max-h-[145px]' : 'max-h-[145px]'}
-                             src={item.mainImage}
+                             src={isProductWithColors(item) ? item.mainImage[item.defaultColor] : item.mainImage}
                              alt="item"/>
                     </div>
                     <button onClick={handleCartClick}
@@ -104,15 +105,7 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
                         <Rating rating={item.rating}/>
                         <div className="text-small-semibold text-black opacity-50">({item.votes})</div>
                     </div>}
-                    {/*{item.colors && item.colors.length > 0 &&*/}
-                    {/*    <div className="inline-flex-start gap-2">*/}
-                    {/*        {item.colors.map(color => (*/}
-                    {/*            <input type={'radio'}*/}
-                    {/*                   key={color.name}*/}
-                    {/*                   className={`h-[15px] w-[15px] rounded-full bg-[${color.hex}]`}*/}
-                    {/*            />*/}
-                    {/*        ))}*/}
-                    {/*    </div>}*/}
+                    {/*<todo ColorPicker/>*/}
                 </CardFooter>
             </Card>
         </article>

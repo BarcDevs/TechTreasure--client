@@ -1,21 +1,42 @@
 import {Cart, Product} from '@/types'
 import {Categories} from '@/constants/categories.ts'
 
+const customDescription = "PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble free install & mess free removal Pressure sensitive."
+
 export const ITEMS: Product[] = [
     {
         id: "i109",
         name: 'HAVIT HV-G92 Gamepad',
-        mainImage: '/assets/images/items/item-1.png',
+        description: customDescription,
+        mainImage: {
+            white: '/assets/images/items/item-1-white.png',
+            red: '/assets/images/items/item-1-red.png'
+        },
+        images: {
+            white: ['/assets/images/items/item-1-white-1.png',
+                '/assets/images/items/item-1-white-2.png',
+                '/assets/images/items/item-1-white-3.png',
+                '/assets/images/items/item-1-white-4.png'],
+            red: []
+        },
         rating: 4.3,
         votes: 584,
         discount: 40,
         price: 120,
         oldPrice: 160,
-        category: Categories.gaming.name
+        category: Categories.gaming.name,
+        sizes: ['S', 'M', 'L', 'XL'],
+        shipping: 20,
+        colors: [
+            {name: 'red', hex: '#DB4444'},
+            {name: 'white', hex: '#A0BCE0'}
+        ],
+        defaultColor: 'white'
     },
     {
         id: "i110",
         name: 'AK-900 Wired Keyboard',
+        description: customDescription,
         mainImage: '/assets/images/items/item-2.png',
         rating: 4.8,
         votes: 283,
@@ -27,6 +48,7 @@ export const ITEMS: Product[] = [
     {
         id: "i111",
         name: 'IPS LCD Gaming Monitor',
+        description: customDescription,
         mainImage: '/assets/images/items/item-3.png',
         rating: 4.9,
         votes: 157,
@@ -38,6 +60,7 @@ export const ITEMS: Product[] = [
     {
         id: "i112",
         name: 'RGB liquid CPU Cooler',
+        description: customDescription,
         mainImage: '/assets/images/items/item-4.png',
         rating: 4.1,
         votes: 97,
@@ -49,6 +72,7 @@ export const ITEMS: Product[] = [
     {
         id: "i113",
         name: 'ASUS FHD Gaming Laptop',
+        description: customDescription,
         mainImage: '/assets/images/items/item-5.png',
         rating: 5,
         votes: 987,
@@ -58,64 +82,45 @@ export const ITEMS: Product[] = [
     {
         id: "i114",
         name: 'GP11 Shooter USB Gamepad',
-        mainImage: '/assets/images/items/item-6.png',
+        description: customDescription,
+        mainImage: {
+            red: '/assets/images/items/item-6.png',
+            black: '/assets/images/items/item-6.png'
+        },
         rating: 3.8,
         votes: 109,
         price: 120,
         new: true,
         colors: [
-            {name: 'Black', hex: '#000000'},
-            {name: 'Red', hex: '#DB4444'}
+            {name: 'black', hex: '#000000'},
+            {name: 'red', hex: '#DB4444'}
         ],
+        defaultColor: 'black',
         category: Categories.gaming.name
     }
 ]
 
-export const CART : Cart = {
+export const CART: Cart = {
     items: [{
-        id: "i109",
-        name: 'HAVIT HV-G92 Gamepad',
-        mainImage: '/assets/images/items/item-1.png',
-        rating: 4.3,
-        votes: 584,
-        discount: 40,
-        price: 120,
-        oldPrice: 160,
-        category: Categories.gaming.name,
+        ...ITEMS[0],
         quantity: 1,
         subtotal: 120,
         totalDiscount: 40
     },
-    {
-        id: "i110",
-        name: 'AK-900 Wired Keyboard',
-        mainImage: '/assets/images/items/item-2.png',
-        rating: 4.8,
-        votes: 283,
-        discount: 35,
-        price: 960,
-        oldPrice: 1160,
-        category: Categories.accessories.name,
-        quantity: 3,
-        subtotal: 2880,
-        totalDiscount: 35
-    },
-    {
-        id: "i111",
-        name: 'IPS LCD Gaming Monitor',
-        mainImage: '/assets/images/items/item-3.png',
-        rating: 4.9,
-        votes: 157,
-        price: 370,
-        discount: 30,
-        oldPrice: 400,
-        category: Categories.screens.name,
-        quantity: 1,
-        subtotal: 370,
-        totalDiscount: 30
-    }],
-    subtotal: 2880+370+120,
+        {
+            ...ITEMS[1],
+            quantity: 3,
+            subtotal: 2880,
+            totalDiscount: 35
+        },
+        {
+            ...ITEMS[2],
+            quantity: 1,
+            subtotal: 370,
+            totalDiscount: 30
+        }],
+    subtotal: 2880 + 370 + 120,
     cartDiscount: 150,
     shipping: 0,
-    total: 2880+370+120-150
+    total: 2880 + 370 + 120 - 150
 }
