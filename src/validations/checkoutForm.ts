@@ -4,26 +4,29 @@ const CREDIT_CARD_REGEX = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5
 
 const checkoutFormSchema = z.object({
     name: z.string()
+        .min(1, {message: "Name is required"})
         .min(2, {message: "Name is too short"}),
-    company: z.string()
-        .min(3, {message: "Company name is too short"})
-        .optional(),
+    company: z.string().optional(),
     address: z.string()
+        .min(1, {message: "Address is required"})
         .min(5, {message: "Address is too short"})
         .regex(/^[#.0-9a-zA-Z\s,-]+$/, {message: "Invalid address"}),
-    additional_address: z.string()
-        .min(3).optional(),
+    additional_address: z.string().optional(),
     city: z.string()
+        .min(1, {message: "City is required"})
         .min(2, {message: "City name is too short"})
         .regex(/^[a-zA-Z\s]+$/, {message: "Invalid city"}),
     country: z.string()
+        .min(1, {message: "Country is required"})
         .min(2, {message: "Country name is too short"})
         .regex(/^[a-zA-Z\s]+$/, {message: "Invalid country"}),
     postcode: z.string(),
     phone: z.string()
+        .min(1, {message: "Phone number is required"})
         .min(10, {message: "Phone number is too short"})
         .regex(/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/, {message: "Must be a valid phone number"}),
     email: z.string()
+        .min(1, {message: "Email address is required"})
         .email({message: "Must be a valid email"})
 })
 
