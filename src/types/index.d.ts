@@ -1,4 +1,4 @@
-export interface BasicProduct {
+export type BasicProduct = {
     id: string
     name: string
     description: string
@@ -15,7 +15,7 @@ export interface BasicProduct {
     shipping?: number
 }
 
-export interface ProductWithColors extends BasicProduct {
+export type ProductWithColors = Omit<BasicProduct, 'mainImage' | 'images'> & {
     mainImage: { [key: ProductWithColors['colors'][number]['name']]: string }
     images?: { [key: ProductWithColors['colors'][number]['name']]: string[] }
     colors: Color[]
@@ -32,7 +32,7 @@ export type CartItem = Product & {
     totalDiscount?: number
 }
 
-export interface Cart {
+export type Cart = {
     items: CartItem[]
     subtotal: number
     cartDiscount?: number
@@ -40,7 +40,7 @@ export interface Cart {
     total: number
 }
 
-export interface Category {
+export type Category = {
     id: string
     name: string
     icon: string
