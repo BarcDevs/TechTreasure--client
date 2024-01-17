@@ -4,7 +4,7 @@ import {Label} from '@/components/ui/label.tsx'
 import visa from '/assets/icons/visa.svg'
 import mastercard from '/assets/icons/mastercard.svg'
 import americanExpress from '/assets/icons/american-express.svg'
-import {useRef, useState} from 'react'
+import {Dispatch, SetStateAction, useRef, useState} from 'react'
 import CreditCardForm from '@/components/checkout/CreditCardForm.tsx'
 import {Input} from '@/components/ui/input.tsx'
 import Button from '@/components/elements/Button.tsx'
@@ -13,7 +13,7 @@ import {CreditCardForm as CreditCardFormType} from '@/validations/checkoutForm.t
 import {BillingOptions} from '@/pages/CheckoutPage.tsx'
 
 type CheckoutSummaryProps = {
-    setBillingOptions: (billingOptions: BillingOptions) => void
+    setBillingOptions: Dispatch<SetStateAction<BillingOptions | undefined>>
     onSubmit: () => void
 }
 
@@ -22,7 +22,7 @@ const CheckoutSummary = ({setBillingOptions, onSubmit}: CheckoutSummaryProps) =>
     const [billingMethod, setBillingMethod] = useState<'cash' | 'creditCard'>('creditCard')
     const handleCheckoutRadio = (value: string) => {
         if (value !== 'creditCard' && value !== 'cash') return
-        setBillingMethod(value)
+        setBillingMethod(() => value)
     }
 
     const handlePlaceOrder = () => {
