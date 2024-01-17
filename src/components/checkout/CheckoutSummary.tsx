@@ -4,7 +4,7 @@ import {Label} from '@/components/ui/label.tsx'
 import visa from '/assets/icons/visa.svg'
 import mastercard from '/assets/icons/mastercard.svg'
 import americanExpress from '/assets/icons/american-express.svg'
-import {Dispatch, SetStateAction, useRef, useState} from 'react'
+import {useRef, useState} from 'react'
 import CreditCardForm from '@/components/checkout/CreditCardForm.tsx'
 import {Input} from '@/components/ui/input.tsx'
 import Button from '@/components/elements/Button.tsx'
@@ -13,11 +13,10 @@ import {CreditCardForm as CreditCardFormType} from '@/validations/checkoutForm.t
 import {BillingOptions} from '@/pages/CheckoutPage.tsx'
 
 type CheckoutSummaryProps = {
-    setBillingOptions: Dispatch<SetStateAction<BillingOptions | undefined>>
-    onSubmit: () => void
+    onSubmit: (billingOptions: BillingOptions) => void
 }
 
-const CheckoutSummary = ({setBillingOptions, onSubmit}: CheckoutSummaryProps) => {
+const CheckoutSummary = ({onSubmit}: CheckoutSummaryProps) => {
     const creditCardFormRef = useRef<FormRef | null>(null)
     const [billingMethod, setBillingMethod] = useState<'cash' | 'creditCard'>('creditCard')
     const handleCheckoutRadio = (value: string) => {
@@ -34,12 +33,9 @@ const CheckoutSummary = ({setBillingOptions, onSubmit}: CheckoutSummaryProps) =>
     const handleSubmit = (cardDetails?: CreditCardFormType) => {
         if (billingMethod === 'creditCard' && !cardDetails)
             return console.error('Method is set to credit card but no card details were provided')
-        setBillingOptions(
-            billingMethod === 'cash' ?
-                {cash: true, creditCard: null} :
-                {cash: false, creditCard: cardDetails!}
-        )
-        onSubmit()
+        onSubmit(billingMethod === 'cash' ?
+            {cash: true, creditCard: null} :
+            {cash: false, creditCard: cardDetails!})
     }
 
     return (

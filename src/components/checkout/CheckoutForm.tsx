@@ -4,9 +4,10 @@ import {zodResolver} from '@hookform/resolvers/zod'
 import {CheckoutForm as CheckoutFormType, checkoutFormSchema} from '@/validations/checkoutForm.ts'
 import FormInput from '@/components/shared/FormInput.tsx'
 import {Input} from '@/components/ui/input.tsx'
+import {ForwardedRef, forwardRef, useImperativeHandle} from 'react'
+import {FormRef} from '@/types/ui'
 
 type CheckoutFormProps = {
-    setUserInformation: (userInformation: CheckoutFormType) => void
     saveDetails: boolean
     setSaveDetails: (saveDetails: boolean) => void
 }
@@ -23,7 +24,7 @@ const FIELDS = [
     {name: 'email', label: 'Email Address', required: true}
 ]
 
-const CheckoutForm = forwardRef(({setUserInformation, saveDetails, setSaveDetails}: CheckoutFormProps) => {
+const CheckoutForm = forwardRef(({saveDetails, setSaveDetails}: CheckoutFormProps, ref: ForwardedRef<FormRef | null>) => {
     const form = useForm<CheckoutFormType>({
         resolver: zodResolver(checkoutFormSchema),
         defaultValues: {
@@ -40,10 +41,14 @@ const CheckoutForm = forwardRef(({setUserInformation, saveDetails, setSaveDetail
     })
     const {dirtyFields} = form.formState
 
-    const onSave = (values: CheckoutFormType) => {
-        console.log(values)
-        setUserInformation(values)
-    }
+    useImperativeHandle(ref, () => ({
+        submit: () => {
+            form.trigger()
+            if (form.formState.isValid)
+                return form.getValues()
+            return undefined
+        }
+    }))
 
     const handleFormBlur = () => {
         Object.keys(dirtyFields).forEach((key) => {
@@ -73,6 +78,6 @@ const CheckoutForm = forwardRef(({setUserInformation, saveDetails, setSaveDetail
             </form>
         </Form>
     )
-}
+})
 
 export default CheckoutForm
