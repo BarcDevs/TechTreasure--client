@@ -11,6 +11,8 @@ import Button from '@/components/elements/Button.tsx'
 import {FormRef} from '@/types/ui'
 import {CreditCardForm as CreditCardFormType} from '@/validations/checkoutForm.ts'
 import {BillingOptions} from '@/pages/CheckoutPage.tsx'
+import {CART} from '@/constants/mocks.ts'
+import CheckoutItem from '@/components/checkout/CheckoutItem.tsx'
 
 type CheckoutSummaryProps = {
     onSubmit: (billingOptions: BillingOptions) => void
@@ -41,17 +43,9 @@ const CheckoutSummary = ({onSubmit}: CheckoutSummaryProps) => {
     return (
         <section className={'text-body flex-col-start w-[33vw] gap-8'}>
             <div className={'flex-col-start w-full gap-8'}>
-                <div className={'flex-row-between w-full '}>
-                    <div className={'flex_row gap-6'}>
-                        <img src="" alt=""/>
-                        <p>
-                            name
-                        </p>
-                    </div>
-                    <p>
-                        price
-                    </p>
-                </div>
+                {CART.items.map(item => (
+                    <CheckoutItem item={item} key={item.id}/>
+                ))}
             </div>
 
             <div className={'flex-col-start w-full gap-8'}>
