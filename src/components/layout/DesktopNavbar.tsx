@@ -8,6 +8,7 @@ import Search from '@/components/shared/Search.tsx'
 import {APP_NAME} from '@/constants'
 import {useTranslation} from 'react-i18next'
 import {I18N_NAMESPACES} from '@/constants/locales.ts'
+import Underline from '@/components/shared/Underline.tsx'
 
 const NavbarLink = ({to, label, location}: { to: string, label: string, location: string }) => {
     const isActive = location === to
@@ -17,9 +18,7 @@ const NavbarLink = ({to, label, location}: { to: string, label: string, location
                  className={'whitespace-nowrap text-center text-body text-black'}>
             {label}
             {isActive &&
-                <div className="relative h-[0px] w-full opacity-50">
-                    <div className="absolute left-0 top-0 h-[0px] w-full border border-black"/>
-                </div>}
+                <Underline/>}
         </NavLink>
     )
 }
