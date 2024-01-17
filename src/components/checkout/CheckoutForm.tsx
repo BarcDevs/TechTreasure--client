@@ -12,6 +12,18 @@ type CheckoutFormProps = {
 }
 
 const CheckoutForm = ({setUserInformation, saveDetails, setSaveDetails}: CheckoutFormProps) => {
+const FIELDS = [
+    {name: 'name', label: 'Name', required: true},
+    {name: 'company', label: 'Company Name'},
+    {name: 'address', label: 'Address', required: true},
+    {name: 'additional_address', label: 'Apartment, floor, etc. (optional)'},
+    {name: 'city', label: 'City', required: true},
+    {name: 'country', label: 'Country', required: true},
+    {name: 'postcode', label: 'Postcode (zip)', required: true},
+    {name: 'phone', label: 'Phone Number', required: true},
+    {name: 'email', label: 'Email Address', required: true}
+]
+
     const form = useForm<CheckoutFormType>({
         resolver: zodResolver(checkoutFormSchema),
         defaultValues: {
@@ -42,17 +54,17 @@ const CheckoutForm = ({setUserInformation, saveDetails, setSaveDetails}: Checkou
     return (
         <Form {...form}>
             {/* TODO: add saved addresses */}
-            <form onBlur={handleFormBlur} className={'w-[33vw]'}>
-                <FormInput name={'name'} label={'Name'} formControl={form.control} required/>
-                <FormInput name={'company'} label={'Company Name'} formControl={form.control}/>
-                <FormInput name={'address'} label={'Address'} formControl={form.control} required/>
-                <FormInput name={'additional_address'} label={'Apartment, floor, etc. (optional)'}
-                           formControl={form.control}/>
-                <FormInput name={'city'} label={'City'} formControl={form.control} required/>
-                <FormInput name={'country'} label={'Country'} formControl={form.control} required/>
-                <FormInput name={'postcode'} label={'ZIP Code'} formControl={form.control} required/>
-                <FormInput name={'phone'} label={'Phone Number'} formControl={form.control} required/>
-                <FormInput name={'email'} label={'Email Address'} formControl={form.control} required/>
+            <form onBlur={handleFormBlur} className={'w-[33vw] flex_col gap-2'}>
+                {FIELDS.map((field) => (
+                    <FormInput
+                        className={'border-t-0 border-x-0 border-black rounded-none'}
+                        key={field.name}
+                        name={field.name as FieldPath<CheckoutFormType>}
+                        label={field.label}
+                        formControl={form.control}
+                        required={field.required}
+                    />
+                ))}
             <div className={'flex-row-start mt-4 gap-4'}>
                 <Input className={'w-6 h-6 rounded accent-red-500'} type={'checkbox'} checked={saveDetails}
                        onChange={() => setSaveDetails(!saveDetails)}/>
