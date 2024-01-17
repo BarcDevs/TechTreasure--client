@@ -27,7 +27,7 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
     const {t} = useTranslation([I18N_NAMESPACES.shop, I18N_NAMESPACES.global])
 
     const handleCardClick = () => {
-        navigate(`/item/${item.id}`)
+        navigate(`/items/${item.id}`)
     }
 
     const handleFavoriteClick = (e: React.MouseEvent<HTMLButtonElement>) => {

@@ -6,6 +6,7 @@ import AuthPage from '@/pages/AuthPage.tsx'
 import WishlistPage from '@/pages/WishlistPage.tsx'
 import CartPage from '@/pages/CartPage.tsx'
 import CheckoutPage from '@/pages/CheckoutPage.tsx'
+import ItemPage from '@/pages/ItemPage.tsx'
 
 export const router = createBrowserRouter([
     {
@@ -56,8 +57,8 @@ export const router = createBrowserRouter([
                         // element: <ItemsPage/>
                     },
                     {
-                        path: ':id'
-                        // element: <ItemPage/>
+                        path: ':id',
+                        element: <ItemPage/>
                     },
                     {
                         path: '?search'
