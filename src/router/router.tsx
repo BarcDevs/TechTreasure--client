@@ -135,6 +135,10 @@ export const router = createBrowserRouter([
             {
                 path: 'settings',
                 // element: <SettingsPage/>
+            },
+            {
+                path: '*',
+                element: <NotFoundPage/>
             }
         ]
     },
