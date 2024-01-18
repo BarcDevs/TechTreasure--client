@@ -6,7 +6,7 @@ import Sidebar from '@/components/admin/layout/Sidebar.tsx'
 const AdminLayout = ({}) => (
     <>
         <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
-            {/*<Sidebar/>*/}
+            <Sidebar/>
             <div className="flex_col">
                 <Header/>
                 <Outlet/>

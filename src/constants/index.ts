@@ -3,8 +3,10 @@ import instagram from '/assets/icons/instagram.svg'
 import twitter from '/assets/icons/twitter.svg'
 import facebook from '/assets/icons/facebook.svg'
 import {LANGUAGE, LINK, SOCIAL_LINK} from '@/types/constants'
+import {HomeIcon, LineChartIcon, PackageIcon, ShoppingCartIcon, UsersIcon} from '@/components/admin/Icons.tsx'
 
 export const APP_NAME = 'TechTreasure'
+export const ADMIN_ROOT = '/admin/'
 
 export const LANGUAGES: {[key: string]: LANGUAGE} = {
     ENG: {
@@ -32,6 +34,34 @@ export const NAVIGATION_LINKS: LINK[] = [
         name: 'About',
         key: 'about',
         path: '/about'
+    }
+]
+
+export const ADMIN_LINKS = [
+    {
+        name: 'Home',
+        href: ADMIN_ROOT,
+        icon: HomeIcon
+    },
+    {
+        name: 'Orders',
+        href: `orders`,
+        icon: ShoppingCartIcon
+    },
+    {
+        name: 'Products',
+        href: `products`,
+        icon: PackageIcon
+    },
+    {
+        name: 'Customers',
+        href: `customers`,
+        icon: UsersIcon
+    },
+    {
+        name: 'Analytics',
+        href: `analytics`,
+        icon: LineChartIcon
     }
 ]
 
