@@ -8,6 +8,7 @@ import CartPage from '@/pages/CartPage.tsx'
 import CheckoutPage from '@/pages/CheckoutPage.tsx'
 import ItemPage from '@/pages/ItemPage.tsx'
 import ProductsPage from '@/pages/admin/ProductsPage.tsx'
+import AdminLayout from '@/pages/layouts/AdminLayout.tsx'
 
 export const router = createBrowserRouter([
     {
@@ -89,49 +90,56 @@ export const router = createBrowserRouter([
             },
 
             {
-                path: 'admin',
-                // loader: adminLoader
-                // element: <AdminLayout/>,
-                children: [
-                    {
-                        index: true,
-                        // element: <AdminHomePage/>
-                    },
-                    {
-                        path: 'products',
-                        element: <ProductsPage/>
-                    },
-                    {
-                        path: 'products/add',
-                        // element: <AddItemPage/>
-                    },
-                    {
-                        path: 'products/edit/:id',
-                        // element: <EditItemPage/>
-                    },
-                    {
-                        path: 'orders',
-                        // element: <OrdersPage/>
-                    },
-                    {
-                        path: 'customers',
-                        // element: <CustomersPage/>
-                    },
-                    {
-                        path: 'customers/:id',
-                        // element: <CustomerPage/>
-                    },
-                    {
-                        path: 'analytics',
-                        // element: <AnalyticsPage/>
-                    }
-                ]
-            },
-
-            {
                 path: '*',
                 element: <NotFoundPage/>
-            },
+            }
         ]
+    },
+    {
+        path: 'admin',
+        // loader: adminLoader
+        element: <AdminLayout/>,
+        children: [
+            {
+                index: true,
+                // element: <AdminHomePage/>
+            },
+            {
+                path: 'products',
+                element: <ProductsPage/>
+            },
+            {
+                path: 'products/add',
+                // element: <AddItemPage/>
+            },
+            {
+                path: 'products/edit/:id',
+                // element: <EditItemPage/>
+            },
+            {
+                path: 'orders',
+                // element: <OrdersPage/>
+            },
+            {
+                path: 'customers',
+                // element: <CustomersPage/>
+            },
+            {
+                path: 'customers/:id',
+                // element: <CustomerPage/>
+            },
+            {
+                path: 'analytics',
+                // element: <AnalyticsPage/>
+            },
+            {
+                path: 'settings',
+                // element: <SettingsPage/>
+            }
+        ]
+    },
+    {
+        path: '*',
+        element: <NotFoundPage/>
     }
 ])
