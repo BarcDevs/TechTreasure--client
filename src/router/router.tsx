@@ -7,6 +7,7 @@ import WishlistPage from '@/pages/WishlistPage.tsx'
 import CartPage from '@/pages/CartPage.tsx'
 import CheckoutPage from '@/pages/CheckoutPage.tsx'
 import ItemPage from '@/pages/ItemPage.tsx'
+import ProductsPage from '@/pages/admin/ProductsPage.tsx'
 
 export const router = createBrowserRouter([
     {
@@ -86,10 +87,51 @@ export const router = createBrowserRouter([
                 path: 'contact'
                 // element: <ContactPage/>
             },
+
+            {
+                path: 'admin',
+                // loader: adminLoader
+                // element: <AdminLayout/>,
+                children: [
+                    {
+                        index: true,
+                        // element: <AdminHomePage/>
+                    },
+                    {
+                        path: 'products',
+                        element: <ProductsPage/>
+                    },
+                    {
+                        path: 'products/add',
+                        // element: <AddItemPage/>
+                    },
+                    {
+                        path: 'products/edit/:id',
+                        // element: <EditItemPage/>
+                    },
+                    {
+                        path: 'orders',
+                        // element: <OrdersPage/>
+                    },
+                    {
+                        path: 'customers',
+                        // element: <CustomersPage/>
+                    },
+                    {
+                        path: 'customers/:id',
+                        // element: <CustomerPage/>
+                    },
+                    {
+                        path: 'analytics',
+                        // element: <AnalyticsPage/>
+                    }
+                ]
+            },
+
             {
                 path: '*',
                 element: <NotFoundPage/>
-            }
+            },
         ]
     }
 ])
