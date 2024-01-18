@@ -1,3 +1,7 @@
+import {HTMLProps} from 'react'
+
+export type ClassName = HTMLProps<HTMLElement>["className"]
+
 export type BasicProduct = {
     id: string
     name: string

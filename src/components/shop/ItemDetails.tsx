@@ -22,7 +22,7 @@ const ItemDetails = ({}) => {
     const [bigImage, setBigImage] = useState(mainImage)
 
     return (
-        <section className={'w-full flex-row-between max-md:flex-col gap-10'}>
+        <section className={'w-full flex-row-between max-md:flex-col'}>
             <section className={'flex-row-between gap-7 max-md:flex-col-reverse'}>
                 {item.images && <ul className={'flex-col-start h-fit max-md:flex_row'}>
                     {[mainImage, ...(isColors ? item.images[item.defaultColor] : item.images)].map(image => (
@@ -82,8 +82,8 @@ const ItemDetails = ({}) => {
                               className={'hidden group-hover:block'}/>
                     </button>
                 </div>
+                <DeliveryDetails price={item.shipping || 0} className={'mt-4'}/>
             </section>
-            <DeliveryDetails price={item.shipping || 0}/>
         </section>
     )
 }
