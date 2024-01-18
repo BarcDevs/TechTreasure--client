@@ -4,11 +4,13 @@ import Icon from '@/components/elements/Icon.tsx'
 import eye from '/assets/icons/eye.svg'
 import heart from '/assets/icons/heart.svg'
 import trash from '/assets/icons/trash.svg'
-import {Product} from '@/types'
+import {Product, ProductWithColors} from '@/types'
 import {useNavigate} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
 import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 import {isProductWithColors} from '@/lib/utils.ts'
+import {useState} from 'react'
+import ColorPicker from '@/components/shared/ColorPicker.tsx'
 
 type ItemProps = {
     item: Product
@@ -25,6 +27,10 @@ type WishlistItemProps = {
 const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
     const navigate = useNavigate()
     const {t} = useTranslation([I18N_NAMESPACES.shop, I18N_NAMESPACES.global])
+
+    const isColors = isProductWithColors(item)
+    const [color, setColor] = useState((item as ProductWithColors).defaultColor || null)
+    const image = isColors ? item.mainImage[color!] : item.mainImage
 
     const handleCardClick = () => {
         navigate(`/items/${item.id}`)
@@ -84,7 +90,7 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
                     </div>
                     <div className={'mx-7 my-6'}>
                         <img className={variant !== 'wishlist' ? 'group-hover:max-h-[145px]' : 'max-h-[145px]'}
-                             src={isProductWithColors(item) ? item.mainImage[item.defaultColor] : item.mainImage}
+                             src={image}
                              alt="item"/>
                     </div>
                     <button onClick={handleCartClick}
@@ -93,7 +99,7 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
                         {t('addToCart')}
                     </button>
                 </CardContent>
-                <CardFooter className={'text-body-medium flex-col-start'}>
+                <CardFooter className={'text-body-medium flex-col-start gap-2'}>
                     <div className="text-black">
                         {item.name}
                     </div>
@@ -105,7 +111,7 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
                         <Rating rating={item.rating}/>
                         <div className="text-small-semibold text-black opacity-50">({item.votes})</div>
                     </div>}
-                    {/*<todo ColorPicker/>*/}
+                    {isColors && <ColorPicker colors={item.colors} color={color} setColor={setColor}/>}
                 </CardFooter>
             </Card>
         </article>
