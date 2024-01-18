@@ -1,7 +1,6 @@
 import {Link, NavLink, useLocation} from 'react-router-dom'
 import {NAVIGATION_LINKS} from '@/constants'
 import cart from '/assets/icons/cart.svg'
-import user from '/assets/icons/user.svg'
 import wishlist from '/assets/icons/wishlist.svg'
 import Icon from '@/components/elements/Icon.tsx'
 import Search from '@/components/shared/Search.tsx'
@@ -9,6 +8,7 @@ import {APP_NAME} from '@/constants'
 import {useTranslation} from 'react-i18next'
 import {I18N_NAMESPACES} from '@/constants/locales.ts'
 import Underline from '@/components/shared/Underline.tsx'
+import UserDropdown from '@/components/layout/UserDropdown.tsx'
 
 const NavbarLink = ({to, label, location}: { to: string, label: string, location: string }) => {
     const isActive = location === to
@@ -25,7 +25,7 @@ const NavbarLink = ({to, label, location}: { to: string, label: string, location
 
 const DesktopNavbar = ({}) => {
     const {t} = useTranslation(I18N_NAMESPACES.navigationLinks)
-    const isLoggedIn = false
+    const isLoggedIn = true
     const location = useLocation().pathname
     const isAuthPage = location === '/login' || location === '/signup'
 
@@ -47,10 +47,10 @@ const DesktopNavbar = ({}) => {
                 <div className={'inline-flex gap-6'}>
                     <Search additionalStyles={isAuthPage ? 'max-lg:[120px]' : 'max-lg:hidden'}/>
                     {!isAuthPage &&
-                        <div className={'inline-flex h-6 justify-between gap-4'}>
+                        <div className={'inline-flex h-6 items-center justify-between gap-4'}>
                             <Link to={'/wishlist'}><Icon path={wishlist} name={'wishlist'} hoverable/></Link>
                             <Link to={'/cart'}><Icon path={cart} name={'cart'} hoverable/></Link>
-                            {isLoggedIn && <Icon path={user} name={'user'} hoverable/>}
+                            {isLoggedIn && <UserDropdown/>}
                         </div>
                     }
                 </div>
