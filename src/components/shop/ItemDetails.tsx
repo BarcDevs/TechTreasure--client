@@ -53,7 +53,7 @@ const ItemDetails = ({}) => {
                 <p className={'text-body'}>{item.description}</p>
                 <Separator className={'h-[0.5px] bg-black'}/>
                 {isColors &&
-                    <div className={'flex-row-start gap-6'}>
+                    <div className={'flex_row flex-start-center gap-6'}>
                         <p className={'text-heading font-inter'}>Colors:</p>
                         <ColorPicker colors={item.colors} color={color} setColor={setColor}/>
                     </div>}

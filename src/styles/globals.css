@@ -131,6 +131,10 @@
         @apply flex items-center justify-between flex-col;
     }
 
+    .flex-start-center {
+        @apply flex justify-start items-center;
+    }
+
     .flex-start-between {
         @apply flex justify-between items-start;
     }
