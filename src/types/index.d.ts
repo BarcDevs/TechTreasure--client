@@ -13,6 +13,7 @@ export type BasicProduct = {
     new?: boolean
     category: string
     shipping?: number
+    stock: number
 }
 
 export type ProductWithColors = Omit<BasicProduct, 'mainImage' | 'images'> & {
@@ -27,6 +28,7 @@ export type Product = BasicProduct | ProductWithColors
 export type Color = { name: string, hex: string }
 
 export type CartItem = Product & {
+    itemVariants?: [{ color?: string, size?: string }]
     quantity: number
     subtotal: number
     totalDiscount?: number

@@ -18,6 +18,21 @@
         @apply text-2xl font-bold font-inter leading-normal tracking-wide
     }
 
+    /* Heading/24PX Medium */
+    .text-large-semibold {
+        @apply text-2xl font-semibold font-inter leading-normal tracking-wide
+    }
+
+    /* Heading/24PX Medium */
+    .text-large-medium {
+        @apply text-2xl font-medium font-inter leading-normal tracking-wide
+    }
+
+    /* Heading/24PX Regular */
+    .text-large-regular {
+        @apply text-2xl font-normal font-inter leading-normal tracking-wide
+    }
+
     /* Title/20PX Regular */
     .text-heading {
         @apply text-xl font-normal font-poppins leading-7
@@ -59,6 +74,10 @@
 
     .text-small-semibold {
         @apply text-sm font-semibold font-poppins leading-[21px]
+    }
+
+    .text-small-medium {
+        @apply text-sm font-medium font-poppins leading-[21px]
     }
 
     /* Title/12PX Medium */

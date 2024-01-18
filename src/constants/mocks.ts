@@ -31,7 +31,8 @@ export const ITEMS: Product[] = [
             {name: 'red', hex: '#DB4444'},
             {name: 'white', hex: '#A0BCE0'}
         ],
-        defaultColor: 'white'
+        defaultColor: 'white',
+        stock: 164
     },
     {
         id: "i110",
@@ -43,7 +44,9 @@ export const ITEMS: Product[] = [
         discount: 35,
         price: 960,
         oldPrice: 1160,
-        category: Categories.accessories.name
+        category: Categories.accessories.name,
+        shipping: 0,
+        stock: 0
     },
     {
         id: "i111",
@@ -55,7 +58,9 @@ export const ITEMS: Product[] = [
         price: 370,
         discount: 30,
         oldPrice: 400,
-        category: Categories.screens.name
+        category: Categories.screens.name,
+        shipping: 0,
+        stock: 6
     },
     {
         id: "i112",
@@ -67,7 +72,9 @@ export const ITEMS: Product[] = [
         price: 160,
         discount: 0,
         oldPrice: 170,
-        category: Categories.computerComponents.name
+        category: Categories.computerComponents.name,
+        shipping: 0,
+        stock: 70
     },
     {
         id: "i113",
@@ -77,7 +84,9 @@ export const ITEMS: Product[] = [
         rating: 5,
         votes: 987,
         price: 700,
-        category: Categories.computers.name
+        category: Categories.computers.name,
+        shipping: 7,
+        stock: 5330
     },
     {
         id: "i114",
@@ -96,17 +105,20 @@ export const ITEMS: Product[] = [
             {name: 'red', hex: '#DB4444'}
         ],
         defaultColor: 'black',
-        category: Categories.gaming.name
+        category: Categories.gaming.name,
+        shipping: 3,
+        stock: 6780
     }
 ]
 
 export const CART: Cart = {
-    items: [{
-        ...ITEMS[0],
-        quantity: 1,
-        subtotal: 120,
-        totalDiscount: 40
-    },
+    items: [
+        {
+            ...ITEMS[0],
+            quantity: 1,
+            subtotal: 120,
+            totalDiscount: 40
+        },
         {
             ...ITEMS[1],
             quantity: 3,
