@@ -16,9 +16,9 @@ const Header = ({}) => {
     return (
         <header
             className={`flex h-14 items-center gap-4 border-b bg-gray-100/40 px-6 lg:h-[60px] dark:bg-gray-800/40 ${isProductsPage ? 'justify-between' : 'justify-end'}`}>
-            <Link className="lg:hidden" to="#">
+            <Link className="lg:hidden" to={'account'}>
                 <Package2Icon className="h-6 w-6"/>
-                <span className="sr-only">Home</span>
+                <span className="sr-only">Account</span>
             </Link>
 
             {isProductsPage &&
