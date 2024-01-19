@@ -13,6 +13,7 @@ export type BasicProduct = {
     votes: number
     price: number
     discount?: number
+    discountEnd?: Date
     oldPrice?: number
     new?: boolean
     category: string
@@ -36,6 +37,24 @@ export type CartItem = Product & {
     quantity: number
     subtotal: number
     totalDiscount?: number
+}
+
+export type ManagedProduct = Product & {
+    orders: Order[] | string[]
+}
+
+export type Order = {
+    id: string
+    createdAt: Date
+    items: CartItem[]
+    payment: string
+    status: 'pending' | 'processing' | 'shipped' | 'delivered'
+    total: number
+    trackingNumber?: string
+}
+
+export type User = {
+
 }
 
 export type Cart = {
