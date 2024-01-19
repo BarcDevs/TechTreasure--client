@@ -14,11 +14,11 @@ const Products = () => (
     <main className="flex_col flex-1 gap-4 p-4 md:gap-8 md:p-6">
         <div className="flex items-center">
             <h1 className="text-lg font-semibold md:text-2xl">Products</h1>
-            <Link to={'add'}>
-                <Button className="ml-auto bg-red-500" size="sm">
+            <Button className="ml-auto bg-red-500 hover:bg-red-500/80" size="sm">
+                <Link to={'add'}>
                     Add product
-                </Button>
-            </Link>
+                </Link>
+            </Button>
         </div>
         <div className="rounded-lg border shadow-sm">
             <Table>
