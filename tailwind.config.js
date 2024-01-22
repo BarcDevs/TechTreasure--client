@@ -41,7 +41,8 @@ module.exports = {
                     'off-white': '#FCFCFC'
                 },
                 primary: {
-                    DEFAULT: '#5F2EEA',
+                    // DEFAULT: '#5F2EEA',
+                    DEFAULT: '#DF2648',
                     foreground: 'hsl(var(--primary-foreground))',
                     dark: '#2A00A2',
                     light: '#BCA4FF',
