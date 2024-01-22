@@ -13,7 +13,7 @@ type ImageInputProps = {
     setImages: React.Dispatch<React.SetStateAction<ImageState[]>>,
     type: 'main' | 'additional',
     colors: Color[],
-    formControl: Control<ProductFormType, any>
+    formControl: Control<ProductFormType>
 }
 
 export type ImageState = File | {
@@ -49,6 +49,7 @@ const ImageInput = ({images, setImages, type, colors, formControl}: ImageInputPr
             prevState.filter(i => i !== image))
     }
 
+    // console.log(images)
     return (
         <FormItem className="w-full">
             <label
@@ -75,8 +76,8 @@ const ImageInput = ({images, setImages, type, colors, formControl}: ImageInputPr
                         <img key={uuid()}
                              className="w-24 h-24 aspect-square object-contain cursor-pointer"
                              height="100"
-                            // @ts-ignore
-                             src={URL.createObjectURL(image?.image || image)}
+                             // @ts-ignore
+                             src={URL.createObjectURL(image?.image ?? image)}
                              width="100"
                              alt={'image'}
                              onClick={() => removeImage(image)}/>

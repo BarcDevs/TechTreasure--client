@@ -29,3 +29,26 @@ export const getImageFile = async (url: string) : Promise<File> => {
     const blob = await res.blob()
     return new File([blob], 'file', {type: contentType})
 }
+
+export const getImagesFromProduct = (images: string | string[] | { [key: string]: string | string[] }) => {
+    if (typeof images === 'string') return [getImageFile(images)]
+    else if (typeof images === 'object' && !Array.isArray(images))
+        return extractImagesFromColorsObj(images)
+    else
+        return (Promise.all(images.map(image => getImageFile(image))))
+}
+
+const extractImagesFromColorsObj = (colors: { [key: string]: string | string[] }) => (
+    Object.entries(colors)
+        .map(async ([key, value]) => (
+            typeof value === 'string' ? Promise.resolve({
+                    image: await getImageFile(value),
+                    color: key
+                }) :
+                Promise.all(value.map(async image => ({
+                    image: await getImageFile(image),
+                    color: key
+                })))
+        ))
+)
+

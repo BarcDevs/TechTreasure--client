@@ -17,7 +17,7 @@ import {ProductForm as ProductFormType, productFormSchema} from '@/validations/p
 import ColorInput from '@/components/admin/products/form/ColorInput.tsx'
 import SizeInput from '@/components/admin/products/form/SizeInput.tsx'
 import ImageInput, {ImageState} from '@/components/admin/products/form/ImageInput.tsx'
-import {getImageFile} from '@/lib/utils.ts'
+import {getImagesFromProduct} from '@/lib/utils.ts'
 // import {useSubmit} from 'react-router-dom'
 
 type ProductFormProps = {
@@ -31,38 +31,15 @@ const ProductForm = ({product}: ProductFormProps) => {
     const [images, setImages] = useState<ImageState[]>([])
     const [saleInputMode, setSaleInputMode] = useState<'%' | '$'>('%')
 
-    const extractImagesFromColorsObj = (colors: { [key: string]: string | string[] }) => (
-        Object.entries(colors)
-            .map(async ([key, value]) => (
-                typeof value === 'string' ? {
-                        image: await getImageFile(value),
-                        color: key
-                    } :
-                    await Promise.all(value.map(async image => ({
-                        image: await getImageFile(image),
-                        color: key
-                    })))
-            ))
-    )
-
     useEffect(() => {
         if (product) {
-            const mainImages =
-                typeof product?.mainImage === 'string' ? [
-                    Promise.resolve(getImageFile(product.mainImage))
-                    // @ts-ignore
-                ] : Promise.all(extractImagesFromColorsObj(product?.mainImage!))
-
-            if (product?.images) {
-                const images = Array.isArray(product?.images) ?
-                    product?.images.map(async image => await getImageFile(image)) :
-                    // @ts-ignore
-                    extractImagesFromColorsObj(product?.images)
-
-                    (async () => setImages(await Promise.all(images) as ImageState[]))()
+            // @ts-ignore
+            Promise.all(getImagesFromProduct(product?.mainImage!)).then(res => console.log('main', res))
+            if (product?.images) { // @ts-ignore
+                Promise.all(getImagesFromProduct(product?.images))
+                    .then(res => console.log('sec', res))
             }
 
-            (async () => setMainImage(await mainImages as ImageState[]))()
             setColors(((product as ProductWithColors).colors || []))
             setSizes(product.sizes || [])
         }
