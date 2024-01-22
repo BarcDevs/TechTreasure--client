@@ -82,7 +82,7 @@ const ItemDetails = ({}) => {
                               className={'hidden group-hover:block'}/>
                     </button>
                 </div>
-                <DeliveryDetails price={item.shipping || 0} className={'mt-4'}/>
+                <DeliveryDetails price={item.shippingFee || 0} className={'mt-4'}/>
             </section>
         </section>
     )

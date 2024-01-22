@@ -12,12 +12,12 @@ export type BasicProduct = {
     rating: number
     votes: number
     price: number
-    discount?: number
-    discountEnd?: Date
+    sale?: number
+    saleEndsAt?: Date
     oldPrice?: number
-    new?: boolean
+    isNew?: boolean
     category: string
-    shipping?: number
+    shippingFee?: number
     stock: number
 }
 

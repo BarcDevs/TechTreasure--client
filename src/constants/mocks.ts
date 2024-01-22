@@ -21,12 +21,12 @@ export const ITEMS: Product[] = [
         },
         rating: 4.3,
         votes: 584,
-        discount: 40,
+        sale: 40,
         price: 120,
         oldPrice: 160,
         category: Categories.gaming.name,
         sizes: ['S', 'M', 'L', 'XL'],
-        shipping: 20,
+        shippingFee: 20,
         colors: [
             {name: 'red', hex: '#DB4444'},
             {name: 'white', hex: '#A0BCE0'}
@@ -41,11 +41,11 @@ export const ITEMS: Product[] = [
         mainImage: '/assets/images/items/item-2.png',
         rating: 4.8,
         votes: 283,
-        discount: 35,
+        sale: 35,
         price: 960,
         oldPrice: 1160,
         category: Categories.accessories.name,
-        shipping: 0,
+        shippingFee: 0,
         stock: 0
     },
     {
@@ -56,10 +56,10 @@ export const ITEMS: Product[] = [
         rating: 4.9,
         votes: 157,
         price: 370,
-        discount: 30,
+        sale: 30,
         oldPrice: 400,
         category: Categories.screens.name,
-        shipping: 0,
+        shippingFee: 0,
         stock: 6
     },
     {
@@ -70,10 +70,10 @@ export const ITEMS: Product[] = [
         rating: 4.1,
         votes: 97,
         price: 160,
-        discount: 0,
+        sale: 0,
         oldPrice: 170,
         category: Categories.computerComponents.name,
-        shipping: 0,
+        shippingFee: 0,
         stock: 70
     },
     {
@@ -85,7 +85,7 @@ export const ITEMS: Product[] = [
         votes: 987,
         price: 700,
         category: Categories.computers.name,
-        shipping: 7,
+        shippingFee: 7,
         stock: 5330
     },
     {
@@ -99,14 +99,14 @@ export const ITEMS: Product[] = [
         rating: 3.8,
         votes: 109,
         price: 120,
-        new: true,
+        isNew: true,
         colors: [
             {name: 'black', hex: '#000000'},
             {name: 'red', hex: '#DB4444'}
         ],
         defaultColor: 'black',
         category: Categories.gaming.name,
-        shipping: 3,
+        shippingFee: 3,
         stock: 6780
     }
 ]

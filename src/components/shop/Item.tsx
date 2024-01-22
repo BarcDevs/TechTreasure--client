@@ -64,11 +64,11 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
                 <CardContent
                     className={'flex-center relative h-[250px] cursor-pointer p-3'}
                     onClick={handleCardClick}>
-                    {(item.discount && item.discount > 0) ?
+                    {(item.sale && item.sale > 0) ?
                         <div
                             className="flex-center absolute left-3 top-3 z-10 rounded bg-red-500 px-3 py-1 text-neutral-50">
-                            -{item.discount}%
-                        </div> : item.new &&
+                            -{item.sale}%
+                        </div> : item.isNew &&
                         <div
                             className="flex-center absolute left-3 top-3 z-10 rounded bg-green-500 px-3 py-1 uppercase text-neutral-50">
                             {t(GLOBAL_LOCALES.new, {ns: I18N_NAMESPACES.global})}
