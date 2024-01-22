@@ -9,6 +9,8 @@ import CheckoutPage from '@/pages/CheckoutPage.tsx'
 import ItemPage from '@/pages/ItemPage.tsx'
 import ProductsPage from '@/pages/admin/ProductsPage.tsx'
 import AdminLayout from '@/pages/layouts/AdminLayout.tsx'
+import AddItemPage from '@/pages/admin/AddItemPage.tsx'
+import EditItemPage from '@/pages/admin/EditItemPage.tsx'
 
 export const router = createBrowserRouter([
     {
@@ -110,11 +112,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'products/add',
-                // element: <AddItemPage/>
+                element: <AddItemPage/>
             },
             {
                 path: 'products/edit/:id',
-                // element: <EditItemPage/>
+                element: <EditItemPage/>
             },
             {
                 path: 'orders',
