@@ -4,7 +4,7 @@ import {ITEMS} from '@/constants/mocks.ts'
 import Item from '@/components/shop/Item.tsx'
 
 const ForYou = ({}) => (
-    <div className={'flex-center-col w-full gap-[60px]'}>
+    <section className={'flex-center-col w-full gap-[60px]'}>
         <RowHeader headline={'Just For You'} variant={'white'}>
             {/* TODO add functionality */}
             <Button variant={'white'} text={'View All'}/>
@@ -16,7 +16,7 @@ const ForYou = ({}) => (
                 </li>
             ))}
         </ul>
-    </div>
+    </section>
 )
 
 export default ForYou
