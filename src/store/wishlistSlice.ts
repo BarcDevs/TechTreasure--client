@@ -15,9 +15,10 @@ const wishlistSlice = createSlice({
         },
         clearWishlist(wishlist) {
             wishlist.splice(0, wishlist.length)
-        }
+        },
+        loadWishlist: (_, {payload: wishlist}: { payload: Product[] }) => wishlist
     }
 })
 
-export const {addToWishlist, removeFromWishlist, clearWishlist} = wishlistSlice.actions
+export const {addToWishlist, removeFromWishlist, clearWishlist, loadWishlist} = wishlistSlice.actions
 export default wishlistSlice.reducer

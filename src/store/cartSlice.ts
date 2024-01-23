@@ -96,7 +96,8 @@ const cartSlice = createSlice({
             cart.cartDiscount = 0
             cart.shipping = 0
             cart.total = 0
-        }
+        },
+        loadCart: (_, {payload: cart}: { payload: Cart }) => cart
     }
 })
 
