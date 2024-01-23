@@ -61,6 +61,7 @@ const cartSlice = createSlice({
         updateDiscount: (cart, {payload: discount}: { payload: { percent?: number, fixed?: number } }) => {
             cart.discount = discount
             cart.cartDiscount = calculateDiscount(cart)
+            cart.total = calculateCartTotal(cart)
         },
         removeFromCart: (cart, {payload: item}: { payload: Product }) => {
             const existingItem = cart.items.find((i) => i.id === item.id)
