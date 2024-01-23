@@ -4,14 +4,20 @@ import {ChangeEvent} from 'react'
 import {TableCell, TableRow} from '@/components/ui/table.tsx'
 import Icon from '@/components/elements/Icon.tsx'
 import {isProductWithColors} from '@/lib/utils.ts'
+import {useDispatch} from 'react-redux'
+import {deleteFromCart, updateCart} from '@/store/cartSlice.ts'
 
 const CartItem = ({item}: { item: CartItemType }) => {
+    const dispatch = useDispatch()
+
     const handleUpdateCart = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log(e)
+        if (!e.target.value || Number(e.target.value) < 0) return
+        const quantity = Math.min(item.stock, Number(e.target.value))
+        dispatch(updateCart({item, quantity}))
     }
 
     const handleRemoveItem = () => {
-        console.log('remove')
+        dispatch(deleteFromCart(item))
     }
 
     return (
@@ -19,10 +25,12 @@ const CartItem = ({item}: { item: CartItemType }) => {
             <TableCell className={'pl-10'}>
                 <div className={'flex_row items-center justify-start gap-5'}>
                     <div className={'flex-center relative h-[54px] min-h-9 w-[54px] min-w-9'}>
-                        <button onClick={handleRemoveItem} className={'invisible group-hover:visible absolute top-[-4px] left-[-10px]'}>
+                        <button onClick={handleRemoveItem}
+                                className={'invisible group-hover:visible absolute top-[-4px] left-[-10px]'}>
                             <Icon path={'/assets/icons/cancel.svg'} name={'remove'}/>
                         </button>
-                        <img src={isProductWithColors(item) ? item.mainImage[item.defaultColor] : item.mainImage} alt={item.name}/>
+                        <img src={isProductWithColors(item) ? item.mainImage[item.defaultColor] : item.mainImage}
+                             alt={item.name}/>
                     </div>
                     <p>{item.name}</p>
                 </div>
@@ -36,8 +44,8 @@ const CartItem = ({item}: { item: CartItemType }) => {
                 <div className={'flex-center-row'}>
                     <Input type={'number'}
                            value={item.quantity}
-                           min={0}
-                        // todo max={item.stock}
+                           min={1}
+                           max={item.stock}
                            onChange={handleUpdateCart}
                            className={'w-[72px] border-black'}/>
                 </div>

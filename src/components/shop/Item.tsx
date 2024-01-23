@@ -11,6 +11,9 @@ import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 import {isProductWithColors} from '@/lib/utils.ts'
 import {useState} from 'react'
 import ColorPicker from '@/components/shared/ColorPicker.tsx'
+import {useDispatch} from 'react-redux'
+import {addToWishlist} from '@/store/wishlistSlice.ts'
+import {addToCart} from '@/store/cartSlice.ts'
 
 type ItemProps = {
     item: Product
@@ -21,10 +24,11 @@ type ItemProps = {
 type WishlistItemProps = {
     item: Product
     variant: 'wishlist'
-    onDelete: () => void
+    onDelete: (item: Product) => void
 }
 
 const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     const {t} = useTranslation([I18N_NAMESPACES.shop, I18N_NAMESPACES.global])
 
@@ -38,7 +42,7 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
 
     const handleFavoriteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation()
-        console.log('favorite clicked')
+        dispatch(addToWishlist(item))
     }
 
     const handlePeekClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -48,12 +52,12 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
 
     const handleCartClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation()
-        console.log('add to cart clicked')
+        dispatch(addToCart(item))
     }
 
     const handleDeleteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation()
-        onDelete!()
+        onDelete!(item)
     }
 
     return (
@@ -94,7 +98,7 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
                              alt="item"/>
                     </div>
                     <button onClick={handleCartClick}
-                            className={`invisible text-body-medium flex-center absolute bottom-3 left-0 h-10 w-full rounded-b bg-black text-neutral-50 ${variant !== 'wishlist' ? 'group-hover:' : ''}visible`}>
+                            className={`text-body-medium flex-center invisible absolute bottom-3 left-0 h-10 w-full rounded-b bg-black text-neutral-50 ${variant !== 'wishlist' ? 'group-hover:' : ''}visible`}>
 
                         {t('addToCart')}
                     </button>
@@ -104,8 +108,8 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
                         {item.name}
                     </div>
                     <div className="inline-flex-start gap-3">
-                        <div className="text-red-500">${item.price}</div>
-                        {item.oldPrice && <div className="text-black line-through opacity-50">${item.oldPrice}</div>}
+                        <div className="text-red-500">${Math.round(item.price)}</div>
+                        {item.oldPrice && <div className="text-black line-through opacity-50">${Math.round(item.oldPrice)}</div>}
                     </div>
                     {variant !== 'wishlist' && <div className="inline-flex-start gap-2">
                         <Rating rating={item.rating}/>
