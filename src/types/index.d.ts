@@ -59,6 +59,7 @@ export type User = {
 
 export type Cart = {
     items: CartItem[]
+    totalItems: number
     subtotal: number
     cartDiscount?: number
     shipping?: number
