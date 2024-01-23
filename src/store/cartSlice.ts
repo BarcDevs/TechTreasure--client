@@ -1,8 +1,12 @@
 import {createSlice} from '@reduxjs/toolkit'
 import {Cart, CartItem, Product} from '@/types'
 
-const calculateDiscount = (product: Product) =>
-    product.sale ? product.price * (product.sale / 100) : 0
+const calculateDiscount = (cart: Cart) => {
+    if (!cart.discount) return 0
+    if (cart.discount.percent)
+        return ((cart.discount.percent / 100) * cart.subtotal) + (cart.discount.fixed ?? 0)
+    return cart.discount.fixed
+}
 
 const calculateCartTotal = (cart: Cart) =>
     cart.subtotal - (cart.cartDiscount ?? 0) + (cart.shipping ?? 0)
@@ -23,21 +27,40 @@ const cartSlice = createSlice({
             if (existingItem) {
                 existingItem.quantity += 1
                 existingItem.subtotal += item.price
-                existingItem.totalDiscount = calculateDiscount(item) + (existingItem.totalDiscount ?? 0)
             } else {
                 cart.items.push({
                     ...item,
                     quantity: 1,
-                    subtotal: item.price,
-                    totalDiscount: calculateDiscount(item)
+                    subtotal: item.price
                 })
             }
 
             cart.totalItems += 1
             cart.subtotal += item.price
-            cart.cartDiscount = calculateDiscount(item) + (cart.cartDiscount ?? 0)
+            cart.cartDiscount = calculateDiscount(cart)
             cart.shipping = (item.shippingFee ?? 0) + (cart.shipping ?? 0)
             cart.total = calculateCartTotal(cart)
+        },
+        updateCart: (cart, {payload}: { payload: { item: Product, quantity: number } }) => {
+            const {item, quantity} = payload
+            if (quantity === 0) deleteFromCart(item)
+
+            const existingItem = cart.items.find((i) => i.id === item.id)
+            if (!existingItem) return
+
+            cart.totalItems += (quantity - existingItem.quantity)
+            cart.subtotal += (item.price * quantity) - existingItem.subtotal
+            cart.cartDiscount = calculateDiscount(cart)
+            cart.shipping = (item.shippingFee ?? 0) * (quantity - existingItem.quantity) + (cart.shipping ?? 0)
+            cart.total = calculateCartTotal(cart)
+
+            existingItem.quantity = quantity
+            existingItem.subtotal = item.price * quantity
+
+        },
+        updateDiscount: (cart, {payload: discount}: { payload: { percent?: number, fixed?: number } }) => {
+            cart.discount = discount
+            cart.cartDiscount = calculateDiscount(cart)
         },
         removeFromCart: (cart, {payload: item}: { payload: Product }) => {
             const existingItem = cart.items.find((i) => i.id === item.id)
@@ -45,14 +68,13 @@ const cartSlice = createSlice({
             if (existingItem.quantity > 1) {
                 existingItem.quantity -= 1
                 existingItem.subtotal -= item.price
-                existingItem.totalDiscount = calculateDiscount(item) + (existingItem.totalDiscount ?? 0)
             } else {
                 cart.items = cart.items.filter((i) => i.id !== item.id)
             }
 
             cart.totalItems -= 1
             cart.subtotal -= item.price
-            cart.cartDiscount = calculateDiscount(item) + (cart.cartDiscount ?? 0)
+            cart.cartDiscount = calculateDiscount(cart)
             cart.shipping = (item.shippingFee ?? 0) + (cart.shipping ?? 0)
             cart.total = calculateCartTotal(cart)
         },
@@ -62,8 +84,7 @@ const cartSlice = createSlice({
             cart.items = cart.items.filter((i) => i.id !== item.id)
             cart.totalItems -= existingItem.quantity
             cart.subtotal -= existingItem.subtotal
-            if (cart.cartDiscount)
-                cart.cartDiscount = -(existingItem.totalDiscount ?? 0)
+            cart.cartDiscount = calculateDiscount(cart)
             if (cart.shipping)
                 cart.shipping -= (existingItem.shippingFee ?? 0) * existingItem.quantity
             cart.total = calculateCartTotal(cart)
@@ -79,5 +100,5 @@ const cartSlice = createSlice({
     }
 })
 
-export const {addToCart, removeFromCart, deleteFromCart} = cartSlice.actions
+export const {addToCart, removeFromCart, deleteFromCart, updateCart, clearCart, updateDiscount, } = cartSlice.actions
 export default cartSlice.reducer
