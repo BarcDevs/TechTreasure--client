@@ -36,7 +36,6 @@ export type CartItem = Product & {
     itemVariants?: [{ color?: string, size?: string }]
     quantity: number
     subtotal: number
-    totalDiscount?: number
 }
 
 export type ManagedProduct = Product & {
@@ -61,6 +60,10 @@ export type Cart = {
     items: CartItem[]
     totalItems: number
     subtotal: number
+    discount?: {
+        percent?: number
+        fixed?: number
+    }
     cartDiscount?: number
     shipping?: number
     total: number
