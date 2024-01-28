@@ -52,7 +52,7 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
 
     const handleCartClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation()
-        dispatch(addToCart(item))
+        dispatch(addToCart({item}))
     }
 
     const handleDeleteClick = (e: React.MouseEvent<HTMLButtonElement>) => {

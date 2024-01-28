@@ -17,7 +17,7 @@ const Wishlist = ({}) => {
     }
 
     const moveAllToCart = () => {
-        wishlist.forEach(item => dispatch(addToCart(item)))
+        wishlist.forEach(item => dispatch(addToCart({item})))
         dispatch(clearWishlist())
         navigate('/cart')
     }

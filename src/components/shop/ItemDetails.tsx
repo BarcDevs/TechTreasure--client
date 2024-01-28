@@ -8,8 +8,12 @@ import Button from '@/components/elements/Button.tsx'
 import Icon from '@/components/elements/Icon.tsx'
 import DeliveryDetails from '@/components/checkout/DeliveryDetails.tsx'
 import ColorPicker from '@/components/shared/ColorPicker.tsx'
+import {addToWishlist} from '@/store/wishlistSlice.ts'
+import {useDispatch} from 'react-redux'
+import {addToCart} from '@/store/cartSlice.ts'
 
 const ItemDetails = ({item}: { item: Product }) => {
+    const dispatch = useDispatch()
     const isColors = isProductWithColors(item)
 
     const [quantity, setQuantity] = useState(item.stock > 0 ? 1 : 0)
@@ -20,8 +24,16 @@ const ItemDetails = ({item}: { item: Product }) => {
 
     useEffect(() => {
         if (!isColors) return
-        setBigImage(() =>  item.mainImage[color!])
+        setBigImage(() => item.mainImage[color!])
     }, [color])
+
+    const addToCartHandler = () => {
+        dispatch(addToCart({item, quantity, variant: {color: color ?? undefined, size: selectedSize}}))
+    }
+
+    const addToWishlistHandler = () => {
+        dispatch(addToWishlist(item))
+    }
 
     return (
         <section className={'w-full flex-row-between max-md:flex-col'}>
@@ -74,10 +86,12 @@ const ItemDetails = ({item}: { item: Product }) => {
                     </div>}
                 <div className={'flex-row-start gap-4 w-full'}>
                     <QuantitySelector quantity={quantity} setQuantity={setQuantity} max={item.stock}/>
-                    <Button text={'Add to Cart'} onClick={() => {
-                    }} className={'px-6 grow'}/>
+                    <Button text={'Add to Cart'}
+                            onClick={addToCartHandler} className={'px-6 grow'}
+                    />
                     <button
-                        className={'group border border-black/50 bg-neutral-50 flex-center h-full aspect-square rounded p-1'}>
+                        className={'group border border-black/50 bg-neutral-50 flex-center h-full aspect-square rounded p-1'}
+                        onClick={addToWishlistHandler}>
                         <Icon path={'/assets/icons/heart.svg'} name={'heart'} size={32}
                               className={'group-hover:hidden'}/>
                         <Icon path={'/assets/icons/heart-filled.svg'} name={'heart'} size={32}

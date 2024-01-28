@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit'
-import {Cart, CartItem, Product} from '@/types'
+import {Cart, CartItem, ItemVariant, Product} from '@/types'
 
 const calculateDiscount = (cart: Cart) => {
     if (!cart.discount) return 0
@@ -22,16 +22,21 @@ const cartSlice = createSlice({
         total: 0
     } as Cart,
     reducers: {
-        addToCart: (cart, {payload: item}: { payload: Product }) => {
+        addToCart: (cart, {payload: {item, quantity = 1, variant}}:
+            { payload: { item: Product, quantity?: number, variant?: ItemVariant } }) => {
             const existingItem = cart.items.find((i) => i._id === item._id)
             if (existingItem) {
-                existingItem.quantity += 1
+                existingItem.quantity += quantity
                 existingItem.subtotal += item.price
+                existingItem.itemVariants = variant ?
+                    [...(existingItem.itemVariants ?? []), ...(new Array(quantity)).fill(variant)] :
+                    existingItem.itemVariants
             } else {
                 cart.items.push({
                     ...item,
-                    quantity: 1,
-                    subtotal: item.price
+                    quantity,
+                    subtotal: item.price,
+                    itemVariants: variant ? new Array(quantity).fill(variant) : undefined
                 })
             }
 
@@ -102,5 +107,13 @@ const cartSlice = createSlice({
     }
 })
 
-export const {addToCart, removeFromCart, deleteFromCart, updateCart, clearCart, updateDiscount, loadCart} = cartSlice.actions
+export const {
+    addToCart,
+    removeFromCart,
+    deleteFromCart,
+    updateCart,
+    clearCart,
+    updateDiscount,
+    loadCart
+} = cartSlice.actions
 export default cartSlice.reducer

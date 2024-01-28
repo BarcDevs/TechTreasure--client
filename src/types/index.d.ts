@@ -34,10 +34,12 @@ export type Product = BasicProduct | ProductWithColors
 export type Color = { name: string, hex: string }
 
 export type CartItem = Product & {
-    itemVariants?: [{ color?: string, size?: string }]
+    itemVariants?: ItemVariant[]
     quantity: number
     subtotal: number
 }
+
+export type ItemVariant = { color?: string, size?: string }
 
 export type ManagedProduct = Product & {
     orders: Order[] | string[]
