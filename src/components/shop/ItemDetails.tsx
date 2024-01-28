@@ -36,8 +36,8 @@ const ItemDetails = ({item}: { item: Product }) => {
                         </li>
                     ))}
                 </ul>}
-                <div className={'max-h-[600px] max-w-[500px] p-7 flex-center'}>
-                    <img src={bigImage} alt={item.name}/>
+                <div className={'h-[600px] w-[500px] max-md:h-[300px] max-md:w-full p-7 flex-center'}>
+                    <img src={bigImage} alt={item.name} className={'object-fill w-full'}/>
                 </div>
             </section>
             <section className={'w-[30%] max-md:w-full flex-col-start gap-6'}>
