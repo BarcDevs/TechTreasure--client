@@ -15,6 +15,7 @@ import Search from '@/components/shared/Search.tsx'
 import {useTranslation} from 'react-i18next'
 import {I18N_NAMESPACES} from '@/constants/locales.ts'
 import {useSelector} from 'react-redux'
+import {IRootState} from '@/store'
 
 const DropdownEntry = ({to, label, className}: { to: string, label: string, className?: string }) => (
     <DropdownMenuLabel key={label}>
@@ -26,7 +27,7 @@ const DropdownEntry = ({to, label, className}: { to: string, label: string, clas
 
 const MobileNavbar = ({}) => {
     const {t} = useTranslation(I18N_NAMESPACES.navigationLinks)
-    const isLoggedIn = useSelector((state: any) => state.auth.isAuthenticated)
+    const isLoggedIn = useSelector((state: IRootState) => state.auth.isAuthenticated)
     const location = useLocation().pathname
     const isAuthPage = location === '/login' || location === '/signup'
 

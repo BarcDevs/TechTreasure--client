@@ -10,6 +10,7 @@ import {I18N_NAMESPACES} from '@/constants/locales.ts'
 import Underline from '@/components/shared/Underline.tsx'
 import UserDropdown from '@/components/layout/UserDropdown.tsx'
 import {useSelector} from 'react-redux'
+import {IRootState} from '@/store'
 
 const NavbarLink = ({to, label, location}: { to: string, label: string, location: string }) => {
     const isActive = location === to
@@ -26,7 +27,7 @@ const NavbarLink = ({to, label, location}: { to: string, label: string, location
 
 const DesktopNavbar = ({}) => {
     const {t} = useTranslation(I18N_NAMESPACES.navigationLinks)
-    const isLoggedIn = useSelector((state: any) => state.auth.isAuthenticated)
+    const isLoggedIn = useSelector((state: IRootState) => state.auth.isAuthenticated)
     const location = useLocation().pathname
     const isAuthPage = location === '/login' || location === '/signup'
 

@@ -4,9 +4,10 @@ import {loginAction} from '@/store/authSlice.ts'
 import {useDispatch, useSelector} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
 import {useEffect} from 'react'
+import {IRootState} from '@/store'
 
 export const useLogin = (loginCallback: MutationFunction<any, any>) => {
-    const isLoggedIn = useSelector((state: any) => state.auth.isAuthenticated)
+    const isLoggedIn = useSelector((state: IRootState) => state.auth.isAuthenticated)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
