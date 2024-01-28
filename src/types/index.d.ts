@@ -54,6 +54,7 @@ export type Order = {
 }
 
 export type User = {
+    _id: string
     name: string
     email: string
     role: Role
@@ -79,7 +80,7 @@ export type Cart = {
 }
 
 export type Category = {
-    id: string
+    _id: string
     name: string
     icon: string
     items?: Product[] // populated by mongoose

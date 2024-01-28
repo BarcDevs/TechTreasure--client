@@ -6,11 +6,11 @@ const wishlistSlice = createSlice({
     initialState: [] as Product[],
     reducers: {
         addToWishlist(wishlist, {payload}: { payload: Product }) {
-            if (wishlist.some(item => item.id === payload.id)) return
+            if (wishlist.some(item => item._id === payload._id)) return
             wishlist.push(payload)
         },
         removeFromWishlist(wishlist, {payload}: { payload: Product }) {
-            const index = wishlist.findIndex(item => item.id === payload.id)
+            const index = wishlist.findIndex(item => item._id === payload._id)
             wishlist.splice(index, 1)
         },
         clearWishlist(wishlist) {

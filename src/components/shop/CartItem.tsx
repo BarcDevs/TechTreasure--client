@@ -21,7 +21,7 @@ const CartItem = ({item}: { item: CartItemType }) => {
     }
 
     return (
-        <TableRow key={item.id} className={'text-body group h-[100px] items-center'}>
+        <TableRow key={item._id} className={'text-body group h-[100px] items-center'}>
             <TableCell className={'pl-10'}>
                 <div className={'flex_row items-center justify-start gap-5'}>
                     <div className={'flex-center relative h-[54px] min-h-9 w-[54px] min-w-9'}>

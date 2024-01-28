@@ -7,7 +7,7 @@ const RelatedItems = ({}) => (
         <RowHeader headline={'Related Items'}/>
         <ul className={'flex-start-around max-sm:flex-center-col w-full flex-row flex-wrap gap-5'}>
             {[...ITEMS.slice(0, 4)].map(item => (
-                <li key={item.id} className={'shrink-0'}>
+                <li key={item._id} className={'shrink-0'}>
                     <Item item={item}/>
                 </li>
             ))}

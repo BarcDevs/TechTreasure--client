@@ -47,7 +47,7 @@ const Products = () => (
                                 />
                             </TableCell>
                             <TableCell className="font-medium">
-                                <Link to={`edit/${item.id}`}>
+                                <Link to={`edit/${item._id}`}>
                                     {item.name}
                                 </Link>
                             </TableCell>
@@ -59,7 +59,7 @@ const Products = () => (
                             <TableCell className="hidden md:table-cell text-black"><Rating
                                 rating={item.rating}/></TableCell>
                             <TableCell>
-                                <Link to={`delete/${item.id}`}>
+                                <Link to={`delete/${item._id}`}>
                                     <Icon path={'/assets/icons/trash.svg'} name={'Delete'} size={30}
                                           className={'hover:opacity-80'}/>
                                 </Link>

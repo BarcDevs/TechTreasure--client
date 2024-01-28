@@ -8,12 +8,12 @@ import {Link} from 'react-router-dom'
 import {Category} from '@/types'
 
 const isCategory = (category: (Category | { name_key: string; subcategories: Category[] })) : category is Category =>
-    !!(category as Category).id
+    !!(category as Category)._id
 
 const SidebarItem = ({category}: { category: (Category | { name_key: string; subcategories: Category[] }) }) => {
     const {t} = useTranslation(I18N_NAMESPACES.categories)
     return isCategory(category) ? (
-        <li key={category.id} className={'w-full hover:opacity-90'}>
+        <li key={category._id} className={'w-full hover:opacity-90'}>
             <Link to={`category/${category.name}`} className="text-body text-start text-black">
                 {t(category.name)}
             </Link>
@@ -30,7 +30,7 @@ const SidebarItem = ({category}: { category: (Category | { name_key: string; sub
                     />
                     <DropdownMenuContent align={'end'} alignOffset={-210}>
                         {category.subcategories.map(subcategory => (
-                            <DropdownMenuItem key={subcategory.id}>
+                            <DropdownMenuItem key={subcategory._id}>
                                 <Link to={`category/${subcategory.name}`} className="text-body text-center text-black">
                                     {t(subcategory.name)}
                                 </Link>
@@ -48,7 +48,7 @@ const Sidebar = ({}) => (
         <ul className={'flex-col-start w-fit gap-4'}>
             {GROUPED_CATEGORIES.map(category =>
                 <SidebarItem
-                    key={isCategory(category) ? category.id : category.name_key}
+                    key={isCategory(category) ? category._id : category.name_key}
                     category={category}/>
             )}
         </ul>

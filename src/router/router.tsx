@@ -19,14 +19,16 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: '',
-                children: [{
-                    path: 'login',
-                    element: <AuthPage type={'login'}/>
-                },
+                children: [
+                    {
+                        path: 'login',
+                        element: <AuthPage type={'login'}/>
+                    },
                     {
                         path: 'signup',
                         element: <AuthPage type={'signup'}/>
-                    }]
+                    }
+                ]
             },
             {
                 index: true,
@@ -103,7 +105,7 @@ export const router = createBrowserRouter([
         element: <AdminLayout/>,
         children: [
             {
-                index: true,
+                index: true
                 // element: <AdminHomePage/>
             },
             {
@@ -119,23 +121,23 @@ export const router = createBrowserRouter([
                 element: <EditItemPage/>
             },
             {
-                path: 'orders',
+                path: 'orders'
                 // element: <OrdersPage/>
             },
             {
-                path: 'customers',
+                path: 'customers'
                 // element: <CustomersPage/>
             },
             {
-                path: 'customers/:id',
+                path: 'customers/:id'
                 // element: <CustomerPage/>
             },
             {
-                path: 'analytics',
+                path: 'analytics'
                 // element: <AnalyticsPage/>
             },
             {
-                path: 'settings',
+                path: 'settings'
                 // element: <SettingsPage/>
             },
             {

@@ -11,14 +11,16 @@ import Button from '@/components/elements/Button.tsx'
 import {FormRef} from '@/types/ui'
 import {CreditCardForm as CreditCardFormType} from '@/validations/checkoutForm.ts'
 import {BillingOptions} from '@/pages/CheckoutPage.tsx'
-import {CART} from '@/constants/mocks.ts'
 import CheckoutItem from '@/components/checkout/CheckoutItem.tsx'
+import {IRootState} from '@/store'
+import {useSelector} from 'react-redux'
 
 type CheckoutSummaryProps = {
     onSubmit: (billingOptions: BillingOptions) => void
 }
 
 const CheckoutSummary = ({onSubmit}: CheckoutSummaryProps) => {
+    const cart = useSelector((state: IRootState) => state.cart)
     const creditCardFormRef = useRef<FormRef | null>(null)
     const [billingMethod, setBillingMethod] = useState<'cash' | 'creditCard'>('creditCard')
     const handleCheckoutRadio = (value: string) => {
@@ -43,16 +45,16 @@ const CheckoutSummary = ({onSubmit}: CheckoutSummaryProps) => {
     return (
         <section className={'text-body flex-col-start w-[33vw] gap-8'}>
             <div className={'flex-col-start w-full gap-8'}>
-                {CART.items.map(item => (
-                    <CheckoutItem item={item} key={item.id}/>
+                {cart.items.map(item => (
+                    <CheckoutItem item={item} key={item._id}/>
                 ))}
             </div>
 
             <div className={'flex-col-start w-full gap-8'}>
-                <Summary subtotal={CART.subtotal}
-                         shipping={CART.shipping || 0}
-                         total={CART.total}
-                         discount={CART.cartDiscount}/>
+                <Summary subtotal={cart.subtotal}
+                         shipping={cart.shipping || 0}
+                         total={cart.total}
+                         discount={cart.cartDiscount}/>
             </div>
 
             <RadioGroup className={'w-full'} defaultValue={'creditCard'} onValueChange={handleCheckoutRadio}>

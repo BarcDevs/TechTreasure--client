@@ -11,7 +11,7 @@ const ForYou = ({}) => (
         </RowHeader>
         <ul className={'flex-start-around max-sm:flex-center-col flex-row flex-wrap gap-5'}>
             {[...ITEMS.slice(0, 4)].map(item => (
-                <li key={item.id} className={'shrink-0'}>
+                <li key={item._id} className={'shrink-0'}>
                     <Item item={item}/>
                 </li>
             ))}

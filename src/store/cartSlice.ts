@@ -23,7 +23,7 @@ const cartSlice = createSlice({
     } as Cart,
     reducers: {
         addToCart: (cart, {payload: item}: { payload: Product }) => {
-            const existingItem = cart.items.find((i) => i.id === item.id)
+            const existingItem = cart.items.find((i) => i._id === item._id)
             if (existingItem) {
                 existingItem.quantity += 1
                 existingItem.subtotal += item.price
@@ -45,7 +45,7 @@ const cartSlice = createSlice({
             const {item, quantity} = payload
             if (quantity === 0) deleteFromCart(item)
 
-            const existingItem = cart.items.find((i) => i.id === item.id)
+            const existingItem = cart.items.find((i) => i._id === item._id)
             if (!existingItem) return
 
             cart.totalItems += (quantity - existingItem.quantity)
@@ -64,13 +64,13 @@ const cartSlice = createSlice({
             cart.total = calculateCartTotal(cart)
         },
         removeFromCart: (cart, {payload: item}: { payload: Product }) => {
-            const existingItem = cart.items.find((i) => i.id === item.id)
+            const existingItem = cart.items.find((i) => i._id === item._id)
             if (!existingItem) return
             if (existingItem.quantity > 1) {
                 existingItem.quantity -= 1
                 existingItem.subtotal -= item.price
             } else {
-                cart.items = cart.items.filter((i) => i.id !== item.id)
+                cart.items = cart.items.filter((i) => i._id !== item._id)
             }
 
             cart.totalItems -= 1
@@ -80,9 +80,9 @@ const cartSlice = createSlice({
             cart.total = calculateCartTotal(cart)
         },
         deleteFromCart: (cart, {payload: item}: { payload: Product }) => {
-            const existingItem = cart.items.find((i) => i.id === item.id)
+            const existingItem = cart.items.find((i) => i._id === item._id)
             if (!existingItem) return
-            cart.items = cart.items.filter((i) => i.id !== item.id)
+            cart.items = cart.items.filter((i) => i._id !== item._id)
             cart.totalItems -= existingItem.quantity
             cart.subtotal -= existingItem.subtotal
             cart.cartDiscount = calculateDiscount(cart)

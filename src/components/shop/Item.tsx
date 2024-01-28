@@ -37,7 +37,7 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
     const image = isColors ? item.mainImage[color!] : item.mainImage
 
     const handleCardClick = () => {
-        navigate(`/items/${item.id}`)
+        navigate(`/items/${item._id}`)
     }
 
     const handleFavoriteClick = (e: React.MouseEvent<HTMLButtonElement>) => {

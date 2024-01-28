@@ -29,7 +29,7 @@ const Wishlist = ({}) => {
             </RowHeader>
             <ul className={'flex_row max-sm:flex-center-col flex-row flex-wrap justify-normal gap-5'}>
                 {wishlist.length ? wishlist.map(item => (
-                        <li key={item.id}>
+                        <li key={item._id}>
                             <Item item={item} variant={'wishlist'} onDelete={handleRemoveFromWishlist}/>
                         </li>
                     )) :

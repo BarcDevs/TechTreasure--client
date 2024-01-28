@@ -8,7 +8,7 @@ const CategoryCard = ({category}: { category: Category }) => {
     const {t} = useTranslation(I18N_NAMESPACES.categories)
 
     return (
-        <Link to={`/categories/${category.id}`} className={'h-[145px] w-[170px]'}>
+        <Link to={`/categories/${category._id}`} className={'h-[145px] w-[170px]'}>
             <article
                 className={'group/card flex-center-col gap-4 h-[145px] w-[170px] rounded bg-neutral-50 text-black hover:bg-red-500 border'}>
                 <Icon className={'group-hover:invert'} path={category.icon} name={category.name} size={56}/>

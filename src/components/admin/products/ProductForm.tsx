@@ -139,7 +139,7 @@ const ProductForm = ({product}: ProductFormProps) => {
                                 </SelectTrigger>
                                 <SelectContent>
                                     {Object.values(Categories).map(category => (
-                                        <SelectItem key={category.id}
+                                        <SelectItem key={category._id}
                                                     value={category.name}
                                                     className={'capitalize cursor-pointer'}>
                                             {category.name}

@@ -25,7 +25,7 @@ const NavbarLink = ({to, label, location}: { to: string, label: string, location
 
 const DesktopNavbar = ({}) => {
     const {t} = useTranslation(I18N_NAMESPACES.navigationLinks)
-    const isLoggedIn = true
+    const isLoggedIn = false
     const location = useLocation().pathname
     const isAuthPage = location === '/login' || location === '/signup'
 
