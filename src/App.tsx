@@ -5,6 +5,8 @@ import {useDispatch, useSelector} from 'react-redux'
 import {loadCart} from '@/store/cartSlice.ts'
 import {loadWishlist} from '@/store/wishlistSlice.ts'
 import {IRootState} from '@/store'
+import {QueryClientProvider} from '@tanstack/react-query'
+import {queryClient} from '@/api'
 
 function App() {
     const dispatch = useDispatch()
@@ -32,10 +34,11 @@ function App() {
         if (isInitial) return
         localStorage.setItem('wishlist', JSON.stringify(wishlist))
     }, [wishlist])
+
     return (
-        <>
+        <QueryClientProvider client={queryClient}>
             <RouterProvider router={router}/>
-        </>
+        </QueryClientProvider>
     )
 }
 
