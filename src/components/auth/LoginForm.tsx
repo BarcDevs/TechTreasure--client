@@ -1,18 +1,23 @@
 import {useForm} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
 import {LoginForm as LoginFormType, loginFormSchema as formSchema} from '@/validations/authForm.ts'
-// import {useSubmit} from 'react-router-dom'
 import {Form} from "@/components/ui/form"
 import FormInput from '@/components/shared/FormInput.tsx'
 import Button from '@/components/elements/Button.tsx'
 import {Link} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
 import {AUTH_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
+import {login} from '@/api/auth.ts'
+import {AxiosError} from 'axios'
+import {useLogin} from '@/hooks/useLogin.ts'
+import ErrorMessage from '@/components/elements/ErrorMessage.tsx'
 
 const LoginForm = ({}) => {
     const inputStyle = 'p-0 rounded-b-none border-x-0 border-t-0 border-black/50'
     const {t} = useTranslation(I18N_NAMESPACES.authPage)
-    // const submit = useSubmit()
+
+    const {mutate, error, isError} = useLogin(login)
+
     const form = useForm<LoginFormType>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -22,8 +27,7 @@ const LoginForm = ({}) => {
     })
 
     const onSubmit = (values: LoginFormType) => {
-        console.log(values)
-        // submit(values, {method: 'post', action: '/signup'})
+        mutate(values)
     }
 
     return (
@@ -35,12 +39,15 @@ const LoginForm = ({}) => {
                 </div>
                 <FormInput name={'email'} placeholder={t(AUTH_LOCALES.email)} type={'email'} className={inputStyle}
                            formControl={form.control}/>
-                <FormInput name={'password'} placeholder={t(AUTH_LOCALES.password)} type={'password'} className={inputStyle}
+                <FormInput name={'password'} placeholder={t(AUTH_LOCALES.password)} type={'password'}
+                           className={inputStyle}
                            formControl={form.control}/>
                 <div className={'flex-row-between gap-4'}>
                     <Button className={'capitalize'} type="submit" text={t(AUTH_LOCALES.login)}/>
-                    <Button className={'text-body bg-neutral-50 px-0 text-red-500'} text={t(AUTH_LOCALES.forgotPassword)}/>
+                    <Button className={'text-body bg-neutral-50 px-0 text-red-500'}
+                            text={t(AUTH_LOCALES.forgotPassword)}/>
                 </div>
+                {isError && <ErrorMessage message={error instanceof AxiosError ? error.response?.data.message : error.message}/>}
                 <Button className={'w-full'} variant={'white'}
                         text={`${t(AUTH_LOCALES.login)} ${t(AUTH_LOCALES.withGoogle)}`}/>
                 <div className={'flex-center-row gap-4'}>
