@@ -140,7 +140,7 @@ const ProductForm = ({product}: ProductFormProps) => {
                                 <SelectContent>
                                     {Object.values(Categories).map(category => (
                                         <SelectItem key={category._id}
-                                                    value={category.name}
+                                                    value={category._id}
                                                     className={'capitalize cursor-pointer'}>
                                             {category.name}
                                         </SelectItem>

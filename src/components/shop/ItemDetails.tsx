@@ -1,7 +1,6 @@
-import {ITEMS} from '@/constants/mocks.ts'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {isProductWithColors} from '@/lib/utils.ts'
-import {ProductWithColors} from '@/types'
+import {Product, ProductWithColors} from '@/types'
 import Rating from '@/components/elements/Rating.tsx'
 import {Separator} from '@/components/ui/separator.tsx'
 import QuantitySelector from '@/components/shared/QuantitySelector.tsx'
@@ -10,9 +9,7 @@ import Icon from '@/components/elements/Icon.tsx'
 import DeliveryDetails from '@/components/checkout/DeliveryDetails.tsx'
 import ColorPicker from '@/components/shared/ColorPicker.tsx'
 
-const ItemDetails = ({}) => {
-    // const {item} = useLoaderData()
-    const item = ITEMS[0]
+const ItemDetails = ({item}: { item: Product }) => {
     const isColors = isProductWithColors(item)
 
     const [quantity, setQuantity] = useState(item.stock > 0 ? 1 : 0)
@@ -21,11 +18,16 @@ const ItemDetails = ({}) => {
     const mainImage = isColors ? item.mainImage[color!] : item.mainImage
     const [bigImage, setBigImage] = useState(mainImage)
 
+    useEffect(() => {
+        if (!isColors) return
+        setBigImage(() =>  item.mainImage[color!])
+    }, [color])
+
     return (
         <section className={'w-full flex-row-between max-md:flex-col'}>
             <section className={'flex-row-between gap-7 max-md:flex-col-reverse'}>
                 {item.images && <ul className={'flex-col-start h-fit max-md:flex_row'}>
-                    {[mainImage, ...(isColors ? item.images[item.defaultColor] : item.images)].map(image => (
+                    {[mainImage, ...((isColors ? item.images[item.defaultColor] : item.images) || [])].map(image => (
                         <li
                             key={image}
                             className={'w-[100px] h-[100px] max-md:w-[50px] max-md:h-[50px] cursor-pointer p-6'}
