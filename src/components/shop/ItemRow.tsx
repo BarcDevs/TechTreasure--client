@@ -12,13 +12,15 @@ import Button from '@/components/elements/Button.tsx'
 type ItemListProps = {
     name: string,
     headline: string,
-    items: Product[]
+    items: Product[] | undefined,
     rows?: number,
     timerEnd?: Date,
-    scroll?: "vertical" | "horizontal" | "none"
+    scroll?: "vertical" | "horizontal" | "none",
+    isFetching?: boolean
+    isError?: boolean
 }
 
-const ItemRow = ({name, headline, items, rows = 1, timerEnd, scroll}: ItemListProps) => {
+const ItemRow = ({name, headline, items, rows = 1, timerEnd, scroll, isFetching, isError}: ItemListProps) => {
     const {t} = useTranslation(I18N_NAMESPACES.global)
     const listRef = useRef<CarouselRef>(null)
     const gaps = {
@@ -38,7 +40,11 @@ const ItemRow = ({name, headline, items, rows = 1, timerEnd, scroll}: ItemListPr
                     }
                 </div>
             </RowHeader>
-            <ItemList ref={listRef} {...{items, rows, scroll}}/>
+            {items ?
+                <ItemList ref={listRef} {...{items, rows, scroll}}/> :
+                <p className={'text-body'}>
+                    {isFetching ? 'Loading...' : isError ? 'Error has occurred. Please try again later' : 'No items to display'}
+                </p>}
             {scroll !== "none" &&
                 <div className={'flex-center'}>
                     <Button text={t(GLOBAL_LOCALES.viewAllProducts)}/>

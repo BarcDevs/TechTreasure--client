@@ -1,11 +1,11 @@
-import {Cart, Product} from '@/types'
+import {Product} from '@/types'
 import {Categories} from '@/constants/categories.ts'
 
 const customDescription = "PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble free install & mess free removal Pressure sensitive."
 
 export const ITEMS: Product[] = [
     {
-        id: "i109",
+        _id: "i109",
         name: 'HAVIT HV-G92 Gamepad',
         description: customDescription,
         mainImage: {
@@ -35,7 +35,7 @@ export const ITEMS: Product[] = [
         stock: 164
     },
     {
-        id: "i110",
+        _id: "i110",
         name: 'AK-900 Wired Keyboard',
         description: customDescription,
         mainImage: '/assets/images/items/item-2.png',
@@ -49,7 +49,7 @@ export const ITEMS: Product[] = [
         stock: 0
     },
     {
-        id: "i111",
+        _id: "i111",
         name: 'IPS LCD Gaming Monitor',
         description: customDescription,
         mainImage: '/assets/images/items/item-3.png',
@@ -63,7 +63,7 @@ export const ITEMS: Product[] = [
         stock: 6
     },
     {
-        id: "i112",
+        _id: "i112",
         name: 'RGB liquid CPU Cooler',
         description: customDescription,
         mainImage: '/assets/images/items/item-4.png',
@@ -77,7 +77,7 @@ export const ITEMS: Product[] = [
         stock: 70
     },
     {
-        id: "i113",
+        _id: "i113",
         name: 'ASUS FHD Gaming Laptop',
         description: customDescription,
         mainImage: '/assets/images/items/item-5.png',
@@ -89,7 +89,7 @@ export const ITEMS: Product[] = [
         stock: 5330
     },
     {
-        id: "i114",
+        _id: "i114",
         name: 'GP11 Shooter USB Gamepad',
         description: customDescription,
         mainImage: {
@@ -110,29 +110,3 @@ export const ITEMS: Product[] = [
         stock: 6780
     }
 ]
-
-export const CART: Cart = {
-    items: [
-        {
-            ...ITEMS[0],
-            quantity: 1,
-            subtotal: 120,
-            totalDiscount: 40
-        },
-        {
-            ...ITEMS[1],
-            quantity: 3,
-            subtotal: 2880,
-            totalDiscount: 35
-        },
-        {
-            ...ITEMS[2],
-            quantity: 1,
-            subtotal: 370,
-            totalDiscount: 30
-        }],
-    subtotal: 2880 + 370 + 120,
-    cartDiscount: 150,
-    shipping: 0,
-    total: 2880 + 370 + 120 - 150
-}
