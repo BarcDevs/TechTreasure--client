@@ -11,6 +11,7 @@ import ProductsPage from '@/pages/admin/ProductsPage.tsx'
 import AdminLayout from '@/pages/layouts/AdminLayout.tsx'
 import AddItemPage from '@/pages/admin/AddItemPage.tsx'
 import EditItemPage from '@/pages/admin/EditItemPage.tsx'
+import Logout from '@/pages/Logout.ts'
 import store from '@/store'
 import {loadAuthState} from '@/store/authSlice.ts'
 
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
                     {
                         path: 'signup',
                         element: <AuthPage type={'signup'}/>
+                    },
+                    {
+                        path: 'logout',
+                        element: <Logout/>
                     }
                 ]
             },
