@@ -20,6 +20,7 @@ export type BasicProduct = {
     category: string
     shippingFee?: number
     stock: number
+    store: string
 }
 
 export type ProductWithColors = Omit<BasicProduct, 'mainImage' | 'images'> & {
@@ -55,7 +56,7 @@ export type Order = {
     trackingNumber?: string
 }
 
-export type User = {
+export type BaseUser = {
     _id: string
     name: string
     email: string
@@ -65,6 +66,13 @@ export type User = {
     orders?: Order[]
     createdAt: Date
 }
+
+export type Seller = {
+    role: 'seller'
+    store: string
+} & BaseUser
+
+export type User = BaseUser | Seller
 
 export type Role = 'user' | 'seller'
 

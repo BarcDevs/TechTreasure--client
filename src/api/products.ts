@@ -44,3 +44,8 @@ export const updateProduct = async (id: string, product: ProductForm) => {
     const response = await api.patch(`/products/${id}`, product)
     return response.data.data
 }
+
+export const getStore = async (id: string) => {
+    const response = await api.get(`/stores/${id}`)
+    return response.data.data
+}
