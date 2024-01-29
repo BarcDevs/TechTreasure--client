@@ -9,7 +9,7 @@ import SidebarLink from '@/components/admin/layout/SidebarLink.tsx'
 import {useShop} from '@/hooks/useShop.ts'
 
 const Sidebar = ({}) => {
-    const storeName = useShop().data?.name
+    const storeName = useShop().data?.name || 'TechTreasure'
 
     return (
         <aside className="hidden border-r bg-gray-100/40 lg:block dark:bg-gray-800/40">

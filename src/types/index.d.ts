@@ -95,3 +95,9 @@ export type Category = {
     icon: string
     items?: Product[] // populated by mongoose
 }
+
+export type Store = {
+    name: string
+    products: Product[]
+    // todo ratings
+}
