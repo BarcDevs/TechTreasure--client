@@ -18,13 +18,11 @@ import ColorInput from '@/components/admin/products/form/ColorInput.tsx'
 import SizeInput from '@/components/admin/products/form/SizeInput.tsx'
 import ImageInput, {ImageState} from '@/components/admin/products/form/ImageInput.tsx'
 import {getImagesFromProduct} from '@/lib/utils.ts'
-// import {useSubmit} from 'react-router-dom'
 
 type ProductFormProps = {
     product?: Product
 }
 const ProductForm = ({product}: ProductFormProps) => {
-    // const submit = useSubmit()
     const [colors, setColors] = useState<Color[]>([])
     const [sizes, setSizes] = useState<string[]>([])
     const [mainImage, setMainImage] = useState<ImageState[]>([])
@@ -34,6 +32,7 @@ const ProductForm = ({product}: ProductFormProps) => {
     useEffect(() => {
         if (product) {
             // @ts-ignore
+            // todo get pictures from product
             Promise.all(getImagesFromProduct(product?.mainImage!)).then(res => console.log('main', res))
             if (product?.images) { // @ts-ignore
                 Promise.all(getImagesFromProduct(product?.images))
@@ -135,7 +134,7 @@ const ProductForm = ({product}: ProductFormProps) => {
                         (<FormItem>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <SelectTrigger className="w-full capitalize">
-                                    <SelectValue placeholder="Category"/>
+                                    <SelectValue placeholder={'Category'}/>
                                 </SelectTrigger>
                                 <SelectContent>
                                     {Object.values(Categories).map(category => (
