@@ -46,6 +46,6 @@ export const updateProduct = async (id: string, product: ProductForm) => {
 }
 
 export const getStore = async (id: string) => {
-    const response = await api.get(`/stores/${id}`)
+    const response = await api.get(`/user/stores/${id}`)
     return response.data.data
 }
