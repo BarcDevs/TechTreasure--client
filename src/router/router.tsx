@@ -11,6 +11,8 @@ import ProductsPage from '@/pages/admin/ProductsPage.tsx'
 import AdminLayout from '@/pages/layouts/AdminLayout.tsx'
 import AddItemPage from '@/pages/admin/AddItemPage.tsx'
 import EditItemPage from '@/pages/admin/EditItemPage.tsx'
+import store from '@/store'
+import {loadAuthState} from '@/store/authSlice.ts'
 
 export const router = createBrowserRouter([
     {
@@ -101,8 +103,12 @@ export const router = createBrowserRouter([
     },
     {
         path: 'admin',
-        // loader: adminLoader
         element: <AdminLayout/>,
+        loader: () => {
+            const authState = JSON.parse(localStorage.getItem('auth-state') || '{}')
+            store.dispatch(loadAuthState(authState))
+            return authState
+        },
         children: [
             {
                 index: true

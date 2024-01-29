@@ -11,11 +11,8 @@ const AdminLayout = ({}) => {
 
     useEffect(() => {
         if (!isSeller) {
-            const localStorageAuth = JSON.parse(localStorage.getItem('auth-state') as string)
-            if (!localStorageAuth?.isSeller)
-                navigate('/', {replace: true})
+            navigate('/', {replace: true})
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (

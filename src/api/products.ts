@@ -46,6 +46,8 @@ export const updateProduct = async (id: string, product: ProductForm) => {
 }
 
 export const getStore = async (id: string) => {
+    console.log('store id', id)
+    if (!id) return {}
     const response = await api.get(`/user/stores/${id}`)
     return response.data.data
 }

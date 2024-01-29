@@ -8,8 +8,8 @@ import {isProductWithColors} from '@/lib/utils.ts'
 import Rating from '@/components/elements/Rating.tsx'
 import {Link} from 'react-router-dom'
 import Icon from '@/components/elements/Icon.tsx'
-import {useShop} from '@/hooks/useShop.ts'
 import {AxiosError} from 'axios'
+import {useShop} from '@/hooks/useShop.ts'
 
 const Products = () => {
     const {data: store, isFetching, isError, error} = useShop()

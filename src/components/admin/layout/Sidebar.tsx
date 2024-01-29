@@ -1,8 +1,5 @@
 import {Link} from 'react-router-dom'
-import {
-    BellIcon,
-    Package2Icon,
-} from '@/components/admin/Icons.tsx'
+import {BellIcon, Package2Icon} from '@/components/admin/Icons.tsx'
 import {Button} from '@/components/ui/button.tsx'
 import {ADMIN_LINKS} from '@/constants'
 import SidebarLink from '@/components/admin/layout/SidebarLink.tsx'

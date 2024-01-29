@@ -5,11 +5,11 @@ import {useSelector} from 'react-redux'
 import {IRootState} from '@/store'
 
 export const useShop = () => {
-    const user = useSelector((state: IRootState) => state.auth.user)
+    const user = useSelector((state: IRootState) => state.auth.user) as Seller
 
     return useQuery<Store>({
         queryKey: ['store', 'items'],
-        queryFn: () => getStore((user as Seller).store),
-        refetchOnWindowFocus: false
+        queryFn: () => getStore(user?.store),
+        refetchOnWindowFocus: false,
     })
 }
