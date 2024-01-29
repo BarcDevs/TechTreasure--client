@@ -12,7 +12,7 @@ export const signup = async ({name, email, password}: { name: string, email: str
 }
 
 export const storeToken = (token: string) =>
-    Cookies.set('token', `Bearer ${token}`, {
+    Cookies.set('token', token, {
         expires: Number(import.meta.env.VITE_JWT_EXPIRATION) || 7,
         secure: true,
         sameSite: 'strict'
