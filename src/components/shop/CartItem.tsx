@@ -3,7 +3,7 @@ import {Input} from '@/components/ui/input.tsx'
 import {ChangeEvent} from 'react'
 import {TableCell, TableRow} from '@/components/ui/table.tsx'
 import Icon from '@/components/elements/Icon.tsx'
-import {isProductWithColors} from '@/lib/utils.ts'
+import {getImagesOfColor, isProductWithColors} from '@/lib/utils.ts'
 import {useDispatch} from 'react-redux'
 import {deleteFromCart, updateCart} from '@/store/cartSlice.ts'
 
@@ -29,7 +29,9 @@ const CartItem = ({item}: { item: CartItemType }) => {
                                 className={'invisible group-hover:visible absolute top-[-4px] left-[-10px]'}>
                             <Icon path={'/assets/icons/cancel.svg'} name={'remove'}/>
                         </button>
-                        <img src={isProductWithColors(item) ? item.mainImage[item.defaultColor] : item.mainImage}
+                        <img src={isProductWithColors(item) ?
+                            getImagesOfColor(item.mainImage, item.defaultColor, true)[0]?.path :
+                            item.mainImage[0].path}
                              alt={item.name}/>
                     </div>
                     <p>{item.name}</p>

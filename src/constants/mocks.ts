@@ -8,17 +8,16 @@ export const ITEMS: Product[] = [
         _id: "i109",
         name: 'HAVIT HV-G92 Gamepad',
         description: customDescription,
-        mainImage: {
-            white: '/assets/images/items/item-1-white.png',
-            red: '/assets/images/items/item-1-red.png'
-        },
-        images: {
-            white: ['/assets/images/items/item-1-white-1.png',
-                '/assets/images/items/item-1-white-2.png',
-                '/assets/images/items/item-1-white-3.png',
-                '/assets/images/items/item-1-white-4.png'],
-            red: []
-        },
+        mainImage: [
+            {color: 'white', path: '/assets/images/items/item-1-white.png'},
+            {color: 'red', path: '/assets/images/items/item-1-red.png'}
+        ],
+        images: [
+            {color: 'white', path: '/assets/images/items/item-1-white-1.png'},
+            {color: 'white', path: '/assets/images/items/item-1-white-2.png'},
+            {color: 'white', path: '/assets/images/items/item-1-white-3.png'},
+            {color: 'white', path: '/assets/images/items/item-1-white-4.png'}
+        ],
         rating: 4.3,
         votes: 584,
         sale: 40,
@@ -32,13 +31,14 @@ export const ITEMS: Product[] = [
             {name: 'white', hex: '#A0BCE0'}
         ],
         defaultColor: 'white',
-        stock: 164
+        stock: 164,
+        store: 'store-1'
     },
     {
         _id: "i110",
         name: 'AK-900 Wired Keyboard',
         description: customDescription,
-        mainImage: '/assets/images/items/item-2.png',
+        mainImage: [{path: '/assets/images/items/item-2.png'}],
         rating: 4.8,
         votes: 283,
         sale: 35,
@@ -46,13 +46,14 @@ export const ITEMS: Product[] = [
         oldPrice: 1160,
         category: Categories.accessories.name,
         shippingFee: 0,
-        stock: 0
+        stock: 0,
+        store: 'store-1'
     },
     {
         _id: "i111",
         name: 'IPS LCD Gaming Monitor',
         description: customDescription,
-        mainImage: '/assets/images/items/item-3.png',
+        mainImage: [{path: '/assets/images/items/item-3.png'}],
         rating: 4.9,
         votes: 157,
         price: 370,
@@ -60,13 +61,14 @@ export const ITEMS: Product[] = [
         oldPrice: 400,
         category: Categories.screens.name,
         shippingFee: 0,
-        stock: 6
+        stock: 6,
+        store: 'store-1'
     },
     {
         _id: "i112",
         name: 'RGB liquid CPU Cooler',
         description: customDescription,
-        mainImage: '/assets/images/items/item-4.png',
+        mainImage: [{path: '/assets/images/items/item-4.png'}],
         rating: 4.1,
         votes: 97,
         price: 160,
@@ -74,28 +76,30 @@ export const ITEMS: Product[] = [
         oldPrice: 170,
         category: Categories.computerComponents.name,
         shippingFee: 0,
-        stock: 70
+        stock: 70,
+        store: 'store-1'
     },
     {
         _id: "i113",
         name: 'ASUS FHD Gaming Laptop',
         description: customDescription,
-        mainImage: '/assets/images/items/item-5.png',
+        mainImage: [{path: '/assets/images/items/item-5.png'}],
         rating: 5,
         votes: 987,
         price: 700,
         category: Categories.computers.name,
         shippingFee: 7,
-        stock: 5330
+        stock: 5330,
+        store: 'store-1'
     },
     {
         _id: "i114",
         name: 'GP11 Shooter USB Gamepad',
         description: customDescription,
-        mainImage: {
-            red: '/assets/images/items/item-6.png',
-            black: '/assets/images/items/item-6.png'
-        },
+        mainImage: [
+            {color: 'red', path: '/assets/images/items/item-6.png'},
+            {color: 'black', path: '/assets/images/items/item-6.png'}
+        ],
         rating: 3.8,
         votes: 109,
         price: 120,
@@ -107,6 +111,7 @@ export const ITEMS: Product[] = [
         defaultColor: 'black',
         category: Categories.gaming.name,
         shippingFee: 3,
-        stock: 6780
+        stock: 6780,
+        store: 'store-1'
     }
 ]

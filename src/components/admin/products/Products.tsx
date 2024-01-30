@@ -4,7 +4,7 @@
  */
 import {Button} from "@/components/ui/button"
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table"
-import {isProductWithColors} from '@/lib/utils.ts'
+import {getImagesOfColor, isProductWithColors} from '@/lib/utils.ts'
 import Rating from '@/components/elements/Rating.tsx'
 import {Link} from 'react-router-dom'
 import Icon from '@/components/elements/Icon.tsx'
@@ -45,7 +45,9 @@ const Products = () => {
                                     <img
                                         alt="Product image"
                                         className="aspect-square rounded-md object-cover"
-                                        src={isProductWithColors(item) ? item.mainImage[item.defaultColor] : item.mainImage}
+                                        src={isProductWithColors(item) ?
+                                            getImagesOfColor(item.mainImage,item.defaultColor,true)[0]?.path :
+                                            item.mainImage[0].path}
                                         height="64"
                                         width="64"
                                     />

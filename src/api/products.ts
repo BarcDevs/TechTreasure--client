@@ -1,5 +1,6 @@
 import api from './index'
 import {ProductForm} from '@/validations/productForm.ts'
+import {convertToProductSchema} from '@/lib/utils.ts'
 
 type QueryParams = {
     page?: number,
@@ -34,8 +35,8 @@ export const getProductsBySearch = async (search: string) => {
     return response.data.data
 }
 
-export const createProduct = async (product: ProductForm) => {
-    // todo convert data
+export const createProduct = async (data: ProductForm, shopId: string) => {
+    const product = convertToProductSchema({...data, store: shopId})
     const response = await api.post('/products', product)
     return response.data.data
 }

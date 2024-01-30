@@ -33,7 +33,7 @@ const ProductForm = ({product}: ProductFormProps) => {
         if (product) {
             // @ts-ignore
             // todo get pictures from product
-            Promise.all(getImagesFromProduct(product?.mainImage!)).then(res => console.log('main', res))
+            Promise.all(getImagesFromProduct(product.mainImage!)).then(res => console.log('main', res))
             if (product?.images) { // @ts-ignore
                 Promise.all(getImagesFromProduct(product?.images))
                     .then(res => console.log('sec', res))
@@ -42,7 +42,7 @@ const ProductForm = ({product}: ProductFormProps) => {
             setColors(((product as ProductWithColors).colors || []))
             setSizes(product.sizes || [])
         }
-    }, [])
+    }, [product])
 
     const form = useForm<ProductFormType>({
         resolver: zodResolver(productFormSchema),
@@ -80,7 +80,7 @@ const ProductForm = ({product}: ProductFormProps) => {
             form.setValue('mainImage', mainImage)
         if (images.length > 0)
             form.setValue('images', images)
-    }, [colors, sizes, mainImage, images])
+    }, [colors, sizes, mainImage, images, form])
 
     const handleInputMode = (inputMode: '%' | '$') => {
         const price = Number(form.getValues('price'))

@@ -1,6 +1,6 @@
 import {type ClassValue, clsx} from "clsx"
 import {twMerge} from "tailwind-merge"
-import {Product, ProductWithColors} from '@/types'
+import {Image, Product, ProductWithColors} from '@/types'
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs))
@@ -23,32 +23,26 @@ export const getContrastColor = (hexColor: string) => {
     return luminance > 0.5 ? '#000000' : '#ffffff'
 }
 
-export const getImageFile = async (url: string) : Promise<File> => {
+export const getImageFile = async (url: string): Promise<File> => {
     const res = await fetch(url)
     const contentType = res.headers.get('content-type') || 'image/png'
     const blob = await res.blob()
     return new File([blob], 'file', {type: contentType})
 }
 
-export const getImagesFromProduct = (images: string | string[] | { [key: string]: string | string[] }) => {
-    if (typeof images === 'string') return [getImageFile(images)]
-    else if (typeof images === 'object' && !Array.isArray(images))
-        return extractImagesFromColorsObj(images)
-    else
-        return (Promise.all(images.map(image => getImageFile(image))))
+export const getImagesFromProduct = async (images: Image[]): Promise<Awaited<(File | {
+    image: File,
+    color: string
+})>[] | void[]> => {
+    return await Promise.all(images.map(image => {
+        image.color ?
+            getImageFile(image.path) :
+            {image: getImageFile(image.path), color: image.color}
+    }))
 }
 
-const extractImagesFromColorsObj = (colors: { [key: string]: string | string[] }) => (
-    Object.entries(colors)
-        .map(async ([key, value]) => (
-            typeof value === 'string' ? Promise.resolve({
-                    image: await getImageFile(value),
-                    color: key
-                }) :
-                Promise.all(value.map(async image => ({
-                    image: await getImageFile(image),
-                    color: key
-                })))
-        ))
-)
-
+export const getImagesOfColor = (images: Image[], color: string, one?: boolean) => {
+    return one ?
+        [images.find(image => image.color === color)] :
+        images.filter(image => image.color === color)
+}

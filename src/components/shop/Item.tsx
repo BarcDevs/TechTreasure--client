@@ -8,7 +8,7 @@ import {Product, ProductWithColors} from '@/types'
 import {useNavigate} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
 import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
-import {isProductWithColors} from '@/lib/utils.ts'
+import {getImagesOfColor, isProductWithColors} from '@/lib/utils.ts'
 import {useState} from 'react'
 import ColorPicker from '@/components/shared/ColorPicker.tsx'
 import {useDispatch} from 'react-redux'
@@ -34,7 +34,7 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
 
     const isColors = isProductWithColors(item)
     const [color, setColor] = useState((item as ProductWithColors).defaultColor || null)
-    const image = isColors ? item.mainImage[color!] : item.mainImage
+    const image = isColors ? getImagesOfColor(item.mainImage, color!, true)[0]?.path : item.mainImage[0].path
 
     const handleCardClick = () => {
         navigate(`/items/${item._id}`)

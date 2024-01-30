@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import {isProductWithColors} from '@/lib/utils.ts'
+import {getImagesOfColor, isProductWithColors} from '@/lib/utils.ts'
 import {Product, ProductWithColors} from '@/types'
 import Rating from '@/components/elements/Rating.tsx'
 import {Separator} from '@/components/ui/separator.tsx'
@@ -19,12 +19,12 @@ const ItemDetails = ({item}: { item: Product }) => {
     const [quantity, setQuantity] = useState(item.stock > 0 ? 1 : 0)
     const [color, setColor] = useState((item as ProductWithColors).defaultColor || null)
     const [selectedSize, setSelectedSize] = useState((item.sizes || [])[0])
-    const mainImage = isColors ? item.mainImage[color!] : item.mainImage
+    const mainImage = isColors ? getImagesOfColor(item.mainImage, color!,true)[0] : item.mainImage[0]
     const [bigImage, setBigImage] = useState(mainImage)
 
     useEffect(() => {
         if (!isColors) return
-        setBigImage(() => item.mainImage[color!])
+        setBigImage(() => getImagesOfColor(item.mainImage, color!,true)[0])
     }, [color])
 
     const addToCartHandler = () => {
@@ -39,17 +39,17 @@ const ItemDetails = ({item}: { item: Product }) => {
         <section className={'w-full flex-row-between max-md:flex-col'}>
             <section className={'flex-row-between gap-7 max-md:flex-col-reverse'}>
                 {item.images && <ul className={'flex-col-start h-fit max-md:flex_row'}>
-                    {[mainImage, ...((isColors ? item.images[item.defaultColor] : item.images) || [])].map(image => (
+                    {[mainImage, ...((isColors ? getImagesOfColor(item.images, color!) : item.images) || [])].map(image => image && (
                         <li
-                            key={image}
+                            key={image.path}
                             className={'w-[100px] h-[100px] max-md:w-[50px] max-md:h-[50px] cursor-pointer p-6'}
                             onClick={() => setBigImage(() => image)}>
-                            <img src={image} alt={item.name}/>
+                            <img src={image.path} alt={item.name}/>
                         </li>
                     ))}
                 </ul>}
                 <div className={'h-[600px] w-[500px] max-md:h-[300px] max-md:w-full p-7 flex-center'}>
-                    <img src={bigImage} alt={item.name} className={'object-fill w-full'}/>
+                    <img src={bigImage?.path} alt={item.name} className={'object-fill w-full'}/>
                 </div>
             </section>
             <section className={'w-[30%] max-md:w-full flex-col-start gap-6'}>
