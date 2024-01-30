@@ -49,7 +49,7 @@ export const getImagesOfColor = (images: Image[], color: string, one?: boolean) 
         images.filter(image => image.color === color)
 }
 
-export const convertToProductSchema = (product: ProductForm, store: string): Product | ProductWithColors => {
+export const convertToProductSchema = (product: ProductForm, store: string): Product => {
     const {price, sale, shippingFee, stock} = product
 
     const discount = Number(price) * (sale && (Number(sale) > 0) ?
@@ -62,27 +62,59 @@ export const convertToProductSchema = (product: ProductForm, store: string): Pro
         shippingFee: Number(shippingFee) || undefined,
         stock: Number(stock),
         oldPrice: discount > 0 ? Number(price) : undefined,
-        mainImage: convertImages(product.mainImage),
-        images: convertImages(product.images),
         store,
         // @ts-ignore
         defaultColor: product.colors && product.colors.length ? product.colors[0].name : undefined
     }
 }
 
-const convertImages = (images: ProductForm['mainImage'] | ProductForm['images']): Image[] => {
-    if (!images) throw new Error('No images provided')
+export const toFormData = (data: object) => {
+    const formData = new FormData()
+    Object.entries(data).forEach(([key, value]) => {
+        if (value instanceof File) {
+            formData.append(key, generateFileName(value))
+            return formData.append('file', value)
+        }
 
-    return images.map(image => {
-        if (image instanceof File)
-            return {path: saveImage(image)}
-        return {path: saveImage(image.image), color: image.color}
+        if ( value instanceof Array ) {
+            extractFileFromArray(value, formData)
+            console.log('array', value)
+            return formData.append(key, JSON.stringify(value))
+        }
+
+        if (typeof value === 'object'){
+            extractFileFromObject(value, formData)
+            return formData.append(key, JSON.stringify(value))
+        }
+
+        formData.append(key, JSON.stringify(value))
+    })
+    return formData
+}
+
+const extractFileFromObject = (obj: any, formData: FormData) => {
+    Object.entries(obj).forEach(([k, v]) => {
+        if (v instanceof File) {
+            obj[k] = generateFileName(v)
+            return formData.append('file', v)
+        }
     })
 }
 
-const saveImage = (image: File): string => {
-    // todo save the image in some storage
-    return URL.createObjectURL(image)
+const extractFileFromArray = (arr: Array<any>, formData: FormData) => {
+    arr.forEach((val, index) => {
+        if (val instanceof File) {
+            arr[index] = generateFileName(val)
+            return formData.append('file', val)
+        }
+        if (typeof val === 'object') {
+            extractFileFromObject(val, formData)
+        }
+    })
+}
+
+const generateFileName = (file : File) => {
+    return `productImage-${file.name.split('.')[0]}-${new Date().getTime()}.${file.name.split('.')[1]}`
 }
 
 export const imageUrl = (path: string | undefined) =>

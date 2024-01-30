@@ -1,6 +1,6 @@
 import api from './index'
 import {ProductForm} from '@/validations/productForm.ts'
-import {convertToProductSchema} from '@/lib/utils.ts'
+import {toFormData,convertToProductSchema} from '@/lib/utils.ts'
 
 type QueryParams = {
     page?: number,
@@ -14,7 +14,7 @@ type QueryParams = {
 export const getProducts = async (query?: QueryParams) => {
     if (query?.filter && typeof query.filter === 'object')
         query.filter = JSON.stringify(query.filter)
-        const queryString = new URLSearchParams(query as Record<any, any>|| {}).toString()
+    const queryString = new URLSearchParams(query as Record<any, any> || {}).toString()
 
     const response = await api.get(`/products?${queryString}`)
     return response.data.data
@@ -35,15 +35,15 @@ export const getProductsBySearch = async (search: string) => {
     return response.data.data
 }
 
-export const createProduct = async ({data, shopId}: {data: ProductForm, shopId: string}) => {
-    const product = convertToProductSchema(data,shopId)
-    const response = await api.post('/products', product)
+export const createProduct = async ({data, shopId}: { data: ProductForm, shopId: string }) => {
+    const product = toFormData(convertToProductSchema(data, shopId))
+    const response = await api.post('/products', product, {headers: {'Content-Type': 'multipart/form-data'}})
     return response.data.data
 }
 
-export const updateProduct = async ({id, data, shopId}:{id: string, data: ProductForm, shopId: string}) => {
-    const product = convertToProductSchema(data,shopId)
-    const response = await api.patch(`/products/${id}`, product)
+export const updateProduct = async ({id, data, shopId}: { id: string, data: ProductForm, shopId: string }) => {
+    const product = toFormData(convertToProductSchema(data, shopId))
+    const response = await api.patch(`/products/${id}`, product, {headers: {'Content-Type': 'multipart/form-data'}})
     return response.data.data
 }
 
