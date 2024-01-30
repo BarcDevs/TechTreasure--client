@@ -47,6 +47,11 @@ export const updateProduct = async ({id, data, shopId}:{id: string, data: Produc
     return response.data.data
 }
 
+export const deleteProduct = async (id: string) => {
+    const response = await api.delete(`/products/${id}`)
+    return response.data
+}
+
 export const getStore = async (id: string) => {
     if (!id) return {}
     const response = await api.get(`/user/stores/${id}`)

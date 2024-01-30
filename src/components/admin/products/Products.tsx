@@ -10,9 +10,35 @@ import {Link} from 'react-router-dom'
 import Icon from '@/components/elements/Icon.tsx'
 import {AxiosError} from 'axios'
 import {useShop} from '@/hooks/useShop.ts'
+import {deleteProduct} from '@/api/products.ts'
+import {useMutation} from '@tanstack/react-query'
+import {queryClient} from '@/api'
+import {Product} from '@/types'
 
 const Products = () => {
     const {data: store, isFetching, isError, error} = useShop()
+    const {mutate: deleteItem} = useMutation({
+        mutationFn: deleteProduct,
+        onMutate: (id) => {
+            const prevItems = queryClient.getQueryData(['store', 'items'])
+            queryClient.cancelQueries({queryKey: ['store', 'items']})
+            queryClient.setQueryData(['store', 'items'], (old: any) => {
+                old.products = old.products.filter((item: Product) => item._id !== id)
+            })
+
+            return {prevItems}
+        },
+        onError: (_, __, {prevItems}: any) => {
+            queryClient.setQueryData(['store', 'items'], prevItems)
+        },
+        onSettled: () => {
+            queryClient.invalidateQueries({queryKey: ['store', 'items']})
+        }
+    })
+
+    const handleDelete = (id: string) => {
+        deleteItem(id)
+    }
 
     return (
         <>
@@ -46,7 +72,7 @@ const Products = () => {
                                         alt="Product image"
                                         className="aspect-square rounded-md object-cover"
                                         src={isProductWithColors(item) ?
-                                            getImagesOfColor(item.mainImage,item.defaultColor,true)[0]?.path :
+                                            getImagesOfColor(item.mainImage, item.defaultColor, true)[0]?.path :
                                             item.mainImage[0].path}
                                         height="64"
                                         width="64"
@@ -65,10 +91,14 @@ const Products = () => {
                                 <TableCell className="hidden md:table-cell text-black"><Rating
                                     rating={item.rating}/></TableCell>
                                 <TableCell>
-                                    <Link to={`delete/${item._id}`}>
-                                        <Icon path={'/assets/icons/trash.svg'} name={'Delete'} size={30}
-                                              className={'hover:opacity-80'}/>
-                                    </Link>
+                                    <button
+                                        onClick={() => handleDelete(item._id)}>
+                                        <Icon path={'/assets/icons/trash.svg'}
+                                              name={'Delete'}
+                                              size={30}
+                                              className={'hover:opacity-80 cursor-pointer'}
+                                        />
+                                    </button>
                                 </TableCell>
                             </TableRow>
                         )}
