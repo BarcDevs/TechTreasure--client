@@ -48,7 +48,7 @@ export const getImagesOfColor = (images: Image[], color: string, one?: boolean) 
         images.filter(image => image.color === color)
 }
 
-export const convertToProductSchema = (product: ProductForm & { store: string }): Product | ProductWithColors => {
+export const convertToProductSchema = (product: ProductForm, store: string): Product | ProductWithColors => {
     const {price, sale, shippingFee, stock} = product
 
     const discount = Number(price) * (sale && (Number(sale) > 0) ?
@@ -63,8 +63,9 @@ export const convertToProductSchema = (product: ProductForm & { store: string })
         oldPrice: discount > 0 ? Number(price) : undefined,
         mainImage: convertImages(product.mainImage),
         images: convertImages(product.images),
+        store,
         // @ts-ignore
-        defaultColor: product.colors ? product.colors[0].name : undefined
+        defaultColor: product.colors && product.colors.length ? product.colors[0].name : undefined
     }
 }
 

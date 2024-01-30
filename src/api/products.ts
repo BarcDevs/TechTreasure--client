@@ -36,13 +36,13 @@ export const getProductsBySearch = async (search: string) => {
 }
 
 export const createProduct = async ({data, shopId}: {data: ProductForm, shopId: string}) => {
-    const product = convertToProductSchema({...data, store: shopId})
+    const product = convertToProductSchema(data,shopId)
     const response = await api.post('/products', product)
     return response.data.data
 }
 
 export const updateProduct = async ({id, data, shopId}:{id: string, data: ProductForm, shopId: string}) => {
-    const product = convertToProductSchema({...data, store: shopId})
+    const product = convertToProductSchema(data,shopId)
     const response = await api.patch(`/products/${id}`, product)
     return response.data.data
 }
