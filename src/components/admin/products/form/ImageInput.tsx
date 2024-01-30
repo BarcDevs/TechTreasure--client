@@ -71,9 +71,9 @@ const ImageInput = ({images, setImages, type, colors, formControl}: ImageInputPr
 
             <ul className="flex flex-wrap gap-2 mt-2">
                 {images.map(image => (
-                    <li>
-                        <img key={uuid()}
-                             className="w-24 h-24 aspect-square object-contain cursor-pointer"
+                    <li key={uuid()}>
+                        <img
+                             className="aspect-square h-24 w-24 cursor-pointer object-contain hover:opacity-80"
                              height="100"
                              // @ts-ignore
                              src={URL.createObjectURL(image?.image ?? image)}
