@@ -35,19 +35,19 @@ export const getProductsBySearch = async (search: string) => {
     return response.data.data
 }
 
-export const createProduct = async (data: ProductForm, shopId: string) => {
+export const createProduct = async ({data, shopId}: {data: ProductForm, shopId: string}) => {
     const product = convertToProductSchema({...data, store: shopId})
     const response = await api.post('/products', product)
     return response.data.data
 }
 
-export const updateProduct = async (id: string, product: ProductForm) => {
+export const updateProduct = async ({id, data, shopId}:{id: string, data: ProductForm, shopId: string}) => {
+    const product = convertToProductSchema({...data, store: shopId})
     const response = await api.patch(`/products/${id}`, product)
     return response.data.data
 }
 
 export const getStore = async (id: string) => {
-    console.log('store id', id)
     if (!id) return {}
     const response = await api.get(`/user/stores/${id}`)
     return response.data.data

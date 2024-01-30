@@ -7,7 +7,7 @@ import {Input, InputProps} from "@/components/ui/input"
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select"
 import {Textarea, TextareaProps} from '@/components/ui/textarea.tsx'
 import {useEffect, useState} from 'react'
-import {Color, Product, ProductWithColors} from '@/types'
+import {Color, Product, ProductWithColors, Seller} from '@/types'
 import {Categories} from '@/constants/categories.ts'
 import RequiredInput from '@/components/elements/RequiredInput.tsx'
 import {Form, FormField, FormItem, FormMessage} from '@/components/ui/form.tsx'
@@ -18,11 +18,32 @@ import ColorInput from '@/components/admin/products/form/ColorInput.tsx'
 import SizeInput from '@/components/admin/products/form/SizeInput.tsx'
 import ImageInput, {ImageState} from '@/components/admin/products/form/ImageInput.tsx'
 import {getImagesFromProduct} from '@/lib/utils.ts'
+import {useNavigate} from 'react-router-dom'
+import {useMutation} from '@tanstack/react-query'
+import {createProduct, updateProduct} from '@/api/products.ts'
+import {useSelector} from 'react-redux'
+import {IRootState} from '@/store'
+import ErrorMessage from '@/components/elements/ErrorMessage.tsx'
+import {AxiosError} from 'axios'
+import {queryClient} from '@/api'
 
 type ProductFormProps = {
     product?: Product
 }
 const ProductForm = ({product}: ProductFormProps) => {
+    const navigate = useNavigate()
+    const {mutate, isError, error, isPending} = useMutation({
+        mutationFn: product ? updateProduct : createProduct,
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: ['items'],
+
+            })
+            navigate('/admin/products')
+        }
+    })
+
+    const shopId = !product ? (useSelector((state: IRootState) => state.auth.user) as Seller).store : product.store
     const [colors, setColors] = useState<Color[]>([])
     const [sizes, setSizes] = useState<string[]>([])
     const [mainImage, setMainImage] = useState<ImageState[]>([])
@@ -103,9 +124,24 @@ const ProductForm = ({product}: ProductFormProps) => {
             const {price, sale} = values
             values.sale = Math.min(Number((Number(sale) / Number(price) * 100).toFixed(0)), 100) + ''
         }
-        // submit(values, {method: 'post', replace: true})
-        console.log(values)
-        // todo convert sale to percentage
+
+        if (saleInputMode === '$') {
+            const {price, sale} = values
+            values.sale = Math.min(Number((Number(sale) / Number(price) * 100).toFixed(0)), 100) + ''
+        }
+
+        if (product)
+            mutate({
+                id: product._id,
+                data: values,
+                shopId
+            })
+        else
+            mutate({
+                id: '',
+                data: values,
+                shopId
+            })
     }
 
     return (
@@ -269,10 +305,14 @@ const ProductForm = ({product}: ProductFormProps) => {
                 {/*endregion*/}
 
                 <div className={'w-full md:col-span-2 flex-center-row mt-4'}>
-                    <Button className="col-span-full md:col-span-1 px-12" type="submit">
-                        Save Product
+                    <Button className="col-span-full md:col-span-1 px-12"
+                            type="submit"
+                            disabled={isPending}>
+                        {isPending ? 'Saving...' : 'Save Product'}
                     </Button>
                 </div>
+                {isError && <ErrorMessage
+                    message={error instanceof AxiosError ? error.response?.data.message : error.message}/>}
             </form>
         </Form>
     )

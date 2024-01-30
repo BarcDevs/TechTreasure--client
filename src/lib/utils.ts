@@ -1,6 +1,7 @@
 import {type ClassValue, clsx} from "clsx"
 import {twMerge} from "tailwind-merge"
 import {Image, Product, ProductWithColors} from '@/types'
+import {ProductForm} from '@/validations/productForm.ts'
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs))
@@ -45,4 +46,39 @@ export const getImagesOfColor = (images: Image[], color: string, one?: boolean) 
     return one ?
         [images.find(image => image.color === color)] :
         images.filter(image => image.color === color)
+}
+
+export const convertToProductSchema = (product: ProductForm & { store: string }): Product | ProductWithColors => {
+    const {price, sale, shippingFee, stock} = product
+
+    const discount = Number(price) * (sale && (Number(sale) > 0) ?
+        Number(sale) / 100 : 0)
+
+    return {
+        ...product,
+        price: Number(price) - discount,
+        sale: Number(sale) || undefined,
+        shippingFee: Number(shippingFee) || undefined,
+        stock: Number(stock),
+        oldPrice: discount > 0 ? Number(price) : undefined,
+        mainImage: convertImages(product.mainImage),
+        images: convertImages(product.images),
+        // @ts-ignore
+        defaultColor: product.colors ? product.colors[0].name : undefined
+    }
+}
+
+const convertImages = (images: ProductForm['mainImage'] | ProductForm['images']): Image[] => {
+    if (!images) throw new Error('No images provided')
+
+    return images.map(image => {
+        if (image instanceof File)
+            return {path: saveImage(image)}
+        return {path: saveImage(image.image), color: image.color}
+    })
+}
+
+const saveImage = (image: File): string => {
+    // todo save the image in some storage
+    return URL.createObjectURL(image)
 }
