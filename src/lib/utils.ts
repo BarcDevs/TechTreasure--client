@@ -2,6 +2,7 @@ import {type ClassValue, clsx} from "clsx"
 import {twMerge} from "tailwind-merge"
 import {Image, Product, ProductWithColors} from '@/types'
 import {ProductForm} from '@/validations/productForm.ts'
+import {AxiosError} from 'axios'
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs))
@@ -82,4 +83,9 @@ const convertImages = (images: ProductForm['mainImage'] | ProductForm['images'])
 const saveImage = (image: File): string => {
     // todo save the image in some storage
     return URL.createObjectURL(image)
+}
+
+export const getErrorMessage = (error: Error) => {
+    if (import.meta.env.NODE_ENV !== 'production') console.error(error)
+    return error instanceof AxiosError ? error.response?.data.message : 'Something went wrong. Please try again later.'
 }

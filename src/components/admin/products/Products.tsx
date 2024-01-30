@@ -4,11 +4,10 @@
  */
 import {Button} from "@/components/ui/button"
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table"
-import {getImagesOfColor, isProductWithColors} from '@/lib/utils.ts'
+import {getErrorMessage, getImagesOfColor, isProductWithColors} from '@/lib/utils.ts'
 import Rating from '@/components/elements/Rating.tsx'
 import {Link} from 'react-router-dom'
 import Icon from '@/components/elements/Icon.tsx'
-import {AxiosError} from 'axios'
 import {useShop} from '@/hooks/useShop.ts'
 import {deleteProduct} from '@/api/products.ts'
 import {useMutation} from '@tanstack/react-query'
@@ -107,7 +106,7 @@ const Products = () => {
                 {(!store?.products || store?.products.length === 0) && (
                     isFetching ? <p>Loading...</p> :
                         isError ?
-                            <p>{error instanceof AxiosError ? error.response?.data.message : error.message}</p> :
+                            <p>{getErrorMessage(error)}</p> :
                             <p>No products found</p>
                 )}
             </section>

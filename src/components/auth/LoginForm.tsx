@@ -8,9 +8,9 @@ import {Link} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
 import {AUTH_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 import {login} from '@/api/auth.ts'
-import {AxiosError} from 'axios'
 import {useLogin} from '@/hooks/useLogin.ts'
 import ErrorMessage from '@/components/elements/ErrorMessage.tsx'
+import {getErrorMessage} from '@/lib/utils.ts'
 
 const LoginForm = ({}) => {
     const inputStyle = 'p-0 rounded-b-none border-x-0 border-t-0 border-black/50'
@@ -47,7 +47,7 @@ const LoginForm = ({}) => {
                     <Button className={'text-body bg-neutral-50 px-0 text-red-500'}
                             text={t(AUTH_LOCALES.forgotPassword)}/>
                 </div>
-                {isError && <ErrorMessage message={error instanceof AxiosError ? error.response?.data.message : error.message}/>}
+                {isError && <ErrorMessage message={getErrorMessage(error)}/>}
                 <Button className={'w-full'} variant={'white'}
                         text={`${t(AUTH_LOCALES.login)} ${t(AUTH_LOCALES.withGoogle)}`}/>
                 <div className={'flex-center-row gap-4'}>

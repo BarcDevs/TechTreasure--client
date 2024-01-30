@@ -17,14 +17,13 @@ import {ProductForm as ProductFormType, productFormSchema} from '@/validations/p
 import ColorInput from '@/components/admin/products/form/ColorInput.tsx'
 import SizeInput from '@/components/admin/products/form/SizeInput.tsx'
 import ImageInput, {ImageState} from '@/components/admin/products/form/ImageInput.tsx'
-import {getImagesFromProduct} from '@/lib/utils.ts'
+import {getErrorMessage, getImagesFromProduct} from '@/lib/utils.ts'
 import {useNavigate} from 'react-router-dom'
 import {useMutation} from '@tanstack/react-query'
 import {createProduct, updateProduct} from '@/api/products.ts'
 import {useSelector} from 'react-redux'
 import {IRootState} from '@/store'
 import ErrorMessage from '@/components/elements/ErrorMessage.tsx'
-import {AxiosError} from 'axios'
 import {queryClient} from '@/api'
 
 type ProductFormProps = {
@@ -305,7 +304,7 @@ const ProductForm = ({product}: ProductFormProps) => {
                                                className="w-full"
                                                type="date"
                                                {...field as unknown as InputProps}
-                                               onChange={e=>field.onChange(new Date(e.target.value))}
+                                               onChange={e => field.onChange(new Date(e.target.value))}
                                                value={field.value ? new Date(field.value).toISOString().split('T')[0] : ''}
                                            />
                                            <FormMessage/>
@@ -323,7 +322,7 @@ const ProductForm = ({product}: ProductFormProps) => {
                     </Button>
                 </div>
                 {isError && <ErrorMessage
-                    message={error instanceof AxiosError ? error.response?.data.message : error.message}/>}
+                    message={getErrorMessage(error)}/>}
             </form>
         </Form>
     )

@@ -10,7 +10,7 @@ import {AUTH_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 import {signup} from '@/api/auth.ts'
 import {useLogin} from '@/hooks/useLogin.ts'
 import ErrorMessage from '@/components/elements/ErrorMessage.tsx'
-import {AxiosError} from 'axios'
+import {getErrorMessage} from '@/lib/utils.ts'
 
 const SignupForm = ({}) => {
     const inputStyle = 'p-0 rounded-b-none border-x-0 border-t-0 border-black/50'
@@ -53,7 +53,7 @@ const SignupForm = ({}) => {
                             text={`${t(AUTH_LOCALES.signup)} ${t(AUTH_LOCALES.withGoogle)}`}/>
                 </div>
                 {isError && <ErrorMessage
-                    message={error instanceof AxiosError ? error.response?.data.message : error.message}/>}
+                    message={getErrorMessage(error)}/>}
                 <div className={'flex-center-row gap-4'}>
                     <p className={'text-body'}>Already have an account?</p>
                     <Link to={'/login'} className={'text-body-medium underline'}>Log in</Link>
