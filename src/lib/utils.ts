@@ -26,7 +26,7 @@ export const getContrastColor = (hexColor: string) => {
 }
 
 export const getImageFile = async (url: string): Promise<File> => {
-    const res = await fetch(url)
+    const res = await fetch(imageUrl(url))
     const contentType = res.headers.get('content-type') || 'image/png'
     const blob = await res.blob()
     return new File([blob], 'file', {type: contentType})
@@ -84,6 +84,9 @@ const saveImage = (image: File): string => {
     // todo save the image in some storage
     return URL.createObjectURL(image)
 }
+
+export const imageUrl = (path: string | undefined) =>
+    `${import.meta.env.VITE_APP_API_BASE_URL ?? 'http://localhost:3000'}/images/products/${path}`
 
 export const getErrorMessage = (error: Error) => {
     if (import.meta.env.NODE_ENV !== 'production') console.error(error)

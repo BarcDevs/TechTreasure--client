@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import {getImagesOfColor, isProductWithColors} from '@/lib/utils.ts'
+import {getImagesOfColor, imageUrl, isProductWithColors} from '@/lib/utils.ts'
 import {Product, ProductWithColors} from '@/types'
 import Rating from '@/components/elements/Rating.tsx'
 import {Separator} from '@/components/ui/separator.tsx'
@@ -41,7 +41,7 @@ const ItemDetails = ({item}: { item: Product }) => {
                 {item.images && <ul className={'flex-col-start h-fit max-md:flex_row'}>
                     {[mainImage, ...((isColors ? getImagesOfColor(item.images, color!) : item.images) || [])].map(image => image && (
                         <li
-                            key={image.path}
+                            key={imageUrl(image.path)}
                             className={'w-[100px] h-[100px] max-md:w-[50px] max-md:h-[50px] cursor-pointer p-6'}
                             onClick={() => setBigImage(() => image)}>
                             <img src={image.path} alt={item.name}/>
@@ -49,7 +49,7 @@ const ItemDetails = ({item}: { item: Product }) => {
                     ))}
                 </ul>}
                 <div className={'h-[600px] w-[500px] max-md:h-[300px] max-md:w-full p-7 flex-center'}>
-                    <img src={bigImage?.path} alt={item.name} className={'object-fill w-full'}/>
+                    <img src={imageUrl(bigImage?.path)} alt={item.name} className={'object-fill w-full'}/>
                 </div>
             </section>
             <section className={'w-[30%] max-md:w-full flex-col-start gap-6'}>

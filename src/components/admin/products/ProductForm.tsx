@@ -66,6 +66,7 @@ const ProductForm = ({product}: ProductFormProps) => {
 
     const form = useForm<ProductFormType>({
         resolver: zodResolver(productFormSchema),
+
         defaultValues: !product ? {
             name: '',
             description: '',
@@ -317,7 +318,8 @@ const ProductForm = ({product}: ProductFormProps) => {
                 <div className={'w-full md:col-span-2 flex-center-row mt-4'}>
                     <Button className="col-span-full md:col-span-1 px-12"
                             type="submit"
-                            disabled={isPending}>
+                        // disabled={isPending}
+                    >
                         {isPending ? 'Saving...' : 'Save Product'}
                     </Button>
                 </div>
