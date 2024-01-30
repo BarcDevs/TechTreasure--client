@@ -49,7 +49,6 @@ const ImageInput = ({images, setImages, type, colors, formControl}: ImageInputPr
             prevState.filter(i => i !== image))
     }
 
-    // console.log(images)
     return (
         <FormItem className="w-full">
             <label

@@ -43,7 +43,7 @@ const ProductForm = ({product}: ProductFormProps) => {
         }
     })
 
-    const shopId = !product ? (useSelector((state: IRootState) => state.auth.user) as Seller).store : product.store
+    const shopId = (useSelector((state: IRootState) => state.auth.user) as Seller).store
     const [colors, setColors] = useState<Color[]>([])
     const [sizes, setSizes] = useState<string[]>([])
     const [mainImage, setMainImage] = useState<ImageState[]>([])
