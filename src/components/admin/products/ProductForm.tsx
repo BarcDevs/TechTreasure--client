@@ -36,7 +36,7 @@ const ProductForm = ({product}: ProductFormProps) => {
         mutationFn: product ? updateProduct : createProduct,
         onSuccess: () => {
             queryClient.invalidateQueries({
-                queryKey: ['items'],
+                queryKey: ['items']
 
             })
             navigate('/admin/products')
@@ -297,9 +297,20 @@ const ProductForm = ({product}: ProductFormProps) => {
                         )}/>
 
                         <span>Ends:</span>
-                        <FormField name={'saleEndsAt'} control={form.control} render={({field}) => (
-                            <Input className="w-full" type="date" {...field as unknown as InputProps}/>
-                        )}/>
+                        <FormField name={'saleEndsAt'}
+                                   control={form.control}
+                                   render={({field}) => (
+                                       <div className={'flex_col'}>
+                                           <Input
+                                               className="w-full"
+                                               type="date"
+                                               {...field as unknown as InputProps}
+                                               onChange={e=>field.onChange(new Date(e.target.value))}
+                                               value={field.value ? new Date(field.value).toISOString().split('T')[0] : ''}
+                                           />
+                                           <FormMessage/>
+                                       </div>
+                                   )}/>
                     </div>
                 </div>
                 {/*endregion*/}
