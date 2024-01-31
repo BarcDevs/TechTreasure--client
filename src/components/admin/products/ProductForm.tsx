@@ -164,8 +164,10 @@ const ProductForm = ({product}: ProductFormProps) => {
                     render={({field}) =>
                         (<FormItem>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                <SelectTrigger className="w-full capitalize">
-                                    <SelectValue placeholder={'Category'}/>
+                                <SelectTrigger className="w-full capitalize no-focus">
+                                    <SelectValue placeholder={field.value ?
+                                        Object.values(Categories).find(cat => cat._id === field.value)?.name ?? 'Category'
+                                        : 'Category'}/>
                                 </SelectTrigger>
                                 <SelectContent>
                                     {Object.values(Categories).map(category => (
