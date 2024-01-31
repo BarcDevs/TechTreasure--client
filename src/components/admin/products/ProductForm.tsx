@@ -49,25 +49,9 @@ const ProductForm = ({product}: ProductFormProps) => {
     const [images, setImages] = useState<FormImage[]>([])
     const [saleInputMode, setSaleInputMode] = useState<'%' | '$'>('%')
 
-    useEffect(() => {
-        if (product) {
-            // @ts-ignore
-            // todo get pictures from product
-            Promise.all(getImagesFromProduct(product.mainImage!)).then(res => console.log('main', res))
-            if (product?.images) { // @ts-ignore
-                Promise.all(getImagesFromProduct(product?.images))
-                    .then(res => console.log('sec', res))
-            }
-
-            setColors(((product as ProductWithColors).colors || []))
-            setSizes(product.sizes || [])
-        }
-    }, [product])
-
     const form = useForm<ProductFormType>({
         resolver: zodResolver(productFormSchema),
-
-        defaultValues: !product ? {
+        defaultValues: {
             name: '',
             description: '',
             price: '',
@@ -81,16 +65,27 @@ const ProductForm = ({product}: ProductFormProps) => {
             sale: '',
             saleEndsAt: new Date(),
             isNew: false
-        } : {
-            ...product,
-            price: product.price + '',
-            sale: product.sale + '',
-            shippingFee: product.shippingFee + '',
-            stock: product.stock + '',
-            mainImage: [],
-            images: []
         }
     })
+
+    useEffect(() => {
+        if (product) {
+            getImagesFromProduct(product.mainImage)
+                .then(res => setMainImage(() => res))
+
+            if (product.images)
+                getImagesFromProduct(product.images)
+                    .then(res => setImages(() => res))
+
+            setColors(((product as ProductWithColors).colors || []))
+            setSizes(product.sizes || [])
+
+            Object.entries(product).forEach(([key, value]) => {
+                if (key !== 'colors' && key !== 'sizes' && key !== 'mainImage' && key !== 'images')
+                    form.setValue((key as keyof ProductFormType), String(value))
+            })
+        }
+    }, [form, product])
 
     useEffect(() => {
         if (colors.length > 0)

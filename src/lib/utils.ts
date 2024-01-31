@@ -1,7 +1,7 @@
 import {type ClassValue, clsx} from "clsx"
 import {twMerge} from "tailwind-merge"
 import {Image, Product, ProductWithColors} from '@/types'
-import {ProductForm} from '@/validations/productForm.ts'
+import {FormImage, ProductForm} from '@/validations/productForm.ts'
 import {AxiosError} from 'axios'
 
 export function cn(...inputs: ClassValue[]) {
@@ -32,15 +32,9 @@ export const getImageFile = async (url: string): Promise<File> => {
     return new File([blob], 'file', {type: contentType})
 }
 
-export const getImagesFromProduct = async (images: Image[]): Promise<Awaited<(File | {
-    image: File,
-    color: string
-})>[] | void[]> => {
-    return await Promise.all(images.map(image => {
-        image.color ?
-            getImageFile(image.path) :
-            {image: getImageFile(image.path), color: image.color}
-    }))
+export const getImagesFromProduct = async (images: Image[]): Promise<Awaited<(FormImage)>[]> => {
+    return await Promise.all(images.map(async image =>
+        ({image: await getImageFile(image.path), color: image.color})))
 }
 
 export const getImagesOfColor = (images: Image[], color: string, one?: boolean) => {
@@ -77,12 +71,12 @@ export const toFormData = (data: object) => {
             return formData.append(filename, value)
         }
 
-        if ( value instanceof Array ) {
+        if (value instanceof Array) {
             extractFileFromArray(value, formData)
             return formData.append(key, JSON.stringify(value))
         }
 
-        if (typeof value === 'object'){
+        if (typeof value === 'object') {
             extractFileFromObject(value, formData)
             return formData.append(key, JSON.stringify(value))
         }
@@ -115,7 +109,7 @@ const extractFileFromArray = (arr: Array<any>, formData: FormData) => {
     })
 }
 
-const generateFileName = (file : File) =>
+const generateFileName = (file: File) =>
     file.name.startsWith('productImage') ? file.name :
         `productImage-${file.name.split('.')[0]}-${new Date().getTime()}.${file.name.split('.')[1]}`
 
