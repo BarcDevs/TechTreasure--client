@@ -4,7 +4,7 @@ import {Button} from '@/components/ui/button.tsx'
 import {Badge} from '@/components/ui/badge.tsx'
 import {memo, useRef} from 'react'
 import {Color} from '@/types'
-import {getContrastColor} from '@/lib/utils.ts'
+import {getContrastColor} from '@/lib/utils/color.ts'
 import {Control} from 'react-hook-form'
 import {ProductForm as ProductFormType} from '@/validations/productForm.ts'
 

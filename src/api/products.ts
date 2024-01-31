@@ -1,6 +1,6 @@
 import api from './index'
 import {ProductForm} from '@/validations/productForm.ts'
-import {toFormData,convertToProductSchema} from '@/lib/utils.ts'
+import {toFormData,convertToProductSchema} from '@/lib/utils/data.ts'
 
 type QueryParams = {
     page?: number,

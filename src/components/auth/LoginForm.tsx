@@ -10,7 +10,7 @@ import {AUTH_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 import {login} from '@/api/auth.ts'
 import {useLogin} from '@/hooks/useLogin.ts'
 import ErrorMessage from '@/components/elements/ErrorMessage.tsx'
-import {getErrorMessage} from '@/lib/utils.ts'
+import {getErrorMessage} from '@/lib/utils/error.ts'
 
 const LoginForm = ({}) => {
     const inputStyle = 'p-0 rounded-b-none border-x-0 border-t-0 border-black/50'

@@ -8,12 +8,13 @@ import {Product, ProductWithColors} from '@/types'
 import {useNavigate} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
 import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
-import {getImagesOfColor, isProductWithColors} from '@/lib/utils.ts'
+import {getImagesOfColor} from '@/lib/utils/image.ts'
 import {useState} from 'react'
 import ColorPicker from '@/components/shared/ColorPicker.tsx'
 import {useDispatch} from 'react-redux'
 import {addToWishlist} from '@/store/wishlistSlice.ts'
 import {addToCart} from '@/store/cartSlice.ts'
+import {isProductWithColors} from '@/lib/utils/product.ts'
 
 type ItemProps = {
     item: Product

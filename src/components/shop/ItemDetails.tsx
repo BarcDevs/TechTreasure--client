@@ -1,5 +1,4 @@
 import {useEffect, useState} from 'react'
-import {getImagesOfColor, imageUrl, isProductWithColors} from '@/lib/utils.ts'
 import {Product, ProductWithColors} from '@/types'
 import Rating from '@/components/elements/Rating.tsx'
 import {Separator} from '@/components/ui/separator.tsx'
@@ -11,6 +10,9 @@ import ColorPicker from '@/components/shared/ColorPicker.tsx'
 import {addToWishlist} from '@/store/wishlistSlice.ts'
 import {useDispatch} from 'react-redux'
 import {addToCart} from '@/store/cartSlice.ts'
+import {getImagesOfColor} from '@/lib/utils/image.ts'
+import {isProductWithColors} from '@/lib/utils/product.ts'
+import {imageUrl} from '@/lib/utils/url.ts'
 
 const ItemDetails = ({item}: { item: Product }) => {
     const dispatch = useDispatch()

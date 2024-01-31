@@ -4,7 +4,6 @@
  */
 import {Button} from "@/components/ui/button"
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table"
-import {getErrorMessage, getImagesOfColor, imageUrl, isProductWithColors} from '@/lib/utils.ts'
 import Rating from '@/components/elements/Rating.tsx'
 import {Link} from 'react-router-dom'
 import Icon from '@/components/elements/Icon.tsx'
@@ -13,6 +12,10 @@ import {deleteProduct} from '@/api/products.ts'
 import {useMutation} from '@tanstack/react-query'
 import {queryClient} from '@/api'
 import {Product} from '@/types'
+import {imageUrl} from '@/lib/utils/url.ts'
+import {isProductWithColors} from '@/lib/utils/product.ts'
+import {getImagesOfColor} from '@/lib/utils/image.ts'
+import {getErrorMessage} from '@/lib/utils/error.ts'
 
 const Products = () => {
     const {data: store, isFetching, isError, error} = useShop()

@@ -3,9 +3,11 @@ import {Input} from '@/components/ui/input.tsx'
 import {ChangeEvent} from 'react'
 import {TableCell, TableRow} from '@/components/ui/table.tsx'
 import Icon from '@/components/elements/Icon.tsx'
-import {getImagesOfColor, imageUrl, isProductWithColors} from '@/lib/utils.ts'
 import {useDispatch} from 'react-redux'
 import {deleteFromCart, updateCart} from '@/store/cartSlice.ts'
+import {isProductWithColors} from '@/lib/utils/product.ts'
+import {imageUrl} from '@/lib/utils/url.ts'
+import {getImagesOfColor} from '@/lib/utils/image.ts'
 
 const CartItem = ({item}: { item: CartItemType }) => {
     const dispatch = useDispatch()

@@ -17,7 +17,6 @@ import {FormImage, ProductForm as ProductFormType, productFormSchema} from '@/va
 import ColorInput from '@/components/admin/products/form/ColorInput.tsx'
 import SizeInput from '@/components/admin/products/form/SizeInput.tsx'
 import ImageInput from '@/components/admin/products/form/ImageInput.tsx'
-import {getErrorMessage, getImagesFromProduct} from '@/lib/utils.ts'
 import {useNavigate} from 'react-router-dom'
 import {useMutation} from '@tanstack/react-query'
 import {createProduct, updateProduct} from '@/api/products.ts'
@@ -25,6 +24,8 @@ import {useSelector} from 'react-redux'
 import {IRootState} from '@/store'
 import ErrorMessage from '@/components/elements/ErrorMessage.tsx'
 import {queryClient} from '@/api'
+import {getImagesFromProduct} from '@/lib/utils/image.ts'
+import {getErrorMessage} from '@/lib/utils/error.ts'
 
 type ProductFormProps = {
     product?: Product

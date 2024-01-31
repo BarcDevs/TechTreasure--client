@@ -1,5 +1,7 @@
 import {CartItem} from '@/types'
-import {getImagesOfColor, imageUrl, isProductWithColors} from '@/lib/utils.ts'
+import {getImagesOfColor} from '@/lib/utils/image.ts'
+import {imageUrl} from '@/lib/utils/url.ts'
+import {isProductWithColors} from '@/lib/utils/product.ts'
 
 const CheckoutItem = ({item}: { item: CartItem }) => (
     <div className={'flex-row-between h-fit w-full items-center'}>
