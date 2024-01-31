@@ -2,25 +2,19 @@ import {v4 as uuid} from 'uuid'
 import {Button} from "@/components/ui/button"
 import {Input} from "@/components/ui/input"
 import {FormField, FormItem, FormMessage} from '@/components/ui/form.tsx'
-import {useRef} from 'react'
+import {useEffect, useRef} from 'react'
 import {Color} from '@/types'
 import {Control} from 'react-hook-form'
-import {ProductForm as ProductFormType} from '@/validations/productForm.ts'
+import {FormImage, ProductForm as ProductFormType} from '@/validations/productForm.ts'
 
 
 type ImageInputProps = {
-    images: ImageState[],
-    setImages: React.Dispatch<React.SetStateAction<ImageState[]>>,
+    images: FormImage[],
+    setImages: React.Dispatch<React.SetStateAction<FormImage[]>>,
     type: 'main' | 'additional',
     colors: Color[],
     formControl: Control<ProductFormType>
 }
-
-export type ImageState = File | {
-    image: File,
-    color: string
-}
-
 
 const ImageInput = ({images, setImages, type, colors, formControl}: ImageInputProps) => {
     const ref = useRef<HTMLInputElement | null>(null)
@@ -28,26 +22,31 @@ const ImageInput = ({images, setImages, type, colors, formControl}: ImageInputPr
     const addImage = () => {
         if (!ref.current) return
         if (!ref.current.files || ref.current.files.length === 0) return
-        if (type === 'main' &&
-            (colors.length > 0 &&
-                (images.length + ref.current.files.length > colors.length) ||
-                images.length + ref.current.files.length > 1)) return // todo display form error
 
         if (type === 'main' && !colors.length)
+            setImages(() => [
+                {image: ref.current!.files![0]}
+            ])
+
+        else
             setImages(prevState => [
                 ...prevState,
-                ref.current!.files![0]
+                ...Object.values(ref.current!.files!)
+                    .map(file => ({image: file}))
+                // todo assign color
             ])
-        else
-            setImages(prevState => [...prevState, ...ref.current!.files!])
 
         ref.current!.value = ''
     }
 
-    const removeImage = (image: ImageState) => {
+    const removeImage = (image: FormImage) => {
         setImages(prevState =>
             prevState.filter(i => i !== image))
     }
+
+    useEffect(() => {
+        console.log(images)
+    }, [images])
 
     return (
         <FormItem className="w-full">
@@ -73,13 +72,13 @@ const ImageInput = ({images, setImages, type, colors, formControl}: ImageInputPr
                 {images.map(image => (
                     <li key={uuid()}>
                         <img
-                             className="aspect-square h-24 w-24 cursor-pointer object-contain hover:opacity-80"
-                             height="100"
-                             // @ts-ignore
-                             src={URL.createObjectURL(image?.image ?? image)}
-                             width="100"
-                             alt={'image'}
-                             onClick={() => removeImage(image)}/>
+                            className="aspect-square h-24 w-24 cursor-pointer object-contain hover:opacity-80"
+                            height="100"
+                            // @ts-ignore
+                            src={URL.createObjectURL(image?.image ?? image)}
+                            width="100"
+                            alt={'image'}
+                            onClick={() => removeImage(image)}/>
                     </li>
                 ))}
             </ul>

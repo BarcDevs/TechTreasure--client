@@ -13,10 +13,10 @@ import RequiredInput from '@/components/elements/RequiredInput.tsx'
 import {Form, FormField, FormItem, FormMessage} from '@/components/ui/form.tsx'
 import {useForm} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
-import {ProductForm as ProductFormType, productFormSchema} from '@/validations/productForm.ts'
+import {FormImage, ProductForm as ProductFormType, productFormSchema} from '@/validations/productForm.ts'
 import ColorInput from '@/components/admin/products/form/ColorInput.tsx'
 import SizeInput from '@/components/admin/products/form/SizeInput.tsx'
-import ImageInput, {ImageState} from '@/components/admin/products/form/ImageInput.tsx'
+import ImageInput from '@/components/admin/products/form/ImageInput.tsx'
 import {getErrorMessage, getImagesFromProduct} from '@/lib/utils.ts'
 import {useNavigate} from 'react-router-dom'
 import {useMutation} from '@tanstack/react-query'
@@ -45,8 +45,8 @@ const ProductForm = ({product}: ProductFormProps) => {
     const shopId = (useSelector((state: IRootState) => state.auth.user) as Seller).store
     const [colors, setColors] = useState<Color[]>([])
     const [sizes, setSizes] = useState<string[]>([])
-    const [mainImage, setMainImage] = useState<ImageState[]>([])
-    const [images, setImages] = useState<ImageState[]>([])
+    const [mainImage, setMainImage] = useState<FormImage[]>([])
+    const [images, setImages] = useState<FormImage[]>([])
     const [saleInputMode, setSaleInputMode] = useState<'%' | '$'>('%')
 
     useEffect(() => {

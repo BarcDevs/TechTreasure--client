@@ -3,11 +3,11 @@ import {Color} from '@/types'
 
 const NUMBER_REGEX = /^-?\d*(\.\d*)?$/
 
-const formImage = z.instanceof(File).or(z.object(
+const formImage = z.object(
     {
         image: z.instanceof(File),
-        color: z.string()
-    }))
+        color: z.string().optional()
+    })
 
 const hasDuplicateNames = (colors: Color[]): boolean => {
     const names: Set<string> = new Set()
@@ -61,4 +61,5 @@ const productFormSchema = z.object({
     }
 })
 export type ProductForm = z.infer<typeof productFormSchema>
+export type FormImage = z.infer<typeof formImage>
 export {productFormSchema}
