@@ -72,13 +72,13 @@ export const toFormData = (data: object) => {
     const formData = new FormData()
     Object.entries(data).forEach(([key, value]) => {
         if (value instanceof File) {
-            formData.append(key, generateFileName(value))
-            return formData.append('file', value)
+            const filename = generateFileName(value)
+            formData.append(key, filename)
+            return formData.append(filename, value)
         }
 
         if ( value instanceof Array ) {
             extractFileFromArray(value, formData)
-            console.log('array', value)
             return formData.append(key, JSON.stringify(value))
         }
 
@@ -93,10 +93,11 @@ export const toFormData = (data: object) => {
 }
 
 const extractFileFromObject = (obj: any, formData: FormData) => {
-    Object.entries(obj).forEach(([k, v]) => {
+    Object.entries(obj).forEach(([_, v]) => {
         if (v instanceof File) {
-            obj[k] = generateFileName(v)
-            return formData.append('file', v)
+            const filename = generateFileName(v)
+            obj.path = filename
+            return formData.append(filename, v)
         }
     })
 }
@@ -104,8 +105,9 @@ const extractFileFromObject = (obj: any, formData: FormData) => {
 const extractFileFromArray = (arr: Array<any>, formData: FormData) => {
     arr.forEach((val, index) => {
         if (val instanceof File) {
-            arr[index] = generateFileName(val)
-            return formData.append('file', val)
+            const filename = generateFileName(val)
+            arr[index] = filename
+            return formData.append(filename, val)
         }
         if (typeof val === 'object') {
             extractFileFromObject(val, formData)
@@ -113,9 +115,9 @@ const extractFileFromArray = (arr: Array<any>, formData: FormData) => {
     })
 }
 
-const generateFileName = (file : File) => {
-    return `productImage-${file.name.split('.')[0]}-${new Date().getTime()}.${file.name.split('.')[1]}`
-}
+const generateFileName = (file : File) =>
+    file.name.startsWith('productImage') ? file.name :
+        `productImage-${file.name.split('.')[0]}-${new Date().getTime()}.${file.name.split('.')[1]}`
 
 export const imageUrl = (path: string | undefined) =>
     `${import.meta.env.VITE_APP_API_BASE_URL ?? 'http://localhost:3000'}/images/products/${path}`
