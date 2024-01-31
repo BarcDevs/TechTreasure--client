@@ -83,11 +83,11 @@ const Products = () => {
                                     </Link>
                                 </TableCell>
                                 <TableCell className="hidden md:table-cell">${item.price.toFixed()}</TableCell>
-                                <TableCell className={item.stock === 0 ? 'text-red-500 font-bold' : 'text-black'}>
+                                <TableCell className={item.stock === 0 ? 'font-bold text-red-500' : 'text-black'}>
                                     {item.stock === 0 ? 'Out of stock' : `${item.stock} in stock`}
                                 </TableCell>
                                 <TableCell className="hidden md:table-cell">{/* TODO item.orders*/ 0}</TableCell>
-                                <TableCell className="hidden md:table-cell text-black"><Rating
+                                <TableCell className="hidden text-black md:table-cell"><Rating
                                     rating={item.rating}/></TableCell>
                                 <TableCell>
                                     <button
@@ -95,7 +95,7 @@ const Products = () => {
                                         <Icon path={'/assets/icons/trash.svg'}
                                               name={'Delete'}
                                               size={30}
-                                              className={'hover:opacity-80 cursor-pointer'}
+                                              className={'cursor-pointer hover:opacity-80'}
                                         />
                                     </button>
                                 </TableCell>

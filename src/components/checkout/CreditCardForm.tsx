@@ -38,7 +38,7 @@ const CreditCardForm = forwardRef(
                     <FormInput name={'card_number'} type={'number'} className={'hide-arrows'}
                                placeholder={'Card Number'}
                                formControl={form.control}/>
-                    <div className={'w-full flex_row gap-4'}>
+                    <div className={'flex_row w-full gap-4'}>
                         <FormField name={'expiry_month'}
                                    control={form.control}
                                    render={({field}) =>

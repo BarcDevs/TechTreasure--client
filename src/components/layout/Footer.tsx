@@ -11,7 +11,7 @@ const Footer = ({}) => {
 
     return (
         <footer
-            className="inline-flex w-full flex-col items-center justify-end bg-black pb-6 pt-20 mt-[9rem] max-sm:mt-12 max-sm:pt-10">
+            className="mt-[9rem] inline-flex w-full flex-col items-center justify-end bg-black pb-6 pt-20 max-sm:mt-12 max-sm:pt-10">
             <div className={'inline-flex w-[90%] gap-7 max-lg:mb-5 max-lg:flex-col-reverse'}>
                 <div className="flex-center-row inline-flex gap-2 md:hidden">
                     <div className={'inline-flex gap-2 px-2'}>

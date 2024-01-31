@@ -12,7 +12,7 @@ const Top = ({}) => {
             <div className={'w-[100px] max-md:hidden'}/>
             <div className="flex items-center justify-center gap-2">
                 <div
-                    className="h-fit w-fit text-small text-neutral-50">
+                    className="text-small h-fit w-fit text-neutral-50">
                     {t(GLOBAL_LOCALES.promo)}
                 </div>
                 <Link to={'/'}

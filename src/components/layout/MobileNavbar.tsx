@@ -32,13 +32,13 @@ const MobileNavbar = ({}) => {
     const isAuthPage = location === '/login' || location === '/signup'
 
     return (
-        <nav className={'w-full md:hidden flex justify-between items-center px-4 py-2'}>
+        <nav className={'flex w-full items-center justify-between px-4 py-2 md:hidden'}>
             <DropdownMenu>
                 <DropdownMenuTrigger>
                     <Icon path={hamburger} name={'menu'} size={30}/>
                 </DropdownMenuTrigger>
                 {/*TODO fix dropdown styling*/}
-                <DropdownMenuContent className={'bg-white border-black'}>
+                <DropdownMenuContent className={'border-black bg-white'}>
                     {NAVIGATION_LINKS.map(link => (
                         <DropdownEntry key={link.name} to={link.path} label={t(link.key)}/>
                     ))}

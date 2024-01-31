@@ -3,14 +3,14 @@ import useTimer from '@/hooks/useTimer.ts'
 const Digit = ({name, value}: { name: string, value: number }) => {
     return <div>
         <p className={'text-tiny'}>{name}</p>
-        <p className={'text-black text-[32px] font-bold font-inter leading-[30px] tracking-wider'}>
+        <p className={'font-inter text-[32px] font-bold leading-[30px] tracking-wider text-black'}>
             {value.toString().padStart(2, '0')}
         </p>
     </div>
 }
 
 const Colon = () => (
-    <span className={'text-red-400 text-large font-regular font-inter leading-[30px] tracking-wider'}> : </span>
+    <span className={'text-large font-normal font-inter leading-[30px] tracking-wider text-red-400'}> : </span>
 )
 
 const Timer = ({endTime}: { endTime: Date }) => {

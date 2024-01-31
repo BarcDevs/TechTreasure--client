@@ -46,10 +46,10 @@ const ColorInput = memo(({sizes, setSizes, formControl}: ColorInputProps) => {
                        </>
                    )}/>
         <div
-            className="flex flex-wrap gap-2 mt-2">
+            className="mt-2 flex flex-wrap gap-2">
             {sizes.map(size => (
                 <Badge key={size}
-                       className="px-2 py-1 cursor-pointer"
+                       className="cursor-pointer px-2 py-1"
                        onClick={() => removeSize(size)}>
                     {size}
                 </Badge>

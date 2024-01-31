@@ -164,7 +164,7 @@ const ProductForm = ({product}: ProductFormProps) => {
                     render={({field}) =>
                         (<FormItem>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                <SelectTrigger className="w-full capitalize no-focus">
+                                <SelectTrigger className="no-focus w-full capitalize">
                                     <SelectValue placeholder={field.value ?
                                         Object.values(Categories).find(cat => cat._id === field.value)?.name ?? 'Category'
                                         : 'Category'}/>
@@ -173,7 +173,7 @@ const ProductForm = ({product}: ProductFormProps) => {
                                     {Object.values(Categories).map(category => (
                                         <SelectItem key={category._id}
                                                     value={category._id}
-                                                    className={'capitalize cursor-pointer'}>
+                                                    className={'cursor-pointer capitalize'}>
                                             {category.name}
                                         </SelectItem>
                                     ))}
@@ -189,12 +189,12 @@ const ProductForm = ({product}: ProductFormProps) => {
                 <ColorInput {...{colors, setColors, formControl: form.control}}/>
 
                 {/*region price, stock, shipping fee*/}
-                <div className="w-full flex_row gap-4 md:col-span-2">
+                <div className="flex_row w-full gap-4 md:col-span-2">
                     <FormField name={'stock'}
                                control={form.control}
                                render={({field}) => (
                                    <>
-                                       <Input className="w-1/3 hide-arrows" placeholder="Stock"
+                                       <Input className="hide-arrows w-1/3" placeholder="Stock"
                                               type="number" {...field}/>
                                        <FormMessage/>
                                    </>
@@ -233,7 +233,7 @@ const ProductForm = ({product}: ProductFormProps) => {
                                render={({field}) => (
                                    <>
                                        <RequiredInput>
-                                           <Textarea className="w-full h-32"
+                                           <Textarea className="h-32 w-full"
                                                      placeholder="Product Description"
                                                      {...field as TextareaProps}/>
                                            <FormMessage/>
@@ -258,10 +258,10 @@ const ProductForm = ({product}: ProductFormProps) => {
                 />
 
                 {/*region sale and new*/}
-                <div className="w-full md:col-span-2 grid grid-cols-2 gap-4">
+                <div className="grid w-full grid-cols-2 gap-4 md:col-span-2">
                     <FormField name={'isNew'} control={form.control} render={({field}) => (
                         <FormItem className="flex items-center gap-2">
-                            <Input className="form-checkbox h-5 w-5 text-indigo-600 accent-red-500 mt-2"
+                            <Input className="form-checkbox mt-2 h-5 w-5 text-indigo-600 accent-red-500"
                                    type="checkbox"
                                    id={'is-new'}
                                    {...field as unknown as InputProps}/>
@@ -273,14 +273,14 @@ const ProductForm = ({product}: ProductFormProps) => {
                         <FormField name={'sale'} control={form.control} render={({field}) => (
                             <>
                                 <div
-                                    className={'flex-row-start w-5/6 focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 rounded'}>
-                                    <Input className="w-full rounded-r-none no-focus hide-arrows"
+                                    className={'flex-row-start w-5/6 rounded focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2'}>
+                                    <Input className="no-focus hide-arrows w-full rounded-r-none"
                                            placeholder="Sale Amount"
                                            type="number"
                                            {...field}
                                            max={saleInputMode === '%' ? 100 : undefined}/>
                                     <Select defaultValue="%" onValueChange={handleInputMode}>
-                                        <SelectTrigger className="w-20 rounded-l-none no-focus">
+                                        <SelectTrigger className="no-focus w-20 rounded-l-none">
                                             <SelectValue placeholder="Select"/>
                                         </SelectTrigger>
                                         <SelectContent>
@@ -312,8 +312,8 @@ const ProductForm = ({product}: ProductFormProps) => {
                 </div>
                 {/*endregion*/}
 
-                <div className={'w-full md:col-span-2 flex-center-row mt-4'}>
-                    <Button className="col-span-full md:col-span-1 px-12"
+                <div className={'flex-center-row mt-4 w-full md:col-span-2'}>
+                    <Button className="col-span-full px-12 md:col-span-1"
                             type="submit"
                         // disabled={isPending}
                     >

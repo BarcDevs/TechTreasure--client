@@ -17,7 +17,7 @@ const NavbarLink = ({to, label, location}: { to: string, label: string, location
 
     return (
         <NavLink to={to} end={to === '/'}
-                 className={'whitespace-nowrap text-center text-body text-black'}>
+                 className={'text-body whitespace-nowrap text-center text-black'}>
             {label}
             {isActive &&
                 <Underline/>}

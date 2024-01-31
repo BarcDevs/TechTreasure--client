@@ -42,21 +42,21 @@ const ColorInput = memo(({colors, setColors, formControl}: ColorInputProps) => {
 
 
     return (
-        <FormItem className="w-full flex_col">
+        <FormItem className="flex_col w-full">
             <div
                 className={'flex_row w-full'}>
                 <div
-                    className={'flex-row-start w-5/6 focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 rounded'}>
+                    className={'flex-row-start w-5/6 rounded focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2'}>
                     <Input ref={colorNameRef}
                            name={'name'}
-                           className="w-4/5 rounded-r-none no-focus"
+                           className="no-focus w-4/5 rounded-r-none"
                            placeholder="Add Color"
                            type="text"
                            onKeyDown={key =>
                                key.key === 'Enter' && addColor()}/>
                     <Input ref={colorHexRef}
                            name={'hex'}
-                           className="w-1/5 rounded-l-none no-focus"
+                           className="no-focus w-1/5 rounded-l-none"
                            type="color"/>
                 </div>
                 <FormField name={'colors'}
@@ -64,17 +64,17 @@ const ColorInput = memo(({colors, setColors, formControl}: ColorInputProps) => {
                            render={() => (
                                <FormMessage/>
                            )}/>
-                <Button className="w-1/6 ml-2"
+                <Button className="ml-2 w-1/6"
                         type={'button'}
                         onClick={addColor}>
                     Add
                 </Button>
             </div>
-            <div className="flex flex-wrap gap-2 mt-2">
+            <div className="mt-2 flex flex-wrap gap-2">
                 {colors.map(color => (
                     <Badge
                         key={color.hex}
-                        className="px-2 py-1 cursor-pointer"
+                        className="cursor-pointer px-2 py-1"
                         style={{
                             backgroundColor: color.hex,
                             color: getContrastColor(color.hex)

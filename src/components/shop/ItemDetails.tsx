@@ -36,29 +36,29 @@ const ItemDetails = ({item}: { item: Product }) => {
     }
 
     return (
-        <section className={'w-full flex-row-between max-md:flex-col'}>
+        <section className={'flex-row-between w-full max-md:flex-col'}>
             <section className={'flex-row-between gap-7 max-md:flex-col-reverse'}>
-                {item.images && <ul className={'flex-col-start h-fit max-md:flex_row'}>
+                {item.images && <ul className={'flex-col-start max-md:flex_row h-fit'}>
                     {[mainImage, ...((isColors ? getImagesOfColor(item.images, color!) : item.images) || [])].map(image => image && (
                         <li
                             key={imageUrl(image.path)}
-                            className={'w-[100px] h-[100px] max-md:w-[50px] max-md:h-[50px] cursor-pointer p-6'}
+                            className={'h-[100px] w-[100px] cursor-pointer p-6 max-md:h-[50px] max-md:w-[50px]'}
                             onClick={() => setBigImage(() => image)}>
                             <img src={image.path} alt={item.name}/>
                         </li>
                     ))}
                 </ul>}
-                <div className={'h-[600px] w-[500px] max-md:h-[300px] max-md:w-full p-7 flex-center'}>
-                    <img src={imageUrl(bigImage?.path)} alt={item.name} className={'object-fill w-full'}/>
+                <div className={'flex-center h-[600px] w-[500px] p-7 max-md:h-[300px] max-md:w-full'}>
+                    <img src={imageUrl(bigImage?.path)} alt={item.name} className={'w-full object-fill'}/>
                 </div>
             </section>
-            <section className={'w-[30%] max-md:w-full flex-col-start gap-6'}>
-                <div className={'w-full flex-col-start gap-4'}>
+            <section className={'flex-col-start w-[30%] gap-6 max-md:w-full'}>
+                <div className={'flex-col-start w-full gap-4'}>
                     <h3 className={'text-large-semibold'}>{item.name}</h3>
                     <div className={'flex-row-start gap-2'}>
                         <Rating rating={item.rating}/>
                         <p className={'text-small'}><span className={'opacity-50'}>({item.votes} Reviews) | </span><span
-                            className={`${item.stock > 50 ? 'opacity-60 text-green-500' : 'opacity-100 text-red-500'}`}>
+                            className={`${item.stock > 50 ? 'text-green-500 opacity-60' : 'text-red-500 opacity-100'}`}>
                             {item.stock > 50 ? 'In Stock' : item.stock > 0 ? `Only ${item.stock} left` : 'Out of Stock'}
                         </span></p>
                     </div>
@@ -77,20 +77,20 @@ const ItemDetails = ({item}: { item: Product }) => {
                         <ol className={'flex-row-start gap-4'}>
                             {item.sizes.map(size => (
                                 <li key={size}
-                                    className={`h-6 w-6 cursor-pointer rounded border border-black flex-center ${size === selectedSize ? 'border-red-500 bg-red-500 text-white' : 'bg-neutral-50 text-black'}`}
+                                    className={`flex-center h-6 w-6 cursor-pointer rounded border border-black ${size === selectedSize ? 'border-red-500 bg-red-500 text-white' : 'bg-neutral-50 text-black'}`}
                                     onClick={() => setSelectedSize(() => size)}>
                                     <p className={'text-small-medium uppercase'}>{size}</p>
                                 </li>)
                             )}
                         </ol>
                     </div>}
-                <div className={'flex-row-start gap-4 w-full'}>
+                <div className={'flex-row-start w-full gap-4'}>
                     <QuantitySelector quantity={quantity} setQuantity={setQuantity} max={item.stock}/>
                     <Button text={'Add to Cart'}
-                            onClick={addToCartHandler} className={'px-6 grow'}
+                            onClick={addToCartHandler} className={'grow px-6'}
                     />
                     <button
-                        className={'group border border-black/50 bg-neutral-50 flex-center h-full aspect-square rounded p-1'}
+                        className={'flex-center group aspect-square h-full rounded border border-black/50 bg-neutral-50 p-1'}
                         onClick={addToWishlistHandler}>
                         <Icon path={'/assets/icons/heart.svg'} name={'heart'} size={32}
                               className={'group-hover:hidden'}/>

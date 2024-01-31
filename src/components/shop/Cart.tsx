@@ -18,7 +18,7 @@ const Cart = ({}) => {
         <Table className={'table-fixed'}>
             <TableHeader>
                 <TableRow className={'text-body-medium'}>
-                    <TableHead className={'py-6 pl-10 text-left w-[33%]'}>Product</TableHead>
+                    <TableHead className={'w-[33%] py-6 pl-10 text-left'}>Product</TableHead>
                     <TableHead className={'text-center'}>Price</TableHead>
                     <TableHead className={'text-center'}>Quantity</TableHead>
                     <TableHead className={'text-center'}>Subtotal</TableHead>
@@ -35,7 +35,7 @@ const Cart = ({}) => {
             <TableFooter>
                 <TableRow className={'text-body-medium'}>
                     <TableCell className={'pl-0'}>
-                        <Link className={'flex-row-start pl-10 py-6'} to={'/items'}>
+                        <Link className={'flex-row-start py-6 pl-10'} to={'/items'}>
                             <Button text={'Return to Shop'} variant={'white'}/>
                         </Link>
                     </TableCell>

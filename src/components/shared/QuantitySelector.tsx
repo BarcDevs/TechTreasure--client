@@ -31,9 +31,9 @@ const QuantitySelector = ({quantity, setQuantity, max}: QuantitySelectorProps) =
     }
 
     return (
-        <div className={'h-max flex_row'}>
+        <div className={'flex_row h-max'}>
             <button
-                className={'flex-center bg-red-500 rounded-l border border-red-500 px-2 py-2.5 hover:opacity-90 disabled:opacity-80 disabled:cursor-not-allowed'}
+                className={'flex-center rounded-l border border-red-500 bg-red-500 px-2 py-2.5 hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-80'}
                 disabled={max <= 0}
                 onClick={decrement}>
                 <Icon path={'/assets/icons/minus.svg'} name={'-'} size={24}
@@ -45,9 +45,9 @@ const QuantitySelector = ({quantity, setQuantity, max}: QuantitySelectorProps) =
                    min={1}
                    max={max}
                    onChange={(e) => update(Number(e.target.value))}
-                   className={'w-16 h-full text-center rounded-none border-x-0 border-black hide-arrows text-heading-semibold no-focus'}/>
+                   className={'hide-arrows text-heading-semibold no-focus h-full w-16 rounded-none border-x-0 border-black text-center'}/>
             <button
-                className={'flex-center bg-red-500 rounded-r border border-red-500 px-2 py-2.5 hover:opacity-90 disabled:opacity-80 disabled:cursor-not-allowed'}
+                className={'flex-center rounded-r border border-red-500 bg-red-500 px-2 py-2.5 hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-80'}
                 disabled={max <= 0}
                 onClick={increment}>
                 <Icon path={'/assets/icons/plus.svg'} name={'+'} size={24} className={'invert'}/>

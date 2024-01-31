@@ -59,7 +59,7 @@ const ImageInput = ({images, setImages, type, colors, formControl}: ImageInputPr
                        type="file"/>
                 <Button type={'button'}
                         onClick={() => addImage()}
-                        className="absolute right-2 top-1/2 transform -translate-y-1/2"
+                        className="absolute right-2 top-1/2 -translate-y-1/2"
                         variant="outline">
                     Add
                 </Button>
@@ -68,7 +68,7 @@ const ImageInput = ({images, setImages, type, colors, formControl}: ImageInputPr
                 )}/>
             </div>
 
-            <ul className="flex flex-wrap gap-2 mt-2">
+            <ul className="mt-2 flex flex-wrap gap-2">
                 {images.map(image => (
                     <li key={uuid()}>
                         <img

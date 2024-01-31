@@ -28,7 +28,7 @@ const Header = ({}) => {
                             <SearchIcon
                                 className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400"/>
                             <Input
-                                className="w-full appearance-none bg-white pl-8 shadow-none md:w-2/3 lg:w-1/3 dark:bg-gray-950 no-focus"
+                                className="no-focus w-full appearance-none bg-white pl-8 shadow-none md:w-2/3 lg:w-1/3 dark:bg-gray-950"
                                 placeholder="Search products..."
                                 type="search"
                             />

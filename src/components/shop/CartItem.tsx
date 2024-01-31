@@ -26,7 +26,7 @@ const CartItem = ({item}: { item: CartItemType }) => {
                 <div className={'flex_row items-center justify-start gap-5'}>
                     <div className={'flex-center relative h-[54px] min-h-9 w-[54px] min-w-9'}>
                         <button onClick={handleRemoveItem}
-                                className={'invisible group-hover:visible absolute top-[-4px] left-[-10px]'}>
+                                className={'invisible absolute left-[-10px] top-[-4px] group-hover:visible'}>
                             <Icon path={'/assets/icons/cancel.svg'} name={'remove'}/>
                         </button>
                         <img src={imageUrl(isProductWithColors(item) ?
