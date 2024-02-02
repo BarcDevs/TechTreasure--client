@@ -9,14 +9,16 @@ import {
 import {Button} from '@/components/ui/button.tsx'
 import Icon from '@/components/elements/Icon.tsx'
 import {Link, useLocation} from 'react-router-dom'
+import {useSelector} from 'react-redux'
+import {IRootState} from '@/store'
 
 const UserDropdown = ({}) => {
     const location = useLocation().pathname
     const isAdminPage = location.startsWith('/admin')
+    const user = useSelector((state: IRootState) => state.auth.user)
     const root = isAdminPage ? '/admin/' : '/'
 
     const userImage = "/assets/images/mock-avatar.jpg"
-    // const userImage = null
 
     return (
         <DropdownMenu>
@@ -32,6 +34,8 @@ const UserDropdown = ({}) => {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
                 <DropdownMenuLabel><Link to={`${root}account`}>My Account</Link></DropdownMenuLabel>
+                {!isAdminPage && user?.role === 'seller' &&
+                    <DropdownMenuLabel><Link to={`${root}admin`}>Admin Dashboard</Link></DropdownMenuLabel>}
                 <DropdownMenuSeparator/>
                 <DropdownMenuItem><Link to={`${root}settings`}>Settings</Link></DropdownMenuItem>
                 <DropdownMenuItem><Link to={`${root}support`}>Support</Link></DropdownMenuItem>
