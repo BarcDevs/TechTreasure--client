@@ -15,6 +15,7 @@ import {useDispatch} from 'react-redux'
 import {addToWishlist} from '@/store/wishlistSlice.ts'
 import {addToCart} from '@/store/cartSlice.ts'
 import {isProductWithColors} from '@/lib/utils/product.ts'
+import {imageUrl} from '@/lib/utils/url.ts'
 
 type ItemProps = {
     item: Product
@@ -95,7 +96,7 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
                     </div>
                     <div className={'mx-7 my-6'}>
                         <img className={variant !== 'wishlist' ? 'group-hover:max-h-[145px]' : 'max-h-[145px]'}
-                             src={image}
+                             src={imageUrl(image)}
                              alt="item"/>
                     </div>
                     <button onClick={handleCartClick}

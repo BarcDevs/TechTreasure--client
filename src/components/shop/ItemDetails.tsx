@@ -29,6 +29,13 @@ const ItemDetails = ({item}: { item: Product }) => {
         setBigImage(() => getImagesOfColor(item.mainImage, color!,true)[0])
     }, [color])
 
+    useEffect(() => {
+        setQuantity(item.stock > 0 ? 1 : 0)
+        setSelectedSize((item.sizes || [])[0])
+        setColor((item as ProductWithColors).defaultColor || null)
+        setBigImage(() => mainImage || item.mainImage[0])
+    }, [item, mainImage])
+
     const addToCartHandler = () => {
         dispatch(addToCart({item, quantity, variant: {color: color ?? undefined, size: selectedSize}}))
     }
