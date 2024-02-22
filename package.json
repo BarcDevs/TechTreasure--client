@@ -4,10 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite -r dotenv/config",
-    "build": "tsc && vite -r dotenv/config build",
+    "dev": "vite",
+    "build": "tsc && node -r dotenv/config ./node_modules/.bin/vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite -r dotenv/config preview"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
