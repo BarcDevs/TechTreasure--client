@@ -3,6 +3,8 @@ import Cookies from 'js-cookie'
 import {QueryClient} from '@tanstack/react-query'
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL
+console.log(import.meta.env)
+console.log(SERVER_URL)
 const api = axios.create({
     baseURL: `${SERVER_URL}/api`,
     withCredentials: true,
