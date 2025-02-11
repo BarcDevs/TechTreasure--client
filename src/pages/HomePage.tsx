@@ -9,6 +9,7 @@ import {useTranslation} from 'react-i18next'
 import {useQuery} from '@tanstack/react-query'
 import {getProducts} from '@/api/products.ts'
 import {Product} from '@/types'
+import {config} from '@/config'
 
 const HomePage = ({}) => {
     const {t} = useTranslation(I18N_NAMESPACES.homepage)
@@ -30,7 +31,7 @@ const HomePage = ({}) => {
                 name={t(HOMEPAGE_LOCALES.flashSalesTitle)}
                 headline={t(HOMEPAGE_LOCALES.flashSalesHeadline)}
                 items={items.data} scroll={'horizontal'}
-                timerEnd={new Date('2024-01-20')}
+                timerEnd={config.TIMER_END_TIME}
                 isFetching={items.isFetching}/>
             <CategoryRow name={t(HOMEPAGE_LOCALES.categoriesTitle)} headline={t(HOMEPAGE_LOCALES.categoriesHeadline)}
                          categories={Object.values(Categories)}/>
