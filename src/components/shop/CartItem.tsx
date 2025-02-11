@@ -26,7 +26,7 @@ const CartItem = ({item}: { item: CartItemType }) => {
         <TableRow key={item._id} className={'text-body group h-[100px] items-center'}>
             <TableCell className={'pl-10'}>
                 <div className={'flex_row items-center justify-start gap-5'}>
-                    <div className={'flex-center relative h-[54px] min-h-9 w-[54px] min-w-9'}>
+                    <div className={'flex-center relative size-[54px] min-h-9 min-w-9'}>
                         <button onClick={handleRemoveItem}
                                 className={'invisible absolute left-[-10px] top-[-4px] group-hover:visible'}>
                             <Icon path={'/assets/icons/cancel.svg'} name={'remove'}/>

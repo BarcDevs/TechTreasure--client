@@ -51,6 +51,7 @@
     "signup": "Sign up",
     "createAccount": "Create Account",
     "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?",
     "forgotPassword": "Forgot Password?",
     "withGoogle": "with Google"
   },
