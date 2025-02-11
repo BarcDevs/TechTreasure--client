@@ -9,14 +9,14 @@ export const ITEMS: Product[] = [
         name: 'HAVIT HV-G92 Gamepad',
         description: customDescription,
         mainImage: [
-            {color: 'white', path: '/assets/images/items/item-1-white.png'},
-            {color: 'red', path: '/assets/images/items/item-1-red.png'}
+            {color: 'white', path: 'item-1-white.png'},
+            {color: 'red', path: 'item-1-red.png'}
         ],
         images: [
-            {color: 'white', path: '/assets/images/items/item-1-white-1.png'},
-            {color: 'white', path: '/assets/images/items/item-1-white-2.png'},
-            {color: 'white', path: '/assets/images/items/item-1-white-3.png'},
-            {color: 'white', path: '/assets/images/items/item-1-white-4.png'}
+            {color: 'white', path: 'item-1-white-1.png'},
+            {color: 'white', path: 'item-1-white-2.png'},
+            {color: 'white', path: 'item-1-white-3.png'},
+            {color: 'white', path: 'item-1-white-4.png'}
         ],
         rating: 4.3,
         votes: 584,
@@ -38,7 +38,7 @@ export const ITEMS: Product[] = [
         _id: "i110",
         name: 'AK-900 Wired Keyboard',
         description: customDescription,
-        mainImage: [{path: '/assets/images/items/item-2.png'}],
+        mainImage: [{path: 'item-2.png'}],
         rating: 4.8,
         votes: 283,
         sale: 35,
@@ -53,7 +53,7 @@ export const ITEMS: Product[] = [
         _id: "i111",
         name: 'IPS LCD Gaming Monitor',
         description: customDescription,
-        mainImage: [{path: '/assets/images/items/item-3.png'}],
+        mainImage: [{path: 'item-3.png'}],
         rating: 4.9,
         votes: 157,
         price: 370,
@@ -68,7 +68,7 @@ export const ITEMS: Product[] = [
         _id: "i112",
         name: 'RGB liquid CPU Cooler',
         description: customDescription,
-        mainImage: [{path: '/assets/images/items/item-4.png'}],
+        mainImage: [{path: 'item-4.png'}],
         rating: 4.1,
         votes: 97,
         price: 160,
@@ -83,7 +83,7 @@ export const ITEMS: Product[] = [
         _id: "i113",
         name: 'ASUS FHD Gaming Laptop',
         description: customDescription,
-        mainImage: [{path: '/assets/images/items/item-5.png'}],
+        mainImage: [{path: 'item-5.png'}],
         rating: 5,
         votes: 987,
         price: 700,
@@ -97,8 +97,8 @@ export const ITEMS: Product[] = [
         name: 'GP11 Shooter USB Gamepad',
         description: customDescription,
         mainImage: [
-            {color: 'red', path: '/assets/images/items/item-6.png'},
-            {color: 'black', path: '/assets/images/items/item-6.png'}
+            {color: 'red', path: 'item-6.png'},
+            {color: 'black', path: 'item-6.png'}
         ],
         rating: 3.8,
         votes: 109,
