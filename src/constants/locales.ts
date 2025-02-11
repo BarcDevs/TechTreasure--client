@@ -63,6 +63,7 @@ export enum AUTH_LOCALES {
     signup = 'signup',
     createAccount = 'createAccount',
     alreadyHaveAccount = 'alreadyHaveAccount',
+    dontHaveAccount = 'dontHaveAccount',
     forgotPassword = 'forgotPassword',
     withGoogle = 'withGoogle'
 }
