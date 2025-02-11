@@ -55,8 +55,8 @@ const SignupForm = ({}) => {
                 {isError && <ErrorMessage
                     message={getErrorMessage(error)}/>}
                 <div className={'flex-center-row gap-4'}>
-                    <p className={'text-body'}>Already have an account?</p>
-                    <Link to={'/login'} className={'text-body-medium underline'}>Log in</Link>
+                    <p className={'text-body'}>{t(AUTH_LOCALES.alreadyHaveAccount)}</p>
+                    <Link to={'/login'} className={'text-body-medium underline'}>{t(AUTH_LOCALES.login)}</Link>
                 </div>
             </form>
         </Form>

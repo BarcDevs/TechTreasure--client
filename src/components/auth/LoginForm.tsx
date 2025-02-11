@@ -44,14 +44,14 @@ const LoginForm = ({}) => {
                            formControl={form.control}/>
                 <div className={'flex-row-between gap-4'}>
                     <Button className={'capitalize'} type="submit" text={t(AUTH_LOCALES.login)}/>
-                    <Button className={'text-body bg-neutral-50 px-0 text-red-500'}
+                    <Button className={'text-body bg-neutral-50 px-2 py-1 text-red-500'}
                             text={t(AUTH_LOCALES.forgotPassword)}/>
                 </div>
                 {isError && <ErrorMessage message={getErrorMessage(error)}/>}
                 <Button className={'w-full'} variant={'white'}
                         text={`${t(AUTH_LOCALES.login)} ${t(AUTH_LOCALES.withGoogle)}`}/>
                 <div className={'flex-center-row gap-4'}>
-                    <p className={'text-body'}>{t(AUTH_LOCALES.alreadyHaveAccount)}</p>
+                    <p className={'text-body'}>{t(AUTH_LOCALES.dontHaveAccount)}</p>
                     <Link to={'/signup'} className={'text-body-medium underline'}>{t(AUTH_LOCALES.signup)}</Link>
                 </div>
             </form>
