@@ -48,7 +48,7 @@ const LoginForm = ({}) => {
                             text={t(AUTH_LOCALES.forgotPassword)}/>
                 </div>
                 {isError && <ErrorMessage message={getErrorMessage(error)}/>}
-                <Button className={'w-full'} variant={'white'}
+                <Button className={'w-full'} variant={'white'} type={'button'}
                         text={`${t(AUTH_LOCALES.login)} ${t(AUTH_LOCALES.withGoogle)}`}/>
                 <div className={'flex-center-row gap-4'}>
                     <p className={'text-body'}>{t(AUTH_LOCALES.dontHaveAccount)}</p>
