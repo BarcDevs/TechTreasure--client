@@ -14,12 +14,15 @@ import {BillingOptions} from '@/pages/CheckoutPage.tsx'
 import CheckoutItem from '@/components/checkout/CheckoutItem.tsx'
 import {IRootState} from '@/store'
 import {useSelector} from 'react-redux'
+import {CART_LOCALES, CHECKOUT_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
+import {useTranslation} from 'react-i18next'
 
 type CheckoutSummaryProps = {
     onSubmit: (billingOptions: BillingOptions) => void
 }
 
 const CheckoutSummary = ({onSubmit}: CheckoutSummaryProps) => {
+    const {t} = useTranslation(I18N_NAMESPACES.checkout)
     const cart = useSelector((state: IRootState) => state.cart)
     const creditCardFormRef = useRef<FormRef | null>(null)
     const [billingMethod, setBillingMethod] = useState<'cash' | 'creditCard'>('creditCard')
@@ -64,7 +67,7 @@ const CheckoutSummary = ({onSubmit}: CheckoutSummaryProps) => {
                                     className={'border-black text-black'}
                                     defaultChecked/>
                     <Label className={'flex-row-between grow items-center'} htmlFor={'creditCard'}>
-                        <p>Credit Card</p>
+                        <p>{t(CHECKOUT_LOCALES.creditCard)}</p>
                         <div className={'flex_row h-7 gap-2'}>
                             <img src={visa} alt="visa"/>
                             <img src={mastercard} alt="mastercard"/>
@@ -81,16 +84,16 @@ const CheckoutSummary = ({onSubmit}: CheckoutSummaryProps) => {
                                     className={'border-black text-black'}
                     />
                     <Label htmlFor={'cash'}>
-                        Cash on delivery
+                        {t(CHECKOUT_LOCALES.cash)}
                     </Label>
                 </div>
             </RadioGroup>
             <div className={'lg:flex_row flex_col gap-4'}>
                 <Input className={'no-focus text-body h-12 min-w-48 border-black placeholder:opacity-50'}
-                       placeholder={'Coupon Code'}/>
-                <Button className={'whitespace-nowrap text-nowrap'} text={'Apply Coupon'}/>
+                       placeholder={t(CART_LOCALES.couponCode, {ns: I18N_NAMESPACES.cart})}/>
+                <Button className={'whitespace-nowrap text-nowrap'} text={t(CART_LOCALES.applyCoupon, {ns: I18N_NAMESPACES.cart})}/>
             </div>
-            <Button text={'Place Order'} onClick={handlePlaceOrder}/>
+            <Button text={t(CHECKOUT_LOCALES.placeOrder)} onClick={handlePlaceOrder}/>
         </section>
     )
 }
