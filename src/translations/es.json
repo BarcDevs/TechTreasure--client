@@ -18,7 +18,12 @@
 
     "notFoundHeadline": "Página No Encontrada",
     "notFoundText": "La página que buscas no existe.",
-    "backToHome": "Volver al Inicio"
+    "backToHome": "Volver al Inicio",
+
+    "days": "Días",
+    "hours": "Horas",
+    "minutes": "Minutos",
+    "seconds": "Segundos"
   },
   "homepage": {
     "flashSalesTitle": "Hoy",
@@ -95,7 +100,41 @@
     "software": "Software",
     "techServices": "Servicios Tecnológicos"
   },
-  "shop": {
-    "addToCart": "Añadir al Carrito"
+  "cart": {
+    "addToCart": "Añadir al Carrito",
+    "product": "Producto",
+    "price": "Precio",
+    "quantity": "Cantidad",
+    "subtotal": "Subtotal",
+    "applyCoupon": "Aplicar Cupón",
+    "couponCode": "Código de Cupón",
+    "proceedToCheckout": "Proceder al Pago",
+    "cartIsEmpty": "El Carrito Está Vacío",
+    "returnToShop": "Volver a la Tienda",
+    "resetCart": "Restablecer Carrito",
+    "cartTotal": "Total del Carrito",
+    "total": "Total",
+    "shipping": "Envío",
+    "discount": "Descuento",
+    "free": "Gratis"
+  },
+  "checkout": {
+    "checkout": "Finalizar Compra",
+    "name": "Nombre",
+    "company": "Nombre de la Empresa",
+    "address": "Dirección",
+    "additionalAddress": "Apartamento, piso, etc. (opcional)",
+    "city": "Ciudad",
+    "country": "País",
+    "postcode": "Código Postal (ZIP)",
+    "phone": "Número de Teléfono",
+    "email": "Correo Electrónico",
+    "saveDetails": "Guardar esta información para un pago más rápido la próxima vez",
+    "creditCard": "Tarjeta de Crédito",
+    "cardNumber": "Número de Tarjeta",
+    "month": "Mes",
+    "year": "Año",
+    "cash": "Pago Contra Entrega",
+    "placeOrder": "Realizar Pedido"
   }
 }

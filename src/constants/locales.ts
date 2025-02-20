@@ -7,6 +7,8 @@ export enum I18N_NAMESPACES {
     footerLinks = 'footerLinks',
     categories = 'categories',
     shop = 'shop'
+    shop = 'shop',
+    cart = 'cart',
 }
 
 export enum GLOBAL_LOCALES {
@@ -66,4 +68,23 @@ export enum AUTH_LOCALES {
     dontHaveAccount = 'dontHaveAccount',
     forgotPassword = 'forgotPassword',
     withGoogle = 'withGoogle'
+}
+
+export enum CART_LOCALES {
+    addToCart = 'addToCart',
+    product = 'product',
+    price = 'price',
+    quantity = 'quantity',
+    subtotal = 'subtotal',
+    applyCoupon = 'applyCoupon',
+    couponCode = 'couponCode',
+    proceedToCheckout = 'proceedToCheckout',
+    cartIsEmpty = 'cartIsEmpty',
+    returnToShop = 'returnToShop',
+    reset = 'resetCart',
+    cartTotal = 'cartTotal',
+    total = 'total',
+    shipping = 'shipping',
+    discount = 'discount',
+    free = 'free'
 }

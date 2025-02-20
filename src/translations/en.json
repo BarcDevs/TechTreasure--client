@@ -18,7 +18,12 @@
 
     "notFoundHeadline": "Page Not Found",
     "notFoundText": "The page you are looking for does not exist.",
-    "backToHome": "Back To Home"
+    "backToHome": "Back To Home",
+
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds"
   },
   "homepage": {
     "flashSalesTitle": "Today's",
@@ -95,7 +100,41 @@
     "software": "Software",
     "techServices": "Tech Services"
   },
-  "shop": {
-    "addToCart": "Add To Cart"
+  "cart": {
+    "addToCart": "Add To Cart",
+    "product": "Product",
+    "price": "Price",
+    "quantity": "Quantity",
+    "subtotal": "Subtotal",
+    "applyCoupon": "Apply Coupon",
+    "couponCode": "Coupon Code",
+    "proceedToCheckout": "Proceed To Checkout",
+    "cartIsEmpty": "Cart Is Empty",
+    "returnToShop": "Return To Shop",
+    "resetCart": "Reset Cart",
+    "cartTotal": "Cart Total",
+    "total": "Total",
+    "shipping": "Shipping",
+    "discount": "Discount",
+    "free": "Free"
+  },
+  "checkout": {
+    "checkout": "Checkout",
+    "name": "Name",
+    "company": "Company Name",
+    "address": "Address",
+    "additionalAddress": "Apartment, floor, etc. (optional)",
+    "city": "City",
+    "country": "Country",
+    "postcode": "Postcode (ZIP)",
+    "phone": "Phone Number",
+    "email": "Email Address",
+    "saveDetails": "Save this information for faster check-out next time",
+    "creditCard": "Credit Card",
+    "cardNumber": "Card Number",
+    "month": "Month",
+    "year": "Year",
+    "cash": "Cash on Delivery",
+    "placeOrder": "Place Order"
   }
 }
