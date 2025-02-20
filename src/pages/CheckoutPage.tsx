@@ -26,7 +26,7 @@ const CheckoutPage = ({}) => {
     return (
         <main className={'flex_col ml-[5vw] w-[90vw] gap-12 max-sm:ml-[2.5vw] max-sm:w-[95vw]'}>
             <h2 className={'text-big-medium'}>Checkout</h2>
-            <div className={'flex-row-between gap-20'}>
+            <div className={'md:flex-row-between mb-10 gap-20'}>
                 <CheckoutForm ref={userInfoRef} {...{saveDetails, setSaveDetails}}/>
                 <CheckoutSummary {...{onSubmit: handleSubmit}}/>
             </div>

@@ -43,7 +43,7 @@ const CheckoutSummary = ({onSubmit}: CheckoutSummaryProps) => {
     }
 
     return (
-        <section className={'text-body flex-col-start w-[33vw] gap-8'}>
+        <section className={'text-body flex-col-start w-[33vw] gap-8 max-lg:w-full max-lg:pt-8 max-md:pr-5'}>
             <div className={'flex-col-start w-full gap-8'}>
                 {cart.items.map(item => (
                     <CheckoutItem item={item} key={item._id}/>
@@ -85,8 +85,8 @@ const CheckoutSummary = ({onSubmit}: CheckoutSummaryProps) => {
                     </Label>
                 </div>
             </RadioGroup>
-            <div className={'flex_row gap-4'}>
-                <Input className={'no-focus text-body h-12 min-w-[12rem] border-black placeholder:opacity-50'}
+            <div className={'lg:flex_row flex_col gap-4'}>
+                <Input className={'no-focus text-body h-12 min-w-48 border-black placeholder:opacity-50'}
                        placeholder={'Coupon Code'}/>
                 <Button className={'whitespace-nowrap text-nowrap'} text={'Apply Coupon'}/>
             </div>

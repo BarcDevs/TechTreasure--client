@@ -59,7 +59,7 @@ const CheckoutForm = forwardRef(({saveDetails, setSaveDetails}: CheckoutFormProp
     return (
         <Form {...form}>
             {/* TODO: add saved addresses */}
-            <form onBlur={handleFormBlur} className={'flex_col w-[33vw] gap-2'}>
+            <form onBlur={handleFormBlur} className={'flex_col w-full gap-2 max-lg:pr-5'}>
                 {FIELDS.map((field) => (
                     <FormInput
                         className={'rounded-none border-x-0 border-t-0 border-black'}
@@ -71,7 +71,7 @@ const CheckoutForm = forwardRef(({saveDetails, setSaveDetails}: CheckoutFormProp
                     />
                 ))}
             <div className={'flex-row-start mt-4 gap-4'}>
-                <Input className={'h-6 w-6 rounded accent-red-500'} type={'checkbox'} checked={saveDetails}
+                <Input className={'size-6 rounded accent-red-500'} type={'checkbox'} checked={saveDetails}
                        onChange={() => setSaveDetails(!saveDetails)}/>
                 <p className={'text-body'}>Save this information for faster check-out next time</p>
             </div>
