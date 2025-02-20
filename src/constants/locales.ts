@@ -31,6 +31,11 @@ export enum GLOBAL_LOCALES {
     notFoundHeadline = 'notFoundHeadline',
     notFoundText = 'notFoundText',
     backToHome = 'backToHome',
+
+    days = 'days',
+    hours = 'hours',
+    minutes = 'minutes',
+    seconds = 'seconds'
 }
 
 export enum HOMEPAGE_LOCALES {
