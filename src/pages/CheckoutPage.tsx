@@ -16,6 +16,7 @@ const CheckoutPage = ({}) => {
     const userInfoRef = useRef<FormRef | null>(null)
     const [saveDetails, setSaveDetails] = useState(true)
 
+    // todo: handle checkout
     const handleSubmit = (billingOptions: BillingOptions) => {
         const userInformation = userInfoRef.current?.submit()
         if (!userInformation) return
