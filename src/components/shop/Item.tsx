@@ -7,7 +7,7 @@ import trash from '/assets/icons/trash.svg'
 import {Product, ProductWithColors} from '@/types'
 import {useNavigate} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
-import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
+import {CART_LOCALES, GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 import {getImagesOfColor} from '@/lib/utils/image.ts'
 import {useState} from 'react'
 import ColorPicker from '@/components/shared/ColorPicker.tsx'
@@ -102,7 +102,7 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
                     <button onClick={handleCartClick}
                             className={`text-body-medium flex-center invisible absolute bottom-3 left-0 h-10 w-full rounded-b bg-black text-neutral-50 ${variant !== 'wishlist' ? 'group-hover:' : ''}visible`}>
 
-                        {t('addToCart')}
+                        {t(CART_LOCALES.addToCart, {ns: I18N_NAMESPACES.cart})}
                     </button>
                 </CardContent>
                 <CardFooter className={'text-body-medium flex-col-start gap-2'}>
