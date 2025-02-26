@@ -1,4 +1,4 @@
-import {Card, CardContent, CardFooter} from "@/components/ui/card.tsx"
+import {Card, CardContent, CardFooter} from '@/components/ui/card.tsx'
 import Rating from '@/components/elements/Rating.tsx'
 import Icon from '@/components/elements/Icon.tsx'
 import eye from '/assets/icons/eye.svg'
@@ -95,9 +95,10 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
                             </button>}
                     </div>
                     <div className={'mx-7 my-6'}>
-                        <img className={variant !== 'wishlist' ? 'group-hover:max-h-[145px]' : 'max-h-[145px]'}
-                             src={imageUrl(image)}
-                             alt="item"/>
+                        <img
+                            className={variant !== 'wishlist' ? 'group-hover:max-h-[145px]' : 'max-h-[145px]'}
+                            src={image ? imageUrl(image) : 'assets/images/items/imageNotFound.png'}
+                            alt="item"/>
                     </div>
                     <button onClick={handleCartClick}
                             className={`text-body-medium flex-center invisible absolute bottom-3 left-0 h-10 w-full rounded-b bg-black text-neutral-50 ${variant !== 'wishlist' ? 'group-hover:' : ''}visible`}>
@@ -111,7 +112,8 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
                     </div>
                     <div className="inline-flex-start gap-3">
                         <div className="text-red-500">${Math.round(item.price)}</div>
-                        {item.oldPrice && <div className="text-black line-through opacity-50">${Math.round(item.oldPrice)}</div>}
+                        {item.oldPrice &&
+                            <div className="text-black line-through opacity-50">${Math.round(item.oldPrice)}</div>}
                     </div>
                     {variant !== 'wishlist' && <div className="inline-flex-start gap-2">
                         <Rating rating={item.rating}/>
