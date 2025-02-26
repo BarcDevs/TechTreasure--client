@@ -5,7 +5,7 @@ import visa from '/assets/icons/visa.svg'
 import mastercard from '/assets/icons/mastercard.svg'
 import americanExpress from '/assets/icons/american-express.svg'
 import {useRef, useState} from 'react'
-import CreditCardForm from '@/components/checkout/CreditCardForm.tsx'
+// import CreditCardForm from '@/components/checkout/CreditCardForm.tsx'
 import {Input} from '@/components/ui/input.tsx'
 import Button from '@/components/elements/Button.tsx'
 import {FormRef} from '@/types/ui'
@@ -16,6 +16,7 @@ import {IRootState} from '@/store'
 import {useSelector} from 'react-redux'
 import {CART_LOCALES, CHECKOUT_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 import {useTranslation} from 'react-i18next'
+import {PaymentElement} from '@stripe/react-stripe-js'
 
 type CheckoutSummaryProps = {
     onSubmit: (billingOptions: BillingOptions) => void
@@ -68,15 +69,17 @@ const CheckoutSummary = ({onSubmit}: CheckoutSummaryProps) => {
                                     defaultChecked/>
                     <Label className={'flex-row-between grow items-center'} htmlFor={'creditCard'}>
                         <p>{t(CHECKOUT_LOCALES.creditCard)}</p>
-                        <div className={'flex_row h-7 gap-2'}>
-                            <img src={visa} alt="visa"/>
-                            <img src={mastercard} alt="mastercard"/>
-                            <img src={americanExpress} alt="american express"/>
-                        </div>
+                        {billingMethod === 'cash' &&
+                            <div className={'flex_row h-7 gap-2'}>
+                                <img src={visa} alt="visa"/>
+                                <img src={mastercard} alt="mastercard"/>
+                                <img src={americanExpress} alt="american express"/>
+                            </div>}
                     </Label>
                 </div>
                 {billingMethod === 'creditCard' && (
-                    <CreditCardForm ref={creditCardFormRef} onSubmit={handleSubmit}/>
+                    // <CreditCardForm ref={creditCardFormRef} onSubmit={handleSubmit}/>
+                    <PaymentElement/>
                 )}
                 <div className={'flex_row items-center justify-start gap-4'}>
                     <RadioGroupItem id={'cash'}
@@ -91,7 +94,8 @@ const CheckoutSummary = ({onSubmit}: CheckoutSummaryProps) => {
             <div className={'lg:flex_row flex_col gap-4'}>
                 <Input className={'no-focus text-body h-12 min-w-48 border-black placeholder:opacity-50'}
                        placeholder={t(CART_LOCALES.couponCode, {ns: I18N_NAMESPACES.cart})}/>
-                <Button className={'whitespace-nowrap text-nowrap'} text={t(CART_LOCALES.applyCoupon, {ns: I18N_NAMESPACES.cart})}/>
+                <Button className={'whitespace-nowrap text-nowrap'}
+                        text={t(CART_LOCALES.applyCoupon, {ns: I18N_NAMESPACES.cart})}/>
             </div>
             <Button text={t(CHECKOUT_LOCALES.placeOrder)} onClick={handlePlaceOrder}/>
         </section>
