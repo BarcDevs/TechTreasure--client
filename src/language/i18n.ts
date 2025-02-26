@@ -1,7 +1,6 @@
 import i18n from 'i18next'
 import {initReactI18next} from 'react-i18next'
-
-const language = localStorage.getItem('language') || 'en'
+import language from '@/language/index.ts'
 
 export default i18n.use(initReactI18next)
     .init({
@@ -12,10 +11,10 @@ export default i18n.use(initReactI18next)
         },
         resources: {
             en: {
-                ...(await import('./translations/en.json')).default
+                ...(await import('../translations/en.json')).default
             },
             es: {
-                ...(await import('./translations/es.json')).default
+                ...(await import('../translations/es.json')).default
             }
         }
     })
