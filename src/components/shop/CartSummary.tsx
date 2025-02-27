@@ -14,14 +14,24 @@ const CartSummary = ({}) => {
     const cart = useSelector((state: IRootState) => state.cart)
     const handleCoupon = (e: React.FormEvent) => {
         e.preventDefault()
-        console.log('apply coupon')
         // todo real coupon system
-        dispatch(updateDiscount({...cart.discount, percent: (cart.discount?.percent ?? 0) + 5}))
+        const form = new FormData(e.currentTarget as HTMLFormElement)
+        const coupon = form.get('coupon') as string
+
+        console.log(coupon)
+
+        coupon === '5percent' &&
+        dispatch(
+            updateDiscount({
+                ...cart.discount, percent: (cart.discount?.percent ?? 0) + 5
+            })
+        )
     }
 
     return (
         <section className={'flex_row max-lg:flex-center-col w-full items-start justify-between px-10 max-lg:gap-8'}>
-            <form className={'flex_row gap-4'} onSubmit={handleCoupon}>
+            <form className={'flex_row gap-4'}
+                  onSubmit={handleCoupon}>
                 <Input className={'no-focus text-body h-12 min-w-48 border-black placeholder:opacity-50'}
                        name={'coupon'}
                        placeholder={t(CART_LOCALES.couponCode)}/>
