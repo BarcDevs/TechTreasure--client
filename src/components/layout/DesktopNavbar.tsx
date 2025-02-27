@@ -46,7 +46,7 @@ const DesktopNavbar = ({}) => {
                     {NAVIGATION_LINKS.map(link => (
                         <NavbarLink key={link.name} to={link.path} label={t(link.key)} location={location}/>
                     ))}
-                    {!isLoggedIn && <NavbarLink to={'/signup'} label={t('signup')} location={location}/>}
+                    {!isLoggedIn && <NavbarLink to={'/login'} label={t('login')} location={location}/>}
                 </div>
                 {/*search & cart*/}
                 <div className={'inline-flex gap-6'}>
