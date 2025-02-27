@@ -44,7 +44,9 @@ const CartSummary = ({}) => {
                 <Summary subtotal={cart.subtotal} shipping={cart.shipping || 0} total={cart.total}
                          discount={cart.cartDiscount}/>
                 <Link to={'/checkout'}>
-                    <Button text={t(CART_LOCALES.proceedToCheckout)}/>
+                    <Button
+                        disabled={cart.total === 0}
+                        text={t(CART_LOCALES.proceedToCheckout)}/>
                 </Link>
             </div>
         </section>
