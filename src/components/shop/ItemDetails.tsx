@@ -63,7 +63,7 @@ const ItemDetails = ({item}: { item: Product }) => {
                         [])].map(image => image && (
                         <li
                             key={imageUrl(image.path)}
-                            className={'h-[100px] w-[100px] cursor-pointer p-6 max-md:h-[50px] max-md:w-[50px]'}
+                            className={'size-[100px] cursor-pointer p-6 max-md:size-[50px]'}
                             onClick={() => setBigImage(() => image)}>
                             <img src={image.path ? imageUrl(image.path) : 'assets/images/items/imageNotFound.png'}
                                  alt={item.name}/>
@@ -99,7 +99,7 @@ const ItemDetails = ({item}: { item: Product }) => {
                         <ol className={'flex-row-start gap-4'}>
                             {item.sizes.map(size => (
                                 <li key={size}
-                                    className={`flex-center h-6 w-6 cursor-pointer rounded border border-black ${size === selectedSize ? 'border-red-500 bg-red-500 text-white' : 'bg-neutral-50 text-black'}`}
+                                    className={`flex-center size-6 cursor-pointer rounded border border-black ${size === selectedSize ? 'border-red-500 bg-red-500 text-white' : 'bg-neutral-50 text-black'}`}
                                     onClick={() => setSelectedSize(() => size)}>
                                     <p className={'text-small-medium uppercase'}>{size}</p>
                                 </li>)
