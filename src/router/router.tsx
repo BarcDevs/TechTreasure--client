@@ -97,6 +97,9 @@ export const router = createBrowserRouter([
             {
                 path: 'about'
                 // element: <AboutPage/>
+                path: 'about',
+                element: <AboutUsPage/>
+            },
             },
             {
                 path: 'success',
