@@ -37,8 +37,7 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
 
     const isColors = isProductWithColors(item)
     const [color, setColor] = useState((item as ProductWithColors).defaultColor || null)
-    const image = isColors ? getImagesOfColor(item.mainImage, color!, true)[0]?.path : item.mainImage[0].path
-
+    const imagePath = isColors ? getImagesOfColor(item.mainImage, color!, true)[0]?.path : item.mainImage[0].path
     const handleCardClick = () => {
         navigate(`/items/${item._id}`)
     }
@@ -110,7 +109,7 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
                     <div className={'mx-7 my-6'}>
                         <img
                             className={variant !== 'wishlist' ? 'group-hover:max-h-[145px]' : 'max-h-[145px]'}
-                            src={image ? imageUrl(image) : 'assets/images/items/imageNotFound.png'}
+                            src={imagePath ? imageUrl(imagePath) : imageUrl(item.mainImage[0].path)}
                             alt="item"/>
                     </div>
                     <button onClick={handleCartClick}

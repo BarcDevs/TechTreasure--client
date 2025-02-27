@@ -59,12 +59,14 @@ const ItemDetails = ({item}: { item: Product }) => {
         <section className={'flex-row-between w-full max-md:flex-col'}>
             <section className={'flex-row-between gap-7 max-md:flex-col-reverse'}>
                 {item.images && <ul className={'flex-col-start max-md:flex_row h-fit'}>
-                    {[mainImage, ...((isColors ? getImagesOfColor(item.images, color!) : item.images) || [])].map(image => image && (
+                    {[mainImage, ...((isColors ? getImagesOfColor(item.images, color!) : item.images) ||
+                        [])].map(image => image && (
                         <li
                             key={imageUrl(image.path)}
                             className={'h-[100px] w-[100px] cursor-pointer p-6 max-md:h-[50px] max-md:w-[50px]'}
                             onClick={() => setBigImage(() => image)}>
-                            <img src={image.path} alt={item.name}/>
+                            <img src={image.path ? imageUrl(image.path) : 'assets/images/items/imageNotFound.png'}
+                                 alt={item.name}/>
                         </li>
                     ))}
                 </ul>}
