@@ -14,6 +14,9 @@ import EditItemPage from '@/pages/admin/EditItemPage.tsx'
 import Logout from '@/pages/Logout.ts'
 import store from '@/store'
 import {loadAuthState} from '@/store/authSlice.ts'
+import SuccessPage from '@/pages/SuccessPage.tsx'
+import AboutUsPage from '@/pages/AboutUsPage.tsx'
+import ComingSoon from '@/pages/ComingSoon.tsx'
 
 export const router = createBrowserRouter([
     {
@@ -96,8 +99,8 @@ export const router = createBrowserRouter([
                 // element: <AboutPage/>
             },
             {
-                path: 'contact'
-                // element: <ContactPage/>
+                path: 'success',
+                element: <SuccessPage/>
             },
 
             {
