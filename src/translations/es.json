@@ -20,6 +20,9 @@
     "notFoundText": "La página que buscas no existe.",
     "backToHome": "Volver al Inicio",
 
+    "successHeadline": "Pedido Realizado con Éxito",
+    "successText": "Tu pedido ha sido realizado con éxito. Gracias por comprar con nosotros.",
+
     "days": "Días",
     "hours": "Horas",
     "minutes": "Minutos",
@@ -135,6 +138,11 @@
     "month": "Mes",
     "year": "Año",
     "cash": "Pago Contra Entrega",
-    "placeOrder": "Realizar Pedido"
+    "placeOrder": "Realizar Pedido",
+    "emptyCart": "El Carrito Está Vacío"
+  },
+  "about": {
+    "aboutUsHeadline": "Sobre Nosotros",
+    "aboutUsText": "Bienvenido a TechTreasure – ¡tu destino único para todo lo relacionado con la electrónica! Nos apasiona traer los productos tecnológicos más innovadores y modernos directamente a tu puerta, con un enfoque en calidad, valor y satisfacción del cliente.\n\nEn TechTreasure, creemos que la tecnología debe mejorar tu vida. Ya sea que busques los últimos teléfonos inteligentes, dispositivos de vanguardia, sistemas de entretenimiento en casa o accesorios para computadoras, tenemos todo lo que necesitas. Nuestro equipo selecciona cuidadosamente cada artículo, asegurándose de que cumpla con los más altos estándares de rendimiento y fiabilidad.\n\nNos enorgullece ofrecerte una experiencia de compra fácil y fluida: desde navegar por nuestra extensa colección hasta disfrutar de una entrega rápida y confiable. Nuestro compromiso con un excelente servicio al cliente significa que siempre estamos aquí para ayudarte, ya sea que tengas preguntas sobre un producto o necesites asistencia con tu pedido.\n\nGracias por elegir TechTreasure. Estamos aquí para ayudarte a encontrar la tecnología que necesitas, a precios que te encantarán."
   }
 }
