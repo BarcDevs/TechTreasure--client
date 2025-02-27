@@ -15,6 +15,9 @@ export default i18n.use(initReactI18next)
             },
             es: {
                 ...(await import('../translations/es.json')).default
+            },
+            ru: {
+                ...(await import('../translations/ru.json')).default
             }
         }
     })
