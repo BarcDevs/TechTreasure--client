@@ -16,7 +16,7 @@ import {IRootState} from '@/store'
 import {useSelector} from 'react-redux'
 import {CART_LOCALES, CHECKOUT_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 import {useTranslation} from 'react-i18next'
-import {PaymentElement} from '@stripe/react-stripe-js'
+import {PaymentElement, useElements, useStripe} from '@stripe/react-stripe-js'
 
 type CheckoutSummaryProps = {
     onSubmit: (billingOptions: BillingOptions) => void
@@ -25,12 +25,24 @@ type CheckoutSummaryProps = {
 const CheckoutSummary = ({onSubmit}: CheckoutSummaryProps) => {
     const {t} = useTranslation(I18N_NAMESPACES.checkout)
     const cart = useSelector((state: IRootState) => state.cart)
-    const creditCardFormRef = useRef<FormRef | null>(null)
-    const [billingMethod, setBillingMethod] = useState<'cash' | 'creditCard'>('creditCard')
-    const handleCheckoutRadio = (value: string) => {
-        if (value !== 'creditCard' && value !== 'cash') return
-        setBillingMethod(() => value)
-    }
+    const stripe = useStripe()
+    const elements = useElements()
+    const [errorMessage, setErrorMessage] = useState('')
+
+    const handlePlaceOrder = async (e: React.FormEvent) => {
+        e.preventDefault()
+
+        const userInformation = userInfoRef.current?.submit()
+        if (!userInformation) return
+
+        if (!stripe || !elements) return
+
+        const {error} = await stripe.confirmPayment({
+            elements,
+            confirmParams: {
+                return_url: `${window.location.origin}/success`
+            }
+        })
 
     const handlePlaceOrder = () => {
         if (billingMethod === 'creditCard')
