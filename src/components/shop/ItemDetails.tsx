@@ -7,12 +7,13 @@ import Button from '@/components/elements/Button.tsx'
 import Icon from '@/components/elements/Icon.tsx'
 import DeliveryDetails from '@/components/checkout/DeliveryDetails.tsx'
 import ColorPicker from '@/components/shared/ColorPicker.tsx'
-import {addToWishlist} from '@/store/wishlistSlice.ts'
-import {useDispatch} from 'react-redux'
+import {addToWishlist, removeFromWishlist} from '@/store/wishlistSlice.ts'
+import {useDispatch, useSelector} from 'react-redux'
 import {addToCart} from '@/store/cartSlice.ts'
 import {getImagesOfColor} from '@/lib/utils/image.ts'
 import {isProductWithColors} from '@/lib/utils/product.ts'
 import {imageUrl} from '@/lib/utils/url.ts'
+import {IRootState} from '@/store'
 
 const ItemDetails = ({item}: { item: Product }) => {
     const dispatch = useDispatch()
@@ -21,12 +22,16 @@ const ItemDetails = ({item}: { item: Product }) => {
     const [quantity, setQuantity] = useState(item.stock > 0 ? 1 : 0)
     const [color, setColor] = useState((item as ProductWithColors).defaultColor || null)
     const [selectedSize, setSelectedSize] = useState((item.sizes || [])[0])
-    const mainImage = isColors ? getImagesOfColor(item.mainImage, color!,true)[0] : item.mainImage[0]
+    const mainImage = isColors ? getImagesOfColor(item.mainImage, color!, true)[0] : item.mainImage[0]
     const [bigImage, setBigImage] = useState(mainImage)
+
+    const wishlist = useSelector((state: IRootState) => state.wishlist)
+
+    const [isInWishlist, setIsInWishlist] = useState(wishlist.some(wishlistItem => wishlistItem._id === item._id))
 
     useEffect(() => {
         if (!isColors) return
-        setBigImage(() => getImagesOfColor(item.mainImage, color!,true)[0])
+        setBigImage(() => getImagesOfColor(item.mainImage, color!, true)[0])
     }, [color])
 
     useEffect(() => {
@@ -40,9 +45,15 @@ const ItemDetails = ({item}: { item: Product }) => {
         dispatch(addToCart({item, quantity, variant: {color: color ?? undefined, size: selectedSize}}))
     }
 
-    const addToWishlistHandler = () => {
-        dispatch(addToWishlist(item))
+    const handleFavoriteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation()
+
+        setIsInWishlist(prevState => !prevState)
+        isInWishlist ?
+            dispatch(removeFromWishlist(item)) :
+            dispatch(addToWishlist(item))
     }
+
 
     return (
         <section className={'flex-row-between w-full max-md:flex-col'}>
@@ -100,11 +111,11 @@ const ItemDetails = ({item}: { item: Product }) => {
                     />
                     <button
                         className={'flex-center group aspect-square h-full rounded border border-black/50 bg-neutral-50 p-1'}
-                        onClick={addToWishlistHandler}>
+                        onClick={handleFavoriteClick}>
                         <Icon path={'/assets/icons/heart.svg'} name={'heart'} size={32}
-                              className={'group-hover:hidden'}/>
+                              className={isInWishlist ? 'hidden' : 'group-hover:hidden'}/>
                         <Icon path={'/assets/icons/heart-filled.svg'} name={'heart'} size={32}
-                              className={'hidden group-hover:block'}/>
+                              className={isInWishlist ? 'block' : 'hidden group-hover:block'}/>
                     </button>
                 </div>
                 <DeliveryDetails price={item.shippingFee || 0} className={'mt-4'}/>

@@ -11,11 +11,12 @@ import {CART_LOCALES, GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales
 import {getImagesOfColor} from '@/lib/utils/image.ts'
 import {useState} from 'react'
 import ColorPicker from '@/components/shared/ColorPicker.tsx'
-import {useDispatch} from 'react-redux'
-import {addToWishlist} from '@/store/wishlistSlice.ts'
+import {useDispatch, useSelector} from 'react-redux'
+import {addToWishlist, removeFromWishlist} from '@/store/wishlistSlice.ts'
 import {addToCart} from '@/store/cartSlice.ts'
 import {isProductWithColors} from '@/lib/utils/product.ts'
 import {imageUrl} from '@/lib/utils/url.ts'
+import {IRootState} from '@/store'
 
 type ItemProps = {
     item: Product
@@ -42,9 +43,15 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
         navigate(`/items/${item._id}`)
     }
 
+    const wishlist = useSelector((state: IRootState) => state.wishlist)
+
+    const [isInWishlist, setIsInWishlist] = useState(wishlist.some(wishlistItem => wishlistItem._id === item._id))
+
     const handleFavoriteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation()
-        dispatch(addToWishlist(item))
+
+        setIsInWishlist(prevState => !prevState)
+        isInWishlist ? dispatch(removeFromWishlist(item)) : dispatch(addToWishlist(item))
     }
 
     const handlePeekClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -82,8 +89,14 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
                     }
                     <div className="absolute right-3 top-3 z-10 w-[34px] flex-col gap-2">
                         {variant !== 'wishlist' && <>
-                            <button className={'flex-center h-[34px]'} onClick={handleFavoriteClick}>
-                                <Icon path={heart} name={'heart'} size={24} hoverable/>
+                            <button className={'flex-center h-[34px]'}
+                                    onClick={handleFavoriteClick}>
+                                <Icon path={heart}
+                                      name={'heart'}
+                                      size={24}
+                                      hoverable
+                                      filled={isInWishlist}
+                                />
                             </button>
                             <button className={'flex-center h-[34px]'} onClick={handlePeekClick}>
                                 <Icon path={eye} name={'eye'} size={24} hoverable/>
