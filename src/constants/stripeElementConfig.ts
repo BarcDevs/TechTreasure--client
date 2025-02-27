@@ -7,10 +7,10 @@ export const stripeAppearance: Appearance = {
         colorBackground: '#f7f7f7',
         colorText: '#333',
         colorDanger: '#ff6f61',
-        spacingUnit: '2px',
+        // spacingUnit: '2px',
         borderRadius: '8px',
         fontFamily: 'YourFontFamily, sans-serif',
-        fontSizeBase: '16px'
+        fontSizeBase: '15px'
     },
     rules: {
         '.Input': {
