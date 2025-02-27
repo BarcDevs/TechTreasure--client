@@ -23,7 +23,7 @@ const cartSlice = createSlice({
     } as Cart,
     reducers: {
         addToCart: (cart, {payload: {item, quantity = 1, variant}}:
-            { payload: { item: Product, quantity?: number, variant?: ItemVariant } }) => {
+        { payload: { item: Product, quantity?: number, variant?: ItemVariant } }) => {
             const existingItem = cart.items.find((i) => i._id === item._id)
             if (existingItem) {
                 existingItem.quantity += quantity
@@ -102,6 +102,8 @@ const cartSlice = createSlice({
             cart.cartDiscount = 0
             cart.shipping = 0
             cart.total = 0
+
+            localStorage.removeItem('cart')
         },
         loadCart: (_, {payload: cart}: { payload: Cart }) => cart
     }
@@ -116,4 +118,5 @@ export const {
     updateDiscount,
     loadCart
 } = cartSlice.actions
+
 export default cartSlice.reducer
