@@ -1,5 +1,4 @@
 import {useEffect, useRef, useState} from 'react'
-import {CreditCardForm} from '@/validations/checkoutForm.ts'
 import CheckoutForm from '@/components/checkout/CheckoutForm.tsx'
 import CheckoutSummary from '@/components/checkout/CheckoutSummary.tsx'
 import {FormRef} from '@/types/ui'
@@ -8,34 +7,34 @@ import {CHECKOUT_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 import {Elements} from '@stripe/react-stripe-js'
 import {loadStripe, StripeElementLocale, StripeElementsOptions} from '@stripe/stripe-js'
 import {getPaymentSecret} from '@/api/payment.ts'
-import language from '@/language'
+import * as defaultLanguage from '@/language';
 import {stripeAppearance} from '@/constants/stripeElementConfig.ts'
+import {useSelector} from 'react-redux'
+import {IRootState} from '@/store'
 
 const stripeClientKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
 const stripePromise = loadStripe(stripeClientKey)
 
-export type BillingOptions = ({
-    cash: false
-    creditCard: CreditCardForm
-} | {
-    cash: true
-    creditCard: null
-})
-
 const CheckoutPage = ({}) => {
     const {t} = useTranslation(I18N_NAMESPACES.checkout)
     const userInfoRef = useRef<FormRef | null>(null)
-    const [saveDetails, setSaveDetails] = useState(true)
-
+    const cart = useSelector((state: IRootState) => state.cart)
+    // @ts-ignore
+    const [language, setLanguage] = useState<StripeElementLocale>(defaultLanguage)
     const [clientSecretKey, setClientSecretKey] = useState('')
+
+    useEffect(() => {
+        setLanguage(localStorage.getItem('language') as StripeElementLocale)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [localStorage.getItem('language')])
 
     useEffect(() => {
         const getSecret = async () => {
             try {
-                const secretKey = await getPaymentSecret()
+                const secretKey = await getPaymentSecret(cart)
                 setClientSecretKey(secretKey)
             } catch (e: Error | any) {
-                console.error('Error fetching clientSecret:', e)
+                console.error('Error fetching client secret:', e)
             }
         }
 
@@ -45,15 +44,7 @@ const CheckoutPage = ({}) => {
     const stripeOptions: StripeElementsOptions = {
         clientSecret: clientSecretKey,
         appearance: stripeAppearance,
-        locale: language as StripeElementLocale
-        // payment_method_types: ['card'] todo
-    }
-
-    const handleSubmit = (billingOptions: BillingOptions) => {
-        const userInformation = userInfoRef.current?.submit()
-        if (!userInformation) return
-
-        console.log(userInformation, saveDetails, billingOptions)
+        locale: language as StripeElementLocale,
     }
 
     return (
@@ -62,8 +53,8 @@ const CheckoutPage = ({}) => {
             {clientSecretKey &&
                 <Elements stripe={stripePromise} options={stripeOptions}>
                     <div className={'md:flex-row-between mb-10 gap-20'}>
-                        <CheckoutForm ref={userInfoRef} {...{saveDetails, setSaveDetails}}/>
-                        <CheckoutSummary {...{onSubmit: handleSubmit}}/>
+                        <CheckoutForm ref={userInfoRef}/>
+                        <CheckoutSummary {...{userInfoRef}}/>
                     </div>
                 </Elements>
             }

@@ -8,7 +8,8 @@ export enum I18N_NAMESPACES {
     categories = 'categories',
     shop = 'shop',
     cart = 'cart',
-    checkout = 'checkout'
+    checkout = 'checkout',
+    about = 'about',
 }
 
 export enum GLOBAL_LOCALES {
@@ -32,10 +33,13 @@ export enum GLOBAL_LOCALES {
     notFoundText = 'notFoundText',
     backToHome = 'backToHome',
 
+    successHeadline = 'successHeadline',
+    successText = 'successText',
+
     days = 'days',
     hours = 'hours',
     minutes = 'minutes',
-    seconds = 'seconds'
+    seconds = 'seconds',
 }
 
 export enum HOMEPAGE_LOCALES {
@@ -112,4 +116,10 @@ export enum CHECKOUT_LOCALES {
     year = 'year',
     cash = 'cash',
     placeOrder = 'placeOrder',
+    emptyCart = 'emptyCart',
+}
+
+export enum ABOUT_LOCALES {
+    aboutUsHeadline = 'aboutUsHeadline',
+    aboutUsText = 'aboutUsText',
 }
