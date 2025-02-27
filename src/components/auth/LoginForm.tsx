@@ -1,7 +1,7 @@
 import {useForm} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
 import {LoginForm as LoginFormType, loginFormSchema as formSchema} from '@/validations/authForm.ts'
-import {Form} from "@/components/ui/form"
+import {Form} from '@/components/ui/form'
 import FormInput from '@/components/shared/FormInput.tsx'
 import Button from '@/components/elements/Button.tsx'
 import {Link} from 'react-router-dom'
@@ -21,8 +21,8 @@ const LoginForm = ({}) => {
     const form = useForm<LoginFormType>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            email: "",
-            password: ""
+            email: '',
+            password: ''
         }
     })
 
@@ -45,7 +45,8 @@ const LoginForm = ({}) => {
                 <div className={'flex-row-between gap-4'}>
                     <Button className={'capitalize'} type="submit" text={t(AUTH_LOCALES.login)}/>
                     <Button className={'text-body bg-neutral-50 px-2 py-1 text-red-500'}
-                            text={t(AUTH_LOCALES.forgotPassword)}/>
+                            text={t(AUTH_LOCALES.forgotPassword)}
+                            type={'button'}/>
                 </div>
                 {isError && <ErrorMessage message={getErrorMessage(error)}/>}
                 <Button className={'w-full'} variant={'white'} type={'button'}
