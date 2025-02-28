@@ -1,7 +1,6 @@
 import Sidebar from '@/components/home/Sidebar.tsx'
 import Hero from '@/components/home/hero.tsx'
 import ItemRow from '@/components/shop/ItemRow.tsx'
-import {ITEMS} from '@/constants/mocks.ts'
 import {Categories} from '@/constants/categories.ts'
 import CategoryRow from '@/components/shop/CategoryRow.tsx'
 import {HOMEPAGE_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
@@ -39,7 +38,7 @@ const HomePage = ({}) => {
                      items={items.data && items.data.filter((item, i) => i < 4 || item.isNew)} scroll={'none'}/>
             {/* TODO Featured Sale */}
             <ItemRow name={t(HOMEPAGE_LOCALES.exploreTitle)} headline={t(HOMEPAGE_LOCALES.exploreHeadline)}
-                     items={ITEMS} rows={2} scroll={'vertical'}/>
+                     items={items.data} rows={2} scroll={'vertical'}/>
             {/* TODO New Arrivals */}
             {/* TODO benefits */}
         </main>
