@@ -16,6 +16,7 @@ import store from '@/store'
 import {loadAuthState} from '@/store/authSlice.ts'
 import SuccessPage from '@/pages/SuccessPage.tsx'
 import AboutUsPage from '@/pages/AboutUsPage.tsx'
+import FAQ_Page from '@/pages/FAQ_Page.tsx'
 
 export const router = createBrowserRouter([
     {
@@ -96,6 +97,10 @@ export const router = createBrowserRouter([
             {
                 path: 'about',
                 element: <AboutUsPage/>
+            },
+            {
+                path: 'faq',
+                element: <FAQ_Page/>
             },
             {
                 path: 'success',
