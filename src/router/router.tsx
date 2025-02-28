@@ -18,6 +18,7 @@ import SuccessPage from '@/pages/SuccessPage.tsx'
 import AboutUsPage from '@/pages/AboutUsPage.tsx'
 import FAQ_Page from '@/pages/FAQ_Page.tsx'
 import TermsPage from '@/pages/TermsPage.tsx'
+import PrivacyPage from '@/pages/PrivacyPage.tsx'
 
 export const router = createBrowserRouter([
     {
@@ -106,6 +107,10 @@ export const router = createBrowserRouter([
             {
                 path: 'terms',
                 element: <TermsPage/>
+            },
+            {
+                path: 'privacy',
+                element: <PrivacyPage/>
             },
             {
                 path: 'success',
