@@ -1,7 +1,7 @@
 import {Card, CardContent, CardFooter} from '@/components/ui/card.tsx'
 import Rating from '@/components/elements/Rating.tsx'
 import Icon from '@/components/elements/Icon.tsx'
-import eye from '/assets/icons/eye.svg'
+// import eye from '/assets/icons/eye.svg'
 import heart from '/assets/icons/heart.svg'
 import trash from '/assets/icons/trash.svg'
 import {Product, ProductWithColors} from '@/types'
@@ -53,10 +53,10 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
         isInWishlist ? dispatch(removeFromWishlist(item)) : dispatch(addToWishlist(item))
     }
 
-    const handlePeekClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.stopPropagation()
-        console.log('view clicked')
-    }
+    // const handlePeekClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    //     e.stopPropagation()
+    //     console.log('view clicked')
+    // }
 
     const handleCartClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation()
@@ -97,9 +97,10 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
                                       filled={isInWishlist}
                                 />
                             </button>
-                            <button className={'flex-center h-[34px]'} onClick={handlePeekClick}>
-                                <Icon path={eye} name={'eye'} size={24} hoverable/>
-                            </button>
+                            {/*todo: add peek floating window*/}
+                            {/*<button className={'flex-center h-[34px]'} onClick={handlePeekClick}>*/}
+                            {/*    <Icon path={eye} name={'eye'} size={24} hoverable/>*/}
+                            {/*</button>*/}
                         </>}
                         {variant === 'wishlist' &&
                             <button className={'flex-center h-[34px]'} onClick={handleDeleteClick}>
