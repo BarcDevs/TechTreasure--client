@@ -9,6 +9,7 @@ export enum I18N_NAMESPACES {
     shop = 'shop',
     cart = 'cart',
     checkout = 'checkout',
+    contact = 'contact',
     about = 'about',
 }
 
@@ -117,6 +118,18 @@ export enum CHECKOUT_LOCALES {
     cash = 'cash',
     placeOrder = 'placeOrder',
     emptyCart = 'emptyCart',
+}
+
+export enum CONTACT_LOCALES {
+    contact = 'contact',
+    contactHeadline = 'contactHeadline',
+    contactText = 'contactText',
+    contactFormHeadline = 'contactFormHeadline',
+    contactFormName = 'contactFormName',
+    contactFormEmail = 'contactFormEmail',
+    contactFormSubject = 'contactFormSubject',
+    contactFormMessage = 'contactFormMessage',
+    contactFormSubmit = 'contactFormSubmit',
 }
 
 export enum ABOUT_LOCALES {

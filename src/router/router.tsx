@@ -19,6 +19,7 @@ import AboutUsPage from '@/pages/AboutUsPage.tsx'
 import FAQ_Page from '@/pages/FAQ_Page.tsx'
 import TermsPage from '@/pages/TermsPage.tsx'
 import PrivacyPage from '@/pages/PrivacyPage.tsx'
+import ContactPage from '@/pages/ContactPage.tsx'
 
 export const router = createBrowserRouter([
     {
@@ -95,6 +96,11 @@ export const router = createBrowserRouter([
             {
                 path: 'checkout',
                 element: <CheckoutPage/>
+            },
+
+            {
+                path: 'contact',
+                element: <ContactPage/>
             },
             {
                 path: 'about',
