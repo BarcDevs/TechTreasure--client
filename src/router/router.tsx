@@ -20,6 +20,7 @@ import FAQ_Page from '@/pages/FAQ_Page.tsx'
 import TermsPage from '@/pages/TermsPage.tsx'
 import PrivacyPage from '@/pages/PrivacyPage.tsx'
 import ContactPage from '@/pages/ContactPage.tsx'
+import CategoriesPage from '@/pages/CategoriesPage.tsx'
 
 export const router = createBrowserRouter([
     {
@@ -59,8 +60,8 @@ export const router = createBrowserRouter([
                 path: 'categories',
                 children: [
                     {
-                        path: ''
-                        // element: <CategoriesPage/>
+                        path: '',
+                        element: <CategoriesPage/>
                     },
                     {
                         path: ':id'
