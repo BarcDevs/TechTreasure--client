@@ -65,6 +65,8 @@
   },
   "navigationLinks": {
     "home": "Главная",
+    "products": "Продукты",
+    "categories": "Категории",
     "contact": "Контакт",
     "about": "О нас",
     "login": "Войти",

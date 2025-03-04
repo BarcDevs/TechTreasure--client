@@ -15,14 +15,11 @@
     "new": "New",
     "viewAll": "View All",
     "viewAllProducts": "View All Products",
-
     "notFoundHeadline": "Page Not Found",
     "notFoundText": "The page you are looking for does not exist.",
     "backToHome": "Back to Home",
-
     "successHeadline": "Order Placed Successfully",
     "successText": "Your order has been placed successfully. Thank you for shopping with us.",
-
     "days": "Days",
     "hours": "Hours",
     "minutes": "Minutes",
@@ -65,6 +62,8 @@
   },
   "navigationLinks": {
     "home": "Home",
+    "products": "Products",
+    "categories": "Categories",
     "contact": "Contact",
     "about": "About",
     "login": "Login",

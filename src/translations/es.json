@@ -65,6 +65,8 @@
   },
   "navigationLinks": {
     "home": "Inicio",
+    "products": "Productos",
+    "categories": "Categorías",
     "contact": "Contacto",
     "about": "Acerca de",
     "login": "Iniciar Sesión",

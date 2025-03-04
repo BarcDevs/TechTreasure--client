@@ -30,6 +30,16 @@ export const NAVIGATION_LINKS: LINK[] = [
         path: '/'
     },
     {
+        name: 'Products',
+        key: 'products',
+        path: '/items'
+    },
+    {
+        name: 'Categories',
+        key: 'categories',
+        path: '/categories'
+    },
+    {
         name: 'Contact',
         key: 'contact',
         path: '/contact'
