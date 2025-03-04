@@ -4,6 +4,7 @@ import {useForm} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
 import {ContactForm as ContactFormType, contactFormSchema} from '@/validations/contactForm.ts'
 import FormInput from '@/components/contact/FormInput.tsx'
+import {sendContactForm} from '@/api/contactForm.ts'
 
 const ContactForm = () => {
     const {
@@ -14,8 +15,10 @@ const ContactForm = () => {
         resolver: zodResolver(contactFormSchema)
     })
 
-    const onSubmit = (data: ContactFormType) => {
+    const onSubmit = async (data: ContactFormType) => {
         console.log('Form Submitted', data)
+        const message = await sendContactForm(data)
+        console.log(message)
     }
 
     return (
