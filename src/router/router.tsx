@@ -7,10 +7,10 @@ import WishlistPage from '@/pages/WishlistPage.tsx'
 import CartPage from '@/pages/CartPage.tsx'
 import CheckoutPage from '@/pages/CheckoutPage.tsx'
 import ItemPage from '@/pages/ItemPage.tsx'
-import ProductsPage from '@/pages/admin/ProductsPage.tsx'
-import AdminLayout from '@/pages/layouts/AdminLayout.tsx'
-import AddItemPage from '@/pages/admin/AddItemPage.tsx'
-import EditItemPage from '@/pages/admin/EditItemPage.tsx'
+import ProductsPage from '@/pages/seller/ProductsPage.tsx'
+import SellerLayout from '@/pages/layouts/SellerLayout.tsx'
+import AddItemPage from '@/pages/seller/AddItemPage.tsx'
+import EditItemPage from '@/pages/seller/EditItemPage.tsx'
 import Logout from '@/pages/Logout.ts'
 import store from '@/store'
 import {loadAuthState} from '@/store/authSlice.ts'
@@ -131,8 +131,8 @@ export const router = createBrowserRouter([
         ]
     },
     {
-        path: 'admin',
-        element: <AdminLayout/>,
+        path: 'seller',
+        element: <SellerLayout/>,
         loader: () => {
             const authState = JSON.parse(localStorage.getItem('auth-state') || '{}')
             store.dispatch(loadAuthState(authState))
@@ -141,7 +141,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true
-                // element: <AdminHomePage/>
+                // element: <SellerHomePage/> todo
             },
             {
                 path: 'products',
@@ -157,23 +157,23 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'orders'
-                // element: <OrdersPage/>
+                // element: <OrdersPage/> todo
             },
             {
                 path: 'customers'
-                // element: <CustomersPage/>
+                // element: <CustomersPage/> todo
             },
             {
                 path: 'customers/:id'
-                // element: <CustomerPage/>
+                // element: <CustomerPage/> todo
             },
             {
                 path: 'analytics'
-                // element: <AnalyticsPage/>
+                // element: <AnalyticsPage/> todo
             },
             {
                 path: 'settings'
-                // element: <SettingsPage/>
+                // element: <SettingsPage/> todo
             },
             {
                 path: '*',

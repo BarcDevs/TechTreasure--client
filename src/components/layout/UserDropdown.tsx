@@ -14,9 +14,9 @@ import {IRootState} from '@/store'
 
 const UserDropdown = ({}) => {
     const location = useLocation().pathname
-    const isAdminPage = location.startsWith('/admin')
+    const isAdminPage = location.startsWith('/seller')
     const user = useSelector((state: IRootState) => state.auth.user)
-    const root = isAdminPage ? '/admin/' : '/'
+    const root = isAdminPage ? '/seller/' : '/'
 
     const userImage = "/assets/images/mock-avatar.jpg"
 
@@ -35,7 +35,7 @@ const UserDropdown = ({}) => {
             <DropdownMenuContent align="end">
                 <DropdownMenuLabel><Link to={`${root}account`}>My Account</Link></DropdownMenuLabel>
                 {!isAdminPage && user?.role === 'seller' &&
-                    <DropdownMenuLabel><Link to={`${root}admin`}>Admin Dashboard</Link></DropdownMenuLabel>}
+                    <DropdownMenuLabel><Link to={`${root}seller`}>Seller Dashboard</Link></DropdownMenuLabel>}
                 <DropdownMenuSeparator/>
                 <DropdownMenuItem><Link to={`${root}settings`}>Settings</Link></DropdownMenuItem>
                 <DropdownMenuItem><Link to={`${root}support`}>Support</Link></DropdownMenuItem>
