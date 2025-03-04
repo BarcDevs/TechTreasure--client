@@ -32,7 +32,7 @@ export const FOOTER_LINKS: {[key: string]: LINK[]} = {
         {
             name: 'Privacy Policy',
             key: 'privacy',
-            path: '/policy'
+            path: '/privacy'
         },
         {
             name: 'Terms Of Use',

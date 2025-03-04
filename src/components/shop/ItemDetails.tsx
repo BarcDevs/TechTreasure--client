@@ -7,12 +7,13 @@ import Button from '@/components/elements/Button.tsx'
 import Icon from '@/components/elements/Icon.tsx'
 import DeliveryDetails from '@/components/checkout/DeliveryDetails.tsx'
 import ColorPicker from '@/components/shared/ColorPicker.tsx'
-import {addToWishlist} from '@/store/wishlistSlice.ts'
-import {useDispatch} from 'react-redux'
+import {addToWishlist, removeFromWishlist} from '@/store/wishlistSlice.ts'
+import {useDispatch, useSelector} from 'react-redux'
 import {addToCart} from '@/store/cartSlice.ts'
 import {getImagesOfColor} from '@/lib/utils/image.ts'
 import {isProductWithColors} from '@/lib/utils/product.ts'
 import {imageUrl} from '@/lib/utils/url.ts'
+import {IRootState} from '@/store'
 
 const ItemDetails = ({item}: { item: Product }) => {
     const dispatch = useDispatch()
@@ -21,12 +22,16 @@ const ItemDetails = ({item}: { item: Product }) => {
     const [quantity, setQuantity] = useState(item.stock > 0 ? 1 : 0)
     const [color, setColor] = useState((item as ProductWithColors).defaultColor || null)
     const [selectedSize, setSelectedSize] = useState((item.sizes || [])[0])
-    const mainImage = isColors ? getImagesOfColor(item.mainImage, color!,true)[0] : item.mainImage[0]
+    const mainImage = isColors ? getImagesOfColor(item.mainImage, color!, true)[0] : item.mainImage[0]
     const [bigImage, setBigImage] = useState(mainImage)
+
+    const wishlist = useSelector((state: IRootState) => state.wishlist)
+
+    const [isInWishlist, setIsInWishlist] = useState(wishlist.some(wishlistItem => wishlistItem._id === item._id))
 
     useEffect(() => {
         if (!isColors) return
-        setBigImage(() => getImagesOfColor(item.mainImage, color!,true)[0])
+        setBigImage(() => getImagesOfColor(item.mainImage, color!, true)[0])
     }, [color])
 
     useEffect(() => {
@@ -40,20 +45,28 @@ const ItemDetails = ({item}: { item: Product }) => {
         dispatch(addToCart({item, quantity, variant: {color: color ?? undefined, size: selectedSize}}))
     }
 
-    const addToWishlistHandler = () => {
-        dispatch(addToWishlist(item))
+    const handleFavoriteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation()
+
+        setIsInWishlist(prevState => !prevState)
+        isInWishlist ?
+            dispatch(removeFromWishlist(item)) :
+            dispatch(addToWishlist(item))
     }
+
 
     return (
         <section className={'flex-row-between w-full max-md:flex-col'}>
             <section className={'flex-row-between gap-7 max-md:flex-col-reverse'}>
                 {item.images && <ul className={'flex-col-start max-md:flex_row h-fit'}>
-                    {[mainImage, ...((isColors ? getImagesOfColor(item.images, color!) : item.images) || [])].map(image => image && (
+                    {[mainImage, ...((isColors ? getImagesOfColor(item.images, color!) : item.images) ||
+                        [])].map(image => image && (
                         <li
                             key={imageUrl(image.path)}
-                            className={'h-[100px] w-[100px] cursor-pointer p-6 max-md:h-[50px] max-md:w-[50px]'}
+                            className={'size-[100px] cursor-pointer p-6 max-md:size-[50px]'}
                             onClick={() => setBigImage(() => image)}>
-                            <img src={image.path} alt={item.name}/>
+                            <img src={image.path ? imageUrl(image.path) : 'assets/images/items/imageNotFound.png'}
+                                 alt={item.name}/>
                         </li>
                     ))}
                 </ul>}
@@ -86,7 +99,7 @@ const ItemDetails = ({item}: { item: Product }) => {
                         <ol className={'flex-row-start gap-4'}>
                             {item.sizes.map(size => (
                                 <li key={size}
-                                    className={`flex-center h-6 w-6 cursor-pointer rounded border border-black ${size === selectedSize ? 'border-red-500 bg-red-500 text-white' : 'bg-neutral-50 text-black'}`}
+                                    className={`flex-center size-6 cursor-pointer rounded border border-black ${size === selectedSize ? 'border-red-500 bg-red-500 text-white' : 'bg-neutral-50 text-black'}`}
                                     onClick={() => setSelectedSize(() => size)}>
                                     <p className={'text-small-medium uppercase'}>{size}</p>
                                 </li>)
@@ -100,11 +113,11 @@ const ItemDetails = ({item}: { item: Product }) => {
                     />
                     <button
                         className={'flex-center group aspect-square h-full rounded border border-black/50 bg-neutral-50 p-1'}
-                        onClick={addToWishlistHandler}>
+                        onClick={handleFavoriteClick}>
                         <Icon path={'/assets/icons/heart.svg'} name={'heart'} size={32}
-                              className={'group-hover:hidden'}/>
+                              className={isInWishlist ? 'hidden' : 'group-hover:hidden'}/>
                         <Icon path={'/assets/icons/heart-filled.svg'} name={'heart'} size={32}
-                              className={'hidden group-hover:block'}/>
+                              className={isInWishlist ? 'block' : 'hidden group-hover:block'}/>
                     </button>
                 </div>
                 <DeliveryDetails price={item.shippingFee || 0} className={'mt-4'}/>

@@ -49,7 +49,7 @@ const SignupForm = ({}) => {
                            formControl={form.control}/>
                 <div className={'flex_col gap-4'}>
                     <Button className={'w-full capitalize'} type="submit" text={t(AUTH_LOCALES.createAccount)}/>
-                    <Button className={'w-full'} variant={'white'}
+                    <Button className={'w-full'} variant={'white'} type={'button'}
                             text={`${t(AUTH_LOCALES.signup)} ${t(AUTH_LOCALES.withGoogle)}`}/>
                 </div>
                 {isError && <ErrorMessage

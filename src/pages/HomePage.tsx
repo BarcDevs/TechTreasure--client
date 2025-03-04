@@ -1,7 +1,6 @@
 import Sidebar from '@/components/home/Sidebar.tsx'
 import Hero from '@/components/home/hero.tsx'
 import ItemRow from '@/components/shop/ItemRow.tsx'
-import {ITEMS} from '@/constants/mocks.ts'
 import {Categories} from '@/constants/categories.ts'
 import CategoryRow from '@/components/shop/CategoryRow.tsx'
 import {HOMEPAGE_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
@@ -26,20 +25,30 @@ const HomePage = ({}) => {
                 <Sidebar/>
                 <Hero/>
             </div>
-            {/* TODO add translations */}
             <ItemRow
                 name={t(HOMEPAGE_LOCALES.flashSalesTitle)}
                 headline={t(HOMEPAGE_LOCALES.flashSalesHeadline)}
-                items={items.data} scroll={'horizontal'}
+                items={
+                    items.data ?
+                        items.data.filter((item: Product) => item.sale) : []}
+                scroll={'horizontal'}
                 timerEnd={config.TIMER_END_TIME}
                 isFetching={items.isFetching}/>
-            <CategoryRow name={t(HOMEPAGE_LOCALES.categoriesTitle)} headline={t(HOMEPAGE_LOCALES.categoriesHeadline)}
+            <CategoryRow name={t(HOMEPAGE_LOCALES.categoriesTitle)}
+                         headline={t(HOMEPAGE_LOCALES.categoriesHeadline)}
                          categories={Object.values(Categories)}/>
-            <ItemRow name={t(HOMEPAGE_LOCALES.bestSellingTitle)} headline={t(HOMEPAGE_LOCALES.bestSellingHeadline)}
-                     items={ITEMS.filter((_, i) => i < 4)} scroll={'none'}/>
+            <ItemRow name={t(HOMEPAGE_LOCALES.bestSellingTitle)}
+                     headline={t(HOMEPAGE_LOCALES.bestSellingHeadline)}
+                     items={items.data &&
+                         items.data.filter((item, i) => i < 4 ||
+                             item.isNew)}
+                     scroll={'none'}/>
             {/* TODO Featured Sale */}
-            <ItemRow name={t(HOMEPAGE_LOCALES.exploreTitle)} headline={t(HOMEPAGE_LOCALES.exploreHeadline)}
-                     items={ITEMS} rows={2} scroll={'vertical'}/>
+            <ItemRow name={t(HOMEPAGE_LOCALES.exploreTitle)}
+                     headline={t(HOMEPAGE_LOCALES.exploreHeadline)}
+                     items={items.data}
+                     rows={2}
+                     scroll={'vertical'}/>
             {/* TODO New Arrivals */}
             {/* TODO benefits */}
         </main>

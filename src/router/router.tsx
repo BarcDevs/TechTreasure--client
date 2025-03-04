@@ -14,6 +14,13 @@ import EditItemPage from '@/pages/admin/EditItemPage.tsx'
 import Logout from '@/pages/Logout.ts'
 import store from '@/store'
 import {loadAuthState} from '@/store/authSlice.ts'
+import SuccessPage from '@/pages/SuccessPage.tsx'
+import AboutUsPage from '@/pages/AboutUsPage.tsx'
+import FAQ_Page from '@/pages/FAQ_Page.tsx'
+import TermsPage from '@/pages/TermsPage.tsx'
+import PrivacyPage from '@/pages/PrivacyPage.tsx'
+import ContactPage from '@/pages/ContactPage.tsx'
+import CategoriesPage from '@/pages/CategoriesPage.tsx'
 
 export const router = createBrowserRouter([
     {
@@ -53,8 +60,8 @@ export const router = createBrowserRouter([
                 path: 'categories',
                 children: [
                     {
-                        path: ''
-                        // element: <CategoriesPage/>
+                        path: '',
+                        element: <CategoriesPage/>
                     },
                     {
                         path: ':id'
@@ -91,13 +98,30 @@ export const router = createBrowserRouter([
                 path: 'checkout',
                 element: <CheckoutPage/>
             },
+
             {
-                path: 'about'
-                // element: <AboutPage/>
+                path: 'contact',
+                element: <ContactPage/>
             },
             {
-                path: 'contact'
-                // element: <ContactPage/>
+                path: 'about',
+                element: <AboutUsPage/>
+            },
+            {
+                path: 'faq',
+                element: <FAQ_Page/>
+            },
+            {
+                path: 'terms',
+                element: <TermsPage/>
+            },
+            {
+                path: 'privacy',
+                element: <PrivacyPage/>
+            },
+            {
+                path: 'success',
+                element: <SuccessPage/>
             },
 
             {

@@ -4,9 +4,9 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu"
+} from '@/components/ui/dropdown-menu'
 import {Link, useLocation} from 'react-router-dom'
-import Icon from "@/components/elements/Icon.tsx"
+import Icon from '@/components/elements/Icon.tsx'
 import hamburger from '/assets/icons/hamburger.svg'
 import {NAVIGATION_LINKS} from '@/constants'
 import cart from '/assets/icons/cart.svg'
@@ -59,8 +59,12 @@ const MobileNavbar = ({}) => {
 
             {!isAuthPage &&
                 <div className={'inline-flex h-6 justify-between gap-4'}>
-                    <Icon path={wishlist} name={'wishlist'} size={30} hoverable/>
-                    <Icon path={cart} name={'cart'} size={30} hoverable/>
+                    <Link to={'/wishlist'}>
+                        <Icon path={wishlist} name={'wishlist'} size={30} hoverable/>
+                    </Link>
+                    <Link to={'/cart'}>
+                        <Icon path={cart} name={'cart'} size={30} hoverable/>
+                    </Link>
                 </div>
             }
         </nav>

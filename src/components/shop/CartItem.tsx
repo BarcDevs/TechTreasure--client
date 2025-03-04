@@ -33,7 +33,7 @@ const CartItem = ({item}: { item: CartItemType }) => {
                         </button>
                         <img src={imageUrl(isProductWithColors(item) ?
                             getImagesOfColor(item.mainImage, item.defaultColor, true)[0]?.path :
-                            item.mainImage[0].path)}
+                            item.mainImage[0]?.path)}
                              alt={item.name}/>
                     </div>
                     <p>{item.name}</p>

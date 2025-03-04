@@ -7,6 +7,7 @@ import {useTranslation} from 'react-i18next'
 import CategoryList from '@/components/shop/CategoryList.tsx'
 import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 import Button from '@/components/elements/Button.tsx'
+import {Link} from 'react-router-dom'
 
 type ItemListProps = {
     name: string,
@@ -26,9 +27,11 @@ const CategoryRow = ({name, headline, categories}: ItemListProps) => {
                 </div>
             </RowHeader>
             <CategoryList ref={listRef} items={categories}/>
-                <div className={'flex-center'}>
+            <div className={'flex-center'}>
+                <Link to={'/categories'}>
                     <Button text={t(GLOBAL_LOCALES.viewAll)}/>
-                </div>
+                </Link>
+            </div>
         </section>
     )
 }

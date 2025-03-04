@@ -34,24 +34,50 @@ const DesktopNavbar = ({}) => {
     return (
         <nav className={'flex-center w-full max-md:hidden'}>
             <div className={'mb-1 mt-10 flex w-[90vw] flex-row items-center justify-between'}>
-                {/*logo*/}
-                <h1 className={'text-large mr-2.5 text-black'}>
-                    {APP_NAME}
-                </h1>
+                {/*todo: fix logo*/}
+                <a href={'/'} className={'flex_row'}>
+                    <img src={'/assets/images/logo.png'}
+                         alt={'logo'}
+                         className={'mr-2.5'}
+                         sizes={'10px'}
+                    />
+                    <h1 className={'text-large mr-2.5 text-black'}>
+                        {APP_NAME}
+                    </h1>
+                </a>
                 {/*menu*/}
-                <div className={'flex h-6 w-[50%] max-w-[350px] justify-around'}>
+                <div
+                    className={'mx-8 flex h-6 w-[70%] max-w-[450px] justify-around'}>
                     {NAVIGATION_LINKS.map(link => (
-                        <NavbarLink key={link.name} to={link.path} label={t(link.key)} location={location}/>
+                        <NavbarLink
+                            key={link.name}
+                            to={link.path}
+                            label={t(link.key)}
+                            location={location}/>
                     ))}
-                    {!isLoggedIn && <NavbarLink to={'/signup'} label={t('signup')} location={location}/>}
+                    {!isLoggedIn &&
+                        <NavbarLink
+                            to={'/login'}
+                            label={t('login')}
+                            location={location}
+                        />}
                 </div>
                 {/*search & cart*/}
                 <div className={'inline-flex gap-6'}>
                     <Search additionalStyles={isAuthPage ? 'max-lg:[120px]' : 'max-lg:hidden'}/>
                     {!isAuthPage &&
                         <div className={'inline-flex h-6 items-center justify-between gap-4'}>
-                            <Link to={'/wishlist'}><Icon path={wishlist} name={'wishlist'} hoverable/></Link>
-                            <Link to={'/cart'}><Icon path={cart} name={'cart'} hoverable/></Link>
+                            <Link to={'/wishlist'}>
+                                <Icon path={wishlist}
+                                      name={'wishlist'}
+                                      hoverable
+                                />
+                            </Link>
+                            <Link to={'/cart'}>
+                                <Icon path={cart}
+                                      name={'cart'}
+                                      hoverable/>
+                            </Link>
                             {isLoggedIn && <UserDropdown/>}
                         </div>
                     }

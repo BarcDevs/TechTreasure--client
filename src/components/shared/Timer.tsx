@@ -1,4 +1,6 @@
 import useTimer from '@/hooks/useTimer.ts'
+import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
+import {useTranslation} from 'react-i18next'
 
 const Digit = ({name, value}: { name: string, value: number }) => {
     return <div>
@@ -14,19 +16,20 @@ const Colon = () => (
 )
 
 const Timer = ({endTime}: { endTime: Date }) => {
+    const {t} = useTranslation(I18N_NAMESPACES.global)
     const {days, hours, minutes, seconds} = useTimer(endTime.getTime())
 
     return (
         <div>
             {/* TODO: Add animation */}
             <div className={`flex_row items-end gap-3`}>
-                <Digit name={'Days'} value={days}/>
+                <Digit name={t(GLOBAL_LOCALES.days)} value={days}/>
                 <Colon/>
-                <Digit name={'Hours'} value={hours}/>
+                <Digit name={t(GLOBAL_LOCALES.hours)} value={hours}/>
                 <Colon/>
-                <Digit name={'Minutes'} value={minutes}/>
+                <Digit name={t(GLOBAL_LOCALES.minutes)} value={minutes}/>
                 <Colon/>
-                <Digit name={'Seconds'} value={seconds}/>
+                <Digit name={t(GLOBAL_LOCALES.seconds)} value={seconds}/>
             </div>
         </div>
     )

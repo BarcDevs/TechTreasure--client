@@ -47,10 +47,10 @@ const CarouselInstance = forwardRef<CarouselRef, { items: Product[] }>(({items},
         <Carousel>
             <CarouselNext ref={next} className={'hidden'}/>
             <CarouselPrevious ref={prev} className={'hidden'}/>
-            <CarouselContent className={'w-[100vw]'}>
+            <CarouselContent className={'w-screen'}>
                 {items.map(item => (
                     <CarouselItem key={item._id}
-                                  className={'basis-1/2 md:basis-1/2 lg:basis-1/3 xl:basis-1/4 2xl:basis-1/5'}>
+                                  className={'basis-1/2 max-sm:basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/4 2xl:basis-1/5'}>
                         <li>
                             <Item item={item}/>
                         </li>
