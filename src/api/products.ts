@@ -1,6 +1,7 @@
 import api from './index'
 import {ProductForm} from '@/validations/productForm.ts'
 import {toFormData,convertToProductSchema} from '@/lib/utils/data.ts'
+import {Product} from '@/types'
 
 type QueryParams = {
     page?: number,
@@ -11,7 +12,10 @@ type QueryParams = {
     search?: string
 }
 
-export const getProducts = async (query?: QueryParams) => {
+export const getProducts = async (query?: QueryParams) : Promise<{
+    products: Product[],
+    totalPages: number
+}> => {
     if (query?.filter && typeof query.filter === 'object')
         query.filter = JSON.stringify(query.filter)
     const queryString = new URLSearchParams(query as Record<any, any> || {}).toString()

@@ -12,11 +12,15 @@ import {config} from '@/config'
 
 const HomePage = ({}) => {
     const {t} = useTranslation(I18N_NAMESPACES.homepage)
-    const items = useQuery<Product[]>({
+    const items = useQuery<{
+        products: Product[],
+        totalPages: number
+    }>({
         queryKey: ['items'],
         queryFn: () => getProducts({limit: 20, page: 1, sort: '{"rating":1}'}),
         refetchOnWindowFocus: false
     })
+    const products = items.data?.products
     /* todo filter items for sub categories */
 
     return (
@@ -29,8 +33,8 @@ const HomePage = ({}) => {
                 name={t(HOMEPAGE_LOCALES.flashSalesTitle)}
                 headline={t(HOMEPAGE_LOCALES.flashSalesHeadline)}
                 items={
-                    items.data ?
-                        items.data.filter((item: Product) => item.sale) : []}
+                    products ?
+                        products.filter((item: Product) => item.sale) : []}
                 scroll={'horizontal'}
                 timerEnd={config.TIMER_END_TIME}
                 isFetching={items.isFetching}/>
@@ -39,14 +43,14 @@ const HomePage = ({}) => {
                          categories={Object.values(Categories)}/>
             <ItemRow name={t(HOMEPAGE_LOCALES.bestSellingTitle)}
                      headline={t(HOMEPAGE_LOCALES.bestSellingHeadline)}
-                     items={items.data &&
-                         items.data.filter((item, i) => i < 4 ||
+                     items={products &&
+                         products.filter((item, i) => i < 4 ||
                              item.isNew)}
                      scroll={'none'}/>
             {/* TODO Featured Sale */}
             <ItemRow name={t(HOMEPAGE_LOCALES.exploreTitle)}
                      headline={t(HOMEPAGE_LOCALES.exploreHeadline)}
-                     items={items.data}
+                     items={products}
                      rows={2}
                      scroll={'vertical'}/>
             {/* TODO New Arrivals */}
