@@ -37,7 +37,7 @@ const ItemRow = ({name, headline, items, rows = 1, timerEnd, scroll, isFetching,
                     {timerEnd && <Timer endTime={timerEnd}/>}
                     {scroll !== 'none' ?
                         <ScrollArrows ref={listRef}/> :
-                        <Link to={'/products'}>
+                        <Link to={'/products?page=1'}>
                             <Button text={t(GLOBAL_LOCALES.viewAll)}/>
                         </Link>
                     }
