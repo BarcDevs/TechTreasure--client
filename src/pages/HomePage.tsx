@@ -1,14 +1,14 @@
 import Sidebar from '@/components/home/Sidebar.tsx'
 import Hero from '@/components/home/hero.tsx'
-import ItemRow from '@/components/shop/ItemRow.tsx'
 import {Categories} from '@/constants/categories.ts'
-import CategoryRow from '@/components/shop/CategoryRow.tsx'
 import {HOMEPAGE_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 import {useTranslation} from 'react-i18next'
 import {useQuery} from '@tanstack/react-query'
 import {getProducts} from '@/api/products.ts'
 import {Product} from '@/types'
 import {config} from '@/config'
+import ItemRow from '@/components/shop/items/ItemRow.tsx'
+import CategoryRow from '@/components/shop/category/CategoryRow.tsx'
 
 const HomePage = ({}) => {
     const {t} = useTranslation(I18N_NAMESPACES.homepage)

@@ -1,5 +1,6 @@
-import Cart from '@/components/shop/Cart.tsx'
-import CartSummary from '@/components/shop/CartSummary.tsx'
+import Cart from '@/components/shop/cart/Cart.tsx'
+import CartSummary from '@/components/shop/cart/CartSummary.tsx'
+
 
 const CartPage = ({}) => {
     return (
