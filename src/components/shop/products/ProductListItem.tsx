@@ -15,19 +15,19 @@ const ProductListItem: FC<ProductListItemProps> = ({product}) =>
     (
         <div key={product._id}
              className="group relative flex flex-col gap-4 rounded-lg border bg-card p-4 shadow-sm transition-all hover:shadow-md sm:flex-row">
+            <div
+                className="absolute right-2 top-2 z-10 rounded-full p-1.5 text-muted-foreground shadow-sm transition-colors hover:text-primary">
+                <FavoritesButton item={product}/>
+            </div>
             <div className="relative">
                 {product.isNew &&
                     <Badge className="absolute left-2 top-2 z-10"
                            variant="secondary">
                         New
                     </Badge>}
-                <button
-                    className="absolute right-2 top-2 z-10 rounded-full bg-white p-1.5 text-muted-foreground shadow-sm transition-colors hover:text-primary">
-                    <FavoritesButton item={product}/>
-                </button>
                 <Link to="#">
                     <img src={imageUrl(product.mainImage[0]?.path) || '/placeholder.svg'} alt={product.name}
-                         className="size-[150px] object-cover transition-transform group-hover:scale-105 sm:size-[200px]"/>
+                         className="aspect-square size-fit object-center transition-transform group-hover:scale-105 sm:size-[120px]"/>
                 </Link>
             </div>
             <div className="flex flex-1 flex-col">

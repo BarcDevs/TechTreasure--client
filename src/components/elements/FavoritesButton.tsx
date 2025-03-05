@@ -3,14 +3,16 @@ import {addToWishlist, removeFromWishlist} from '@/store/wishlistSlice.ts'
 import {useDispatch, useSelector} from 'react-redux'
 import {IRootState} from '@/store'
 import {FC, useState} from 'react'
-import {Product} from '@/types'
+import {ClassName, Product} from '@/types'
 import heart from '/assets/icons/heart.svg'
+import {twMerge} from 'tailwind-merge'
 
 type FavoritesButtonProps = {
-    item: Product
+    item: Product,
+    className?: ClassName
 }
 
-const FavoritesButton: FC<FavoritesButtonProps> = ({item}) => {
+const FavoritesButton: FC<FavoritesButtonProps> = ({item, className}) => {
     const dispatch = useDispatch()
     const wishlist = useSelector((state: IRootState) => state.wishlist)
 
@@ -24,7 +26,7 @@ const FavoritesButton: FC<FavoritesButtonProps> = ({item}) => {
     }
 
     return (
-        <button className={'flex-center h-[34px] bg-transparent'}
+        <button className={twMerge('flex-center h-[34px] bg-transparent', className)}
                 onClick={handleFavoriteClick}>
             <Icon path={heart}
                   name={'heart'}
