@@ -9,7 +9,8 @@ type QueryParams = {
     sort?: string,
     fields?: string,
     filter?: object | string,
-    search?: string
+    search?: string,
+    category?: string
 }
 
 export const getProducts = async (query?: QueryParams): Promise<{

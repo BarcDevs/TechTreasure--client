@@ -23,7 +23,7 @@ const ItemsPage = () => {
             page: currentPage,
             sort: '{"rating":1}',
             search: searchTerm || undefined,
-            filter: category ? Categories[category].name : undefined
+            category: category ? Categories[category].name : undefined
         }),
         refetchOnWindowFocus: false,
         staleTime: 60 * 1000
