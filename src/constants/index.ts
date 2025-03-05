@@ -33,7 +33,7 @@ export const NAVIGATION_LINKS: LINK[] = [
     {
         name: 'Products',
         key: 'products',
-        path: '/items'
+        path: '/products'
     },
     {
         name: 'Categories',

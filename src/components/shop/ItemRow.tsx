@@ -8,6 +8,7 @@ import Timer from '@/components/shared/Timer.tsx'
 import {useTranslation} from 'react-i18next'
 import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 import Button from '@/components/elements/Button.tsx'
+import {Link} from 'react-router-dom'
 
 type ItemListProps = {
     name: string,
@@ -15,7 +16,7 @@ type ItemListProps = {
     items: Product[] | undefined,
     rows?: number,
     timerEnd?: Date,
-    scroll?: "vertical" | "horizontal" | "none",
+    scroll?: 'vertical' | 'horizontal' | 'none',
     isFetching?: boolean
     isError?: boolean
 }
@@ -34,9 +35,11 @@ const ItemRow = ({name, headline, items, rows = 1, timerEnd, scroll, isFetching,
             <RowHeader name={name} headline={headline}>
                 <div className={`flex_row h-full grow items-end ${timerEnd ? 'justify-between' : 'justify-end'}`}>
                     {timerEnd && <Timer endTime={timerEnd}/>}
-                    {scroll !== "none" ?
+                    {scroll !== 'none' ?
                         <ScrollArrows ref={listRef}/> :
-                        <Button text={t(GLOBAL_LOCALES.viewAll)}/>
+                        <Link to={'/products'}>
+                            <Button text={t(GLOBAL_LOCALES.viewAll)}/>
+                        </Link>
                     }
                 </div>
             </RowHeader>
@@ -45,7 +48,7 @@ const ItemRow = ({name, headline, items, rows = 1, timerEnd, scroll, isFetching,
                 <p className={'text-body'}>
                     {isFetching ? 'Loading...' : isError ? 'Error has occurred. Please try again later' : 'No items to display'}
                 </p>}
-            {scroll !== "none" &&
+            {scroll !== 'none' &&
                 <div className={'flex-center'}>
                     <Button text={t(GLOBAL_LOCALES.viewAllProducts)}/>
                 </div>}

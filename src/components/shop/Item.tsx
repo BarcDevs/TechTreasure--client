@@ -39,7 +39,7 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
     const [color, setColor] = useState((item as ProductWithColors).defaultColor || null)
     const imagePath = isColors ? getImagesOfColor(item.mainImage, color!, true)[0]?.path : item.mainImage[0].path
     const handleCardClick = () => {
-        navigate(`/items/${item._id}`)
+        navigate(`/products/${item._id}`)
     }
 
     const wishlist = useSelector((state: IRootState) => state.wishlist)
