@@ -1,8 +1,8 @@
-import RelatedItems from '@/components/shop/RelatedItems.tsx'
-import ItemDetails from '@/components/shop/ItemDetails.tsx'
 import {useQuery} from '@tanstack/react-query'
 import {useParams} from 'react-router-dom'
 import {getProduct} from '@/api/products.ts'
+import ItemDetails from '@/components/shop/items/ItemDetails.tsx'
+import RelatedItems from '@/components/shop/items/RelatedItems.tsx'
 
 const ItemPage = ({}) => {
     const {id} = useParams()

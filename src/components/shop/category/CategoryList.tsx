@@ -2,7 +2,7 @@ import {Category} from '@/types'
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from '@/components/ui/carousel.tsx'
 import {forwardRef, useImperativeHandle, useRef} from 'react'
 import {CarouselRef} from '@/types/ui'
-import CategoryCard from '@/components/shop/CategoryCard.tsx'
+import CategoryCard from '@/components/shop/category/CategoryCard.tsx'
 
 type ItemListProps = {
     items: Category[]

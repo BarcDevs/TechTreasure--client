@@ -1,4 +1,3 @@
-import CartItem from '@/components/shop/CartItem.tsx'
 import Button from '@/components/elements/Button.tsx'
 import {Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow} from "@/components/ui/table"
 import {Link} from 'react-router-dom'
@@ -7,6 +6,7 @@ import {IRootState} from '@/store'
 import {clearCart} from '@/store/cartSlice.ts'
 import {useTranslation} from 'react-i18next'
 import {CART_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
+import CartItem from '@/components/shop/cart/CartItem.tsx'
 
 const Cart = ({}) => {
     const dispatch = useDispatch()

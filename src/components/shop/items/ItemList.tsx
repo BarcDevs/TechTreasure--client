@@ -1,6 +1,6 @@
 import {Product} from '@/types'
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from '@/components/ui/carousel.tsx'
-import Item from '@/components/shop/Item.tsx'
+import Item from '@/components/shop/items/Item.tsx'
 import {forwardRef, useImperativeHandle, useRef} from 'react'
 import {CarouselRef} from '@/types/ui'
 

@@ -1,5 +1,5 @@
 import RowHeader from '@/components/shared/RowHeader.tsx'
-import Item from '@/components/shop/Item.tsx'
+import Item from '@/components/shop/items/Item.tsx'
 import Button from '@/components/elements/Button.tsx'
 import {useDispatch, useSelector} from 'react-redux'
 import {IRootState} from '@/store'

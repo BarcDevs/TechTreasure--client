@@ -1,6 +1,6 @@
 import {Product} from '@/types'
 import RowHeader from '@/components/shared/RowHeader.tsx'
-import ItemList from '@/components/shop/ItemList.tsx'
+import ItemList from '@/components/shop/items/ItemList.tsx'
 import {useRef} from 'react'
 import {CarouselRef} from '@/types/ui'
 import ScrollArrows from '@/components/shared/ScrollArrows.tsx'

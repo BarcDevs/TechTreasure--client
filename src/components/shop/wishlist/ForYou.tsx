@@ -1,10 +1,10 @@
 import RowHeader from '@/components/shared/RowHeader.tsx'
 import Button from '@/components/elements/Button.tsx'
 import {ITEMS} from '@/constants/mocks.ts'
-import Item from '@/components/shop/Item.tsx'
 import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 import {useTranslation} from 'react-i18next'
 import {Link} from 'react-router-dom'
+import {Item} from '@radix-ui/react-select'
 
 const ForYou = ({}) => {
     const {t} = useTranslation([I18N_NAMESPACES.global])

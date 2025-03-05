@@ -1,6 +1,6 @@
 import RowHeader from '@/components/shared/RowHeader.tsx'
 import {ITEMS} from '@/constants/mocks.ts'
-import Item from '@/components/shop/Item.tsx'
+import {Item} from '@radix-ui/react-select'
 
 const RelatedItems = ({}) => (
     <section className={'flex-center-col w-full gap-[60px]'}>
