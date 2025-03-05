@@ -17,7 +17,7 @@ const HomePage = ({}) => {
         totalPages: number
     }>({
         queryKey: ['items'],
-        queryFn: () => getProducts({limit: 20, page: 1, sort: '{"rating":1}'}),
+        queryFn: () => getProducts({limit: 10, page: 1, sort: '{"rating":1}'}),
         refetchOnWindowFocus: false
     })
     const products = items.data?.products

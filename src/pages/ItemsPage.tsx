@@ -10,10 +10,9 @@ import {useSearchParams} from 'react-router-dom'
 
 
 const ItemsPage = () => {
-    const pageSize = 10
+    const pageSize = 8
     const [searchParams] = useSearchParams()
     const currentPage = Number(searchParams.get('page')) || 1;
-    console.log(searchParams)
 
     const items = useQuery<{
         products: Product[],
