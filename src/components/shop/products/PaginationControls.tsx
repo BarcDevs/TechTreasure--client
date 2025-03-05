@@ -9,6 +9,7 @@ import {
 } from '@/components/ui/pagination'
 import {FC} from 'react'
 import {useSearchParams} from 'react-router-dom'
+import PageLink from '@/components/shop/products/PageLink.tsx'
 
 type PaginationControlsProps = {
     totalPages: number
@@ -18,7 +19,7 @@ export const PaginationControls: FC<PaginationControlsProps> = ({totalPages}) =>
     const [searchParams, setSearchParams] = useSearchParams()
     const currentPage = Number(searchParams.get('page'))
 
-    const onPageChange = (page: number) => {
+    const setPage = (page: number) => {
         const newPage
             = page < 1 ? 1 :
             page > totalPages ? totalPages :
@@ -34,47 +35,39 @@ export const PaginationControls: FC<PaginationControlsProps> = ({totalPages}) =>
                 <PaginationContent>
                     <PaginationItem>
                         <PaginationPrevious to={`/products?page=${currentPage - 1}`}
-                                            onClick={() => onPageChange(currentPage - 1)}
+                                            onClick={() => setPage(currentPage - 1)}
                         />
                     </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink to={`/products?page=${currentPage === 1 ? 1 : currentPage - 1}`}
-                                        isActive={currentPage === 1}
-                                        onClick={() => onPageChange(
-                                            currentPage === 1 ? 1 : currentPage - 1
-                                        )}
-                        >
-                            {currentPage === 1 ? '1' : currentPage - 1}
-                        </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink to={`/products?page=${currentPage}`}
-                                        isActive={currentPage !== 1 && currentPage !== totalPages}>
-                            {currentPage}
-                        </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink
-                            to={`/products?page=${currentPage === totalPages ? totalPages : currentPage + 1}`}
-                            isActive={currentPage === totalPages}
-                            onClick={() => onPageChange(
-                                currentPage === totalPages ? totalPages : currentPage + 1
-                            )}>
-                            {currentPage === totalPages ? totalPages : currentPage + 1}
-                        </PaginationLink>
-                    </PaginationItem>
+                    <PageLink
+                        currentPage={currentPage}
+                        setPage={setPage}
+                        linkLocation={1}
+                        totalPages={totalPages}
+                    />
+                    <PageLink
+                        currentPage={currentPage}
+                        setPage={setPage}
+                        linkLocation={2}
+                        totalPages={totalPages}
+                    />
+                    <PageLink
+                        currentPage={currentPage}
+                        setPage={setPage}
+                        linkLocation={3}
+                        totalPages={totalPages}
+                    />
                     <PaginationItem>
                         <PaginationEllipsis/>
                     </PaginationItem>
                     <PaginationItem>
                         <PaginationLink to={`/products?page=${totalPages}`}
-                                        onClick={() => onPageChange(totalPages)}>
+                                        onClick={() => setPage(totalPages)}>
                             {totalPages}
                         </PaginationLink>
                     </PaginationItem>
                     <PaginationItem>
                         <PaginationNext to={`/products?page=${currentPage + 1}`}
-                                        onClick={() => onPageChange(currentPage + 1)}/>
+                                        onClick={() => setPage(currentPage + 1)}/>
                     </PaginationItem>
                 </PaginationContent>
             </Pagination>

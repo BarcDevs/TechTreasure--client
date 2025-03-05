@@ -19,7 +19,7 @@ const ItemsPage = () => {
         products: Product[],
         totalPages: number
     }>({
-        queryKey: ['items'],
+        queryKey: ['items', currentPage],
         queryFn: () => getProducts({
             limit: pageSize,
             page: currentPage,
