@@ -63,10 +63,6 @@ export const router = createBrowserRouter([
                     {
                         path: '',
                         element: <CategoriesPage/>
-                    },
-                    {
-                        path: ':id',
-                        element: <ItemsPage/>
                     }
                 ]
             },
