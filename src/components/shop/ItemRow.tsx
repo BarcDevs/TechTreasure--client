@@ -12,6 +12,7 @@ import {Link} from 'react-router-dom'
 
 type ItemListProps = {
     name: string,
+    filter?: 'sale' | 'bestSelling',
     headline: string,
     items: Product[] | undefined,
     rows?: number,
@@ -21,7 +22,7 @@ type ItemListProps = {
     isError?: boolean
 }
 
-const ItemRow = ({name, headline, items, rows = 1, timerEnd, scroll, isFetching, isError}: ItemListProps) => {
+const ItemRow = ({name, headline, items, rows = 1, timerEnd, scroll, isFetching, isError, filter}: ItemListProps) => {
     const {t} = useTranslation(I18N_NAMESPACES.global)
     const listRef = useRef<CarouselRef>(null)
     const gaps = {
@@ -37,7 +38,7 @@ const ItemRow = ({name, headline, items, rows = 1, timerEnd, scroll, isFetching,
                     {timerEnd && <Timer endTime={timerEnd}/>}
                     {scroll !== 'none' ?
                         <ScrollArrows ref={listRef}/> :
-                        <Link to={'/products?page=1'}>
+                        <Link to={`/products?page=1${filter ? `&filter=${filter}` : ''}`}>
                             <Button text={t(GLOBAL_LOCALES.viewAll)}/>
                         </Link>
                     }
@@ -46,11 +47,15 @@ const ItemRow = ({name, headline, items, rows = 1, timerEnd, scroll, isFetching,
             {items ?
                 <ItemList ref={listRef} {...{items, rows, scroll}}/> :
                 <p className={'text-body'}>
-                    {isFetching ? 'Loading...' : isError ? 'Error has occurred. Please try again later' : 'No items to display'}
+                    {isFetching ? 'Loading...' :
+                        isError ? 'Error has occurred. Please try again later' :
+                            'No items to display'}
                 </p>}
             {scroll !== 'none' &&
                 <div className={'flex-center'}>
-                    <Button text={t(GLOBAL_LOCALES.viewAllProducts)}/>
+                    <Link to={`/products?page=1${filter ? `&filter=${filter}` : ''}`}>
+                        <Button text={t(GLOBAL_LOCALES.viewAllProducts)}/>
+                    </Link>
                 </div>}
         </section>
     )

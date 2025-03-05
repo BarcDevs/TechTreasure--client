@@ -37,7 +37,9 @@ const HomePage = ({}) => {
                         products.filter((item: Product) => item.sale) : []}
                 scroll={'horizontal'}
                 timerEnd={config.TIMER_END_TIME}
-                isFetching={items.isFetching}/>
+                isFetching={items.isFetching}
+                filter={'sale'}
+            />
             <CategoryRow name={t(HOMEPAGE_LOCALES.categoriesTitle)}
                          headline={t(HOMEPAGE_LOCALES.categoriesHeadline)}
                          categories={Object.values(Categories)}/>
@@ -46,12 +48,13 @@ const HomePage = ({}) => {
                      items={products &&
                          products.filter((item, i) => i < 4 ||
                              item.isNew)}
-                     scroll={'none'}/>
+                     filter={'bestSelling'}
+            />
             {/* TODO Featured Sale */}
             <ItemRow name={t(HOMEPAGE_LOCALES.exploreTitle)}
                      headline={t(HOMEPAGE_LOCALES.exploreHeadline)}
                      items={products}
-                     rows={2}
+                     rows={1}
                      scroll={'vertical'}/>
             {/* TODO New Arrivals */}
             {/* TODO benefits */}
