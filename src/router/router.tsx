@@ -21,6 +21,7 @@ import FAQ_Page from '@/pages/infoPages/FAQ_Page.tsx'
 import AboutUsPage from '@/pages/infoPages/AboutUsPage.tsx'
 import SuccessPage from '@/pages/infoPages/SuccessPage.tsx'
 import NotFoundPage from '@/pages/infoPages/NotFoundPage.tsx'
+import ItemsPage from '@/pages/ItemsPage.tsx'
 
 export const router = createBrowserRouter([
     {
@@ -64,8 +65,8 @@ export const router = createBrowserRouter([
                         element: <CategoriesPage/>
                     },
                     {
-                        path: ':id'
-                        // element: <CategoryPage/>
+                        path: ':id',
+                        element: <ItemsPage/>
                     }
                 ]
             },
@@ -73,17 +74,21 @@ export const router = createBrowserRouter([
                 path: 'products',
                 children: [
                     {
-                        path: ''
-                        // element: <ItemsPage/>
+                        path: '?page',
+                        element: <ItemsPage/>
+                    },
+                    {
+                        path: '?category',
+                        element: <ItemsPage/>
+                    },
+                    {
+                        path: '?search',
+                        element: <ItemsPage/>
                     },
                     {
                         path: ':id',
                         element: <ItemPage/>
                     },
-                    {
-                        path: '?search'
-                        // element: <ItemsPage/>
-                    }
                 ]
             },
             {
