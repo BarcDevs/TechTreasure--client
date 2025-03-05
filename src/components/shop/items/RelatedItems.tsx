@@ -3,6 +3,8 @@ import {Product} from '@/types'
 import Item from '@/components/shop/items/Item.tsx'
 import {useQuery} from '@tanstack/react-query'
 import {getProducts} from '@/api/products.ts'
+import {Link} from 'react-router-dom'
+import Button from '@/components/elements/Button.tsx'
 
 const RelatedItems = ({}) => {
     const items = useQuery<{
@@ -29,6 +31,12 @@ const RelatedItems = ({}) => {
                     </li>
                 ))}
             </ul>
+            {/*todo: translate*/}
+            <Link to={`/products?page=1`}>
+                <Button className={'text-body'}
+                        text={'View All'}
+                />
+            </Link>
         </section>
     )
 }
