@@ -9,8 +9,8 @@ const Top = ({}) => {
 
     return (
         <div className="flex h-fit w-full items-center justify-around bg-black py-3">
-            <div className={'w-[100px] max-md:hidden'}/>
-            <div className="flex items-center justify-center gap-2">
+            <div className={'w-[100px] p-3 max-md:hidden'}/>
+            <div className="flex items-center justify-center gap-2 pl-1.5">
                 <div
                     className="text-small size-fit text-neutral-50">
                     {t(GLOBAL_LOCALES.promo)}
