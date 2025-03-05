@@ -25,13 +25,13 @@ const ProductListItem: FC<ProductListItemProps> = ({product}) =>
                            variant="secondary">
                         New
                     </Badge>}
-                <Link to="#">
+                <Link to={`/products/${product._id}`}>
                     <img src={imageUrl(product.mainImage[0]?.path) || '/placeholder.svg'} alt={product.name}
                          className="aspect-square size-fit object-center transition-transform group-hover:scale-105 sm:size-[120px]"/>
                 </Link>
             </div>
             <div className="flex flex-1 flex-col">
-                <Link to="#">
+                <Link to={`/products/${product._id}`}>
                     <h3 className="font-medium group-hover:text-primary">{product.name}</h3>
                 </Link>
                 <div className="mt-1 flex items-center">

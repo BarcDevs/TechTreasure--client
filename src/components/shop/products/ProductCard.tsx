@@ -28,14 +28,14 @@ const ProductCard: FC<ProductCardProps> = ({product}) =>
                 className="absolute right-2 top-2 z-10 rounded-full p-1.5 shadow-sm transition hover:text-primary"
             />
 
-            <Link to="#" className="flex-center relative flex-auto">
+            <Link to={`/products/${product._id}`} className="flex-center relative flex-auto">
                 <img src={imageUrl(product.mainImage[0]?.path) || '/placeholder.svg'}
                      alt={product.name}
                      className="aspect-square h-48 w-48 object-center p-3 transition-transform group-hover:scale-105"/>
             </Link>
 
             <div className="flex grow flex-col p-4">
-                <Link to="#">
+                <Link to={`/products/${product._id}`}>
                     <h3 className="line-clamp-1 font-medium group-hover:text-primary">{product.name}</h3>
                 </Link>
 
