@@ -7,16 +7,16 @@ import trash from '/assets/icons/trash.svg'
 import {Product, ProductWithColors} from '@/types'
 import {useNavigate} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
-import {CART_LOCALES, GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
+import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 import {getImagesOfColor} from '@/lib/utils/image.ts'
 import {useState} from 'react'
 import ColorPicker from '@/components/shared/ColorPicker.tsx'
 import {useDispatch, useSelector} from 'react-redux'
 import {addToWishlist, removeFromWishlist} from '@/store/wishlistSlice.ts'
-import {addToCart} from '@/store/cartSlice.ts'
 import {isProductWithColors} from '@/lib/utils/product.ts'
 import {imageUrl} from '@/lib/utils/url.ts'
 import {IRootState} from '@/store'
+import AddToCartButton from '@/components/elements/AddToCartButton.tsx'
 
 type ItemProps = {
     item: Product
@@ -57,11 +57,6 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
     //     e.stopPropagation()
     //     console.log('view clicked')
     // }
-
-    const handleCartClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.stopPropagation()
-        dispatch(addToCart({item}))
-    }
 
     const handleDeleteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation()
@@ -113,11 +108,7 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
                             src={imagePath ? imageUrl(imagePath) : imageUrl(item.mainImage[0]?.path)}
                             alt="item"/>
                     </div>
-                    <button onClick={handleCartClick}
-                            className={`text-body-medium flex-center invisible absolute bottom-3 left-0 h-10 w-full rounded-b bg-black text-neutral-50 ${variant !== 'wishlist' ? 'group-hover:' : ''}visible`}>
-
-                        {t(CART_LOCALES.addToCart, {ns: I18N_NAMESPACES.cart})}
-                    </button>
+                    <AddToCartButton item={item} itemVariant={variant} hoverable/>
                 </CardContent>
                 <CardFooter className={'text-body-medium flex-col-start gap-2'}>
                     <div className="text-black">

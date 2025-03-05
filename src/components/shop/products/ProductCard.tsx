@@ -2,9 +2,9 @@ import {Badge} from '@/components/ui/badge.tsx'
 import {Heart, Star} from 'lucide-react'
 import {Link} from 'react-router-dom'
 import {imageUrl} from '@/lib/utils/url.ts'
-import {Button} from '@/components/ui/button.tsx'
 import {Product} from '@/types'
 import {FC} from 'react'
+import AddToCartButton from '@/components/elements/AddToCartButton.tsx'
 
 type ProductCardProps = {
     product: Product
@@ -43,9 +43,7 @@ const ProductCard: FC<ProductCardProps> = ({product}) =>
                         <span className="font-medium">
                             ${product.price.toFixed(2)}
                         </span>
-                    <Button size="sm" className="h-8 rounded-full">
-                        Add to Cart
-                    </Button>
+                    <AddToCartButton item={product}/>
                 </div>
             </div>
         </div>
