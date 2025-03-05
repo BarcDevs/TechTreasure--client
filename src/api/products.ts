@@ -1,6 +1,6 @@
 import api from './index'
 import {ProductForm} from '@/validations/productForm.ts'
-import {toFormData,convertToProductSchema} from '@/lib/utils/data.ts'
+import {toFormData, convertToProductSchema} from '@/lib/utils/data.ts'
 import {Product} from '@/types'
 
 type QueryParams = {
@@ -12,13 +12,21 @@ type QueryParams = {
     search?: string
 }
 
-export const getProducts = async (query?: QueryParams) : Promise<{
+export const getProducts = async (query?: QueryParams): Promise<{
     products: Product[],
     totalPages: number
 }> => {
     if (query?.filter && typeof query.filter === 'object')
         query.filter = JSON.stringify(query.filter)
-    const queryString = new URLSearchParams(query as Record<any, any> || {}).toString()
+
+    const queryString = query && new URLSearchParams(
+        Object.entries(query)
+            .filter(([, value]) => value !== undefined) // Exclude keys with undefined values
+            .reduce((acc, [key, value]) => {
+                acc[key] = value
+                return acc
+            }, {} as Record<any, any>)
+    ).toString()
 
     const response = await api.get(`/products?${queryString}`)
     return response.data.data
