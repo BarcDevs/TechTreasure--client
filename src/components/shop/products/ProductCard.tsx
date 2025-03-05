@@ -1,10 +1,11 @@
 import {Badge} from '@/components/ui/badge.tsx'
-import {Heart, Star} from 'lucide-react'
+import {Star} from 'lucide-react'
 import {Link} from 'react-router-dom'
 import {imageUrl} from '@/lib/utils/url.ts'
 import {Product} from '@/types'
 import {FC} from 'react'
 import AddToCartButton from '@/components/elements/AddToCartButton.tsx'
+import FavoritesButton from '@/components/elements/FavoritesButton.tsx'
 
 type ProductCardProps = {
     product: Product
@@ -15,11 +16,15 @@ const ProductCard: FC<ProductCardProps> = ({product}) =>
              className="group relative rounded-lg border bg-card shadow-sm transition-all hover:shadow-md">
             {product.sale && product.sale > 0 &&
                 <Badge className="absolute left-2 top-2 z-10">-{product.sale}%</Badge>}
-            {product.isNew && <Badge className="absolute left-2 top-2 z-10" variant="secondary">New</Badge>}
-            <button
-                className="absolute right-2 top-2 z-10 rounded-full bg-white p-1.5 text-muted-foreground shadow-sm transition-colors hover:text-primary">
-                <Heart className="size-4"/>
-            </button>
+            {product.isNew &&
+                <Badge className="absolute left-2 top-2 z-10"
+                       variant="secondary">
+                    NEW
+                </Badge>}
+            <div
+                className="absolute right-2 top-2 z-10 rounded-full  p-1.5 text-muted-foreground shadow-sm transition-colors hover:text-primary">
+                <FavoritesButton item={product}/>
+            </div>
             <Link to="#">
                 <img src={imageUrl(product.mainImage[0]?.path) || '/placeholder.svg'}
                      alt={product.name}

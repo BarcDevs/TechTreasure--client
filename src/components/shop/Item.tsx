@@ -2,7 +2,6 @@ import {Card, CardContent, CardFooter} from '@/components/ui/card.tsx'
 import Rating from '@/components/elements/Rating.tsx'
 import Icon from '@/components/elements/Icon.tsx'
 // import eye from '/assets/icons/eye.svg'
-import heart from '/assets/icons/heart.svg'
 import trash from '/assets/icons/trash.svg'
 import {Product, ProductWithColors} from '@/types'
 import {useNavigate} from 'react-router-dom'
@@ -11,12 +10,10 @@ import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 import {getImagesOfColor} from '@/lib/utils/image.ts'
 import {useState} from 'react'
 import ColorPicker from '@/components/shared/ColorPicker.tsx'
-import {useDispatch, useSelector} from 'react-redux'
-import {addToWishlist, removeFromWishlist} from '@/store/wishlistSlice.ts'
 import {isProductWithColors} from '@/lib/utils/product.ts'
 import {imageUrl} from '@/lib/utils/url.ts'
-import {IRootState} from '@/store'
 import AddToCartButton from '@/components/elements/AddToCartButton.tsx'
+import FavoritesButton from '@/components/elements/FavoritesButton.tsx'
 
 type ItemProps = {
     item: Product
@@ -31,7 +28,6 @@ type WishlistItemProps = {
 }
 
 const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
-    const dispatch = useDispatch()
     const navigate = useNavigate()
     const {t} = useTranslation([I18N_NAMESPACES.shop, I18N_NAMESPACES.global])
 
@@ -40,17 +36,6 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
     const imagePath = isColors ? getImagesOfColor(item.mainImage, color!, true)[0]?.path : item.mainImage[0].path
     const handleCardClick = () => {
         navigate(`/products/${item._id}`)
-    }
-
-    const wishlist = useSelector((state: IRootState) => state.wishlist)
-
-    const [isInWishlist, setIsInWishlist] = useState(wishlist.some(wishlistItem => wishlistItem._id === item._id))
-
-    const handleFavoriteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.stopPropagation()
-
-        setIsInWishlist(prevState => !prevState)
-        isInWishlist ? dispatch(removeFromWishlist(item)) : dispatch(addToWishlist(item))
     }
 
     // const handlePeekClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -83,15 +68,7 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
                     }
                     <div className="absolute right-3 top-3 z-10 w-[34px] flex-col gap-2">
                         {variant !== 'wishlist' && <>
-                            <button className={'flex-center h-[34px]'}
-                                    onClick={handleFavoriteClick}>
-                                <Icon path={heart}
-                                      name={'heart'}
-                                      size={24}
-                                      hoverable
-                                      filled={isInWishlist}
-                                />
-                            </button>
+                            <FavoritesButton item={item}/>
                             {/*todo: add peek floating window*/}
                             {/*<button className={'flex-center h-[34px]'} onClick={handlePeekClick}>*/}
                             {/*    <Icon path={eye} name={'eye'} size={24} hoverable/>*/}

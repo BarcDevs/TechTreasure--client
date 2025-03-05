@@ -1,10 +1,11 @@
 import {Badge} from '@/components/ui/badge.tsx'
-import {Heart, Star} from 'lucide-react'
+import {Star} from 'lucide-react'
 import {Link} from 'react-router-dom'
 import {imageUrl} from '@/lib/utils/url.ts'
 import {Button} from '@/components/ui/button.tsx'
 import {Product} from '@/types'
 import {FC} from 'react'
+import FavoritesButton from '@/components/elements/FavoritesButton.tsx'
 
 type ProductListItemProps = {
     product: Product
@@ -22,7 +23,7 @@ const ProductListItem: FC<ProductListItemProps> = ({product}) =>
                     </Badge>}
                 <button
                     className="absolute right-2 top-2 z-10 rounded-full bg-white p-1.5 text-muted-foreground shadow-sm transition-colors hover:text-primary">
-                    <Heart className="size-4"/>
+                    <FavoritesButton item={product}/>
                 </button>
                 <Link to="#">
                     <img src={imageUrl(product.mainImage[0]?.path) || '/placeholder.svg'} alt={product.name}
