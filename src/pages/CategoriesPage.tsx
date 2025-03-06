@@ -27,7 +27,7 @@ const CategoriesPage = () => {
                             .map((category, index) => (
                                 <Link
                                     key={index}
-                                    to={`/categories/${category._id}`}
+                                    to={`/products?category=${category.name}`}
                                     className="group flex flex-col items-center rounded-lg border bg-card p-4 shadow-sm transition-colors hover:border-primary hover:bg-card/50"
                                 >
                                     <div className="mb-3 overflow-hidden">

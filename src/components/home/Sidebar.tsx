@@ -14,7 +14,7 @@ const SidebarItem = ({category}: { category: (Category | { name_key: string; sub
     const {t} = useTranslation(I18N_NAMESPACES.categories)
     return isCategory(category) ? (
         <li key={category._id} className={'w-full hover:opacity-90'}>
-            <Link to={`category/${category.name}`} className="text-body text-start text-black">
+            <Link to={`products?category=${category.name}`} className="text-body text-start text-black">
                 {t(category.name)}
             </Link>
         </li>
@@ -31,7 +31,7 @@ const SidebarItem = ({category}: { category: (Category | { name_key: string; sub
                     <DropdownMenuContent align={'end'} alignOffset={-210}>
                         {category.subcategories.map(subcategory => (
                             <DropdownMenuItem key={subcategory._id}>
-                                <Link to={`category/${subcategory.name}`} className="text-body text-center text-black">
+                                <Link to={`products?category=${subcategory.name}`} className="text-body text-center text-black">
                                     {t(subcategory.name)}
                                 </Link>
                             </DropdownMenuItem>
