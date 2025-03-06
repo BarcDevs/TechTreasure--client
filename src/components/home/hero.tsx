@@ -1,25 +1,24 @@
-import {Carousel, CarouselContent, CarouselItem} from "@/components/ui/carousel"
+import {Carousel, CarouselContent, CarouselItem} from '@/components/ui/carousel'
+import HeroSlider from '@/components/home/HeroSlider.tsx'
 
-const MockItem = ({}) => (
-    <div className={'inline-flex h-full w-full justify-center bg-black'}>
-        {/*//     <div className={'h-full w-[50%]'}></div>*/}
-        {/*//     <div className={'w-[50%]'}>*/}
-        {/*//         <img src="/assets/images/hero-image-iphone.jpeg" alt="phone" className={'z-0 bg-clip-content pt-4'}/>*/}
-        {/*//     </div>*/}
-        <img src="/assets/images/hero.svg" alt="hero" className={'max-lg:hidden'}/>
-        <img src="/assets/images/hero-sm.svg" alt="hero" className={'lg:hidden'}/>
-    </div>
-)
+// const MockItem = ({}) => (
+//     <div className={'inline-flex size-full justify-center bg-black'}>
+//         <img src="/assets/images/hero.svg" alt="hero" className={'max-lg:hidden'}/>
+//         <img src="/assets/images/hero-sm.svg" alt="hero" className={'lg:hidden'}/>
+//     </div>
+// )
 
 const Hero = ({}) => (
-    <section className={'h-full w-full'}>
+    <section className={'size-full'}>
         <Carousel>
             <CarouselContent>
-                <CarouselItem><MockItem/></CarouselItem>
+                <CarouselItem>
+                    {/*<MockItem/>*/}
+                    <HeroSlider/>
+                </CarouselItem>
             </CarouselContent>
         </Carousel>
     </section>
 )
-
 
 export default Hero
