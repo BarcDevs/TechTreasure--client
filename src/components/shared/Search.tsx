@@ -31,9 +31,8 @@ const Search = ({additionalStyles}: { additionalStyles?: string }) => {
 
     useEffect(() => {
         if (!location.pathname.includes('/products') &&
-            searchInputRef.current) {
+            searchInputRef.current)
             searchInputRef.current.value = ''
-        }
     }, [location.pathname])
 
     return (
