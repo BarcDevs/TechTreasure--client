@@ -30,6 +30,7 @@ const DesktopNavbar = ({}) => {
     const isLoggedIn = useSelector((state: IRootState) => state.auth.isAuthenticated)
     const location = useLocation().pathname
     const isAuthPage = location === '/login' || location === '/signup'
+    const isProductsPage = location === '/products'
 
     return (
         <nav className={'flex-center w-full max-md:hidden'}>
@@ -64,7 +65,9 @@ const DesktopNavbar = ({}) => {
                 </div>
                 {/*search & cart*/}
                 <div className={'inline-flex gap-6'}>
-                    <Search additionalStyles={isAuthPage ? 'max-lg:[120px]' : 'max-lg:hidden'}/>
+                    {isProductsPage &&
+                        <Search additionalStyles={isAuthPage ? 'max-lg:[120px]' : 'max-lg:hidden'}/>
+                    }
                     {!isAuthPage &&
                         <div className={'inline-flex h-6 items-center justify-between gap-4'}>
                             <Link to={'/wishlist'}>
