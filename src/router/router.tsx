@@ -22,6 +22,7 @@ import AboutUsPage from '@/pages/infoPages/AboutUsPage.tsx'
 import SuccessPage from '@/pages/infoPages/SuccessPage.tsx'
 import NotFoundPage from '@/pages/infoPages/NotFoundPage.tsx'
 import ItemsPage from '@/pages/ItemsPage.tsx'
+import AccountPage from '@/pages/AccountPage.tsx'
 
 export const router = createBrowserRouter([
     {
@@ -50,8 +51,17 @@ export const router = createBrowserRouter([
                 element: <HomePage/>
             },
             {
-                path: 'account/:id'
-                // element: <AccountPage/>
+                path: 'account/me',
+                element: <AccountPage/>,
+                loader: () => {
+                    const authState = JSON.parse(localStorage.getItem('auth-state') || '{}')
+                    store.dispatch(loadAuthState(authState))
+                    return authState
+                },
+            },
+            {
+                path: 'account/:id',
+                element: <AccountPage/>
             },
             {
                 path: 'seller/:id'
