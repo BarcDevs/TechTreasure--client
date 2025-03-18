@@ -33,7 +33,11 @@ const UserDropdown = ({}) => {
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-                <DropdownMenuLabel><Link to={`${root}account`}>My Account</Link></DropdownMenuLabel>
+                <DropdownMenuLabel>
+                    <Link to={`${root}account/me`}>
+                        My Account
+                    </Link>
+                </DropdownMenuLabel>
                 {!isAdminPage && user?.role === 'seller' &&
                     <DropdownMenuLabel><Link to={`${root}seller`}>Seller Dashboard</Link></DropdownMenuLabel>}
                 <DropdownMenuSeparator/>
