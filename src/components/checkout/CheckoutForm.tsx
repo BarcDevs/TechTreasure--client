@@ -40,6 +40,7 @@ const CheckoutForm =
         })
         const {dirtyFields} = form.formState
 
+        // @ts-ignore
         useImperativeHandle(ref, () => ({
             submit: () => {
                 form.trigger()
