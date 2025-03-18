@@ -41,8 +41,16 @@ const UserDropdown = ({}) => {
                 {!isAdminPage && user?.role === 'seller' &&
                     <DropdownMenuLabel><Link to={`${root}seller`}>Seller Dashboard</Link></DropdownMenuLabel>}
                 <DropdownMenuSeparator/>
-                <DropdownMenuItem><Link to={`${root}settings`}>Settings</Link></DropdownMenuItem>
-                <DropdownMenuItem><Link to={`${root}support`}>Support</Link></DropdownMenuItem>
+                <DropdownMenuItem>
+                    <Link to={`${root}settings`}>
+                        Settings
+                    </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                    <Link to={`${root}contact`}>
+                        Support
+                    </Link>
+                </DropdownMenuItem>
                 <DropdownMenuSeparator/>
                 <DropdownMenuItem><Link to={`${root}logout`} className={'text-red-500'}>Logout</Link></DropdownMenuItem>
             </DropdownMenuContent>
