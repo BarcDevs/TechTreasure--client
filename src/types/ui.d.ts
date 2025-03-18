@@ -5,7 +5,7 @@ export type CarouselRef = {
     prev: () => void
 }
 
-interface FormRef {
+interface FormRef extends HTMLFormElement {
     submit: () => void
 }
 
