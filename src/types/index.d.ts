@@ -61,6 +61,7 @@ export type BaseUser = {
     _id: string
     name: string
     email: string
+    address: string
     role: Role
     billingDetails?: CheckoutForm[]
     cart?: Cart
