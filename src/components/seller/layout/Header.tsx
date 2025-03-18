@@ -1,7 +1,3 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/wqUOQWXuSdh
- */
 import {Link, useLocation} from 'react-router-dom'
 import {Package2Icon, SearchIcon} from '@/components/seller/Icons.tsx'
 import {Input} from '@/components/ui/input.tsx'
@@ -16,7 +12,7 @@ const Header = ({}) => {
     return (
         <header
             className={`flex h-14 items-center gap-4 border-b bg-gray-100/40 px-6 lg:h-[60px] dark:bg-gray-800/40 ${isProductsPage ? 'justify-between' : 'justify-end'}`}>
-            <Link className="lg:hidden" to={'account'}>
+            <Link className="lg:hidden" to={'account/me'}>
                 <Package2Icon className="h-6 w-6"/>
                 <span className="sr-only">Account</span>
             </Link>
