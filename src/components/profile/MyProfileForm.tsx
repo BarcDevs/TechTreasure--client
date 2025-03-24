@@ -72,40 +72,40 @@ const MyProfileForm = forwardRef(
                         required={true}
                     />
 
-                    <div>
-                        <h2 className="mb-4 text-lg font-medium">
-                            Password Changes
-                        </h2>
-                        <div className="space-y-4">
-                            <div>
-                                <FormInput
-                                    className={'rounded-none border-x-0 border-t-0 border-black'}
-                                    key={'oldPassword'}
-                                    name={'currentPassword'}
-                                    placeholder={'Current Password'}
-                                    formControl={form.control}
-                                />
-                            </div>
-                            <div>
-                                <FormInput
-                                    className={'rounded-none border-x-0 border-t-0 border-black'}
-                                    key={'newPassword'}
-                                    name={'newPassword'}
-                                    placeholder={'New Password'}
-                                    formControl={form.control}
-                                />
-                            </div>
-                            <div>
-                                <FormInput
-                                    className={'rounded-none border-x-0 border-t-0 border-black'}
-                                    key={'confirmPassword'}
-                                    name={'confirmPassword'}
-                                    placeholder={'Confirm Password'}
-                                    formControl={form.control}
-                                />
-                            </div>
-                        </div>
-                    </div>
+                    {/*<div>*/}
+                    {/*    <h2 className="mb-4 text-lg font-medium">*/}
+                    {/*        Password Changes*/}
+                    {/*    </h2>*/}
+                    {/*    <div className="space-y-4">*/}
+                    {/*        <div>*/}
+                    {/*            <FormInput*/}
+                    {/*                className={'rounded-none border-x-0 border-t-0 border-black'}*/}
+                    {/*                key={'oldPassword'}*/}
+                    {/*                name={'currentPassword'}*/}
+                    {/*                placeholder={'Current Password'}*/}
+                    {/*                formControl={form.control}*/}
+                    {/*            />*/}
+                    {/*        </div>*/}
+                    {/*        <div>*/}
+                    {/*            <FormInput*/}
+                    {/*                className={'rounded-none border-x-0 border-t-0 border-black'}*/}
+                    {/*                key={'newPassword'}*/}
+                    {/*                name={'newPassword'}*/}
+                    {/*                placeholder={'New Password'}*/}
+                    {/*                formControl={form.control}*/}
+                    {/*            />*/}
+                    {/*        </div>*/}
+                    {/*        <div>*/}
+                    {/*            <FormInput*/}
+                    {/*                className={'rounded-none border-x-0 border-t-0 border-black'}*/}
+                    {/*                key={'confirmPassword'}*/}
+                    {/*                name={'confirmPassword'}*/}
+                    {/*                placeholder={'Confirm Password'}*/}
+                    {/*                formControl={form.control}*/}
+                    {/*            />*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
 
                     <div className="flex justify-end gap-4">
                         <Button type="button" variant="outline">
