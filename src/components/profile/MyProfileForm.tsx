@@ -1,6 +1,6 @@
 import {Button} from '@/components/ui/button.tsx'
 import {ForwardedRef, forwardRef, useImperativeHandle} from 'react'
-import {ProfileForm} from '@/validations/ProfileForm'
+import {ProfileForm} from '@/validations/ProfileForm.ts'
 import {BaseUser} from '@/types'
 import {FieldPath, useForm} from 'react-hook-form'
 import {Form} from '@/components/ui/form.tsx'
@@ -12,10 +12,11 @@ import {FormRef} from '@/types/ui'
 type ProfileFormProps = {
     user: BaseUser
     onSubmit: (data: ProfileForm) => void
+    setEdit: (edit: boolean) => void
 }
 
 const MyProfileForm = forwardRef(
-    ({onSubmit, user}: ProfileFormProps, formRef: ForwardedRef<FormRef | null>) => {
+    ({onSubmit, user, setEdit}: ProfileFormProps, formRef: ForwardedRef<FormRef | null>) => {
         const form = useForm<ProfileForm>({
             resolver: zodResolver(profileFormSchema),
             defaultValues: {
@@ -108,11 +109,15 @@ const MyProfileForm = forwardRef(
                     {/*    </div>*/}
                     {/*</div>*/}
 
-                    <div className="flex justify-end gap-4">
-                        <Button type="button" variant="outline">
+                    <div className="mt-4 flex justify-end gap-4">
+                        <Button type="button"
+                                onClick={() => setEdit(false)}
+                                variant="outline"
+                        >
                             Cancel
                         </Button>
-                        <Button type="submit" className="bg-red-500 hover:bg-red-600">
+                        <Button type="submit"
+                                className="bg-red-500 hover:bg-red-600">
                             Save Changes
                         </Button>
                     </div>

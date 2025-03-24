@@ -6,7 +6,7 @@ import MyProfileForm from '@/components/profile/MyProfileForm.tsx'
 import Button from '@/components/elements/Button.tsx'
 import Icon from '@/components/elements/Icon.tsx'
 import UserDetails from '@/components/profile/UserDetails.tsx'
-import {ProfileForm} from '@/validations/ProfileForm.tsx'
+import {ProfileForm} from '@/validations/ProfileForm.ts'
 import {FormRef} from '@/types/ui'
 
 export default function AccountPage() {
@@ -33,19 +33,21 @@ export default function AccountPage() {
                                 <h1 className="text-2xl font-medium text-red-500">
                                     {pathname === '/account/me' ? 'Your Profile' : `${/*user.name*/ +' '} Profile`}
                                 </h1>
-                                <div className="text-sm">
-                                    Welcome!
-                                    <span className="text-red-500">
+                                {!edit &&
+                                    <div className="text-sm">
+                                        Welcome!
+                                        <span className="text-red-500">
                                         &nbsp;{user?.name}
                                     </span>
-                                </div>
-                                {pathname === '/account/me' &&
+                                    </div>
+                                }
+                                {pathname === '/account/me' && !edit &&
                                     <Button
                                         onClick={() => setEdit(prevState => !prevState)}
                                     >
                                         <Icon
-                                            name={edit ? 'save' : 'edit'}
-                                            path={`/assets/icons/${edit ? 'save' : 'edit'}.svg`}
+                                            name={'edit'}
+                                            path={`/assets/icons/edit.svg`}
                                             size={20}
                                             hoverable
                                         />
@@ -59,8 +61,11 @@ export default function AccountPage() {
                                         ref={formRef}
                                         onSubmit={onSubmit}
                                         user={user!}
+                                        setEdit={setEdit}
                                     /> :
-                                <p className={'text-red-500'}>User not found</p>
+                                    <p className={'text-red-500'}>
+                                        User not found
+                                    </p>
                             }
                         </div>
                     </div>
