@@ -11,13 +11,16 @@ const profileFormSchema = z.object({
     currentPassword: z.string()
         .min(1, {message: 'Current password is required'})
         .min(8, {message: 'Current password is invalid'})
-        .max(50),
+        .max(50)
+        .optional(),
     newPassword: z.string()
         .min(8, {message: "Password must be at least 8 characters long"})
         .max(50)
         .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-            {message: "Password must contain at least one uppercase letter, one lowercase letter, and one number"}),
+            {message: "Password must contain at least one uppercase letter, one lowercase letter, and one number"})
+        .optional(),
     confirmPassword: z.string()
+        .optional()
 }).superRefine((({newPassword, confirmPassword}, ctx) => {
     if (newPassword !== confirmPassword) {
         ctx.addIssue({
