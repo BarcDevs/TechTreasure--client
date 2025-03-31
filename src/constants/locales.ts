@@ -22,6 +22,7 @@ export enum GLOBAL_LOCALES {
     copyright = 'copyright',
     support = 'support',
     account = 'account',
+    profile = 'profile',
     quickLinks = 'quickLinks',
     downloadApp = 'downloadApp',
     appPromo = 'appPromo',
