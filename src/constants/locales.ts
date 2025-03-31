@@ -13,6 +13,18 @@ export enum I18N_NAMESPACES {
     about = 'about',
 }
 
+export enum NAVIGATION_LOCALES {
+    settings = 'settings',
+    support = 'support',
+    account = 'account',
+    profile = 'profile',
+    myAccount = 'myAccount',
+    sellerDashboard = 'seller',
+
+    signup = 'signup',
+    logout = 'logout',
+}
+
 export enum GLOBAL_LOCALES {
     promo = 'promo',
     shopNow = 'shopNow',
@@ -20,9 +32,7 @@ export enum GLOBAL_LOCALES {
     subscribe = 'subscribe',
     subscribePromo = 'subscribePromo',
     copyright = 'copyright',
-    support = 'support',
-    account = 'account',
-    profile = 'profile',
+
     quickLinks = 'quickLinks',
     downloadApp = 'downloadApp',
     appPromo = 'appPromo',

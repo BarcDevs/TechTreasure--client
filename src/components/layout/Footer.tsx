@@ -4,7 +4,7 @@ import {FOOTER_LINKS, SUPPORT_DETAILS} from '@/constants/footer.ts'
 import Icon from '@/components/elements/Icon.tsx'
 import {APP_NAME, SOCIAL_LINKS} from '@/constants'
 import {useTranslation} from 'react-i18next'
-import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
+import {GLOBAL_LOCALES, I18N_NAMESPACES, NAVIGATION_LOCALES} from '@/constants/locales.ts'
 
 const Footer = ({}) => {
     const {t} = useTranslation(I18N_NAMESPACES.global)
@@ -59,7 +59,7 @@ const Footer = ({}) => {
                 </div>
 
                 <div className="flex-start-between mb-[30px] inline-flex h-fit w-[90%] gap-5 max-lg:mb-0">
-                    <FooterLinkColumn header={t(GLOBAL_LOCALES.support)}>
+                    <FooterLinkColumn header={t(NAVIGATION_LOCALES.support)}>
                         <p className={`${FOOTER_LINK_STYLE} max-w-[200px]`}>{SUPPORT_DETAILS.address}</p>
                         <a href={`mailto:${SUPPORT_DETAILS.email}?subject=Support`}
                            className={FOOTER_LINK_STYLE}>{SUPPORT_DETAILS.email}</a>
@@ -67,7 +67,7 @@ const Footer = ({}) => {
                            className={FOOTER_LINK_STYLE}>{SUPPORT_DETAILS.phone}</a>
                     </FooterLinkColumn>
 
-                    <FooterLinkColumn header={t(GLOBAL_LOCALES.account)} links={FOOTER_LINKS.account}/>
+                    <FooterLinkColumn header={t(NAVIGATION_LOCALES.account)} links={FOOTER_LINKS.account}/>
                     <FooterLinkColumn header={t(GLOBAL_LOCALES.quickLinks)} links={FOOTER_LINKS.quickLinks}/>
 
                     <FooterLinkColumn header={t(GLOBAL_LOCALES.downloadApp)} additionalStyles={'max-md:hidden'}>

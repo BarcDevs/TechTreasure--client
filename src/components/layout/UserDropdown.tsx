@@ -10,9 +10,11 @@ import Icon from '@/components/elements/Icon.tsx'
 import {useLocation, useNavigate} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import {IRootState} from '@/store'
+import {useTranslation} from 'react-i18next'
+import {I18N_NAMESPACES, NAVIGATION_LOCALES} from '@/constants/locales.ts'
 
-// TODO: add translations
 const UserDropdown = ({}) => {
+    const {t} = useTranslation(I18N_NAMESPACES.navigationLinks)
     const location = useLocation().pathname
     const navigate = useNavigate()
     const isAdminPage = location.startsWith('/seller')
@@ -27,7 +29,9 @@ const UserDropdown = ({}) => {
                     size="icon"
                     variant="ghost"
                 >
-                    <Icon path={userImage || '/assets/icons/user.svg'} name={'avatar'} size={32}
+                    <Icon path={userImage || '/assets/icons/user.svg'}
+                          name={'avatar'}
+                          size={32}
                           className="aspect-square rounded-full object-cover"/>
                     <span className="sr-only">
                         Toggle user menu
@@ -39,34 +43,34 @@ const UserDropdown = ({}) => {
                     onSelect={() => navigate('/account/me')}
                     className={'cursor-pointer'}
                 >
-                    My Account
+                    {t(NAVIGATION_LOCALES.myAccount)}
                 </DropdownMenuItem>
                 {!isAdminPage && user?.role === 'seller' &&
                     <DropdownMenuItem
                         onSelect={() => navigate('/seller')}
                         className={'cursor-pointer'}
                     >
-                        Seller Dashboard
+                        {t(NAVIGATION_LOCALES.sellerDashboard)}
                     </DropdownMenuItem>}
                 <DropdownMenuSeparator/>
                 <DropdownMenuItem
                     onSelect={() => navigate('/settings')}
                     className={'cursor-pointer'}
                 >
-                    Settings
+                    {t(NAVIGATION_LOCALES.settings)}
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     onSelect={() => navigate('/contact')}
                     className={'cursor-pointer'}
                 >
-                    Support
+                    {t(NAVIGATION_LOCALES.support)}
                 </DropdownMenuItem>
                 <DropdownMenuSeparator/>
                 <DropdownMenuItem
                     onSelect={() => navigate('/logout')}
                     className={'cursor-pointer text-red-500'}
                 >
-                    Logout
+                    {t(NAVIGATION_LOCALES.logout)}
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>

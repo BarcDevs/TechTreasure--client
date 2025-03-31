@@ -27,27 +27,27 @@ export const LANGUAGES: { [key: string]: LANGUAGE } = {
 export const NAVIGATION_LINKS: LINK[] = [
     {
         name: 'Home',
-        key: 'home',
+        locale: 'home',
         path: '/'
     },
     {
         name: 'Products',
-        key: 'products',
+        locale: 'products',
         path: '/products?page=1'
     },
     {
         name: 'Categories',
-        key: 'categories',
+        locale: 'categories',
         path: '/categories'
     },
     {
         name: 'Contact',
-        key: 'contact',
+        locale: 'contact',
         path: '/contact'
     },
     {
         name: 'About',
-        key: 'about',
+        locale: 'about',
         path: '/about'
     }
 ]

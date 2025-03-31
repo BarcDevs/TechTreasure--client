@@ -13,10 +13,10 @@ import cart from '/assets/icons/cart.svg'
 import wishlist from '/assets/icons/wishlist.svg'
 import Search from '@/components/shared/Search.tsx'
 import {useTranslation} from 'react-i18next'
-import {I18N_NAMESPACES} from '@/constants/locales.ts'
+import {I18N_NAMESPACES, NAVIGATION_LOCALES} from '@/constants/locales.ts'
 import {useSelector} from 'react-redux'
 import {IRootState} from '@/store'
-//todo locales
+
 const MobileNavbar = ({}) => {
     const {t} = useTranslation(I18N_NAMESPACES.navigationLinks)
     const isLoggedIn = useSelector((state: IRootState) => state.auth.isAuthenticated)
@@ -42,7 +42,7 @@ const MobileNavbar = ({}) => {
                             onSelect={() => navigate(link.path)}
                             className={'cursor-pointer'}
                         >
-                            {t(link.key)}
+                            {t(link.locale)}
                         </DropdownMenuItem>
                     ))}
                     <DropdownMenuSeparator/>
@@ -51,7 +51,7 @@ const MobileNavbar = ({}) => {
                             onSelect={() => navigate('/signup')}
                             className={'cursor-pointer'}
                         >
-                            {t('signup')}
+                            {t(NAVIGATION_LOCALES.signup)}
                         </DropdownMenuItem>
                     }
                     {isLoggedIn &&
@@ -60,13 +60,13 @@ const MobileNavbar = ({}) => {
                                 onSelect={() => navigate('/account/me')}
                                 className={'cursor-pointer'}
                             >
-                                {t('profile')}
+                                {t(NAVIGATION_LOCALES.profile)}
                             </DropdownMenuItem>
 
                             <DropdownMenuItem
                                 onSelect={() => navigate('/logout')}
                                 className={'cursor-pointer text-red-500'}>
-                                {t('logout')}
+                                {t(NAVIGATION_LOCALES.logout)}
                             </DropdownMenuItem>
                         </>
                     }
