@@ -1,8 +1,5 @@
-import {Link, NavLink, useLocation} from 'react-router-dom'
+import {NavLink, useLocation} from 'react-router-dom'
 import {NAVIGATION_LINKS} from '@/constants'
-import cart from '/assets/icons/cart.svg'
-import wishlist from '/assets/icons/wishlist.svg'
-import Icon from '@/components/elements/Icon.tsx'
 import Search from '@/components/shared/Search.tsx'
 import {APP_NAME} from '@/constants'
 import {useTranslation} from 'react-i18next'
@@ -11,6 +8,7 @@ import Underline from '@/components/shared/Underline.tsx'
 import UserDropdown from '@/components/layout/UserDropdown.tsx'
 import {useSelector} from 'react-redux'
 import {IRootState} from '@/store'
+import ShopButton from '@/components/shop/ShopButton.tsx'
 
 const NavbarLink = ({to, label, location}: { to: string, label: string, location: string }) => {
     const isActive = location === to
@@ -53,7 +51,7 @@ const DesktopNavbar = ({}) => {
                         <NavbarLink
                             key={link.name}
                             to={link.path}
-                            label={t(link.key)}
+                            label={t(link.locale)}
                             location={location}/>
                     ))}
                     {!isLoggedIn &&
@@ -70,17 +68,8 @@ const DesktopNavbar = ({}) => {
                     }
                     {!isAuthPage &&
                         <div className={'inline-flex h-6 items-center justify-between gap-4'}>
-                            <Link to={'/wishlist'}>
-                                <Icon path={wishlist}
-                                      name={'wishlist'}
-                                      hoverable
-                                />
-                            </Link>
-                            <Link to={'/cart'}>
-                                <Icon path={cart}
-                                      name={'cart'}
-                                      hoverable/>
-                            </Link>
+                            <ShopButton to={'wishlist'} size={30}/>
+                            <ShopButton to={'cart'} size={30}/>
                             {isLoggedIn && <UserDropdown/>}
                         </div>
                     }

@@ -5,17 +5,16 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import {Link, useLocation, useNavigate} from 'react-router-dom'
+import {useLocation, useNavigate} from 'react-router-dom'
 import Icon from '@/components/elements/Icon.tsx'
 import hamburger from '/assets/icons/hamburger.svg'
 import {NAVIGATION_LINKS} from '@/constants'
-import cart from '/assets/icons/cart.svg'
-import wishlist from '/assets/icons/wishlist.svg'
 import Search from '@/components/shared/Search.tsx'
 import {useTranslation} from 'react-i18next'
 import {I18N_NAMESPACES, NAVIGATION_LOCALES} from '@/constants/locales.ts'
 import {useSelector} from 'react-redux'
 import {IRootState} from '@/store'
+import ShopButton from '@/components/shop/ShopButton.tsx'
 
 const MobileNavbar = ({}) => {
     const {t} = useTranslation(I18N_NAMESPACES.navigationLinks)
@@ -77,23 +76,8 @@ const MobileNavbar = ({}) => {
 
             {!isAuthPage &&
                 <div className={'inline-flex h-6 justify-between gap-4'}>
-                    <Link to={'/wishlist'}>
-                        <Icon
-                            path={wishlist}
-
-                            name={'wishlist'}
-                            size={30}
-                            hoverable
-                        />
-                    </Link>
-                    <Link to={'/cart'}>
-                        <Icon
-                            path={cart}
-                            name={'cart'}
-                            size={30}
-                            hoverable
-                        />
-                    </Link>
+                    <ShopButton to={'wishlist'} size={25}/>
+                    <ShopButton to={'cart'} size={25}/>
                 </div>
             }
         </nav>
