@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom'
 import {BellIcon, Package2Icon} from '@/components/seller/Icons.tsx'
 import {Button} from '@/components/ui/button.tsx'
-import {ADMIN_LINKS} from '@/constants'
+import {SELLER_LINKS} from '@/constants'
 import SidebarLink from '@/components/seller/layout/SidebarLink.tsx'
 import {useShop} from '@/hooks/useShop.ts'
 
@@ -26,7 +26,7 @@ const Sidebar = ({}) => {
                 </div>
                 <div className="flex-1 overflow-auto py-2">
                     <nav className="grid items-start px-4 text-sm font-medium">
-                        {ADMIN_LINKS.map(link => (
+                        {SELLER_LINKS.map(link => (
                             <SidebarLink
                                 key={link.href}
                                 link={link}
