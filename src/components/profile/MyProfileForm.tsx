@@ -1,22 +1,18 @@
 import {Button} from '@/components/ui/button.tsx'
-import {ForwardedRef, forwardRef, useImperativeHandle} from 'react'
-import {ProfileForm} from '@/validations/ProfileForm.ts'
 import {BaseUser} from '@/types'
 import {FieldPath, useForm} from 'react-hook-form'
 import {Form} from '@/components/ui/form.tsx'
 import {ProfileForm, profileFormSchema} from '@/validations/profileForm.ts'
 import {zodResolver} from '@hookform/resolvers/zod'
 import FormInput from '@/components/shared/FormInput.tsx'
-import {FormRef} from '@/types/ui'
 
 type ProfileFormProps = {
     user: BaseUser
-    onSubmit: (data: ProfileForm) => void
     setEdit: (edit: boolean) => void
 }
 
-const MyProfileForm = forwardRef(
-    ({onSubmit, user, setEdit}: ProfileFormProps, formRef: ForwardedRef<FormRef | null>) => {
+const MyProfileForm =
+    ({user, setEdit}: ProfileFormProps) => {
         const form = useForm<ProfileForm>({
             resolver: zodResolver(profileFormSchema),
             defaultValues: {
@@ -29,12 +25,6 @@ const MyProfileForm = forwardRef(
             }
         })
         const {dirtyFields} = form.formState
-        // @ts-ignore
-        useImperativeHandle(formRef, () => ({
-            submit: () => {
-                form.handleSubmit(onSubmit)()
-            }
-        }))
 
         const handleFormBlur = () => {
             Object.keys(dirtyFields).forEach((key) => {
@@ -42,11 +32,15 @@ const MyProfileForm = forwardRef(
             })
         }
 
+        const submitForm = (data: ProfileForm) => {
+            console.log(data)
+            // todo: Handle form submission logic here
+        }
+
         return (
             <Form {...form}>
                 <form
-                    onSubmit={form.handleSubmit(onSubmit)}
-                    ref={formRef}
+                    onSubmit={form.handleSubmit(submitForm)}
                     onBlur={handleFormBlur}
                 >
                     <FormInput
@@ -124,6 +118,6 @@ const MyProfileForm = forwardRef(
                 </form>
             </Form>
         )
-    })
+    }
 
 export default MyProfileForm

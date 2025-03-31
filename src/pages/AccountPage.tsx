@@ -1,27 +1,19 @@
 import {useLocation} from 'react-router-dom'
 import {useSelector} from 'react-redux'
-import {useRef, useState} from 'react'
+import {useState} from 'react'
 import {IRootState} from '@/store'
 import MyProfileForm from '@/components/profile/MyProfileForm.tsx'
 import Button from '@/components/elements/Button.tsx'
 import Icon from '@/components/elements/Icon.tsx'
 import UserDetails from '@/components/profile/UserDetails.tsx'
-import {ProfileForm} from '@/validations/ProfileForm.ts'
-import {FormRef} from '@/types/ui'
 
 export default function AccountPage() {
     const pathname = useLocation().pathname
-    const formRef = useRef<FormRef | null>(null)
     // todo: add option to get another user details on seller mode
     const user =
         useSelector((state: IRootState) => state.auth.user)
 
     const [edit, setEdit] = useState(false)
-
-    const onSubmit = (data: ProfileForm) => {
-        console.log(data)
-        // todo: Handle form submission logic here
-    }
 
     return (
         <div className="min-h-screen bg-white">
@@ -58,8 +50,6 @@ export default function AccountPage() {
                                 <UserDetails user={user}/> :
                                 edit && pathname === '/account/me' ?
                                     <MyProfileForm
-                                        ref={formRef}
-                                        onSubmit={onSubmit}
                                         user={user!}
                                         setEdit={setEdit}
                                     /> :
