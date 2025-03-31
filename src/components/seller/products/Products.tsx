@@ -45,7 +45,14 @@ const Products = () => {
     return (
         <>
             <section className="flex items-center">
-                <h1 className="text-lg font-semibold md:text-2xl">Products</h1>
+                <header className="mb-8">
+                    <h1 className="text-2xl font-bold text-gray-900 md:text-3xl">
+                        Products
+                    </h1>
+                    <p className="mt-1 text-gray-500">
+                        Manage your products
+                    </p>
+                </header>
                 <Button className="ml-auto bg-red-500 hover:bg-red-500/80" size="sm">
                     <Link to={'add'}>
                         Add product
@@ -110,7 +117,7 @@ const Products = () => {
                     isFetching ? <p>Loading...</p> :
                         isError ?
                             <p>{getErrorMessage(error)}</p> :
-                            <p>No products found</p>
+                            <p className={'p-2'}>You have no products in the store. add one to get started</p>
                 )}
             </section>
         </>
