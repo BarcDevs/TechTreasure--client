@@ -16,7 +16,7 @@ import {useTranslation} from 'react-i18next'
 import {I18N_NAMESPACES} from '@/constants/locales.ts'
 import {useSelector} from 'react-redux'
 import {IRootState} from '@/store'
-
+//todo locales
 const MobileNavbar = ({}) => {
     const {t} = useTranslation(I18N_NAMESPACES.navigationLinks)
     const isLoggedIn = useSelector((state: IRootState) => state.auth.isAuthenticated)
@@ -40,6 +40,7 @@ const MobileNavbar = ({}) => {
                         <DropdownMenuItem
                             key={link.name}
                             onSelect={() => navigate(link.path)}
+                            className={'cursor-pointer'}
                         >
                             {t(link.key)}
                         </DropdownMenuItem>
@@ -47,7 +48,9 @@ const MobileNavbar = ({}) => {
                     <DropdownMenuSeparator/>
                     {!isLoggedIn &&
                         <DropdownMenuItem
-                            onSelect={() => navigate('/signup')}>
+                            onSelect={() => navigate('/signup')}
+                            className={'cursor-pointer'}
+                        >
                             {t('signup')}
                         </DropdownMenuItem>
                     }
@@ -55,13 +58,14 @@ const MobileNavbar = ({}) => {
                         <>
                             <DropdownMenuItem
                                 onSelect={() => navigate('/account/me')}
+                                className={'cursor-pointer'}
                             >
                                 {t('profile')}
                             </DropdownMenuItem>
 
                             <DropdownMenuItem
                                 onSelect={() => navigate('/logout')}
-                                className={'text-red-500'}>
+                                className={'cursor-pointer text-red-500'}>
                                 {t('logout')}
                             </DropdownMenuItem>
                         </>

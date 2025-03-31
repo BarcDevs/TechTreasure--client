@@ -37,30 +37,34 @@ const UserDropdown = ({}) => {
             <DropdownMenuContent align="end">
                 <DropdownMenuItem
                     onSelect={() => navigate('/account/me')}
+                    className={'cursor-pointer'}
                 >
                     My Account
                 </DropdownMenuItem>
                 {!isAdminPage && user?.role === 'seller' &&
                     <DropdownMenuItem
                         onSelect={() => navigate('/seller')}
+                        className={'cursor-pointer'}
                     >
                         Seller Dashboard
                     </DropdownMenuItem>}
                 <DropdownMenuSeparator/>
                 <DropdownMenuItem
                     onSelect={() => navigate('/settings')}
+                    className={'cursor-pointer'}
                 >
                     Settings
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     onSelect={() => navigate('/contact')}
+                    className={'cursor-pointer'}
                 >
                     Support
                 </DropdownMenuItem>
                 <DropdownMenuSeparator/>
                 <DropdownMenuItem
                     onSelect={() => navigate('/logout')}
-                    className={'text-red-500'}
+                    className={'cursor-pointer text-red-500'}
                 >
                     Logout
                 </DropdownMenuItem>
