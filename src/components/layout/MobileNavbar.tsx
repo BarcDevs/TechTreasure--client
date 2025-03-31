@@ -22,6 +22,7 @@ const MobileNavbar = ({}) => {
     const location = useLocation().pathname
     const navigate = useNavigate()
     const isAuthPage = location === '/login' || location === '/signup'
+    const isProductsPage = location.startsWith('/products')
 
     return (
         <nav className={'flex w-full items-center justify-between px-4 py-2 md:hidden'}>
@@ -72,7 +73,7 @@ const MobileNavbar = ({}) => {
                 </DropdownMenuContent>
             </DropdownMenu>
 
-            <Search/>
+            {isProductsPage && <Search/>}
 
             {!isAuthPage &&
                 <div className={'inline-flex h-6 justify-between gap-4'}>
