@@ -187,10 +187,6 @@ export const router = createBrowserRouter([
                 // element: <AnalyticsPage/> todo
             },
             {
-                path: 'settings'
-                // element: <SettingsPage/> todo
-            },
-            {
                 path: '*',
                 element: <NotFoundPage/>
             }

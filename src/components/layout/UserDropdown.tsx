@@ -54,12 +54,6 @@ const UserDropdown = ({}) => {
                     </DropdownMenuItem>}
                 <DropdownMenuSeparator/>
                 <DropdownMenuItem
-                    onSelect={() => navigate('/settings')}
-                    className={'cursor-pointer'}
-                >
-                    {t(NAVIGATION_LOCALES.settings)}
-                </DropdownMenuItem>
-                <DropdownMenuItem
                     onSelect={() => navigate('/contact')}
                     className={'cursor-pointer'}
                 >
