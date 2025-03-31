@@ -2,30 +2,28 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu.tsx'
 import {Button} from '@/components/ui/button.tsx'
 import Icon from '@/components/elements/Icon.tsx'
-import {Link, useLocation} from 'react-router-dom'
+import {useLocation, useNavigate} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import {IRootState} from '@/store'
 
 // TODO: add translations
-
 const UserDropdown = ({}) => {
     const location = useLocation().pathname
+    const navigate = useNavigate()
     const isAdminPage = location.startsWith('/seller')
     const user = useSelector((state: IRootState) => state.auth.user)
-    const root = isAdminPage ? '/seller/' : '/'
     const userImage = '/assets/images/mock-avatar.jpg'
 
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild className={'no-focus'}>
                 <Button
-                    className="h-8 w-8 rounded-full border border-gray-200 dark:border-gray-800"
+                    className="size-8 rounded-full border border-gray-200 dark:border-gray-800"
                     size="icon"
                     variant="ghost"
                 >
@@ -37,33 +35,34 @@ const UserDropdown = ({}) => {
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-                <DropdownMenuLabel>
-                    <Link to={`${root}account/me`}>
-                        My Account
-                    </Link>
-                </DropdownMenuLabel>
+                <DropdownMenuItem
+                    onSelect={() => navigate('/account/me')}
+                >
+                    My Account
+                </DropdownMenuItem>
                 {!isAdminPage && user?.role === 'seller' &&
-                    <DropdownMenuLabel>
-                        <Link to={`${root}seller`}>
-                            Seller Dashboard
-                        </Link>
-                    </DropdownMenuLabel>}
+                    <DropdownMenuItem
+                        onSelect={() => navigate('/seller')}
+                    >
+                        Seller Dashboard
+                    </DropdownMenuItem>}
                 <DropdownMenuSeparator/>
-                <DropdownMenuItem>
-                    <Link to={`${root}settings`}>
-                        Settings
-                    </Link>
+                <DropdownMenuItem
+                    onSelect={() => navigate('/settings')}
+                >
+                    Settings
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                    <Link to={`${root}contact`}>
-                        Support
-                    </Link>
+                <DropdownMenuItem
+                    onSelect={() => navigate('/contact')}
+                >
+                    Support
                 </DropdownMenuItem>
                 <DropdownMenuSeparator/>
-                <DropdownMenuItem>
-                    <Link to={`${root}logout`} className={'text-red-500'}>
-                        Logout
-                    </Link>
+                <DropdownMenuItem
+                    onSelect={() => navigate('/logout')}
+                    className={'text-red-500'}
+                >
+                    Logout
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
