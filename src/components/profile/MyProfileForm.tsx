@@ -42,6 +42,7 @@ const MyProfileForm =
                 <form
                     onSubmit={form.handleSubmit(submitForm)}
                     onBlur={handleFormBlur}
+                    className="space-y-6"
                 >
                     <FormInput
                         className={'rounded-none border-x-0 border-t-0 border-black'}
@@ -80,6 +81,7 @@ const MyProfileForm =
                     {/*                name={'currentPassword'}*/}
                     {/*                placeholder={'Current Password'}*/}
                     {/*                formControl={form.control}*/}
+                    {/*                type="password"*/}
                     {/*            />*/}
                     {/*        </div>*/}
                     {/*        <div>*/}
@@ -89,6 +91,7 @@ const MyProfileForm =
                     {/*                name={'newPassword'}*/}
                     {/*                placeholder={'New Password'}*/}
                     {/*                formControl={form.control}*/}
+                    {/*                type="password"*/}
                     {/*            />*/}
                     {/*        </div>*/}
                     {/*        <div>*/}
@@ -98,6 +101,7 @@ const MyProfileForm =
                     {/*                name={'confirmPassword'}*/}
                     {/*                placeholder={'Confirm Password'}*/}
                     {/*                formControl={form.control}*/}
+                    {/*                type="password"*/}
                     {/*            />*/}
                     {/*        </div>*/}
                     {/*    </div>*/}
