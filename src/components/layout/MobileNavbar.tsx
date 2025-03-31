@@ -48,7 +48,7 @@ const MobileNavbar = ({}) => {
                     }
                     {isLoggedIn &&
                         <>
-                            <DropdownEntry to={'/profile'} label={'Profile'}/>
+                            <DropdownEntry to={'/account/me'} label={'Profile'}/>
                             <DropdownEntry to={'/logout'} label={t('logout')} className={'text-red-500'}/>
                         </>
                     }
