@@ -1,11 +1,11 @@
 import {
     DropdownMenu,
     DropdownMenuContent,
-    DropdownMenuLabel,
+    DropdownMenuItem,
     DropdownMenuSeparator,
     DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import {Link, useLocation} from 'react-router-dom'
+import {Link, useLocation, useNavigate} from 'react-router-dom'
 import Icon from '@/components/elements/Icon.tsx'
 import hamburger from '/assets/icons/hamburger.svg'
 import {NAVIGATION_LINKS} from '@/constants'
@@ -17,39 +17,53 @@ import {I18N_NAMESPACES} from '@/constants/locales.ts'
 import {useSelector} from 'react-redux'
 import {IRootState} from '@/store'
 
-const DropdownEntry = ({to, label, className}: { to: string, label: string, className?: string }) => (
-    <DropdownMenuLabel key={label}>
-        <Link to={to} className={`text-body ${className}`}>
-            {label}
-        </Link>
-    </DropdownMenuLabel>
-)
-
 const MobileNavbar = ({}) => {
     const {t} = useTranslation(I18N_NAMESPACES.navigationLinks)
     const isLoggedIn = useSelector((state: IRootState) => state.auth.isAuthenticated)
     const location = useLocation().pathname
+    const navigate = useNavigate()
     const isAuthPage = location === '/login' || location === '/signup'
 
     return (
         <nav className={'flex w-full items-center justify-between px-4 py-2 md:hidden'}>
             <DropdownMenu>
                 <DropdownMenuTrigger>
-                    <Icon path={hamburger} name={'menu'} size={30}/>
+                    <Icon
+                        path={hamburger}
+                        name={'menu'}
+                        size={30}
+                    />
                 </DropdownMenuTrigger>
                 {/*TODO fix dropdown styling*/}
                 <DropdownMenuContent className={'border-black bg-white'}>
                     {NAVIGATION_LINKS.map(link => (
-                        <DropdownEntry key={link.name} to={link.path} label={t(link.key)}/>
+                        <DropdownMenuItem
+                            key={link.name}
+                            onSelect={() => navigate(link.path)}
+                        >
+                            {t(link.key)}
+                        </DropdownMenuItem>
                     ))}
                     <DropdownMenuSeparator/>
                     {!isLoggedIn &&
-                        <DropdownEntry to={'/signup'} label={t('signup')}/>
+                        <DropdownMenuItem
+                            onSelect={() => navigate('/signup')}>
+                            {t('signup')}
+                        </DropdownMenuItem>
                     }
                     {isLoggedIn &&
                         <>
-                            <DropdownEntry to={'/account/me'} label={'Profile'}/>
-                            <DropdownEntry to={'/logout'} label={t('logout')} className={'text-red-500'}/>
+                            <DropdownMenuItem
+                                onSelect={() => navigate('/account/me')}
+                            >
+                                {t('profile')}
+                            </DropdownMenuItem>
+
+                            <DropdownMenuItem
+                                onSelect={() => navigate('/logout')}
+                                className={'text-red-500'}>
+                                {t('logout')}
+                            </DropdownMenuItem>
                         </>
                     }
                 </DropdownMenuContent>
@@ -60,10 +74,21 @@ const MobileNavbar = ({}) => {
             {!isAuthPage &&
                 <div className={'inline-flex h-6 justify-between gap-4'}>
                     <Link to={'/wishlist'}>
-                        <Icon path={wishlist} name={'wishlist'} size={30} hoverable/>
+                        <Icon
+                            path={wishlist}
+
+                            name={'wishlist'}
+                            size={30}
+                            hoverable
+                        />
                     </Link>
                     <Link to={'/cart'}>
-                        <Icon path={cart} name={'cart'} size={30} hoverable/>
+                        <Icon
+                            path={cart}
+                            name={'cart'}
+                            size={30}
+                            hoverable
+                        />
                     </Link>
                 </div>
             }
