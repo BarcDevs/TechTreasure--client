@@ -23,6 +23,11 @@ import SuccessPage from '@/pages/infoPages/SuccessPage.tsx'
 import NotFoundPage from '@/pages/infoPages/NotFoundPage.tsx'
 import ItemsPage from '@/pages/ItemsPage.tsx'
 import AccountPage from '@/pages/AccountPage.tsx'
+import SellerHomePage from '@/pages/seller/SellerHomePage.tsx'
+import OrdersPage from '@/pages/seller/OrdersPage.tsx'
+import CustomersPage from '@/pages/seller/CustomersPage.tsx'
+import CustomerProfilePage from '@/pages/seller/CustomerPage.tsx'
+import AnalyticsPage from '@/pages/seller/AnalyticsPage.tsx'
 
 export const router = createBrowserRouter([
     {
@@ -65,7 +70,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'seller/:id'
-                // element: <SellerPage/>
+                //todo element: <SellerPage/>
             },
             {
                 path: 'categories',
@@ -155,8 +160,8 @@ export const router = createBrowserRouter([
         },
         children: [
             {
-                index: true
-                // element: <SellerHomePage/> todo
+                index: true,
+                element: <SellerHomePage/>
             },
             {
                 path: 'products',
@@ -171,20 +176,20 @@ export const router = createBrowserRouter([
                 element: <EditItemPage/>
             },
             {
-                path: 'orders'
-                // element: <OrdersPage/> todo
+                path: 'orders',
+                element: <OrdersPage/>
             },
             {
-                path: 'customers'
-                // element: <CustomersPage/> todo
+                path: 'customers',
+                element: <CustomersPage/>
             },
             {
-                path: 'customers/:id'
-                // element: <CustomerPage/> todo
+                path: 'customers/:id',
+                element: <CustomerProfilePage/>
             },
             {
-                path: 'analytics'
-                // element: <AnalyticsPage/> todo
+                path: 'analytics',
+                element: <AnalyticsPage/>
             },
             {
                 path: '*',
