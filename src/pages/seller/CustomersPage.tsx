@@ -26,7 +26,7 @@ import {Avatar, AvatarFallback} from '@/components/ui/avatar'
 import CUSTOMERS from '@/mock/customers.ts'
 import CustomerTagBadge from '@/components/seller/CustomerTagBadge.tsx'
 import CustomersTab from '@/components/seller/CustomersTab.tsx'
-import CustomerStatusBadge from '@/components/seller/CustomerStatusBadge.tsx'
+import StatusBadge from '@/components/seller/StatusBadge.tsx'
 import {useQuery} from '@tanstack/react-query'
 import {getCustomers} from '@/api/customers.ts'
 
@@ -397,11 +397,13 @@ function CustomersTable({
                             <td className="px-4 py-3">
                                 <div className="flex items-center">
                                     <Calendar className="mr-1 size-3 text-gray-400"/>
-                                    <span>{formatDate(customer.lastPurchase)}</span>
+                                    <span>
+                                        {formatDate(customer.lastPurchase || null)}
+                                    </span>
                                 </div>
                             </td>
                             <td className="px-4 py-3">
-                                <CustomerStatusBadge status={customer.status}/>
+                                <StatusBadge status={customer.status}/>
                             </td>
                             <td className="px-4 py-3">
                                 <div className="flex flex-wrap gap-1">
