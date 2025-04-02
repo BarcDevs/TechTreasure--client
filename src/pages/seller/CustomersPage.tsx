@@ -12,7 +12,7 @@ import {
     ShoppingBag,
     ChevronLeft,
     ChevronRight,
-    ArrowUpDown,
+    ArrowUpDown
 } from 'lucide-react'
 
 import {Button} from '@/components/ui/button'
@@ -27,14 +27,21 @@ import CUSTOMERS from '@/mock/customers.ts'
 import CustomerTagBadge from '@/components/seller/CustomerTagBadge.tsx'
 import CustomersTab from '@/components/seller/CustomersTab.tsx'
 import CustomerStatusBadge from '@/components/seller/CustomerStatusBadge.tsx'
+import {useQuery} from '@tanstack/react-query'
+import {getCustomers} from '@/api/customers.ts'
 
 export default function CustomersPage() {
+    const customers = useQuery({
+        queryKey: ['customers'],
+        queryFn: () => getCustomers(),
+        refetchOnWindowFocus: false
+    })
     const [activeTab, setActiveTab] = useState('all')
     const [selectedCustomers, setSelectedCustomers] = useState<string[]>([])
     const [searchQuery, setSearchQuery] = useState('')
 
     // Filter customers based on active tab and search query
-    const filteredCustomers = CUSTOMERS.filter((customer) => {
+    const filteredCustomers = customers.data?.filter((customer) => {
         // Filter by tab
         if (activeTab === 'active' && customer.status !== 'active') return false
         if (activeTab === 'inactive' && customer.status !== 'inactive') return false
@@ -58,6 +65,7 @@ export default function CustomersPage() {
 
     // Handle select all customers
     const handleSelectAll = () => {
+        if (!filteredCustomers) return
         if (selectedCustomers.length === filteredCustomers.length) {
             setSelectedCustomers([])
         } else {
@@ -146,118 +154,121 @@ export default function CustomersPage() {
 
                         </TabsList>
 
-                        <TabsContent value="all" className="m-0">
-                            <CustomersTable
-                                customers={filteredCustomers}
-                                selectedCustomers={selectedCustomers}
-                                onSelectAll={handleSelectAll}
-                                onSelectCustomer={handleSelectCustomer}
-                                formatDate={formatDate}
-                            />
-                        </TabsContent>
-                        <TabsContent value="active" className="m-0">
-                            <CustomersTable
-                                customers={filteredCustomers}
-                                selectedCustomers={selectedCustomers}
-                                onSelectAll={handleSelectAll}
-                                onSelectCustomer={handleSelectCustomer}
-                                formatDate={formatDate}
-                            />
-                        </TabsContent>
-                        <TabsContent value="inactive" className="m-0">
-                            <CustomersTable
-                                customers={filteredCustomers}
-                                selectedCustomers={selectedCustomers}
-                                onSelectAll={handleSelectAll}
-                                onSelectCustomer={handleSelectCustomer}
-                                formatDate={formatDate}
-                            />
-                        </TabsContent>
-                        <TabsContent value="loyal" className="m-0">
-                            <CustomersTable
-                                customers={filteredCustomers}
-                                selectedCustomers={selectedCustomers}
-                                onSelectAll={handleSelectAll}
-                                onSelectCustomer={handleSelectCustomer}
-                                formatDate={formatDate}
-                            />
-                        </TabsContent>
-                        <TabsContent value="high-value" className="m-0">
-                            <CustomersTable
-                                customers={filteredCustomers}
-                                selectedCustomers={selectedCustomers}
-                                onSelectAll={handleSelectAll}
-                                onSelectCustomer={handleSelectCustomer}
-                                formatDate={formatDate}
-                            />
-                        </TabsContent>
-                        <TabsContent value="at-risk" className="m-0">
-                            <CustomersTable
-                                customers={filteredCustomers}
-                                selectedCustomers={selectedCustomers}
-                                onSelectAll={handleSelectAll}
-                                onSelectCustomer={handleSelectCustomer}
-                                formatDate={formatDate}
-                            />
-                        </TabsContent>
+                        {filteredCustomers && <>
+                            <TabsContent value="all" className="m-0">
+                                <CustomersTable
+                                    customers={filteredCustomers}
+                                    selectedCustomers={selectedCustomers}
+                                    onSelectAll={handleSelectAll}
+                                    onSelectCustomer={handleSelectCustomer}
+                                    formatDate={formatDate}
+                                />
+                            </TabsContent>
+                            <TabsContent value="active" className="m-0">
+                                <CustomersTable
+                                    customers={filteredCustomers}
+                                    selectedCustomers={selectedCustomers}
+                                    onSelectAll={handleSelectAll}
+                                    onSelectCustomer={handleSelectCustomer}
+                                    formatDate={formatDate}
+                                />
+                            </TabsContent>
+                            <TabsContent value="inactive" className="m-0">
+                                <CustomersTable
+                                    customers={filteredCustomers}
+                                    selectedCustomers={selectedCustomers}
+                                    onSelectAll={handleSelectAll}
+                                    onSelectCustomer={handleSelectCustomer}
+                                    formatDate={formatDate}
+                                />
+                            </TabsContent>
+                            <TabsContent value="loyal" className="m-0">
+                                <CustomersTable
+                                    customers={filteredCustomers}
+                                    selectedCustomers={selectedCustomers}
+                                    onSelectAll={handleSelectAll}
+                                    onSelectCustomer={handleSelectCustomer}
+                                    formatDate={formatDate}
+                                />
+                            </TabsContent>
+                            <TabsContent value="high-value" className="m-0">
+                                <CustomersTable
+                                    customers={filteredCustomers}
+                                    selectedCustomers={selectedCustomers}
+                                    onSelectAll={handleSelectAll}
+                                    onSelectCustomer={handleSelectCustomer}
+                                    formatDate={formatDate}
+                                />
+                            </TabsContent>
+                            <TabsContent value="at-risk" className="m-0">
+                                <CustomersTable
+                                    customers={filteredCustomers}
+                                    selectedCustomers={selectedCustomers}
+                                    onSelectAll={handleSelectAll}
+                                    onSelectCustomer={handleSelectCustomer}
+                                    formatDate={formatDate}
+                                />
+                            </TabsContent>
+                        </>}
                     </Tabs>
                 </Card>
 
                 {/* Pagination */}
-                <div className="flex items-center justify-between">
-                    <div className="text-sm text-gray-500">
-                        Showing <span className="font-medium">1</span> to <span
-                        className="font-medium">10</span> of{' '}
-                        <span className="font-medium">
+                {filteredCustomers &&
+                    <div className="flex items-center justify-between">
+                        <div className="text-sm text-gray-500">
+                            Showing <span className="font-medium">1</span> to <span
+                            className="font-medium">10</span> of{' '}
+                            <span className="font-medium">
                             {filteredCustomers.length}
                         </span> customers
-                    </div>
-                    <div className="flex items-center space-x-2">
-                        <Button variant="outline" size="sm" disabled>
-                            <ChevronLeft className="size-4"/>
-                            <span className="sr-only">Previous Page</span>
-                        </Button>
-                        <Button variant="outline"
-                                size="sm"
-                                className="size-8 p-0"
-                        >
-                            1
-                        </Button>
-                        <Button variant="outline"
-                                size="sm"
-                                className="size-8 p-0"
-                                disabled={(filteredCustomers.length / 10) <= 2}
+                        </div>
+                        <div className="flex items-center space-x-2">
+                            <Button variant="outline" size="sm" disabled>
+                                <ChevronLeft className="size-4"/>
+                                <span className="sr-only">Previous Page</span>
+                            </Button>
+                            <Button variant="outline"
+                                    size="sm"
+                                    className="size-8 p-0"
+                            >
+                                1
+                            </Button>
+                            <Button variant="outline"
+                                    size="sm"
+                                    className="size-8 p-0"
+                                    disabled={(filteredCustomers.length / 10) <= 2}
 
-                        >
-                            2
-                        </Button>
-                        <Button variant="outline"
-                                size="sm"
-                                className="size-8 p-0"
-                                disabled={(filteredCustomers.length / 10) <= 2}
-                        >
-                            3
-                        </Button>
-                        <Button variant="outline"
-                                size="sm"
-                                className="size-8 p-0"
-                                disabled={(filteredCustomers.length / 10) <= 2}
-                        >
-                            4
-                        </Button>
-                        <Button variant="outline"
-                                size="sm"
-                                className="size-8 p-0"
-                                disabled={(filteredCustomers.length / 10) <= 2}
-                        >
-                            5
-                        </Button>
-                        <Button variant="outline" size="sm">
-                            <ChevronRight className="size-4"/>
-                            <span className="sr-only">Next Page</span>
-                        </Button>
-                    </div>
-                </div>
+                            >
+                                2
+                            </Button>
+                            <Button variant="outline"
+                                    size="sm"
+                                    className="size-8 p-0"
+                                    disabled={(filteredCustomers.length / 10) <= 2}
+                            >
+                                3
+                            </Button>
+                            <Button variant="outline"
+                                    size="sm"
+                                    className="size-8 p-0"
+                                    disabled={(filteredCustomers.length / 10) <= 2}
+                            >
+                                4
+                            </Button>
+                            <Button variant="outline"
+                                    size="sm"
+                                    className="size-8 p-0"
+                                    disabled={(filteredCustomers.length / 10) <= 2}
+                            >
+                                5
+                            </Button>
+                            <Button variant="outline" size="sm">
+                                <ChevronRight className="size-4"/>
+                                <span className="sr-only">Next Page</span>
+                            </Button>
+                        </div>
+                    </div>}
             </div>
         </div>
     )
