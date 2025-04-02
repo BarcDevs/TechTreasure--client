@@ -1,4 +1,4 @@
-import AnalyticsDashboard from '@/components/seller/AnalyticsDashboard.tsx'
+import AnalyticsDashboard from '@/components/seller/analytics/AnalyticsDashboard.tsx'
 
 export default function AnalyticsPage() {
 
