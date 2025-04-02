@@ -2,11 +2,10 @@ import {useState} from 'react'
 import AnalyticsHeader from './AnalyticsHeader.tsx'
 import KeyMetricsSection from './keyMetrics/KeyMetricsSection'
 import SalesPerformanceSection from './salesPerformance/SalesPerformanceSection'
-import CustomerInsightsSection from './CustomerInsightsSection'
-import ProductInventorySection from './ProductInventorySection'
 import TrafficAndMarketingAnalytics
     from '@/components/seller/analytics/trafficAndMarketing/TrafficAndMarketingAnalytics.tsx'
-// import TrafficMarketingSection from './TrafficMarketingSection'
+import CustomerInsightsSection from '@/components/seller/analytics/customerInsights/CustomerInsightsSection.tsx'
+import ProductInventorySection from '@/components/seller/analytics/productInventory/ProductInventorySection.tsx'
 
 const AnalyticsDashboard = () => {
     const [salesTimeframe, setSalesTimeframe] = useState<'today' | 'week' | 'month'>('week')
