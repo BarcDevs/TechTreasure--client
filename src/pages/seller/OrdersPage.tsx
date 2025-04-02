@@ -209,26 +209,47 @@ export default function OrdersPage() {
                 <div className="flex items-center justify-between">
                     <div className="text-sm text-gray-500">
                         Showing <span className="font-medium">1</span> to <span className="font-medium">10</span> of{" "}
-                        <span className="font-medium">50</span> orders
+                        <span className="font-medium">
+                            {filteredOrders.length}
+                        </span> orders
                     </div>
                     <div className="flex items-center space-x-2">
                         <Button variant="outline" size="sm" disabled>
                             <ChevronLeft className="size-4" />
                             <span className="sr-only">Previous Page</span>
                         </Button>
-                        <Button variant="outline" size="sm" className="size-8 p-0">
+                        <Button variant="outline"
+                                size="sm"
+                                className="size-8 p-0"
+                        >
                             1
                         </Button>
-                        <Button variant="outline" size="sm" className="size-8 p-0">
+                        <Button variant="outline"
+                                size="sm"
+                                className="size-8 p-0"
+                                disabled={(filteredOrders.length / 10) <= 2}
+                        >
                             2
                         </Button>
-                        <Button variant="outline" size="sm" className="size-8 p-0">
+                        <Button variant="outline"
+                                size="sm"
+                                className="size-8 p-0"
+                                disabled={(filteredOrders.length / 10) <= 3}
+                        >
                             3
                         </Button>
-                        <Button variant="outline" size="sm" className="size-8 p-0">
+                        <Button variant="outline"
+                                size="sm"
+                                className="size-8 p-0"
+                                disabled={(filteredOrders.length / 10) <= 4}
+                        >
                             4
                         </Button>
-                        <Button variant="outline" size="sm" className="size-8 p-0">
+                        <Button variant="outline"
+                                size="sm"
+                                className="size-8 p-0"
+                                disabled={(filteredOrders.length / 10) <= 5}
+                        >
                             5
                         </Button>
                         <Button variant="outline" size="sm">
