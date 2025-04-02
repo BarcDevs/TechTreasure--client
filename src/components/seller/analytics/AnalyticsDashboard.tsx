@@ -13,7 +13,6 @@ const AnalyticsDashboard = () => {
         <div className="mx-auto max-w-7xl">
             <AnalyticsHeader />
 
-            {/* Key Metrics Overview */}
             <KeyMetricsSection
                 salesTimeframe={salesTimeframe}
                 setSalesTimeframe={setSalesTimeframe}
