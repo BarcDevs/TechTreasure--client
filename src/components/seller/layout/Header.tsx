@@ -11,9 +11,9 @@ const Header = ({}) => {
 
     return (
         <header
-            className={`flex h-14 items-center gap-4 border-b bg-gray-100/40 px-6 lg:h-[60px] dark:bg-gray-800/40 ${isProductsPage ? 'justify-between' : 'justify-end'}`}>
+            className={`flex h-14 items-center gap-4 border-b bg-gray-100/40 px-6 dark:bg-gray-800/40 lg:h-[60px] ${isProductsPage ? 'justify-between' : 'justify-end'}`}>
             <Link className="lg:hidden" to={'account/me'}>
-                <Package2Icon className="h-6 w-6"/>
+                <Package2Icon className="size-6"/>
                 <span className="sr-only">Account</span>
             </Link>
 
@@ -22,9 +22,9 @@ const Header = ({}) => {
                     <form>
                         <div className="relative">
                             <SearchIcon
-                                className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400"/>
+                                className="absolute left-2.5 top-2.5 size-4 text-gray-500 dark:text-gray-400"/>
                             <Input
-                                className="no-focus w-full appearance-none bg-white pl-8 shadow-none md:w-2/3 lg:w-1/3 dark:bg-gray-950"
+                                className="no-focus w-full appearance-none bg-white pl-8 shadow-none dark:bg-gray-950 md:w-2/3 lg:w-1/3"
                                 placeholder="Search products..."
                                 type="search"
                             />
