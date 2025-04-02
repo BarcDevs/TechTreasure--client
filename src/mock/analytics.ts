@@ -1,3 +1,5 @@
+import {StoreProduct} from '@/types'
+
 const salesData = {
     today: {value: 2458.35, change: 12.5, trend: 'up'},
     week: {value: 18942.57, change: 8.3, trend: 'up'},
@@ -32,7 +34,7 @@ const revenueData = {
     refunds: 5828.14
 }
 
-const bestSellingProducts = [
+const bestSellingProducts: StoreProduct[] = [
     {name: 'Wireless Earbuds Pro', sales: 284, revenue: 14200},
     {name: 'Ultra HD Smart TV - 55"', sales: 142, revenue: 99400},
     {name: 'Smartphone X Pro', sales: 126, revenue: 88200},
