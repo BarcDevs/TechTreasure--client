@@ -1,7 +1,7 @@
 import {useForm} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
 import {SignupForm as SignupFormType, signupFormSchema as formSchema} from '@/validations/authForm.ts'
-import {Form} from "@/components/ui/form"
+import {Form} from '@/components/ui/form'
 import FormInput from '@/components/shared/FormInput.tsx'
 import Button from '@/components/elements/Button.tsx'
 import {Link} from 'react-router-dom'
@@ -11,23 +11,27 @@ import {signup} from '@/api/auth.ts'
 import {useLogin} from '@/hooks/useLogin.ts'
 import ErrorMessage from '@/components/elements/ErrorMessage.tsx'
 import {getErrorMessage} from '@/lib/utils/error.ts'
+import {Checkbox} from '@/components/ui/checkbox.tsx'
+import {useState} from 'react'
 
 const SignupForm = ({}) => {
     const inputStyle = 'p-0 rounded-b-none border-x-0 border-t-0 border-black/50'
     const {t} = useTranslation(I18N_NAMESPACES.authPage)
+    const [isSeller, setIsSeller] = useState(false)
     const form = useForm<SignupFormType>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            name: "",
-            email: "",
-            password: ""
+            name: '',
+            email: '',
+            password: '',
+            role: 'user',
         }
     })
 
     const {mutate, error, isError} = useLogin(signup)
 
     const onSubmit = (values: SignupFormType) => {
-        mutate(values)
+        mutate({ ...values, role: isSeller ? 'seller' : 'user' })
     }
 
     return (
@@ -47,6 +51,18 @@ const SignupForm = ({}) => {
                 <FormInput name={'passwordConfirm'} placeholder={t(AUTH_LOCALES.confirmPassword)} type={'password'}
                            className={inputStyle}
                            formControl={form.control}/>
+                <div className="flex items-center gap-2">
+                    <Checkbox id="seller-checkbox"
+                              checked={isSeller}
+                              onCheckedChange={(checked) => setIsSeller(checked as boolean)}
+                    />
+                    <label htmlFor="seller-checkbox"
+                           className="text-sm">
+                        {/*todo: add translation*/}
+                        Sign up as a seller
+                    </label>
+                </div>
+
                 <div className={'flex_col gap-4'}>
                     <Button className={'w-full capitalize'} type="submit" text={t(AUTH_LOCALES.createAccount)}/>
                     <Button className={'w-full'} variant={'white'} type={'button'}
