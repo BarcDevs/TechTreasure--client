@@ -69,10 +69,6 @@ export const router = createBrowserRouter([
                 element: <AccountPage/>
             },
             {
-                path: 'seller/:id'
-                //todo element: <SellerPage/>
-            },
-            {
                 path: 'categories',
                 children: [
                     {
