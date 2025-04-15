@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux'
 import {IRootState} from '@/store'
 import {useEffect} from 'react'
 
-const SellerLayout = ({}) => {
+const AdminLayout = ({}) => {
     const isAdmin = useSelector((state: IRootState) => state.auth.isAdmin)
     const navigate = useNavigate()
 
@@ -29,4 +29,4 @@ const SellerLayout = ({}) => {
     )
 }
 
-export default SellerLayout
+export default AdminLayout

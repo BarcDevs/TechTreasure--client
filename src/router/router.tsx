@@ -6,7 +6,7 @@ import CartPage from '@/pages/CartPage.tsx'
 import CheckoutPage from '@/pages/CheckoutPage.tsx'
 import ItemPage from '@/pages/ItemPage.tsx'
 import ProductsPage from '@/pages/admin/ProductsPage.tsx'
-import SellerLayout from '@/pages/layouts/SellerLayout.tsx'
+import AdminLayout from '@/pages/layouts/AdminLayout.tsx'
 import AddItemPage from '@/pages/admin/AddItemPage.tsx'
 import EditItemPage from '@/pages/admin/EditItemPage.tsx'
 import store from '@/store'
@@ -148,7 +148,7 @@ export const router = createBrowserRouter([
     },
     {
         path: 'admin',
-        element: <SellerLayout/>,
+        element: <AdminLayout/>,
         loader: () => {
             const authState = JSON.parse(localStorage.getItem('auth-state') || '{}')
             store.dispatch(loadAuthState(authState))
