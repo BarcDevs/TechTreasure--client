@@ -9,7 +9,7 @@ import UserDetails from '@/components/profile/UserDetails.tsx'
 
 export default function AccountPage() {
     const pathname = useLocation().pathname
-    // todo: add option to get another user details on seller mode
+    // todo: add option to get another user details on admin mode
     const user =
         useSelector((state: IRootState) => state.auth.user)
 

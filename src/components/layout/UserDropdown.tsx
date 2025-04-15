@@ -45,12 +45,12 @@ const UserDropdown = ({}) => {
                 >
                     {t(NAVIGATION_LOCALES.myAccount)}
                 </DropdownMenuItem>
-                {!isAdminPage && user?.role === 'seller' &&
+                {!isAdminPage && user?.role === 'admin' &&
                     <DropdownMenuItem
                         onSelect={() => navigate('/admin')}
                         className={'cursor-pointer'}
                     >
-                        {t(NAVIGATION_LOCALES.sellerDashboard)}
+                        {t(NAVIGATION_LOCALES.adminDashboard)}
                     </DropdownMenuItem>}
                 <DropdownMenuSeparator/>
                 <DropdownMenuItem

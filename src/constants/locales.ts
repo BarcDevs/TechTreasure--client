@@ -19,7 +19,7 @@ export enum NAVIGATION_LOCALES {
     account = 'account',
     profile = 'profile',
     myAccount = 'myAccount',
-    sellerDashboard = 'seller',
+    adminDashboard = 'admin',
 
     signup = 'signup',
     logout = 'logout',

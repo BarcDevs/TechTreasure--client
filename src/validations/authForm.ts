@@ -12,7 +12,7 @@ const signupFormSchema = z.object({
         .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
             {message: "Password must contain at least one uppercase letter, one lowercase letter, and one number"}),
     passwordConfirm: z.string(),
-    role: z.enum(["user", "seller"]),
+    role: z.enum(["user", "admin"]),
 }).superRefine((({password, passwordConfirm}, ctx) => {
     if (password !== passwordConfirm) {
         ctx.addIssue({

@@ -6,11 +6,11 @@ import {IRootState} from '@/store'
 import {useEffect} from 'react'
 
 const SellerLayout = ({}) => {
-    const isSeller = useSelector((state: IRootState) => state.auth.isSeller)
+    const isAdmin = useSelector((state: IRootState) => state.auth.isAdmin)
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (!isSeller) {
+        if (!isAdmin) {
             navigate('/', {replace: true})
         }
     }, [])

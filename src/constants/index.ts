@@ -51,7 +51,7 @@ export const NAVIGATION_LINKS: LINK[] = [
     }
 ]
 
-export const SELLER_LINKS = [
+export const ADMIN_LINKS = [
     {
         name: 'Home',
         href: ADMIN_ROOT,
