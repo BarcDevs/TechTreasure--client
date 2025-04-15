@@ -23,7 +23,7 @@ import SuccessPage from '@/pages/infoPages/SuccessPage.tsx'
 import NotFoundPage from '@/pages/infoPages/NotFoundPage.tsx'
 import ItemsPage from '@/pages/ItemsPage.tsx'
 import AccountPage from '@/pages/AccountPage.tsx'
-import SellerHomePage from '@/pages/admin/SellerHomePage.tsx'
+import AdminHomePage from '@/pages/admin/AdminHomePage.tsx'
 import OrdersPage from '@/pages/admin/OrdersPage.tsx'
 import CustomersPage from '@/pages/admin/CustomersPage.tsx'
 import CustomerProfilePage from '@/pages/admin/CustomerPage.tsx'
@@ -157,7 +157,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <SellerHomePage/>
+                element: <AdminHomePage/>
             },
             {
                 path: 'products',

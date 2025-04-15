@@ -14,7 +14,7 @@ import {Button} from '@/components/ui/button.tsx'
 import {Badge} from '@/components/ui/badge.tsx'
 import {useState} from 'react'
 
-const StoreDashboard = ({}) => {
+const AdminDashboard = ({}) => {
     const [orderTimeframe, setOrderTimeframe] = useState("today")
 
     return (
@@ -321,4 +321,4 @@ const StoreDashboard = ({}) => {
     )
 }
 
-export default StoreDashboard
+export default AdminDashboard
