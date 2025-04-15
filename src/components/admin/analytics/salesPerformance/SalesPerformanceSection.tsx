@@ -1,5 +1,5 @@
-import SalesTrendsCard from '@/components/seller/analytics/salesPerformance/SalesTrendsCard.tsx'
-import BestSellingProductsCard from '@/components/seller/analytics/salesPerformance/BestSellingProductsCard.tsx'
+import SalesTrendsCard from '@/components/admin/analytics/salesPerformance/SalesTrendsCard.tsx'
+import BestSellingProductsCard from '@/components/admin/analytics/salesPerformance/BestSellingProductsCard.tsx'
 
 const SalesPerformanceSection = () => {
     return (

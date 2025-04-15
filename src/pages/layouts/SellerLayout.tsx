@@ -1,6 +1,6 @@
 import {Outlet, useNavigate} from 'react-router-dom'
-import Header from '@/components/seller/layout/Header.tsx'
-import Sidebar from '@/components/seller/layout/Sidebar.tsx'
+import Header from '@/components/admin/layout/Header.tsx'
+import Sidebar from '@/components/admin/layout/Sidebar.tsx'
 import {useSelector} from 'react-redux'
 import {IRootState} from '@/store'
 import {useEffect} from 'react'

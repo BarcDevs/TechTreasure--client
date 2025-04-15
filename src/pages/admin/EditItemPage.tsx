@@ -1,4 +1,4 @@
-import ProductForm from '@/components/seller/products/ProductForm.tsx'
+import ProductForm from '@/components/admin/products/ProductForm.tsx'
 import {useQuery} from '@tanstack/react-query'
 import {Product} from '@/types'
 import {useParams} from 'react-router-dom'

@@ -1,6 +1,6 @@
 import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card.tsx'
 import {Separator} from '@/components/ui/separator.tsx'
-import StockMovementSection from '@/components/seller/analytics/productInventory/StockMovementSection.tsx'
+import StockMovementSection from '@/components/admin/analytics/productInventory/StockMovementSection.tsx'
 
 const StockMovementCard = () => (
     <Card>

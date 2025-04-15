@@ -3,7 +3,7 @@ import instagram from '/assets/icons/instagram.svg'
 import twitter from '/assets/icons/twitter.svg'
 import facebook from '/assets/icons/facebook.svg'
 import {LANGUAGE, LINK, SOCIAL_LINK} from '@/types/constants'
-import {HomeIcon, LineChartIcon, PackageIcon, ShoppingCartIcon, UsersIcon} from '@/components/seller/Icons.tsx'
+import {HomeIcon, LineChartIcon, PackageIcon, ShoppingCartIcon, UsersIcon} from '@/components/admin/Icons.tsx'
 
 export const APP_NAME = 'TechTreasure'
 export const ADMIN_ROOT = '/admin/'

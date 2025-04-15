@@ -1,8 +1,8 @@
 import {Link} from 'react-router-dom'
-import {BellIcon, Package2Icon} from '@/components/seller/Icons.tsx'
+import {BellIcon, Package2Icon} from '@/components/admin/Icons.tsx'
 import {Button} from '@/components/ui/button.tsx'
 import {SELLER_LINKS} from '@/constants'
-import SidebarLink from '@/components/seller/layout/SidebarLink.tsx'
+import SidebarLink from '@/components/admin/layout/SidebarLink.tsx'
 import {useShop} from '@/hooks/useShop.ts'
 
 const Sidebar = ({}) => {

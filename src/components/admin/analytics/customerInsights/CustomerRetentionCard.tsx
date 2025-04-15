@@ -1,6 +1,6 @@
 import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card.tsx'
 import {customerRetention} from '@/mock/analytics.ts'
-import CustomerSegment from '@/components/seller/analytics/customerInsights/CustomerSegment.tsx'
+import CustomerSegment from '@/components/admin/analytics/customerInsights/CustomerSegment.tsx'
 
 const CustomerRetentionCard = () => (
     <Card>

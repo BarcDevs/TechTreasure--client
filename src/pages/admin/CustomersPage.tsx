@@ -24,9 +24,9 @@ import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger
 import {Checkbox} from '@/components/ui/checkbox'
 import {Avatar, AvatarFallback} from '@/components/ui/avatar'
 import CUSTOMERS from '@/mock/customers.ts'
-import CustomerTagBadge from '@/components/seller/CustomerTagBadge.tsx'
-import CustomersTab from '@/components/seller/CustomersTab.tsx'
-import StatusBadge from '@/components/seller/StatusBadge.tsx'
+import CustomerTagBadge from '@/components/admin/CustomerTagBadge.tsx'
+import CustomersTab from '@/components/admin/CustomersTab.tsx'
+import StatusBadge from '@/components/admin/StatusBadge.tsx'
 import {useQuery} from '@tanstack/react-query'
 import {getCustomers} from '@/api/customers.ts'
 

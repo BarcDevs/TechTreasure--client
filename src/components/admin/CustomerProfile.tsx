@@ -20,9 +20,9 @@ import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs.tsx
 import {Badge} from '@/components/ui/badge.tsx'
 import {FC} from 'react'
 import {Customer} from '@/types/customer'
-import StatusBadge from '@/components/seller/StatusBadge.tsx'
-import CustomerTagBadge from '@/components/seller/CustomerTagBadge.tsx'
-import CommunicationTypeBadge from '@/components/seller/CommunicationTypeBadge.tsx'
+import StatusBadge from '@/components/admin/StatusBadge.tsx'
+import CustomerTagBadge from '@/components/admin/CustomerTagBadge.tsx'
+import CommunicationTypeBadge from '@/components/admin/CommunicationTypeBadge.tsx'
 
 type CustomerProfileProps = {
     customer: Customer

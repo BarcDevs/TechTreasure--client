@@ -1,6 +1,6 @@
 import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card.tsx'
 import {bestSellingProducts} from '@/mock/analytics.ts'
-import ProductItem from '@/components/seller/analytics/salesPerformance/ProductItem.tsx'
+import ProductItem from '@/components/admin/analytics/salesPerformance/ProductItem.tsx'
 
 const BestSellingProductsCard = () => (
     <Card>

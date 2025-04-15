@@ -1,4 +1,4 @@
-import StoreDashboard from '@/components/seller/StoreDashboard.tsx'
+import StoreDashboard from '@/components/admin/StoreDashboard.tsx'
 
 const SellerHomePage = () =>
     (

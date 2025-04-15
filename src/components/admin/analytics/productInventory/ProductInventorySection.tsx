@@ -1,6 +1,6 @@
-import ProductReviewsCard from '@/components/seller/analytics/productInventory/ProductReviewsCard.tsx'
-import LowStockAlertsCard from '@/components/seller/analytics/productInventory/LowStockAlertsCard.tsx'
-import StockMovementCard from '@/components/seller/analytics/productInventory/StockMovementCard.tsx'
+import ProductReviewsCard from '@/components/admin/analytics/productInventory/ProductReviewsCard.tsx'
+import LowStockAlertsCard from '@/components/admin/analytics/productInventory/LowStockAlertsCard.tsx'
+import StockMovementCard from '@/components/admin/analytics/productInventory/StockMovementCard.tsx'
 
 const ProductInventorySection = () => {
     return (

@@ -1,6 +1,6 @@
-import CustomerRetentionCard from '@/components/seller/analytics/customerInsights/CustomerRetentionCard.tsx'
-import AverageOrderValueCard from '@/components/seller/analytics/customerInsights/AverageOrderValueCard.tsx'
-import PeakHoursCard from '@/components/seller/analytics/customerInsights/PeakHoursCard.tsx'
+import CustomerRetentionCard from '@/components/admin/analytics/customerInsights/CustomerRetentionCard.tsx'
+import AverageOrderValueCard from '@/components/admin/analytics/customerInsights/AverageOrderValueCard.tsx'
+import PeakHoursCard from '@/components/admin/analytics/customerInsights/PeakHoursCard.tsx'
 
 const CustomerInsightsSection = () => {
     return (

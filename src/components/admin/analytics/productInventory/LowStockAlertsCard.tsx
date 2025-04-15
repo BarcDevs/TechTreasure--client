@@ -3,7 +3,7 @@ import {Badge} from '@/components/ui/badge.tsx'
 import {AlertTriangle} from 'lucide-react'
 import {lowStockItems} from '@/mock/analytics.ts'
 import {Button} from '@/components/ui/button.tsx'
-import LowStockItem from '@/components/seller/analytics/productInventory/LowStockItem.tsx'
+import LowStockItem from '@/components/admin/analytics/productInventory/LowStockItem.tsx'
 
 const LowStockAlertsCard = () => (
     <Card>

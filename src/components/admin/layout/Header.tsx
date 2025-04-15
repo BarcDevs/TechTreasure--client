@@ -1,5 +1,5 @@
 import {Link, useLocation} from 'react-router-dom'
-import {Package2Icon, SearchIcon} from '@/components/seller/Icons.tsx'
+import {Package2Icon, SearchIcon} from '@/components/admin/Icons.tsx'
 import {Input} from '@/components/ui/input.tsx'
 import UserDropdown from '@/components/layout/UserDropdown.tsx'
 import {Button, buttonVariants} from '@/components/ui/button.tsx'
