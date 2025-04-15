@@ -20,7 +20,9 @@ const Sidebar = ({}) => {
                     </Link>
                     <Button className="ml-auto size-8" size="icon" variant="outline">
                         <BellIcon className="size-4"/>
-                        <span className="sr-only">Toggle notifications</span>
+                        <span className="sr-only">
+                            Toggle notifications
+                        </span>
                     </Button>
                 </div>
                 <div className="flex-1 overflow-auto py-2">
