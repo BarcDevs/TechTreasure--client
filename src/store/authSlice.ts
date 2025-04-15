@@ -3,7 +3,7 @@ import {BaseUser} from '@/types'
 
 type AuthState = {
     isAuthenticated: boolean
-    isSeller: boolean
+    isAdmin: boolean
     user: BaseUser | undefined
 }
 
@@ -11,19 +11,19 @@ const authSlice = createSlice({
     name: 'auth',
     initialState: {
         isAuthenticated: false,
-        isSeller: false,
+        isAdmin: false,
         user: undefined
     } as AuthState,
     reducers: {
         login(state, {payload: user}: { payload: BaseUser }) {
             state.isAuthenticated = true
-            if (user.role === 'seller') {
-                state.isSeller = true
+            if (user.role === 'admin') {
+                state.isAdmin = true
             }
             state.user = user
         },
         logout(state) {
-            state.isSeller = false
+            state.isAdmin = false
             state.isAuthenticated = false
             state.user = {} as BaseUser
         },
