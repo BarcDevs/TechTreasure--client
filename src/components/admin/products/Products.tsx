@@ -2,8 +2,8 @@
  * v0 by Vercel.
  * @see https://v0.dev/t/wqUOQWXuSdh
  */
-import {Button} from "@/components/ui/button"
-import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table"
+import {Button} from '@/components/ui/button'
+import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from '@/components/ui/table'
 import Rating from '@/components/elements/Rating.tsx'
 import {Link} from 'react-router-dom'
 import Icon from '@/components/elements/Icon.tsx'
@@ -30,19 +30,19 @@ const Products = () => {
     const {mutate: deleteItem} = useMutation({
         mutationFn: deleteProduct,
         onMutate: (id) => {
-            const prevItems = queryClient.getQueryData(['store', 'items'])
-            queryClient.cancelQueries({queryKey: ['store', 'items']})
-            queryClient.setQueryData(['store', 'items'], (old: any) => {
+            const prevItems = queryClient.getQueryData(['items'])
+            queryClient.cancelQueries({queryKey: ['items']})
+            queryClient.setQueryData(['items'], (old: any) => {
                 old.products = old.products.filter((item: Product) => item._id !== id)
             })
 
             return {prevItems}
         },
         onError: (_, __, {prevItems}: any) => {
-            queryClient.setQueryData(['store', 'items'], prevItems)
+            queryClient.setQueryData(['items'], prevItems)
         },
         onSettled: () => {
-            queryClient.invalidateQueries({queryKey: ['store', 'items']})
+            queryClient.invalidateQueries({queryKey: ['items']})
         }
     })
 
@@ -102,13 +102,18 @@ const Products = () => {
                                         {item.name}
                                     </Link>
                                 </TableCell>
-                                <TableCell className="hidden md:table-cell">${item.price.toFixed()}</TableCell>
+                                <TableCell className="hidden md:table-cell">
+                                    ${item.price.toFixed()}
+                                </TableCell>
                                 <TableCell className={item.stock === 0 ? 'font-bold text-red-500' : 'text-black'}>
                                     {item.stock === 0 ? 'Out of stock' : `${item.stock} in stock`}
                                 </TableCell>
-                                <TableCell className="hidden md:table-cell">{/* TODO item.orders*/ 0}</TableCell>
-                                <TableCell className="hidden text-black md:table-cell"><Rating
-                                    rating={item.rating}/></TableCell>
+                                <TableCell className="hidden md:table-cell">
+                                    {/* TODO item.orders*/ 0}
+                                </TableCell>
+                                <TableCell className="hidden text-black md:table-cell">
+                                    <Rating rating={item.rating}/>
+                                </TableCell>
                                 <TableCell>
                                     <button
                                         onClick={() => handleDelete(item._id)}>
