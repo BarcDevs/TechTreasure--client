@@ -7,9 +7,8 @@ import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/c
 import Rating from '@/components/elements/Rating.tsx'
 import {Link} from 'react-router-dom'
 import Icon from '@/components/elements/Icon.tsx'
-import {useShop} from '@/hooks/useShop.ts'
-import {deleteProduct} from '@/api/products.ts'
-import {useMutation} from '@tanstack/react-query'
+import {deleteProduct, getProducts} from '@/api/products.ts'
+import {useMutation, useQuery} from '@tanstack/react-query'
 import {queryClient} from '@/api'
 import {Product} from '@/types'
 import {imageUrl} from '@/lib/utils/url.ts'
@@ -18,7 +17,16 @@ import {getImagesOfColor} from '@/lib/utils/image.ts'
 import {getErrorMessage} from '@/lib/utils/error.ts'
 
 const Products = () => {
-    const {data: store, isFetching, isError, error} = useShop()
+    const {data: products, isFetching, isError, error} = useQuery<{
+        products: Product[],
+        totalPages: number
+    }>({
+        queryKey: ['items'],
+        queryFn: () => getProducts(),
+        refetchOnWindowFocus: false,
+        staleTime: 60 * 1000
+    })
+
     const {mutate: deleteItem} = useMutation({
         mutationFn: deleteProduct,
         onMutate: (id) => {
@@ -41,6 +49,8 @@ const Products = () => {
     const handleDelete = (id: string) => {
         deleteItem(id)
     }
+
+    // todo: add translations
 
     return (
         <>
@@ -74,7 +84,7 @@ const Products = () => {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {store?.products && store.products.map(item =>
+                        {products && products.products.map(item =>
                             <TableRow key={item._id}>
                                 <TableCell>
                                     <img
@@ -113,11 +123,13 @@ const Products = () => {
                         )}
                     </TableBody>
                 </Table>
-                {(!store?.products || store?.products.length === 0) && (
+                {(!products || products.products.length === 0) && (
                     isFetching ? <p>Loading...</p> :
                         isError ?
                             <p>{getErrorMessage(error)}</p> :
-                            <p className={'p-2'}>You have no products in the store. add one to get started</p>
+                            <p className={'p-2'}>
+                                You have no products in the store. add one to get started
+                            </p>
                 )}
             </section>
         </>

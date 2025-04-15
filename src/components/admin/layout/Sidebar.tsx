@@ -3,10 +3,9 @@ import {BellIcon, Package2Icon} from '@/components/admin/Icons.tsx'
 import {Button} from '@/components/ui/button.tsx'
 import {ADMIN_LINKS} from '@/constants'
 import SidebarLink from '@/components/admin/layout/SidebarLink.tsx'
-import {useShop} from '@/hooks/useShop.ts'
 
 const Sidebar = ({}) => {
-    const storeName = useShop().data?.name || 'TechTreasure'
+    const storeName = import.meta.env.VITE_STORE_NAME || 'TechTreasure'
 
     return (
         <aside className="hidden border-r bg-gray-100/40 dark:bg-gray-800/40 lg:block">
