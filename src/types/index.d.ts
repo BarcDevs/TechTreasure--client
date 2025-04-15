@@ -75,14 +75,14 @@ export type BaseUser = {
     createdAt: Date
 }
 
-export type Seller = {
-    role: 'seller'
+export type Admin = {
+    role: 'admin'
     store: string
 } & BaseUser
 
-export type User = BaseUser | Seller
+export type User = BaseUser | Admin
 
-export type Role = 'user' | 'seller'
+export type Role = 'user' | 'admin'
 
 export type Cart = {
     items: CartItem[]

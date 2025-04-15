@@ -7,7 +7,7 @@ import {Input, InputProps} from "@/components/ui/input"
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select"
 import {Textarea, TextareaProps} from '@/components/ui/textarea.tsx'
 import {useEffect, useState} from 'react'
-import {Color, Product, ProductWithColors, Seller} from '@/types'
+import {Color, Product, ProductWithColors, Admin} from '@/types'
 import {Categories} from '@/constants/categories.ts'
 import RequiredInput from '@/components/elements/RequiredInput.tsx'
 import {Form, FormField, FormItem, FormMessage} from '@/components/ui/form.tsx'
@@ -43,7 +43,7 @@ const ProductForm = ({product}: ProductFormProps) => {
         }
     })
 
-    const shopId = (useSelector((state: IRootState) => state.auth.user) as Seller).store
+    const shopId = (useSelector((state: IRootState) => state.auth.user) as Admin).store
     const [colors, setColors] = useState<Color[]>([])
     const [sizes, setSizes] = useState<string[]>([])
     const [mainImage, setMainImage] = useState<FormImage[]>([])
