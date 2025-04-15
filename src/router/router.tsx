@@ -151,7 +151,7 @@ export const router = createBrowserRouter([
         ]
     },
     {
-        path: 'seller',
+        path: 'admin',
         element: <SellerLayout/>,
         loader: () => {
             const authState = JSON.parse(localStorage.getItem('auth-state') || '{}')

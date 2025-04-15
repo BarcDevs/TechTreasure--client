@@ -17,7 +17,7 @@ const UserDropdown = ({}) => {
     const {t} = useTranslation(I18N_NAMESPACES.navigationLinks)
     const location = useLocation().pathname
     const navigate = useNavigate()
-    const isAdminPage = location.startsWith('/seller')
+    const isAdminPage = location.startsWith('/admin')
     const user = useSelector((state: IRootState) => state.auth.user)
     const userImage = '/assets/images/mock-avatar.jpg'
 
@@ -47,7 +47,7 @@ const UserDropdown = ({}) => {
                 </DropdownMenuItem>
                 {!isAdminPage && user?.role === 'seller' &&
                     <DropdownMenuItem
-                        onSelect={() => navigate('/seller')}
+                        onSelect={() => navigate('/admin')}
                         className={'cursor-pointer'}
                     >
                         {t(NAVIGATION_LOCALES.sellerDashboard)}

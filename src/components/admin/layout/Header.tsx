@@ -7,7 +7,7 @@ import {twMerge} from 'tailwind-merge'
 
 const Header = ({}) => {
     const location = useLocation().pathname
-    const isProductsPage = location.startsWith('/seller/products')
+    const isProductsPage = location.startsWith('/admin/products')
 
     return (
         <header

@@ -7,7 +7,6 @@ import {HomeIcon, LineChartIcon, PackageIcon, ShoppingCartIcon, UsersIcon} from 
 
 export const APP_NAME = 'TechTreasure'
 export const ADMIN_ROOT = '/admin/'
-export const SELLER_ROOT = '/seller/'
 
 export const LANGUAGES: { [key: string]: LANGUAGE } = {
     ENG: {
@@ -55,7 +54,7 @@ export const NAVIGATION_LINKS: LINK[] = [
 export const SELLER_LINKS = [
     {
         name: 'Home',
-        href: SELLER_ROOT,
+        href: ADMIN_ROOT,
         icon: HomeIcon
     },
     {

@@ -39,7 +39,7 @@ const ProductForm = ({product}: ProductFormProps) => {
                 queryKey: ['items']
 
             })
-            navigate('/seller/products')
+            navigate('/admin/products')
         }
     })
 
