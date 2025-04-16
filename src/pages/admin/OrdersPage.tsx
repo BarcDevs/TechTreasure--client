@@ -1,10 +1,10 @@
 import {useEffect, useState} from 'react'
+import {useLoaderData} from 'react-router-dom'
 import FilterBar from '@/components/admin/orders/FilterBar'
 import OrderStatusTabs from '@/components/admin/orders/OrderStatusTabs'
 import PaginationControls from '@/components/admin/orders/PaginationControls'
-import PageHeader from '@/components/admin/orders/Pageheader.tsx'
+import PageHeader from '@/components/admin/layout/PageHeader.tsx'
 import {Order} from '@/types/customer'
-import {useLoaderData} from 'react-router-dom'
 
 const getFilteredOrders = (
     orders: Order[] | undefined,
@@ -42,7 +42,10 @@ const OrdersPage = () => {
     return (
         <div className="min-h-screen bg-gray-50 p-4 md:p-6">
             <div className="mx-auto max-w-7xl">
-                <PageHeader/>
+                <PageHeader
+                    title={'Orders'}
+                    subtitle={'Manage and process your store orders'}
+                />
 
                 <FilterBar
                     searchQuery={searchQuery}
