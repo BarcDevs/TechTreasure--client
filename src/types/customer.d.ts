@@ -6,11 +6,15 @@ type Note = {
 };
 
 type Order = {
-    id: string;
+    _id: string;
+    customer: string;
+    customerName: string;
+    email: string;
     date: string;
     total: number;
-    status: string;
     items: number;
+    payment: 'paid' | 'unpaid' | 'pending';
+    status: 'pending' | 'processing' | 'completed' | 'delivered' | 'cancelled';
 };
 
 type WishlistItem = {
