@@ -11,7 +11,6 @@ type CustomerStatusTabsProps = {
     selectedCustomers: string[]
     onSelectAll: () => void
     onSelectCustomer: (customerId: string) => void
-    formatDate: (date: string | null) => string
 }
 
 const CustomerStatusTabs = ({
@@ -21,7 +20,6 @@ const CustomerStatusTabs = ({
                                                selectedCustomers,
                                                onSelectAll,
                                                onSelectCustomer,
-                                               formatDate
                                            }: CustomerStatusTabsProps) => {
     const tabValues = [
         { name: 'All Customers', value: 'all' },
@@ -48,7 +46,6 @@ const CustomerStatusTabs = ({
                             selectedCustomers={selectedCustomers}
                             onSelectAll={onSelectAll}
                             onSelectCustomer={onSelectCustomer}
-                            formatDate={formatDate}
                         />
                     </TabsContent>
                 ))}

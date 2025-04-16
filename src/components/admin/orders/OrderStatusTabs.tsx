@@ -1,7 +1,6 @@
 import {Card} from '@/components/ui/card'
 import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs'
 import OrdersTable from '@/components/admin/orders/OrdersTable'
-import {formatDate} from '@/lib/utils/time.ts'
 import {useState} from 'react'
 
 type OrderStatusTabsProps = {
@@ -65,7 +64,6 @@ const OrderStatusTabs = ({
                             selectedOrders={selectedOrders}
                             onSelectAll={handleSelectAll}
                             onSelectOrder={handleSelectOrder}
-                            formatDate={formatDate}
                         />
                     </TabsContent>
                 ))}

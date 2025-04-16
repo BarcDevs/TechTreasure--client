@@ -10,7 +10,6 @@ type OrdersTableProps = {
     selectedOrders: string[]
     onSelectAll: () => void
     onSelectOrder: (orderId: string) => void
-    formatDate: (date: string) => string
 }
 
 const OrdersTable: FC<OrdersTableProps> =

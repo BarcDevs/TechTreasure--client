@@ -1,22 +1,20 @@
 import {ArrowUpDown} from 'lucide-react'
 import {Checkbox} from '@/components/ui/checkbox'
-import CUSTOMERS from '@/mock/customers.ts'
 import CustomerTableRow from '@/components/admin/customers/CustomerTableRow.tsx'
+import {Customer} from '@/types/customer'
 
 interface CustomersTableProps {
-    customers: typeof CUSTOMERS
+    customers: Customer[]
     selectedCustomers: string[]
     onSelectAll: () => void
     onSelectCustomer: (customerId: string) => void
-    formatDate: (date: string | null) => string
 }
 
 const CustomersTable = ({
                             customers,
                             selectedCustomers,
                             onSelectAll,
-                            onSelectCustomer,
-                            formatDate
+                            onSelectCustomer
                         }: CustomersTableProps) => (
     <div className="overflow-x-auto">
         <table className="w-full text-left text-sm">
@@ -80,7 +78,7 @@ const CustomersTable = ({
             ) : (
                 customers.map((customer) => (
                     <CustomerTableRow
-                        key={customer.id}
+                        key={customer._id}
                         customer={customer}
                         isSelected={selectedCustomers.includes(customer._id)}
                         onSelect={() => onSelectCustomer(customer._id)}

@@ -1,30 +1,29 @@
-import { MapPin, ShoppingBag, DollarSign, Calendar} from 'lucide-react'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Avatar, AvatarFallback } from '@/components/ui/avatar'
+import {MapPin, ShoppingBag, DollarSign, Calendar} from 'lucide-react'
+import {Checkbox} from '@/components/ui/checkbox'
+import {Avatar, AvatarFallback} from '@/components/ui/avatar'
 import StatusBadge from '@/components/admin/StatusBadge'
 import CustomerTagBadge from '@/components/admin/CustomerTagBadge'
-import CUSTOMERS from '@/mock/customers.ts'
 import CustomerRowActionButtons from '@/components/admin/customers/CustomerRowActionButtons.tsx'
+import {Customer} from '@/types/customer'
+import {formatDate} from '@/lib/utils/time.ts'
 
 type CustomerTableRowProps = {
-    customer: typeof CUSTOMERS[0]
+    customer: Customer
     isSelected: boolean
     onSelect: () => void
-    formatDate: (date: string | null) => string
 }
 
 const CustomerTableRow = ({
-                                             customer,
-                                             isSelected,
-                                             onSelect,
-                                             formatDate
-                                         }: CustomerTableRowProps) => (
+                              customer,
+                              isSelected,
+                              onSelect
+                          }: CustomerTableRowProps) => (
     <tr className="hover:bg-gray-50">
         <td className="px-4 py-3">
             <Checkbox
                 checked={isSelected}
                 onCheckedChange={onSelect}
-                aria-label={`Select customer ${customer.id}`}
+                aria-label={`Select customer ${customer._id}`}
             />
         </td>
         <td className="px-4 py-3">
@@ -64,9 +63,10 @@ const CustomerTableRow = ({
         <td className="px-4 py-3">
             <div className="flex items-center">
                 <Calendar className="mr-1 size-3 text-gray-400"/>
-                <span>
-                        {formatDate(customer.lastPurchase || null)}
-                    </span>
+                {customer.lastPurchase &&
+                    <span>
+                        {formatDate(customer.lastPurchase)}
+                    </span>}
             </div>
         </td>
         <td className="px-4 py-3">
