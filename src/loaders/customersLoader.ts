@@ -5,7 +5,7 @@ const customersLoader = async (): Promise<Customer[]> => {
     try {
         return await getCustomers()
     } catch (error) {
-        throw new Response('Failed to fetch orders', {status: 500})
+        throw new Response('Failed to fetch customers', {status: 500})
     }
 }
 
