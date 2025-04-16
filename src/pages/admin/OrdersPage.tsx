@@ -39,31 +39,6 @@ const OrdersPage = () => {
             setFilteredOrders([])
     }, [activeTab, searchQuery, orders])
 
-    // Handle select all orders
-    const handleSelectAll = () => {
-        if (!filteredOrders) return
-        if (selectedOrders.length === filteredOrders.length) {
-            setSelectedOrders([])
-        } else {
-            setSelectedOrders(filteredOrders.map((order) => order._id))
-        }
-    }
-
-    // Handle select individual order
-    const handleSelectOrder = (orderId: string) => {
-        if (selectedOrders.includes(orderId)) {
-            setSelectedOrders(selectedOrders.filter((id) => id !== orderId))
-        } else {
-            setSelectedOrders([...selectedOrders, orderId])
-        }
-    }
-
-    // Format date to readable format
-    const formatDate = (dateString: string) => {
-        const options: Intl.DateTimeFormatOptions = {year: 'numeric', month: 'short', day: 'numeric'}
-        return new Date(dateString).toLocaleDateString('en-US', options)
-    }
-
     return (
         <div className="min-h-screen bg-gray-50 p-4 md:p-6">
             <div className="mx-auto max-w-7xl">
@@ -81,9 +56,7 @@ const OrdersPage = () => {
                         activeTab={activeTab}
                         setActiveTab={setActiveTab}
                         selectedOrders={selectedOrders}
-                        onSelectAll={handleSelectAll}
-                        onSelectOrder={handleSelectOrder}
-                        formatDate={formatDate}
+                        setSelectedOrders={setSelectedOrders}
                     />
                 )}
 
