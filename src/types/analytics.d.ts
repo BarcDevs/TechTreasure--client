@@ -100,7 +100,7 @@ type PromotionImpact = {
 };
 
 type Analytics = {
-    _id: { $oid: string };
+    _id: string;
     sales: Sales;
     orders: Orders;
     customers: Customers;
