@@ -1,13 +1,13 @@
-import { Eye, Mail, MoreHorizontal } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import {Eye, Mail, MoreHorizontal} from 'lucide-react'
+import {Button} from '@/components/ui/button'
+import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from '@/components/ui/dropdown-menu'
 import CUSTOMERS from '@/mock/customers.ts'
 
 type CustomerRowActionsProps = {
     customer: typeof CUSTOMERS[0]
 }
 
-const CustomerRowActionButtons = ({ customer }: CustomerRowActionsProps) => (
+const CustomerRowActionButtons = ({customer}: CustomerRowActionsProps) => (
     <div className="flex items-center gap-2">
         <Button variant="ghost" size="icon" className="size-8">
             <Eye className="size-4"/>
@@ -29,18 +29,11 @@ const CustomerRowActionButtons = ({ customer }: CustomerRowActionsProps) => (
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-                <DropdownMenuItem>
-                    View Profile
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                    Edit Details
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                    View Orders
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                    Add Tag
-                </DropdownMenuItem>
+                {['View Profile', 'Edit Details', 'View Orders', 'Add Tag'].map((label) => (
+                    <DropdownMenuItem>
+                        {label}
+                    </DropdownMenuItem>
+                ))}
                 {customer.status === 'active' ? (
                     <DropdownMenuItem>Mark as Inactive</DropdownMenuItem>
                 ) : (
