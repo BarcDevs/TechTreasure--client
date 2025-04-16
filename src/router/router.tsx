@@ -29,6 +29,7 @@ import CustomersPage from '@/pages/admin/CustomersPage.tsx'
 import CustomerProfilePage from '@/pages/admin/CustomerPage.tsx'
 import AnalyticsPage from '@/pages/admin/AnalyticsPage.tsx'
 import ordersLoader from '@/loaders/ordersLoader.ts'
+import accountLoader from '@/loaders/accountLoader.ts'
 
 export const router = createBrowserRouter([
     {
@@ -59,11 +60,7 @@ export const router = createBrowserRouter([
             {
                 path: 'account/me',
                 element: <AccountPage/>,
-                loader: () => {
-                    const authState = JSON.parse(localStorage.getItem('auth-state') || '{}')
-                    store.dispatch(loadAuthState(authState))
-                    return authState
-                },
+                loader: accountLoader
             },
             {
                 path: 'account/:id',
