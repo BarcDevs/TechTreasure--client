@@ -82,9 +82,8 @@ const CustomersTable = ({
                     <CustomerTableRow
                         key={customer.id}
                         customer={customer}
-                        isSelected={selectedCustomers.includes(customer.id)}
-                        onSelect={() => onSelectCustomer(customer.id)}
-                        formatDate={formatDate}
+                        isSelected={selectedCustomers.includes(customer._id)}
+                        onSelect={() => onSelectCustomer(customer._id)}
                     />
                 ))
             )}
