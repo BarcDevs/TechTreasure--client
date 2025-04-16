@@ -1,15 +1,17 @@
 import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card'
 import {formatCurrency, formatPercentage} from '@/lib/utils/format.ts'
 import {Tabs, TabsList, TabsTrigger} from '@/components/ui/tabs.tsx'
-import {salesData} from '@/mock/analytics.ts'
 import {ArrowDown, ArrowUp} from 'lucide-react'
 import {FC, useEffect, useState} from 'react'
+import {useLoaderData} from 'react-router-dom'
 
 type TotalSalesCardProps = {
     timeframe: 'today' | 'week' | 'month'
     setTimeframe: (timeframe: 'today' | 'week' | 'month') => void
 }
-const TotalSalesCard: FC<TotalSalesCardProps> = ({ timeframe, setTimeframe }) => {
+const TotalSalesCard: FC<TotalSalesCardProps> = ({timeframe, setTimeframe}) => {
+    const {sales} = useLoaderData() as Analytics
+
     const [_timeframe, _setTimeframe] = useState(timeframe as string)
 
     useEffect(() => {
@@ -33,17 +35,17 @@ const TotalSalesCard: FC<TotalSalesCardProps> = ({ timeframe, setTimeframe }) =>
             <CardContent>
                 <div className="flex items-baseline space-x-2">
                     <span className="text-2xl font-bold">
-                        {formatCurrency(salesData[timeframe].value)}
+                        {formatCurrency(sales[timeframe].value)}
                     </span>
                     <span className={`flex items-center text-xs ${
-                        salesData[timeframe].trend === 'up' ? 'text-green-500' : 'text-red-500'
+                        sales[timeframe].trend === 'up' ? 'text-green-500' : 'text-red-500'
                     }`}>
-                        {salesData[timeframe].trend === 'up' ? (
+                        {sales[timeframe].trend === 'up' ? (
                             <ArrowUp className="mr-1 size-3"/>
                         ) : (
                             <ArrowDown className="mr-1 size-3"/>
                         )}
-                        {formatPercentage(salesData[timeframe].change)}
+                        {formatPercentage(sales[timeframe].change)}
                     </span>
                 </div>
                 <div className="mt-4">

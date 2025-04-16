@@ -1,7 +1,7 @@
 import {useParams} from 'react-router-dom'
 import {useQuery} from '@tanstack/react-query'
-import {getCustomer} from '@/api/customers.ts'
 import CustomerProfile from '@/components/admin/CustomerProfile.tsx'
+import {getCustomer} from '@/api/admin.ts'
 
 export default function CustomerProfilePage() {
     const {id} = useParams()

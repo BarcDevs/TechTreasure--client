@@ -1,9 +1,11 @@
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Mail, MessageSquare } from 'lucide-react';
-import {campaignPerformance} from '@/mock/analytics.ts'
+import {useLoaderData} from 'react-router-dom'
 
 const CampaignPerformance = ({  }) => {
+    const {campaignPerformance} = useLoaderData() as Analytics
+
     return (
         <Card>
             <CardHeader>
@@ -32,16 +34,28 @@ const CampaignPerformance = ({  }) => {
 
                             <div className="grid grid-cols-4 gap-2 text-center text-xs">
                                 <div className="rounded-md bg-gray-50 p-2">
-                                    <div className="font-medium">{campaign.sent.toLocaleString()}</div>
-                                    <div className="text-gray-500">Sent</div>
+                                    <div className="font-medium">
+                                        {campaign.sent.toLocaleString()}
+                                    </div>
+                                    <div className="text-gray-500">
+                                        Sent
+                                    </div>
                                 </div>
                                 <div className="rounded-md bg-gray-50 p-2">
-                                    <div className="font-medium">{campaign.opened.toLocaleString()}</div>
-                                    <div className="text-gray-500">Opened</div>
+                                    <div className="font-medium">
+                                        {campaign.opened.toLocaleString()}
+                                    </div>
+                                    <div className="text-gray-500">
+                                        Opened
+                                    </div>
                                 </div>
                                 <div className="rounded-md bg-gray-50 p-2">
-                                    <div className="font-medium">{campaign.clicked.toLocaleString()}</div>
-                                    <div className="text-gray-500">Clicked</div>
+                                    <div className="font-medium">
+                                        {campaign.clicked.toLocaleString()}
+                                    </div>
+                                    <div className="text-gray-500">
+                                        Clicked
+                                    </div>
                                 </div>
                                 <div className="rounded-md bg-gray-50 p-2">
                                     <div className="font-medium">{campaign.converted.toLocaleString()}</div>

@@ -1,9 +1,11 @@
 import {Card, CardHeader, CardTitle, CardContent} from '@/components/ui/card'
 import {Tag} from 'lucide-react'
 import {formatCurrency} from '@/lib/utils/format'
-import {promotionsImpact} from '@/mock/analytics.ts'
+import {useLoaderData} from 'react-router-dom'
 
 const PromotionsImpact = ({}) => {
+    const {promotionsImpact} = useLoaderData() as Analytics
+
     return (
         <Card>
             <CardHeader>

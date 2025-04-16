@@ -2,10 +2,10 @@ import {Card} from '@/components/ui/card'
 import {Tabs, TabsContent, TabsList} from '@/components/ui/tabs'
 import CustomersTab from '@/components/admin/CustomersTab'
 import CustomersTable from '@/components/admin/customers/CustomersTable'
-import CUSTOMERS from '@/mock/customers.ts'
+import {Customer} from '@/types/customer'
 
 type CustomerStatusTabsProps = {
-    filteredCustomers: typeof CUSTOMERS
+    filteredCustomers: Customer[]
     activeTab: string
     setActiveTab: (tab: string) => void
     selectedCustomers: string[]

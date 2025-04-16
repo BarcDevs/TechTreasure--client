@@ -2,9 +2,11 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Globe, ArrowUp, ArrowDown } from 'lucide-react';
 import { formatPercentage } from '@/lib/utils/format';
-import {trafficSources} from '@/mock/analytics.ts'
+import {useLoaderData} from 'react-router-dom'
 
 const TrafficSources = () => {
+    const {trafficSources} = useLoaderData() as Analytics
+
     return (
         <Card>
             <CardHeader>

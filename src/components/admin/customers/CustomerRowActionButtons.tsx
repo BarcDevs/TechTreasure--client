@@ -1,10 +1,10 @@
 import {Eye, Mail, MoreHorizontal} from 'lucide-react'
 import {Button} from '@/components/ui/button'
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from '@/components/ui/dropdown-menu'
-import CUSTOMERS from '@/mock/customers.ts'
+import {Customer} from '@/types/customer'
 
 type CustomerRowActionsProps = {
-    customer: typeof CUSTOMERS[0]
+    customer: Customer
 }
 
 const CustomerRowActionButtons = ({customer}: CustomerRowActionsProps) => (
