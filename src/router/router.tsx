@@ -31,6 +31,7 @@ import AnalyticsPage from '@/pages/admin/AnalyticsPage.tsx'
 import ordersLoader from '@/loaders/ordersLoader.ts'
 import accountLoader from '@/loaders/accountLoader.ts'
 import customersLoader from '@/loaders/customersLoader.ts'
+import analyticsLoader from '@/loaders/analyticsLoader.ts'
 
 export const router = createBrowserRouter([
     {
@@ -186,7 +187,8 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'analytics',
-                element: <AnalyticsPage/>
+                element: <AnalyticsPage/>,
+                loader: analyticsLoader
             },
             {
                 path: '*',
