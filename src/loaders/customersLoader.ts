@@ -9,4 +9,4 @@ const customersLoader = async (): Promise<Customer[]> => {
     }
 }
 
-export default customersLoader()
+export default customersLoader

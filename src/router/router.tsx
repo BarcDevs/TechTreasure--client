@@ -30,6 +30,7 @@ import CustomerProfilePage from '@/pages/admin/CustomerPage.tsx'
 import AnalyticsPage from '@/pages/admin/AnalyticsPage.tsx'
 import ordersLoader from '@/loaders/ordersLoader.ts'
 import accountLoader from '@/loaders/accountLoader.ts'
+import customersLoader from '@/loaders/customersLoader.ts'
 
 export const router = createBrowserRouter([
     {
@@ -177,7 +178,7 @@ export const router = createBrowserRouter([
             {
                 path: 'customers',
                 element: <CustomersPage/>,
-                loader: ordersLoader
+                loader: customersLoader
             },
             {
                 path: 'customers/:id',
