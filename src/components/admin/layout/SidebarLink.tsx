@@ -1,20 +1,20 @@
 import {ADMIN_LINKS, ADMIN_ROOT} from '@/constants'
 import {NavLink} from 'react-router-dom'
 import {Badge} from '@/components/ui/badge.tsx'
-import ORDERS from '@/mock/orders.ts'
-import CUSTOMERS from '@/mock/customers.ts'
 import {useStoreData} from '@/hooks/useStoreData.ts'
+import {useAdminData} from '@/hooks/useAdminData.ts'
 
 const SidebarLink = ({link}: { link: typeof ADMIN_LINKS[number] }) => {
-const {products} = useStoreData()
+    const {products} = useStoreData()
+    const {customers, orders} = useAdminData({})
     const badge = (linkName: string) => {
         const badgeLabel =
-            linkName === 'Orders' ? ORDERS.length :
-                linkName === 'Customers' ? CUSTOMERS.length :
-                    linkName === 'Products' ? products?.products.length :
+            linkName === 'Orders' ? orders?.orders?.length :
+                linkName === 'Customers' ? customers?.customers?.length :
+                    linkName === 'Products' ? products?.products?.length :
                         null
 
-        return (
+        return badgeLabel && (
             <Badge
                 className="ml-auto flex size-6 shrink-0 items-center justify-center rounded-full bg-red-500 hover:bg-red-500/80">
                 {badgeLabel}
