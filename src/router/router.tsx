@@ -176,7 +176,8 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'customers',
-                element: <CustomersPage/>
+                element: <CustomersPage/>,
+                loader: ordersLoader
             },
             {
                 path: 'customers/:id',
