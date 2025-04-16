@@ -28,6 +28,7 @@ import OrdersPage from '@/pages/admin/OrdersPage.tsx'
 import CustomersPage from '@/pages/admin/CustomersPage.tsx'
 import CustomerProfilePage from '@/pages/admin/CustomerPage.tsx'
 import AnalyticsPage from '@/pages/admin/AnalyticsPage.tsx'
+import ordersLoader from '@/loaders/ordersLoader.ts'
 
 export const router = createBrowserRouter([
     {
@@ -173,7 +174,8 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'orders',
-                element: <OrdersPage/>
+                element: <OrdersPage/>,
+                loader: ordersLoader
             },
             {
                 path: 'customers',

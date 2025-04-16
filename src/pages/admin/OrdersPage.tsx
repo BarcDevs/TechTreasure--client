@@ -27,6 +27,7 @@ import {Order} from '@/types/customer'
 
 export default function OrdersPage() {
     const {orders} = useAdminData({})
+    const orders = useLoaderData() as Order[]
     const [activeTab, setActiveTab] = useState('all')
     const [selectedOrders, setSelectedOrders] = useState<string[]>([])
     const [searchQuery, setSearchQuery] = useState('')
