@@ -1,17 +1,24 @@
 import {ADMIN_LINKS, ADMIN_ROOT} from '@/constants'
 import {NavLink} from 'react-router-dom'
 import {Badge} from '@/components/ui/badge.tsx'
-import {useStoreData} from '@/hooks/useStoreData.ts'
-import {useAdminData} from '@/hooks/useAdminData.ts'
+import {getStoreStats} from '@/api/admin.ts'
+import {useQuery} from '@tanstack/react-query'
 
 const SidebarLink = ({link}: { link: typeof ADMIN_LINKS[number] }) => {
-    const {products} = useStoreData()
-    const {customers, orders} = useAdminData({})
+    const { data, isLoading } = useQuery({
+        queryKey: ['store-stats'],
+        queryFn: getStoreStats
+    })
+
+    if (isLoading || !data) return null
+
+    const { products, customers, orders } = data
+
     const badge = (linkName: string) => {
         const badgeLabel =
-            linkName === 'Orders' ? orders?.orders?.length :
-                linkName === 'Customers' ? customers?.customers?.length :
-                    linkName === 'Products' ? products?.products?.length :
+            linkName === 'Orders' ? orders :
+                linkName === 'Customers' ? customers :
+                    linkName === 'Products' ? products :
                         null
 
         return badgeLabel && (

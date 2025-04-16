@@ -117,3 +117,9 @@ type Analytics = {
     createdAt: { $date: string };
     updatedAt: { $date: string };
 };
+
+type StoreStats = {
+    products: number
+    customers: number
+    orders: number
+};

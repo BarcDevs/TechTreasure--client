@@ -30,6 +30,10 @@ const getAnalytics = async () => {
     return response.data.data
 }
 
+const getStoreStats = async (): Promise<StoreStats> => {
+    const response = await api.get('/admin/stats')
+    return response.data.data
+}
 
 export {
     getCustomers,
@@ -37,5 +41,6 @@ export {
     getOrders,
     getOrder,
     getOrdersByCustomer,
-    getAnalytics
+    getAnalytics,
+    getStoreStats
 }
