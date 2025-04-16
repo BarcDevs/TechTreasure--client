@@ -1,43 +1,43 @@
-import {useState} from 'react'
-import {useQuery} from '@tanstack/react-query'
-import {getCustomers} from '@/api/customers.ts'
+import {useEffect, useState} from 'react'
 import PageHeader from '@/components/admin/layout/PageHeader.tsx'
 import CustomerFilterBar from '@/components/admin/customers/CustomerFilterBar'
 import CustomerStatusTabs from '@/components/admin/customers/CustomerStatusTabs'
 import CustomerPagination from '@/components/admin/customers/CustomerPagination'
+import {Customer} from '@/types/customer'
+import {useLoaderData} from 'react-router-dom'
+
+const getFilteredCustomers = (
+    customers: Customer[] | undefined,
+    activeTab: string,
+    searchQuery: string
+): Customer[] => {
+    if (!customers) return []
+
+    return customers.filter((customer) => {
+        const statusMatch = activeTab === 'all' || customer.status === activeTab
+
+        const searchMatch = searchQuery
+            ? [customer._id, customer.name, customer.email, customer.location].some((field) =>
+                field.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+            : true
+
+        return statusMatch && searchMatch
+    })
+}
 
 const CustomersPage = () => {
-    const customers = useQuery({
-        queryKey: ['customers'],
-        queryFn: () => getCustomers(),
-        refetchOnWindowFocus: false
-    })
+    const customers = useLoaderData() as Customer[]
     const [activeTab, setActiveTab] = useState('all')
     const [selectedCustomers, setSelectedCustomers] = useState<string[]>([])
     const [searchQuery, setSearchQuery] = useState('')
+    const [filteredCustomers, setFilteredCustomers] = useState<Customer[]>([])
 
-    // Filter customers based on active tab and search query
-    const filteredCustomers = customers.data?.filter((customer) => {
-        // Filter by tab
-        if (activeTab === 'active' && customer.status !== 'active') return false
-        if (activeTab === 'inactive' && customer.status !== 'inactive') return false
-        if (activeTab === 'loyal' && !customer.tags.includes('loyal')) return false
-        if (activeTab === 'high-value' && !customer.tags.includes('high-value')) return false
-        if (activeTab === 'at-risk' && !customer.tags.includes('at-risk')) return false
-
-        // Filter by search query
-        if (searchQuery) {
-            const query = searchQuery.toLowerCase()
-            return (
-                customer.id.toLowerCase().includes(query) ||
-                customer.name.toLowerCase().includes(query) ||
-                customer.email.toLowerCase().includes(query) ||
-                customer.location.toLowerCase().includes(query)
-            )
-        }
-
-        return true
-    })
+    useEffect(() => {
+        customers && customers ?
+            setFilteredCustomers(getFilteredCustomers(customers, activeTab, searchQuery)) :
+            setFilteredCustomers([])
+    }, [activeTab, searchQuery, customers])
 
     // Handle select all customers
     const handleSelectAll = () => {
@@ -45,7 +45,7 @@ const CustomersPage = () => {
         if (selectedCustomers.length === filteredCustomers.length) {
             setSelectedCustomers([])
         } else {
-            setSelectedCustomers(filteredCustomers.map((customer) => customer.id))
+            setSelectedCustomers(filteredCustomers.map((customer) => customer._id))
         }
     }
 
@@ -56,13 +56,6 @@ const CustomersPage = () => {
         } else {
             setSelectedCustomers([...selectedCustomers, customerId])
         }
-    }
-
-    // Format date to readable format
-    const formatDate = (dateString: string | null) => {
-        if (!dateString) return 'Never'
-        const options: Intl.DateTimeFormatOptions = {year: 'numeric', month: 'short', day: 'numeric'}
-        return new Date(dateString).toLocaleDateString('en-US', options)
     }
 
     return (
@@ -87,7 +80,6 @@ const CustomersPage = () => {
                         selectedCustomers={selectedCustomers}
                         onSelectAll={handleSelectAll}
                         onSelectCustomer={handleSelectCustomer}
-                        formatDate={formatDate}
                     />
                 )}
 
