@@ -37,19 +37,19 @@ const CustomerFilterBar = ({
                 Export
             </Button>
 
-            {selectedCustomers.length > 0 && (
-                <Select>
-                    <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="Bulk Actions"/>
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="add-tag">Add Tag</SelectItem>
-                        <SelectItem value="remove-tag">Remove Tag</SelectItem>
-                        <SelectItem value="send-email">Send Email</SelectItem>
-                        <SelectItem value="export-selected">Export Selected</SelectItem>
-                    </SelectContent>
-                </Select>
-            )}
+            {/*{selectedCustomers.length > 0 && (*/}
+            {/*    <Select>*/}
+            {/*        <SelectTrigger className="w-[180px]">*/}
+            {/*            <SelectValue placeholder="Bulk Actions"/>*/}
+            {/*        </SelectTrigger>*/}
+            {/*        <SelectContent>*/}
+            {/*            <SelectItem value="add-tag">Add Tag</SelectItem>*/}
+            {/*            <SelectItem value="remove-tag">Remove Tag</SelectItem>*/}
+            {/*            <SelectItem value="send-email">Send Email</SelectItem>*/}
+            {/*            <SelectItem value="export-selected">Export Selected</SelectItem>*/}
+            {/*        </SelectContent>*/}
+            {/*    </Select>*/}
+            {/*)}*/}
         </div>
     </div>
 )
