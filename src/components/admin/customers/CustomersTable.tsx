@@ -1,10 +1,10 @@
-import {ArrowDown, ArrowUp, ArrowUpDown} from 'lucide-react'
 import {Checkbox} from '@/components/ui/checkbox'
 import CustomerTableRow from '@/components/admin/customers/CustomerTableRow.tsx'
 import {Customer} from '@/types/customer'
 import {useState} from 'react'
+import SortButton from '@/components/admin/SortButton.tsx'
 
-interface CustomersTableProps {
+type CustomersTableProps = {
     customers: Customer[]
     selectedCustomers: string[]
     onSelectAll: () => void
@@ -19,39 +19,15 @@ const columnToPropertyMap: Record<string, keyof Customer> = {
     'Last Purchase': 'lastPurchase'
 }
 
-const sortCustomers = (customers: Customer[],
-                       field: keyof Customer | '',
-                       direction: 'asc' | 'desc' | '') => {
-    if (field === '' || direction === '') return customers
-    return customers.sort((a, b) => {
-        const valueA = a[field] || ''
-        const valueB = b[field] || ''
-        if (valueA < valueB) return direction === 'asc' ? -1 : 1
-        if (valueA > valueB) return direction === 'asc' ? 1 : -1
-        return 0
-    })
-}
-
 const CustomersTable = ({
                             customers,
                             selectedCustomers,
                             onSelectAll,
                             onSelectCustomer
                         }: CustomersTableProps) => {
-    const [sortDirection, setSortDirection] = useState<'asc' | 'desc' | ''>('')
-    const [sortField, setSortField] = useState<keyof Customer | ''>('')
     const [tableCustomers, setTableCustomers] = useState<Customer[]>(customers)
-
-    const handleSort = (field: keyof Customer) => {
-        if (sortField === field)
-            setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc')
-        else {
-            setSortField(field)
-            setSortDirection('asc')
-        }
-
-        setTableCustomers(sortCustomers(customers, sortField, sortDirection))
-    }
+    const [sortDirection, setSortDirection] = useState<'asc' | 'desc' | ''>('')
+    const [sortField, setSortField] = useState<string>('')
 
     return (
         <div className="overflow-x-auto">
@@ -66,26 +42,18 @@ const CustomersTable = ({
                         />
                     </th>
                     {['Customer', 'Location', 'Orders', 'Spent', 'Last Purchase'].map((label) => (
-                        <th className="px-4 py-3">
-                            <div className="flex items-center">
-                                {label}
-                                <button
-                                    onClick={() => handleSort(columnToPropertyMap[label])}
-                                    className="ml-1 focus:outline-none"
-                                    aria-label={`Sort by ${label}`}
-                                >
-                                    {sortField === columnToPropertyMap[label] ? (
-                                        sortDirection === 'asc' ? (
-                                            <ArrowUp className="size-3"/>
-                                        ) : (
-                                            <ArrowDown className="size-3"/>
-                                        )
-                                    ) : (
-                                        <ArrowUpDown className="size-3"/>
-                                    )}
-                                </button>
-                            </div>
-                        </th>
+                        <SortButton
+                            {...{
+                                label,
+                                data: customers,
+                                setSortedData: setTableCustomers,
+                                columnToPropertyMap,
+                                setSortField,
+                                setSortDirection,
+                                sortDirection,
+                                sortField
+                            }}
+                        />
                     ))}
                     {['Status', 'Tags'/*, 'Actions'*/].map((label) => (
                         <th className="px-4 py-3">
