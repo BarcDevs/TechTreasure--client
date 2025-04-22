@@ -25,7 +25,7 @@ const CustomersTable = ({
                             onSelectAll,
                             onSelectCustomer
                         }: CustomersTableProps) => {
-    const [tableCustomers, setTableCustomers] = useState<Customer[]>(customers)
+    const [sortedCustomers, setSortedCustomers] = useState<Customer[]>(customers)
     const [sortDirection, setSortDirection] = useState<'asc' | 'desc' | ''>('')
     const [sortField, setSortField] = useState<string>('')
 
@@ -46,7 +46,7 @@ const CustomersTable = ({
                             {...{
                                 label,
                                 data: customers,
-                                setSortedData: setTableCustomers,
+                                setSortedData: setSortedCustomers,
                                 columnToPropertyMap,
                                 setSortField,
                                 setSortDirection,
@@ -70,7 +70,7 @@ const CustomersTable = ({
                         </td>
                     </tr>
                 ) : (
-                    tableCustomers.map((customer) => (
+                    sortedCustomers.map((customer) => (
                         <CustomerTableRow
                             key={customer._id}
                             customer={customer}
