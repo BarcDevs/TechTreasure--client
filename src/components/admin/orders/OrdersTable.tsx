@@ -60,7 +60,7 @@ const OrdersTable: FC<OrdersTableProps> =
                         ))}
                         <th className="px-4 py-3">Payment</th>
                         <th className="px-4 py-3">Status</th>
-                        <th className="px-4 py-3">Actions</th>
+                        {/*<th className="px-4 py-3">Actions</th>*/}
                     </tr>
                     </thead>
                     <tbody className="divide-y">
