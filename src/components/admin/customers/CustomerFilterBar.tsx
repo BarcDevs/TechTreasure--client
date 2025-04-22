@@ -1,4 +1,4 @@
-import { Search, Filter, Download } from 'lucide-react'
+import { Search, Download } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -26,9 +26,9 @@ const CustomerFilterBar = ({
                     onChange={(e) => setSearchQuery(e.target.value)}
                 />
             </div>
-            <Button variant="outline" size="icon">
-                <Filter className="size-4"/>
-            </Button>
+            {/*<Button variant="outline" size="icon">*/}
+            {/*    <Filter className="size-4"/>*/}
+            {/*</Button>*/}
         </div>
 
         <div className="flex items-center gap-2">
