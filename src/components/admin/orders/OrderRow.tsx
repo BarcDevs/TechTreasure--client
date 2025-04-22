@@ -20,8 +20,8 @@ type OrderRowProps = {
 }
 
 const OrderRow: FC<OrderRowProps> =
-    ({order, selectedOrders, onSelectOrder}) => {
-        return (
+    ({order, selectedOrders, onSelectOrder}) =>
+        (
             <tr key={order._id} className="hover:bg-gray-50">
                 <td className="px-4 py-3">
                     <Checkbox
@@ -82,6 +82,5 @@ const OrderRow: FC<OrderRowProps> =
                 </td>
             </tr>
         )
-    }
 
 export default OrderRow
