@@ -35,7 +35,7 @@ const CustomersTable = ({
                         </div>
                     </th>
                 ))}
-                {['Status', 'Tags', 'Actions'].map((label) => (
+                {['Status', 'Tags'/*, 'Actions'*/].map((label) => (
                     <th className="px-4 py-3">
                         {label}
                     </th>
