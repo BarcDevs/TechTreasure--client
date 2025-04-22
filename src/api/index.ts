@@ -11,6 +11,27 @@ const api = axios.create({
     }
 })
 
+api.interceptors.response.use(
+    response => response,
+    error => {
+        const errorData = error.response?.data
+
+        if (errorData?.message === 'jwt expired' ||
+            (errorData?.status === 'failed' && errorData?.message === 'jwt expired')) {
+
+            console.log('JWT token expired, logging out user')
+
+            Cookies.remove('token')
+
+            window.location.href = '/login'
+
+            return Promise.reject(new Error('Your session has expired. Please log in again.'))
+        }
+
+        return Promise.reject(error)
+    }
+)
+
 export const queryClient = new QueryClient
 
 export default api

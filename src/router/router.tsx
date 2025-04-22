@@ -32,11 +32,13 @@ import ordersLoader from '@/loaders/ordersLoader.ts'
 import accountLoader from '@/loaders/accountLoader.ts'
 import customersLoader from '@/loaders/customersLoader.ts'
 import analyticsLoader from '@/loaders/analyticsLoader.ts'
+import ErrorPage from '@/pages/ErrorPage.tsx'
 
 export const router = createBrowserRouter([
     {
         path: '/',
         element: <RootLayout/>,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '',
@@ -154,6 +156,7 @@ export const router = createBrowserRouter([
             store.dispatch(loadAuthState(authState))
             return authState
         },
+        errorElement: <ErrorPage />,
         children: [
             {
                 index: true,
