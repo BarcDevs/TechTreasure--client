@@ -1,4 +1,6 @@
 import {useRouteError} from 'react-router-dom'
+import {useSelector} from 'react-redux'
+import {IRootState} from '@/store'
 
 interface RouteError {
     statusText?: string;
@@ -10,19 +12,21 @@ const ErrorPage: React.FC = () => {
     const error = useRouteError() as RouteError
     const isServerError = error.status === 500
 
+    const isAdmin = useSelector((state: IRootState) => state.auth.isAdmin)
+
     return (
         <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-4">
             <div className="w-full max-w-md rounded-lg bg-white p-8 text-center shadow-xl">
                 <div className="mx-auto mb-6 flex size-16 items-center justify-center rounded-full bg-red-100">
-                    <svg 
-                        className="size-8 text-red-600" 
-                        fill="none" 
-                        viewBox="0 0 24 24" 
+                    <svg
+                        className="size-8 text-red-600"
+                        fill="none"
+                        viewBox="0 0 24 24"
                         stroke="currentColor"
                     >
-                        <path 
-                            strokeLinecap="round" 
-                            strokeLinejoin="round" 
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                             strokeWidth="2"
                               d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                         />
@@ -35,7 +39,7 @@ const ErrorPage: React.FC = () => {
                     Sorry, an unexpected error has occurred.
                 </p>
                 <p className="mb-6 italic text-gray-500">
-                    {error.statusText || error.message || 'Unknown error'}
+                    {(isAdmin && error.statusText || error.message) || 'Unknown error'}
                 </p>
                 <div className="flex flex-col space-y-3 sm:flex-row sm:space-x-3 sm:space-y-0">
                     <button
