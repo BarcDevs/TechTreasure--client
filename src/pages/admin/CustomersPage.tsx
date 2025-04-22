@@ -39,7 +39,6 @@ const CustomersPage = () => {
             setFilteredCustomers([])
     }, [activeTab, searchQuery, customers])
 
-    // Handle select all customers
     const handleSelectAll = () => {
         if (!filteredCustomers) return
         if (selectedCustomers.length === filteredCustomers.length) {
@@ -49,7 +48,6 @@ const CustomersPage = () => {
         }
     }
 
-    // Handle select individual customer
     const handleSelectCustomer = (customerId: string) => {
         if (selectedCustomers.includes(customerId)) {
             setSelectedCustomers(selectedCustomers.filter((id) => id !== customerId))
