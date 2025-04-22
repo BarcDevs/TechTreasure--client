@@ -1,10 +1,10 @@
 import {useEffect, useState} from 'react'
 import PageHeader from '@/components/admin/layout/PageHeader.tsx'
-import CustomerFilterBar from '@/components/admin/customers/CustomerFilterBar'
 import CustomerStatusTabs from '@/components/admin/customers/CustomerStatusTabs'
 import CustomerPagination from '@/components/admin/customers/CustomerPagination'
 import {Customer} from '@/types/customer'
 import {useLoaderData} from 'react-router-dom'
+import FilterBar from '@/components/admin/FilterBar.tsx'
 
 const getFilteredCustomers = (
     customers: Customer[] | undefined,
@@ -64,10 +64,11 @@ const CustomersPage = () => {
                     subtitle={'Manage your customer base and relationships'}
                 />
 
-                <CustomerFilterBar
+                <FilterBar
                     searchQuery={searchQuery}
                     setSearchQuery={setSearchQuery}
-                    selectedCustomers={selectedCustomers}
+                    selectedData={selectedCustomers}
+                    placeholder={'Search customers...'}
                 />
 
                 {filteredCustomers && (

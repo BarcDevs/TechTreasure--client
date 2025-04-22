@@ -1,10 +1,10 @@
 import {useEffect, useState} from 'react'
 import {useLoaderData} from 'react-router-dom'
-import FilterBar from '@/components/admin/orders/FilterBar'
 import OrderStatusTabs from '@/components/admin/orders/OrderStatusTabs'
 import PaginationControls from '@/components/admin/orders/PaginationControls'
 import PageHeader from '@/components/admin/layout/PageHeader.tsx'
 import {Order} from '@/types/customer'
+import FilterBar from '@/components/admin/FilterBar.tsx'
 
 const getFilteredOrders = (
     orders: Order[] | undefined,
@@ -50,7 +50,8 @@ const OrdersPage = () => {
                 <FilterBar
                     searchQuery={searchQuery}
                     setSearchQuery={setSearchQuery}
-                    selectedOrders={selectedOrders}
+                    selectedData={selectedOrders}
+                    placeholder={'Search orders...'}
                 />
 
                 {filteredOrders && (
