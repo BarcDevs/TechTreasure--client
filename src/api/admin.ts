@@ -27,7 +27,7 @@ const getOrdersByCustomer = async (customerId: string) => {
 
 const getAnalytics = async () => {
     const response = await api.get('/admin/analytics')
-    return response.data.data
+    return response.data.data[0]
 }
 
 const getStoreStats = async (): Promise<StoreStats> => {
