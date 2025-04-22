@@ -1,4 +1,4 @@
-import {FC, useState} from 'react'
+import {FC, useEffect, useState} from 'react'
 import {Order} from '@/types/customer'
 import {Checkbox} from '@/components/ui/checkbox.tsx'
 import OrderRow from '@/components/admin/orders/OrderRow.tsx'
@@ -22,7 +22,11 @@ const OrdersTable: FC<OrdersTableProps> =
         const [sortedOrders, setSortedOrders] = useState<Order[]>(orders)
         const [sortDirection, setSortDirection] = useState<'asc' | 'desc' | ''>('')
         const [sortField, setSortField] = useState<string>('')
-        console.log(sortedOrders)
+
+        useEffect(() => {
+            setSortedOrders(orders)
+        }, [orders])
+
         return (
             <div className="overflow-x-auto">
                 <table className="w-full text-left text-sm">
@@ -42,6 +46,7 @@ const OrdersTable: FC<OrdersTableProps> =
                         </th>
                         {['Customer', 'Date', 'Total'].map((label) => (
                             <SortButton
+                                key={label}
                                 {...{
                                     label,
                                     data: orders,

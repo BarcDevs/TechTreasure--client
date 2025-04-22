@@ -1,7 +1,7 @@
 import {Checkbox} from '@/components/ui/checkbox'
 import CustomerTableRow from '@/components/admin/customers/CustomerTableRow.tsx'
 import {Customer} from '@/types/customer'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import SortButton from '@/components/admin/SortButton.tsx'
 
 type CustomersTableProps = {
@@ -29,6 +29,10 @@ const CustomersTable = ({
     const [sortDirection, setSortDirection] = useState<'asc' | 'desc' | ''>('')
     const [sortField, setSortField] = useState<string>('')
 
+    useEffect(() => {
+        setSortedCustomers(customers)
+    }, [customers])
+
     return (
         <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
@@ -43,6 +47,7 @@ const CustomersTable = ({
                     </th>
                     {['Customer', 'Location', 'Orders', 'Spent', 'Last Purchase'].map((label) => (
                         <SortButton
+                            key={label}
                             {...{
                                 label,
                                 data: customers,
