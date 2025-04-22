@@ -3,7 +3,6 @@ import {Checkbox} from '@/components/ui/checkbox'
 import {Avatar, AvatarFallback} from '@/components/ui/avatar'
 import StatusBadge from '@/components/admin/StatusBadge'
 import CustomerTagBadge from '@/components/admin/CustomerTagBadge'
-import CustomerRowActionButtons from '@/components/admin/customers/CustomerRowActionButtons.tsx'
 import {Customer} from '@/types/customer'
 import {formatDate} from '@/lib/utils/time.ts'
 
@@ -63,10 +62,11 @@ const CustomerTableRow = ({
         <td className="px-4 py-3">
             <div className="flex items-center">
                 <Calendar className="mr-1 size-3 text-gray-400"/>
-                {customer.lastPurchase &&
-                    <span>
-                        {formatDate(customer.lastPurchase)}
-                    </span>}
+                <span>
+                {customer.lastPurchase ?
+                    formatDate(customer.lastPurchase)
+                    : 'N/A'}
+                    </span>
             </div>
         </td>
         <td className="px-4 py-3">
@@ -81,9 +81,9 @@ const CustomerTableRow = ({
                 )}
             </div>
         </td>
-        <td className="px-4 py-3">
-            <CustomerRowActionButtons customer={customer}/>
-        </td>
+        {/*<td className="px-4 py-3">*/}
+        {/*    <CustomerRowActionButtons customer={customer}/>*/}
+        {/*</td>*/}
     </tr>
 )
 
