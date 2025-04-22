@@ -1,7 +1,6 @@
 import { Search, Filter, Download } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 type FilterBarProps = {
     searchQuery: string
@@ -28,25 +27,26 @@ const FilterBar =
             </Button>
         </div>
 
+        // todo: export to xls
         <div className="flex items-center gap-2">
             <Button variant="outline" size="sm" className="hidden sm:flex">
                 <Download className="mr-2 size-4"/>
                 Export
             </Button>
 
-            {selectedOrders.length > 0 && (
-                <Select>
-                    <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="Bulk Actions"/>
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="mark-processing">Mark as Processing</SelectItem>
-                        <SelectItem value="mark-delivered">Mark as Delivered</SelectItem>
-                        <SelectItem value="mark-cancelled">Mark as Cancelled</SelectItem>
-                        <SelectItem value="export-selected">Export Selected</SelectItem>
-                    </SelectContent>
-                </Select>
-            )}
+            {/*{selectedOrders.length > 0 && (*/}
+            {/*    <Select>*/}
+            {/*        <SelectTrigger className="w-[180px]">*/}
+            {/*            <SelectValue placeholder="Bulk Actions"/>*/}
+            {/*        </SelectTrigger>*/}
+            {/*        <SelectContent>*/}
+            {/*            <SelectItem value="mark-processing">Mark as Processing</SelectItem>*/}
+            {/*            <SelectItem value="mark-delivered">Mark as Delivered</SelectItem>*/}
+            {/*            <SelectItem value="mark-cancelled">Mark as Cancelled</SelectItem>*/}
+            {/*            <SelectItem value="export-selected">Export Selected</SelectItem>*/}
+            {/*        </SelectContent>*/}
+            {/*    </Select>*/}
+            {/*)}*/}
         </div>
     </div>
 )
