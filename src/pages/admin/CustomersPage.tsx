@@ -5,6 +5,7 @@ import CustomerPagination from '@/components/admin/customers/CustomerPagination'
 import {Customer} from '@/types/customer'
 import {useLoaderData} from 'react-router-dom'
 import FilterBar from '@/components/admin/FilterBar.tsx'
+import {formatDateTime} from '@/lib/utils/time.ts'
 
 const getFilteredCustomers = (
     customers: Customer[] | undefined,
@@ -56,12 +57,44 @@ const CustomersPage = () => {
         }
     }
 
-    const getSelectedCustomerData = (): Customer[] => {
+    const getSelectedCustomerData = (): any[] => {
         if (!filteredCustomers) return []
-        return filteredCustomers.filter(customer =>
-            selectedCustomers.includes(customer._id)
-        )
+
+        return filteredCustomers
+            .filter(customer => selectedCustomers.includes(customer._id))
+            .map(customer => {
+                const {
+                    _id,
+                    name,
+                    email,
+                    phone,
+                    tags,
+                    registrationDate,
+                    lastPurchase,
+                    lastLogin,
+                    totalOrders,
+                    status,
+                    location,
+                    totalSpent
+                } = customer
+
+                return {
+                    _id,
+                    name,
+                    email,
+                    phone,
+                    tags: Array.isArray(tags) ? tags.join(', ') : '',
+                    registrationDate: formatDateTime(registrationDate),
+                    lastPurchase: formatDateTime(lastPurchase ?? ''),
+                    lastLogin: formatDateTime(lastLogin),
+                    totalOrders,
+                    status,
+                    location,
+                    totalSpent
+                }
+            })
     }
+
 
     return (
         <div className="min-h-screen bg-gray-50 p-4 md:p-6">
@@ -76,6 +109,7 @@ const CustomersPage = () => {
                     setSearchQuery={setSearchQuery}
                     selectedData={getSelectedCustomerData()}
                     placeholder={'Search customers...'}
+                    filename={'exported-customers'}
                 />
 
                 {filteredCustomers && (

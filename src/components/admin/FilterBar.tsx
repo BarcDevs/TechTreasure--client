@@ -19,7 +19,6 @@ const FilterBar = ({
                        placeholder,
                        filename = 'exported-data'
                    }: FilterBarProps) => {
-
     const handleExport = async () => {
         if (selectedData.length === 0) {
             alert('No data to export')

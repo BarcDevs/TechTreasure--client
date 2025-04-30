@@ -5,6 +5,7 @@ import PaginationControls from '@/components/admin/orders/PaginationControls'
 import PageHeader from '@/components/admin/layout/PageHeader.tsx'
 import {Order} from '@/types/customer'
 import FilterBar from '@/components/admin/FilterBar.tsx'
+import {formatDateTime} from '@/lib/utils/time.ts'
 
 const getFilteredOrders = (
     orders: Order[] | undefined,
@@ -39,12 +40,22 @@ const OrdersPage = () => {
             setFilteredOrders([])
     }, [activeTab, searchQuery, orders])
 
-    const getSelectedOrdersData = (): Order[] => {
+    const getSelectedOrdersData = (): any[] => {
         if (!filteredOrders) return []
-        return filteredOrders.filter(order =>
-            selectedOrders.includes(order._id)
-        )
+
+        return filteredOrders
+            .filter(order => selectedOrders.includes(order._id))
+            .map(order => ({
+                customerName: order.customerName || '',
+                email: order.email || '',
+                date: formatDateTime(order.date),
+                total: order.total,
+                items: order.items,
+                payment: order.payment,
+                status: order.status
+            }))
     }
+
 
     return (
         <div className="min-h-screen bg-gray-50 p-4 md:p-6">
@@ -59,6 +70,7 @@ const OrdersPage = () => {
                     setSearchQuery={setSearchQuery}
                     selectedData={getSelectedOrdersData()}
                     placeholder={'Search orders...'}
+                    filename={'exported-orders'}
                 />
 
                 {filteredOrders && (
