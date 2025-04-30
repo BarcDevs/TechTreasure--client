@@ -1,7 +1,6 @@
 import {Card} from '@/components/ui/card'
 import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs'
 import OrdersTable from '@/components/admin/orders/OrdersTable'
-import {useState} from 'react'
 
 type OrderStatusTabsProps = {
     filteredOrders: any[]
@@ -22,10 +21,10 @@ const tabs = {
 const OrderStatusTabs = ({
                              filteredOrders,
                              activeTab,
-                             setActiveTab
+                             setActiveTab,
+                             selectedOrders,
+                             setSelectedOrders
                          }: OrderStatusTabsProps) => {
-    const [selectedOrders, setSelectedOrders] = useState<string[]>([])
-
     const handleSelectAll = () => {
         if (!filteredOrders) return
         if (selectedOrders.length === filteredOrders.length) {
