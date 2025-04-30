@@ -41,8 +41,8 @@ const OrdersPage = () => {
 
     const getSelectedOrdersData = (): Order[] => {
         if (!filteredOrders) return []
-        return filteredOrders.filter(customer =>
-            selectedOrders.includes(customer._id)
+        return filteredOrders.filter(order =>
+            selectedOrders.includes(order._id)
         )
     }
 
