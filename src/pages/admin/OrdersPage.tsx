@@ -39,6 +39,13 @@ const OrdersPage = () => {
             setFilteredOrders([])
     }, [activeTab, searchQuery, orders])
 
+    const getSelectedOrdersData = (): Order[] => {
+        if (!filteredOrders) return []
+        return filteredOrders.filter(customer =>
+            selectedOrders.includes(customer._id)
+        )
+    }
+
     return (
         <div className="min-h-screen bg-gray-50 p-4 md:p-6">
             <div className="mx-auto max-w-7xl">
@@ -50,7 +57,7 @@ const OrdersPage = () => {
                 <FilterBar
                     searchQuery={searchQuery}
                     setSearchQuery={setSearchQuery}
-                    selectedData={selectedOrders}
+                    selectedData={getSelectedOrdersData()}
                     placeholder={'Search orders...'}
                 />
 

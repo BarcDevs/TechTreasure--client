@@ -56,6 +56,13 @@ const CustomersPage = () => {
         }
     }
 
+    const getSelectedCustomerData = (): Customer[] => {
+        if (!filteredCustomers) return []
+        return filteredCustomers.filter(customer =>
+            selectedCustomers.includes(customer._id)
+        )
+    }
+
     return (
         <div className="min-h-screen bg-gray-50 p-4 md:p-6">
             <div className="mx-auto max-w-7xl">
@@ -67,7 +74,7 @@ const CustomersPage = () => {
                 <FilterBar
                     searchQuery={searchQuery}
                     setSearchQuery={setSearchQuery}
-                    selectedData={selectedCustomers}
+                    selectedData={getSelectedCustomerData()}
                     placeholder={'Search customers...'}
                 />
 
