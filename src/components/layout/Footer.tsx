@@ -1,10 +1,10 @@
-import send from '/assets/icons/send.svg'
 import FooterLinkColumn, {FOOTER_LINK_STYLE} from '@/components/layout/FooterLinkColumn.tsx'
 import {FOOTER_LINKS, SUPPORT_DETAILS} from '@/constants/footer.ts'
 import Icon from '@/components/elements/Icon.tsx'
 import {APP_NAME, SOCIAL_LINKS} from '@/constants'
 import {useTranslation} from 'react-i18next'
 import {GLOBAL_LOCALES, I18N_NAMESPACES, NAVIGATION_LOCALES} from '@/constants/locales.ts'
+import Subscribe from '@/components/layout/Subscribe.tsx'
 
 const Footer = ({}) => {
     const {t} = useTranslation(I18N_NAMESPACES.global)
@@ -48,12 +48,8 @@ const Footer = ({}) => {
                             {t(GLOBAL_LOCALES.subscribePromo)}
                         </div>
                         <div
-                            className="inline-flex w-[217px] items-center justify-start rounded border border-neutral-50 py-3">
-                            <input
-                                type="email"
-                                className="no-focus w-[180px] bg-black pl-4 font-poppins text-base font-normal leading-normal text-neutral-50 opacity-40 outline-none"
-                                placeholder={t(GLOBAL_LOCALES.emailPlaceholder)}/>
-                            <img src={send} alt="send"/>
+                            className="inline-flex w-[217px] items-center justify-start rounded py-3">
+                            <Subscribe/>
                         </div>
                     </div>
                 </div>

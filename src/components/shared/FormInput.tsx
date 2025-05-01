@@ -10,6 +10,7 @@ type FormInputProps<T extends FieldValues> = {
     type?: InputProps['type']
     className?: string
     required?: boolean
+    hideError?: boolean
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     formControl: Control<T & FieldValues, any>
 } & InputProps
@@ -22,6 +23,7 @@ const FormInput = <T extends FieldValues, >({
                                                 formControl,
                                                 type,
                                                 required,
+                                                hideError = false,
                                                 ...props
                                             }: FormInputProps<T>) => {
     return (
@@ -43,7 +45,7 @@ const FormInput = <T extends FieldValues, >({
                                    {...props}
                                    {...field} />
                         </FormControl>
-                        <FormMessage/>
+                        {!hideError && <FormMessage/>}
                     </FormItem>
                 )}
         />
