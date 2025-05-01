@@ -52,7 +52,7 @@ const ImageInput = ({images, setImages, type, colors, formControl}: ImageInputPr
         <FormItem className="w-full">
             <label
                 className="block text-sm font-medium text-gray-700">{type === 'main' ? 'Main Image' : 'Additional Images'}</label>
-            <div className="relative">
+            <div className="flex_row relative">
                 <Input ref={ref}
                        multiple={type === 'additional' || colors.length > 0}
                        className="mt-1 w-full"
@@ -72,7 +72,7 @@ const ImageInput = ({images, setImages, type, colors, formControl}: ImageInputPr
                 {images.map(image => (
                     <li key={uuid()}>
                         <img
-                            className="aspect-square h-24 w-24 cursor-pointer object-contain hover:opacity-80"
+                            className="aspect-square size-24 cursor-pointer object-contain hover:opacity-80"
                             height="100"
                             // @ts-ignore
                             src={URL.createObjectURL(image?.image ?? image)}
