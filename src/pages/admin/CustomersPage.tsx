@@ -15,13 +15,14 @@ const getFilteredCustomers = (
     if (!customers) return []
 
     return customers.filter((customer) => {
-        const statusMatch = activeTab === 'all' || customer.status === activeTab
+        const statusMatch = activeTab === 'all' ||
+            customer.status === activeTab ||
+            customer.tags.some(tag => tag === activeTab)
 
         const searchMatch = searchQuery
             ? [customer._id, customer.name, customer.email, customer.location].some((field) =>
                 field.toLowerCase().includes(searchQuery.toLowerCase())
-            )
-            : true
+            ) : true
 
         return statusMatch && searchMatch
     })
@@ -94,7 +95,6 @@ const CustomersPage = () => {
                 }
             })
     }
-
 
     return (
         <div className="min-h-screen bg-gray-50 p-4 md:p-6">
