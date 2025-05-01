@@ -5,7 +5,6 @@ import {zodResolver} from '@hookform/resolvers/zod'
 import {ContactForm as ContactFormType, contactFormSchema} from '@/validations/contactForm.ts'
 import FormInput from '@/components/contact/FormInput.tsx'
 import {sendContactForm} from '@/api/contactForm.ts'
-import {useEffect, useState} from 'react'
 import {useToast} from '@/hooks/use-toast.ts'
 
 const ContactForm = () => {
@@ -18,7 +17,6 @@ const ContactForm = () => {
         resolver: zodResolver(contactFormSchema)
     })
 
-    const [response, setResponse] = useState<string | null>(null)
     const {toast} = useToast()
 
     const onSubmit = async (data: ContactFormType) => {
@@ -38,17 +36,6 @@ const ContactForm = () => {
             })
         }
     }
-
-    useEffect(() => {
-        if (response) {
-            toast({
-                title: 'Message Sent',
-                description: response,
-                variant: 'success'
-            })
-            setResponse(null)
-        }
-    }, [response])
 
     return (
         <Card className="p-6">
