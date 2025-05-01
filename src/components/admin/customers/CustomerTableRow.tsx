@@ -17,7 +17,7 @@ const CustomerTableRow = ({
                               isSelected,
                               onSelect
                           }: CustomerTableRowProps) => (
-    <tr className="hover:bg-gray-50">
+    <tr className="cursor-pointer hover:bg-gray-50">
         <td className="px-4 py-3">
             <Checkbox
                 checked={isSelected}

@@ -14,7 +14,7 @@ type OrderRowProps = {
 const OrderRow: FC<OrderRowProps> =
     ({order, selectedOrders, onSelectOrder}) =>
         (
-            <tr key={order._id} className="hover:bg-gray-50">
+            <tr key={order._id} className="cursor-pointer hover:bg-gray-50">
                 <td className="px-4 py-3">
                     <Checkbox
                         checked={selectedOrders.includes(order._id)}
