@@ -1,7 +1,9 @@
-const heroSlides = [
+import {HeroSlide} from '@/types'
+
+const heroSlides: HeroSlide[] = [
     {
         id: 1,
-        brand: '/assets/images/heroSection/apple-logo.png',
+        brand: '/assets/images/heroSection/apple-logo.svg',
         title: "iPhone 16 Series",
         offer: "Up to 10% off Voucher",
         image: '/assets/images/heroSection/iphone_16.png'
