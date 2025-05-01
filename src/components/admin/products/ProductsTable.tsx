@@ -2,7 +2,6 @@ import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from '@/c
 import {imageUrl} from '@/lib/utils/url.ts'
 import {isProductWithColors} from '@/lib/utils/product.ts'
 import {getImagesOfColor} from '@/lib/utils/image.ts'
-import {Link} from 'react-router-dom'
 import Rating from '@/components/elements/Rating.tsx'
 import Icon from '@/components/elements/Icon.tsx'
 import {FC} from 'react'
@@ -66,9 +65,9 @@ const ProductsTable: FC<{
                             />
                         </TableCell>
                         <TableCell className="font-medium">
-                            <Link to={`edit/${item._id}`}>
+                            {/*<Link to={`edit/${item._id}`}>*/}
                                 {item.name}
-                            </Link>
+                            {/*</Link>*/}
                         </TableCell>
                         <TableCell className="hidden md:table-cell">
                             ${item.price.toFixed()}

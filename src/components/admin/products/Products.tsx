@@ -1,5 +1,3 @@
-import {Button} from '@/components/ui/button'
-import {Link} from 'react-router-dom'
 import {getProducts} from '@/api/products.ts'
 import {useQuery} from '@tanstack/react-query'
 import {Product} from '@/types'
@@ -30,11 +28,11 @@ const Products = () => {
                         Manage your products
                     </p>
                 </header>
-                <Button className="ml-auto bg-red-500 hover:bg-red-500/80" size="sm">
-                    <Link to={'add'}>
-                        Add product
-                    </Link>
-                </Button>
+                {/*<Button className="ml-auto bg-red-500 hover:bg-red-500/80" size="sm">*/}
+                {/*    <Link to={'add'}>*/}
+                {/*        Add product*/}
+                {/*    </Link>*/}
+                {/*</Button>*/}
             </section>
             <section className="rounded-lg border shadow-sm">
                 {(!products || products.products.length === 0) && (
