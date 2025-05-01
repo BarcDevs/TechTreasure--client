@@ -8,6 +8,7 @@ import {toast} from '@/hooks/use-toast.ts'
 import FormInput from '@/components/shared/FormInput.tsx'
 import {Form} from '@/components/ui/form.tsx'
 import {subscribe} from '@/api/contact.ts'
+import {getErrorMessage} from '@/lib/utils/error.ts'
 
 const Subscribe = ({}) => {
     const {t} = useTranslation(I18N_NAMESPACES.global)
@@ -26,15 +27,14 @@ const Subscribe = ({}) => {
                 variant: 'success'
             })
 
-            form.reset({ email: '' })
+            form.reset({email: ''})
         } catch (error: Error | any) {
             toast({
                 title: 'Error subscribing',
                 description:
                     error.response?.data.message.includes('duplicate') ?
                         'You are already subscribed' :
-                        error.response?.data.message ||
-                        error?.message ||
+                        getErrorMessage(error) ||
                         'Something went wrong. Please try again.',
                 variant: 'destructive'
             })

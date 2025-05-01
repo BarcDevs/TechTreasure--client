@@ -6,6 +6,7 @@ import {ContactForm as ContactFormType, contactFormSchema} from '@/validations/c
 import FormInput from '@/components/contact/FormInput.tsx'
 import {sendContactForm} from '@/api/contact.ts'
 import {useToast} from '@/hooks/use-toast.ts'
+import {getErrorMessage} from '@/lib/utils/error.ts'
 
 const ContactForm = () => {
     const {
@@ -32,8 +33,7 @@ const ContactForm = () => {
             toast({
                 title: 'Error sending message',
                 description:
-                    error.response?.data.message ||
-                    error?.message ||
+                    getErrorMessage(error) ||
                     'Something went wrong. Please try again.',
                 variant: 'destructive'
             })
