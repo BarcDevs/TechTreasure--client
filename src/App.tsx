@@ -4,6 +4,7 @@ import {QueryClientProvider} from '@tanstack/react-query'
 import {queryClient} from '@/api'
 import {useLocalRedux} from '@/hooks/useLocalRedux.ts'
 import ErrorBoundary from '@/components/error/ErrorBoundary.tsx'
+import {Toaster} from '@/components/ui/toaster.tsx'
 
 function App() {
     useLocalRedux()
@@ -12,6 +13,7 @@ function App() {
         <QueryClientProvider client={queryClient}>
             <ErrorBoundary>
                 <RouterProvider router={router}/>
+                <Toaster/>
             </ErrorBoundary>
         </QueryClientProvider>
     )
