@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react'
 import { HeroSlide } from '@/types'
 import Icon from '@/components/elements/Icon.tsx'
 import {Link} from 'react-router-dom'
+import {useLocalStorage} from '@/hooks/useLocalStorage.ts'
 
 type PromoBannerProps = {
     slides: HeroSlide[]
@@ -13,9 +14,10 @@ type PromoBannerProps = {
 const PromoBanner = ({
                          slides,
                          totalSlides = 5,
-                         defaultActiveSlide = 3
+                         defaultActiveSlide = 2
                      }: PromoBannerProps) => {
-    const [activeSlide, setActiveSlide] = useState(defaultActiveSlide)
+    const {storeValue, getValue} = useLocalStorage('heroSlider')
+    const [activeSlide, setActiveSlide] = useState<number>(defaultActiveSlide)
     const [touchStart, setTouchStart] = useState<number | null>(null)
     const [touchEnd, setTouchEnd] = useState<number | null>(null)
     const [isDragging, setIsDragging] = useState(false)
@@ -26,13 +28,24 @@ const PromoBanner = ({
     // Minimum distance required for swipe/drag
     const minSwipeDistance = 50
 
+    useEffect(() => {
+        getValue() ?
+            setActiveSlide(getValue().activeSlide) :
+            null
+    }, [])
+
+    const switchSlide = (index: number) => {
+        setActiveSlide(index)
+        storeValue({ activeSlide: index })
+    }
+
     const handleSlideChange = (index: number) => {
         if (index < 0) {
-            setActiveSlide(0)
+            switchSlide(0)
         } else if (index >= slides.length) {
-            setActiveSlide(slides.length - 1)
+            switchSlide(slides.length - 1)
         } else {
-            setActiveSlide(index)
+            switchSlide(index)
         }
     }
 
