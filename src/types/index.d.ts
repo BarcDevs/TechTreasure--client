@@ -3,6 +3,14 @@ import {CheckoutForm} from '@/validations/checkoutForm.ts'
 
 export type ClassName = HTMLProps<HTMLElement>['className']
 
+export type HeroSlide = {
+    id: number
+    brand: string
+    title: string
+    offer: string
+    image: string
+}
+
 export type BasicProduct = {
     _id: string
     name: string
