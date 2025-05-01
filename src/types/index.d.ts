@@ -9,6 +9,7 @@ export type HeroSlide = {
     title: string
     offer: string
     image: string
+    link: string
 }
 
 export type BasicProduct = {
