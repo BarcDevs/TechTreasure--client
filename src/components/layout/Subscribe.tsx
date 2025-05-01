@@ -7,18 +7,22 @@ import {SubscribeForm, subscribeFormSchema} from '@/validations/subscribeForm.ts
 import {toast} from '@/hooks/use-toast.ts'
 import FormInput from '@/components/shared/FormInput.tsx'
 import {Form} from '@/components/ui/form.tsx'
+import {subscribe} from '@/api/contact.ts'
 
 const Subscribe = ({}) => {
     const {t} = useTranslation(I18N_NAMESPACES.global)
     const form = useForm<SubscribeForm>({
-        resolver: zodResolver(subscribeFormSchema)
+        resolver: zodResolver(subscribeFormSchema),
+        defaultValues: {
+            email: ''
+        }
     })
 
     const onSubmit = async (data: SubscribeForm) => {
         try {
             toast({
                 title: 'Successfully subscribed',
-                description: await null,
+                description: await subscribe(data),
                 variant: 'success'
             })
 
@@ -36,7 +40,6 @@ const Subscribe = ({}) => {
             })
         }
     }
-
 
     return (
         <Form {...form}>
