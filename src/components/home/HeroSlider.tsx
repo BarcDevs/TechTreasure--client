@@ -1,86 +1,76 @@
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 import {ArrowRight} from 'lucide-react'
-import heroSlides from '@/constants/heroSlides.ts'
-import {Link} from 'react-router-dom'
+import {HeroSlide} from '@/types'
+import Icon from '@/components/elements/Icon.tsx'
 
-export default function HeroSlider() {
-    const [currentSlide, setCurrentSlide] = useState(0)
+type PromoBannerProps = {
+    slides: HeroSlide[],
+    totalSlides?: number,
+    defaultActiveSlide?: number
+}
 
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
-        }, 5000)
-        return () => clearInterval(timer)
-    }, [])
+const PromoBanner = ({
+                         slides,
+                         totalSlides = 5,
+                         defaultActiveSlide = 3
+                     }: PromoBannerProps) => {
+    const [activeSlide, setActiveSlide] = useState(defaultActiveSlide)
+
+    const handleSlideChange = (index: number) => {
+        setActiveSlide(index)
+    }
 
     return (
-        <div className="relative h-[450px] w-full overflow-hidden bg-black">
-            <div
-                className="relative h-full transition-transform duration-500 ease-out"
-                style={{transform: `translateX(-${currentSlide * 100}%)`}}
-            >
-                <div className="absolute flex size-full">
-                    {heroSlides.map((slide) => (
-                        <div key={slide.id} className="relative size-full shrink-0">
-                            <div className="container relative mx-auto h-full px-4">
-                                <div className="grid h-full grid-cols-1 items-center lg:grid-cols-2">
-                                    {/* Content */}
-                                    <div className="z-10 space-y-6">
-                                        <img
-                                            src={slide.brand || '/placeholder.svg'}
-                                            alt="Brand Logo"
-                                            width={50}
-                                            height={50}
-                                            className="brightness-0"
-                                        />
-                                        <h2 className="text-2xl font-medium text-white md:text-3xl">
-                                            {slide.title}
-                                        </h2>
-                                        <h1 className="text-4xl font-bold leading-tight text-white md:text-6xl lg:text-7xl">
-                                            {slide.offer}
-                                        </h1>
-                                        <Link to={'#'}
-                                              className="group inline-flex items-center border-b border-white pb-1 text-white">
-                                            <span className="mr-2">
-                                                Shop Now
-                                            </span>
-                                            <ArrowRight
-                                                className="size-5 transition-transform group-hover:translate-x-1"/>
-                                        </Link>
-                                    </div>
+        <div className="relative flex h-80 w-full items-center justify-between overflow-hidden bg-black p-6 text-white">
+            {/* Left side content */}
+            <div className="z-10 flex flex-col space-y-6">
+                <div className="flex items-center space-x-2">
+                    <div className="size-6">
+                        <Icon
+                            name={'logo'}
+                            path={slides[activeSlide].brand}
+                            size={30}
+                        />
+                    </div>
+                    <span className="text-sm font-medium">{slides[activeSlide].title}</span>
+                </div>
 
-                                    {/* Image */}
-                                    <div
-                                        className="absolute -inset-x-0 right-0 top-1/2 w-[520px] -translate-y-1/2 lg:static lg:translate-y-0">
-                                        <img
-                                            src={slide.image || '/placeholder.svg'}
-                                            alt={slide.title}
-                                            width={800}
-                                            height={800}
-                                            className="object-contain"
-                                            // priority={index === 0}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
+                <div className="space-y-1">
+                    <h2 className="text-4xl font-bold">
+                        {slides[activeSlide].offer}
+                    </h2>
+
+                    <button className="flex items-center space-x-2 border-b border-white pb-1 pt-6 text-sm font-medium">
+                        <span>{'Shop Now'}</span>
+                        <ArrowRight size={16}/>
+                    </button>
                 </div>
             </div>
 
-            <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 gap-2">
-                {heroSlides.map((_, index) => (
+            {/* Right side image */}
+            <div className="absolute right-0 top-0 h-full w-1/2">
+                <img
+                    src={slides[activeSlide].image}
+                    alt="phone image"
+                    className="size-full object-contain"
+                />
+            </div>
+
+            {/* Bottom pagination dots */}
+            <div className="absolute bottom-4 left-0 flex w-full justify-center space-x-2">
+                {Array.from({length: totalSlides}).map((_, index) => (
                     <button
                         key={index}
-                        onClick={() => setCurrentSlide(index)}
-                        className={`size-2 rounded-full transition-all ${
-                            currentSlide === index ? 'w-6 bg-white' : 'bg-white/50 hover:bg-white/75'
+                        onClick={() => handleSlideChange(index)}
+                        className={`size-2 rounded-full ${
+                            activeSlide === index ? 'bg-red-500' : 'bg-gray-500'
                         }`}
-                    >
-                        <span className="sr-only">Go to slide {index + 1}</span>
-                    </button>
+                        aria-label={`Go to slide ${index + 1}`}
+                    />
                 ))}
             </div>
         </div>
     )
 }
+
+export default PromoBanner
