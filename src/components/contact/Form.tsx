@@ -21,8 +21,16 @@ const ContactForm = () => {
     const {toast} = useToast()
 
     const onSubmit = async (data: ContactFormType) => {
-        const message = await sendContactForm(data)
-        setResponse(message)
+        try {
+            const message = await sendContactForm(data)
+            setResponse(message)
+        } catch (error: Error | any) {
+            toast({
+                title: 'Error sending message',
+                description: error?.message || 'Something went wrong. Please try again.',
+                variant: 'destructive'
+            })
+        }
     }
 
     useEffect(() => {
