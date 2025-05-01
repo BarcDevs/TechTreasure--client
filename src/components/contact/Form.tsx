@@ -38,7 +38,7 @@ const ContactForm = () => {
             toast({
                 title: 'Message Sent',
                 description: response,
-                variant: 'default'
+                variant: 'success'
             })
             setResponse(null)
         }
