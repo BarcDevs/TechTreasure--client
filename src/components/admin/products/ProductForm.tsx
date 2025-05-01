@@ -1,6 +1,6 @@
-import {Button} from "@/components/ui/button"
-import {Input, InputProps} from "@/components/ui/input"
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select"
+import {Button} from '@/components/ui/button'
+import {Input, InputProps} from '@/components/ui/input'
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from '@/components/ui/select'
 import {Textarea, TextareaProps} from '@/components/ui/textarea.tsx'
 import {useEffect, useState} from 'react'
 import {Color, Product, ProductWithColors, Admin} from '@/types'
@@ -18,10 +18,10 @@ import {useMutation} from '@tanstack/react-query'
 import {createProduct, updateProduct} from '@/api/products.ts'
 import {useSelector} from 'react-redux'
 import {IRootState} from '@/store'
-import ErrorMessage from '@/components/elements/ErrorMessage.tsx'
 import {queryClient} from '@/api'
 import {getImagesFromProduct} from '@/lib/utils/image.ts'
 import {getErrorMessage} from '@/lib/utils/error.ts'
+import {toast} from '@/hooks/use-toast.ts'
 
 type ProductFormProps = {
     product?: Product
@@ -33,7 +33,6 @@ const ProductForm = ({product}: ProductFormProps) => {
         onSuccess: () => {
             queryClient.invalidateQueries({
                 queryKey: ['items']
-
             })
             navigate('/admin/products')
         }
@@ -135,6 +134,16 @@ const ProductForm = ({product}: ProductFormProps) => {
                 shopId
             })
     }
+
+    useEffect(() => {
+        isError && toast({
+            title: 'Error submitting product',
+            description:
+                getErrorMessage(error) ||
+                'Something went wrong. Please try again.',
+            variant: 'destructive'
+        })
+    }, [isError, error])
 
     return (
         <Form {...form}>
@@ -317,8 +326,6 @@ const ProductForm = ({product}: ProductFormProps) => {
                         {isPending ? 'Saving...' : 'Save Product'}
                     </Button>
                 </div>
-                {isError && <ErrorMessage
-                    message={getErrorMessage(error)}/>}
             </form>
         </Form>
     )
