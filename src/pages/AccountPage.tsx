@@ -3,8 +3,6 @@ import {useSelector} from 'react-redux'
 import {useState} from 'react'
 import {IRootState} from '@/store'
 import MyProfileForm from '@/components/profile/MyProfileForm.tsx'
-import Button from '@/components/elements/Button.tsx'
-import Icon from '@/components/elements/Icon.tsx'
 import UserDetails from '@/components/profile/UserDetails.tsx'
 
 export default function AccountPage() {
@@ -33,18 +31,18 @@ export default function AccountPage() {
                                     </span>
                                     </div>
                                 }
-                                {pathname === '/account/me' && !edit &&
-                                    <Button
-                                        onClick={() => setEdit(prevState => !prevState)}
-                                    >
-                                        <Icon
-                                            name={'edit'}
-                                            path={`/assets/icons/edit.svg`}
-                                            size={20}
-                                            hoverable
-                                        />
-                                    </Button>
-                                }
+                                {/*{pathname === '/account/me' && !edit &&*/}
+                                {/*    <Button*/}
+                                {/*        onClick={() => setEdit(prevState => !prevState)}*/}
+                                {/*    >*/}
+                                {/*        <Icon*/}
+                                {/*            name={'edit'}*/}
+                                {/*            path={`/assets/icons/edit.svg`}*/}
+                                {/*            size={20}*/}
+                                {/*            hoverable*/}
+                                {/*        />*/}
+                                {/*    </Button>*/}
+                                {/*}*/}
                             </div>
                             {!edit && user ?
                                 <UserDetails user={user}/> :
