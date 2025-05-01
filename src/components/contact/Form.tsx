@@ -31,7 +31,10 @@ const ContactForm = () => {
         } catch (error: Error | any) {
             toast({
                 title: 'Error sending message',
-                description: error?.message || 'Something went wrong. Please try again.',
+                description:
+                    error.response?.data.message ||
+                    error?.message ||
+                    'Something went wrong. Please try again.',
                 variant: 'destructive'
             })
         }

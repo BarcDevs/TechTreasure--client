@@ -26,7 +26,12 @@ const Subscribe = ({}) => {
         } catch (error: Error | any) {
             toast({
                 title: 'Error subscribing',
-                description: error?.message || 'Something went wrong. Please try again.',
+                description:
+                    error.response?.data.message.includes('duplicate') ?
+                        'You are already subscribed' :
+                        error.response?.data.message ||
+                        error?.message ||
+                        'Something went wrong. Please try again.',
                 variant: 'destructive'
             })
         }
