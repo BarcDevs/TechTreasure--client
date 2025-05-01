@@ -2,7 +2,7 @@ import {MapPin, ShoppingBag, DollarSign, Calendar} from 'lucide-react'
 import {Checkbox} from '@/components/ui/checkbox'
 import {Avatar, AvatarFallback} from '@/components/ui/avatar'
 import StatusBadge from '@/components/admin/StatusBadge'
-import CustomerTagBadge from '@/components/admin/CustomerTagBadge'
+import CustomerTagBadge from '@/components/admin/customers/CustomerTagBadge'
 import {Customer} from '@/types/customer'
 import {formatDate} from '@/lib/utils/time.ts'
 

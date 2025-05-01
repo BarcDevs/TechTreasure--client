@@ -1,6 +1,6 @@
 import {Card} from '@/components/ui/card'
 import {Tabs, TabsContent, TabsList} from '@/components/ui/tabs'
-import CustomersTab from '@/components/admin/CustomersTab'
+import CustomersTab from '@/components/admin/customers/CustomersTab'
 import CustomersTable from '@/components/admin/customers/CustomersTable'
 import {Customer} from '@/types/customer'
 
