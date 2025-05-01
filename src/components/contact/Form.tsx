@@ -12,6 +12,7 @@ const ContactForm = () => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: {errors}
     } = useForm<ContactFormType>({
         resolver: zodResolver(contactFormSchema)
@@ -22,8 +23,13 @@ const ContactForm = () => {
 
     const onSubmit = async (data: ContactFormType) => {
         try {
-            const message = await sendContactForm(data)
-            setResponse(message)
+            toast({
+                title: 'Message Sent',
+                description: await sendContactForm(data),
+                variant: 'success'
+            })
+
+            reset()
         } catch (error: Error | any) {
             toast({
                 title: 'Error sending message',
