@@ -26,7 +26,7 @@ const Subscribe = ({}) => {
                 variant: 'success'
             })
 
-            form.reset()
+            form.reset({ email: '' })
         } catch (error: Error | any) {
             toast({
                 title: 'Error subscribing',
