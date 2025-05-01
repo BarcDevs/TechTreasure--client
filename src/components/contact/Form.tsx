@@ -4,7 +4,7 @@ import {useForm} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
 import {ContactForm as ContactFormType, contactFormSchema} from '@/validations/contactForm.ts'
 import FormInput from '@/components/contact/FormInput.tsx'
-import {sendContactForm} from '@/api/contactForm.ts'
+import {sendContactForm} from '@/api/contact.ts'
 import {useToast} from '@/hooks/use-toast.ts'
 
 const ContactForm = () => {
