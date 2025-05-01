@@ -27,7 +27,7 @@ const OrderRow: FC<OrderRowProps> =
                 </td>
                 <td className="px-4 py-3">
                     <div>
-                        {order.customer}
+                        {order.customerName}
                     </div>
                     <div className="text-xs text-gray-500">
                         {order.email}
