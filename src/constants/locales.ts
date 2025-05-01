@@ -6,7 +6,23 @@ export enum I18N_NAMESPACES {
     navigationLinks = 'navigationLinks',
     footerLinks = 'footerLinks',
     categories = 'categories',
-    shop = 'shop'
+    shop = 'shop',
+    cart = 'cart',
+    checkout = 'checkout',
+    contact = 'contact',
+    about = 'about',
+}
+
+export enum NAVIGATION_LOCALES {
+    settings = 'settings',
+    support = 'support',
+    account = 'account',
+    profile = 'profile',
+    myAccount = 'myAccount',
+    adminDashboard = 'admin',
+
+    signup = 'signup',
+    logout = 'logout',
 }
 
 export enum GLOBAL_LOCALES {
@@ -16,8 +32,7 @@ export enum GLOBAL_LOCALES {
     subscribe = 'subscribe',
     subscribePromo = 'subscribePromo',
     copyright = 'copyright',
-    support = 'support',
-    account = 'account',
+
     quickLinks = 'quickLinks',
     downloadApp = 'downloadApp',
     appPromo = 'appPromo',
@@ -29,6 +44,14 @@ export enum GLOBAL_LOCALES {
     notFoundHeadline = 'notFoundHeadline',
     notFoundText = 'notFoundText',
     backToHome = 'backToHome',
+
+    successHeadline = 'successHeadline',
+    successText = 'successText',
+
+    days = 'days',
+    hours = 'hours',
+    minutes = 'minutes',
+    seconds = 'seconds',
 }
 
 export enum HOMEPAGE_LOCALES {
@@ -66,4 +89,61 @@ export enum AUTH_LOCALES {
     dontHaveAccount = 'dontHaveAccount',
     forgotPassword = 'forgotPassword',
     withGoogle = 'withGoogle'
+}
+
+export enum CART_LOCALES {
+    addToCart = 'addToCart',
+    product = 'product',
+    price = 'price',
+    quantity = 'quantity',
+    subtotal = 'subtotal',
+    applyCoupon = 'applyCoupon',
+    couponCode = 'couponCode',
+    proceedToCheckout = 'proceedToCheckout',
+    cartIsEmpty = 'cartIsEmpty',
+    returnToShop = 'returnToShop',
+    reset = 'resetCart',
+    cartTotal = 'cartTotal',
+    total = 'total',
+    shipping = 'shipping',
+    discount = 'discount',
+    free = 'free'
+}
+
+export enum CHECKOUT_LOCALES {
+    checkout = 'checkout',
+    name = 'name',
+    company = 'company',
+    address = 'address',
+    additionalAddress = 'additionalAddress',
+    city = 'city',
+    country = 'country',
+    postcode = 'postcode',
+    phone = 'phone',
+    email = 'email',
+    saveDetails = 'saveDetails',
+    creditCard = 'creditCard',
+    cardNumber = 'cardNumber',
+    month = 'month',
+    year = 'year',
+    cash = 'cash',
+    placeOrder = 'placeOrder',
+    emptyCart = 'emptyCart',
+}
+
+export enum CONTACT_LOCALES {
+    contact = 'contact',
+    contactHeadline = 'contactHeadline',
+    contactText = 'contactText',
+    contactFormHeadline = 'contactFormHeadline',
+    contactFormName = 'contactFormName',
+    contactFormEmail = 'contactFormEmail',
+    contactFormSubject = 'contactFormSubject',
+    contactFormMessage = 'contactFormMessage',
+    contactFormSubmit = 'contactFormSubmit',
+}
+
+export enum ABOUT_LOCALES {
+    aboutUsHeadline = 'aboutUsHeadline',
+    aboutUsText = 'aboutUsText',
 }

@@ -6,8 +6,9 @@ export const login = async ({email, password}: { email: string, password: string
     return response.data
 }
 
-export const signup = async ({name, email, password}: { name: string, email: string, password: string }) => {
-    const response = await api.post('/auth/signup', {name, email, password})
+export const signup = async ({name, email, password, role}:
+                             { name: string, email: string, password: string, role: 'user' | 'admin' }) => {
+    const response = await api.post('/auth/signup', {name, email, password, role})
     return response.data
 }
 

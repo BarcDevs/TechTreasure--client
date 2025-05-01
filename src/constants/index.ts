@@ -8,7 +8,7 @@ import {HomeIcon, LineChartIcon, PackageIcon, ShoppingCartIcon, UsersIcon} from 
 export const APP_NAME = 'TechTreasure'
 export const ADMIN_ROOT = '/admin/'
 
-export const LANGUAGES: {[key: string]: LANGUAGE} = {
+export const LANGUAGES: { [key: string]: LANGUAGE } = {
     ENG: {
         name: 'English',
         code: 'en'
@@ -16,23 +16,37 @@ export const LANGUAGES: {[key: string]: LANGUAGE} = {
     ESP: {
         name: 'Español',
         code: 'es'
+    },
+    RUS: {
+        name: 'Русский',
+        code: 'ru'
     }
 }
 
 export const NAVIGATION_LINKS: LINK[] = [
     {
         name: 'Home',
-        key: 'home',
+        locale: 'home',
         path: '/'
     },
     {
+        name: 'Products',
+        locale: 'products',
+        path: '/products?page=1'
+    },
+    {
+        name: 'Categories',
+        locale: 'categories',
+        path: '/categories'
+    },
+    {
         name: 'Contact',
-        key: 'contact',
+        locale: 'contact',
         path: '/contact'
     },
     {
         name: 'About',
-        key: 'about',
+        locale: 'about',
         path: '/about'
     }
 ]

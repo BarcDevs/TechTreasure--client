@@ -1,11 +1,13 @@
 import {LINK} from '@/types/constants'
 
+// todo: add translations
+
 export const FOOTER_LINKS: {[key: string]: LINK[]} = {
     account: [
         {
             name: 'My Account',
             key: 'account',
-            path: '/account'
+            path: '/account/me'
         },
         {
             name: 'Login / Register',
@@ -32,7 +34,7 @@ export const FOOTER_LINKS: {[key: string]: LINK[]} = {
         {
             name: 'Privacy Policy',
             key: 'privacy',
-            path: '/policy'
+            path: '/privacy'
         },
         {
             name: 'Terms Of Use',

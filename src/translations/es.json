@@ -1,13 +1,11 @@
 {
   "global": {
-    "promo": "Venta de Verano en Todos los Trajes de Baño y Envío Exprés Gratis - ¡50% de Descuento!",
+    "promo": "¡Eleva tu juego con el HAVIT HV-G92 Gamepad – Comodidad y precisión incomparables, ahora con un 40% de descuento!",
     "shopNow": "Comprar Ahora",
     "searchPlaceholder": "¿Qué estás buscando?",
     "subscribe": "Suscribirse",
     "subscribePromo": "Obtén un 10% de descuento en tu primer pedido",
     "copyright": "Copyright © 2024 TechTreasure. Todos los derechos reservados.",
-    "support": "Soporte",
-    "account": "Cuenta",
     "quickLinks": "Enlaces Rápidos",
     "downloadApp": "Descargar App",
     "appPromo": "Ahorra $3 con la App, Solo Nuevos Usuarios",
@@ -18,7 +16,15 @@
 
     "notFoundHeadline": "Página No Encontrada",
     "notFoundText": "La página que buscas no existe.",
-    "backToHome": "Volver al Inicio"
+    "backToHome": "Volver al Inicio",
+
+    "successHeadline": "Pedido Realizado con Éxito",
+    "successText": "Tu pedido ha sido realizado con éxito. Gracias por comprar con nosotros.",
+
+    "days": "Días",
+    "hours": "Horas",
+    "minutes": "Minutos",
+    "seconds": "Segundos"
   },
   "homepage": {
     "flashSalesTitle": "Hoy",
@@ -57,8 +63,17 @@
   },
   "navigationLinks": {
     "home": "Inicio",
+    "products": "Productos",
+    "categories": "Categorías",
+    "support": "Soporte",
+    "account": "Cuenta",
+    "profile": "Perfil",
     "contact": "Contacto",
     "about": "Acerca de",
+    "settings": "Ajustes",
+    "myAccount": "Mi Cuenta",
+    "admin": "Panel de Administración",
+
     "login": "Iniciar Sesión",
     "signup": "Registrarse",
     "logout": "Cerrar Sesión"
@@ -95,7 +110,46 @@
     "software": "Software",
     "techServices": "Servicios Tecnológicos"
   },
-  "shop": {
-    "addToCart": "Añadir al Carrito"
+  "cart": {
+    "addToCart": "Añadir al Carrito",
+    "product": "Producto",
+    "price": "Precio",
+    "quantity": "Cantidad",
+    "subtotal": "Subtotal",
+    "applyCoupon": "Aplicar Cupón",
+    "couponCode": "Código de Cupón",
+    "proceedToCheckout": "Proceder al Pago",
+    "cartIsEmpty": "El Carrito Está Vacío",
+    "returnToShop": "Volver a la Tienda",
+    "resetCart": "Restablecer Carrito",
+    "cartTotal": "Total del Carrito",
+    "total": "Total",
+    "shipping": "Envío",
+    "discount": "Descuento",
+    "free": "Gratis"
+  },
+  "checkout": {
+    "checkout": "Finalizar Compra",
+    "name": "Nombre",
+    "company": "Nombre de la Empresa",
+    "address": "Dirección",
+    "additionalAddress": "Apartamento, piso, etc. (opcional)",
+    "city": "Ciudad",
+    "country": "País",
+    "postcode": "Código Postal (ZIP)",
+    "phone": "Número de Teléfono",
+    "email": "Correo Electrónico",
+    "saveDetails": "Guardar esta información para un pago más rápido la próxima vez",
+    "creditCard": "Tarjeta de Crédito",
+    "cardNumber": "Número de Tarjeta",
+    "month": "Mes",
+    "year": "Año",
+    "cash": "Pago Contra Entrega",
+    "placeOrder": "Realizar Pedido",
+    "emptyCart": "El Carrito Está Vacío"
+  },
+  "about": {
+    "aboutUsHeadline": "Sobre Nosotros",
+    "aboutUsText": "Bienvenido a TechTreasure – ¡tu destino único para todo lo relacionado con la electrónica! Nos apasiona traer los productos tecnológicos más innovadores y modernos directamente a tu puerta, con un enfoque en calidad, valor y satisfacción del cliente.\n\nEn TechTreasure, creemos que la tecnología debe mejorar tu vida. Ya sea que busques los últimos teléfonos inteligentes, dispositivos de vanguardia, sistemas de entretenimiento en casa o accesorios para computadoras, tenemos todo lo que necesitas. Nuestro equipo selecciona cuidadosamente cada artículo, asegurándose de que cumpla con los más altos estándares de rendimiento y fiabilidad.\n\nNos enorgullece ofrecerte una experiencia de compra fácil y fluida: desde navegar por nuestra extensa colección hasta disfrutar de una entrega rápida y confiable. Nuestro compromiso con un excelente servicio al cliente significa que siempre estamos aquí para ayudarte, ya sea que tengas preguntas sobre un producto o necesites asistencia con tu pedido.\n\nGracias por elegir TechTreasure. Estamos aquí para ayudarte a encontrar la tecnología que necesitas, a precios que te encantarán."
   }
 }

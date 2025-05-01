@@ -2,45 +2,70 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu.tsx'
 import {Button} from '@/components/ui/button.tsx'
 import Icon from '@/components/elements/Icon.tsx'
-import {Link, useLocation} from 'react-router-dom'
+import {useLocation, useNavigate} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import {IRootState} from '@/store'
+import {useTranslation} from 'react-i18next'
+import {I18N_NAMESPACES, NAVIGATION_LOCALES} from '@/constants/locales.ts'
 
 const UserDropdown = ({}) => {
+    const {t} = useTranslation(I18N_NAMESPACES.navigationLinks)
     const location = useLocation().pathname
+    const navigate = useNavigate()
     const isAdminPage = location.startsWith('/admin')
     const user = useSelector((state: IRootState) => state.auth.user)
-    const root = isAdminPage ? '/admin/' : '/'
-
-    const userImage = "/assets/images/mock-avatar.jpg"
+    const userImage = '/assets/images/mock-avatar.jpg'
 
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild className={'no-focus'}>
                 <Button
-                    className="h-8 w-8 rounded-full border border-gray-200 dark:border-gray-800"
+                    className="size-8 rounded-full border border-gray-200 dark:border-gray-800"
                     size="icon"
                     variant="ghost"
                 >
-                    <Icon path={userImage || "/assets/icons/user.svg"} name={'avatar'} size={32} className="aspect-square rounded-full object-cover"/>
-                    <span className="sr-only">Toggle user menu</span>
+                    <Icon path={userImage || '/assets/icons/user.svg'}
+                          name={'avatar'}
+                          size={32}
+                          className="aspect-square rounded-full object-cover"/>
+                    <span className="sr-only">
+                        Toggle user menu
+                    </span>
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-                <DropdownMenuLabel><Link to={`${root}account`}>My Account</Link></DropdownMenuLabel>
-                {!isAdminPage && user?.role === 'seller' &&
-                    <DropdownMenuLabel><Link to={`${root}admin`}>Admin Dashboard</Link></DropdownMenuLabel>}
+                <DropdownMenuItem
+                    onSelect={() => navigate('/account/me')}
+                    className={'cursor-pointer'}
+                >
+                    {t(NAVIGATION_LOCALES.myAccount)}
+                </DropdownMenuItem>
+                {!isAdminPage && user?.role === 'admin' &&
+                    <DropdownMenuItem
+                        onSelect={() => navigate('/admin')}
+                        className={'cursor-pointer'}
+                    >
+                        {t(NAVIGATION_LOCALES.adminDashboard)}
+                    </DropdownMenuItem>}
                 <DropdownMenuSeparator/>
-                <DropdownMenuItem><Link to={`${root}settings`}>Settings</Link></DropdownMenuItem>
-                <DropdownMenuItem><Link to={`${root}support`}>Support</Link></DropdownMenuItem>
+                <DropdownMenuItem
+                    onSelect={() => navigate('/contact')}
+                    className={'cursor-pointer'}
+                >
+                    {t(NAVIGATION_LOCALES.support)}
+                </DropdownMenuItem>
                 <DropdownMenuSeparator/>
-                <DropdownMenuItem><Link to={`${root}logout`} className={'text-red-500'}>Logout</Link></DropdownMenuItem>
+                <DropdownMenuItem
+                    onSelect={() => navigate('/logout')}
+                    className={'cursor-pointer text-red-500'}
+                >
+                    {t(NAVIGATION_LOCALES.logout)}
+                </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
     )

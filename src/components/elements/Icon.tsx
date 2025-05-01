@@ -6,11 +6,12 @@ type Props = {
     size?: number,
     className?: string
     hoverable?: boolean
+    filled?: boolean
 }
 
-const Icon = ({path, name, size = 20, className, hoverable}: Props) =>
+const Icon = ({path, name, size = 20, className, hoverable, filled}: Props) =>
     hoverable ?
-        <div className={twMerge(`flex-center group/icon rounded-full hover:bg-red-500`)}
+        <div className={twMerge(`flex-center group/icon rounded-full hover:bg-red-500 ${filled && 'bg-red-500'}`)}
              style={{height: size + 5, width: size + 5}}>
             <img src={path} alt={name} width={size} height={size}
                  className={twMerge('group-hover/icon:invert', className)}/>

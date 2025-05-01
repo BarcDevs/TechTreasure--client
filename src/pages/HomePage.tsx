@@ -1,23 +1,26 @@
 import Sidebar from '@/components/home/Sidebar.tsx'
 import Hero from '@/components/home/hero.tsx'
-import ItemRow from '@/components/shop/ItemRow.tsx'
-import {ITEMS} from '@/constants/mocks.ts'
 import {Categories} from '@/constants/categories.ts'
-import CategoryRow from '@/components/shop/CategoryRow.tsx'
 import {HOMEPAGE_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 import {useTranslation} from 'react-i18next'
 import {useQuery} from '@tanstack/react-query'
 import {getProducts} from '@/api/products.ts'
 import {Product} from '@/types'
 import {config} from '@/config'
+import ItemRow from '@/components/shop/items/ItemRow.tsx'
+import CategoryRow from '@/components/shop/category/CategoryRow.tsx'
 
 const HomePage = ({}) => {
     const {t} = useTranslation(I18N_NAMESPACES.homepage)
-    const items = useQuery<Product[]>({
+    const items = useQuery<{
+        products: Product[],
+        totalPages: number
+    }>({
         queryKey: ['items'],
-        queryFn: () => getProducts({limit: 20, page: 1, sort: '{"rating":1}'}),
+        queryFn: () => getProducts({limit: 10, page: 1, sort: '{"rating":1}'}),
         refetchOnWindowFocus: false
     })
+    const products = items.data?.products
     /* todo filter items for sub categories */
 
     return (
@@ -26,20 +29,33 @@ const HomePage = ({}) => {
                 <Sidebar/>
                 <Hero/>
             </div>
-            {/* TODO add translations */}
             <ItemRow
                 name={t(HOMEPAGE_LOCALES.flashSalesTitle)}
                 headline={t(HOMEPAGE_LOCALES.flashSalesHeadline)}
-                items={items.data} scroll={'horizontal'}
+                items={
+                    products ?
+                        products.filter((item: Product) => item.sale) : []}
+                scroll={'horizontal'}
                 timerEnd={config.TIMER_END_TIME}
-                isFetching={items.isFetching}/>
-            <CategoryRow name={t(HOMEPAGE_LOCALES.categoriesTitle)} headline={t(HOMEPAGE_LOCALES.categoriesHeadline)}
+                isFetching={items.isFetching}
+                filter={'sale'}
+            />
+            <CategoryRow name={t(HOMEPAGE_LOCALES.categoriesTitle)}
+                         headline={t(HOMEPAGE_LOCALES.categoriesHeadline)}
                          categories={Object.values(Categories)}/>
-            <ItemRow name={t(HOMEPAGE_LOCALES.bestSellingTitle)} headline={t(HOMEPAGE_LOCALES.bestSellingHeadline)}
-                     items={ITEMS.filter((_, i) => i < 4)} scroll={'none'}/>
+            <ItemRow name={t(HOMEPAGE_LOCALES.bestSellingTitle)}
+                     headline={t(HOMEPAGE_LOCALES.bestSellingHeadline)}
+                     items={products &&
+                         products.filter((item, i) => i < 4 ||
+                             item.isNew)}
+                     filter={'bestSelling'}
+            />
             {/* TODO Featured Sale */}
-            <ItemRow name={t(HOMEPAGE_LOCALES.exploreTitle)} headline={t(HOMEPAGE_LOCALES.exploreHeadline)}
-                     items={ITEMS} rows={2} scroll={'vertical'}/>
+            <ItemRow name={t(HOMEPAGE_LOCALES.exploreTitle)}
+                     headline={t(HOMEPAGE_LOCALES.exploreHeadline)}
+                     items={products}
+                     rows={1}
+                     scroll={'vertical'}/>
             {/* TODO New Arrivals */}
             {/* TODO benefits */}
         </main>

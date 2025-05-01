@@ -1,13 +1,11 @@
 {
   "global": {
-    "promo": "Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!",
+    "promo": "Level Up Your Game with the HAVIT HV-G92 Gamepad – Unmatched Comfort & Precision, Now 40% Off!",
     "shopNow": "ShopNow",
     "searchPlaceholder": "What are you looking for?",
     "subscribe": "Subscribe",
     "subscribePromo": "Get 10% off your first order",
     "copyright": "Copyright © 2024 TechTreasure. All rights reserved.",
-    "support": "Support",
-    "account": "Account",
     "quickLinks": "Quick Links",
     "downloadApp": "Download App",
     "appPromo": "Save $3 with App, New User Only",
@@ -15,10 +13,15 @@
     "new": "New",
     "viewAll": "View All",
     "viewAllProducts": "View All Products",
-
     "notFoundHeadline": "Page Not Found",
     "notFoundText": "The page you are looking for does not exist.",
-    "backToHome": "Back To Home"
+    "backToHome": "Back to Home",
+    "successHeadline": "Order Placed Successfully",
+    "successText": "Your order has been placed successfully. Thank you for shopping with us.",
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds"
   },
   "homepage": {
     "flashSalesTitle": "Today's",
@@ -57,8 +60,17 @@
   },
   "navigationLinks": {
     "home": "Home",
+    "products": "Products",
+    "categories": "Categories",
+    "support": "Support",
+    "account": "Account",
+    "profile": "Profile",
     "contact": "Contact",
     "about": "About",
+    "settings": "Settings",
+    "myAccount": "My Account",
+    "admin": "Admin Dashboard",
+
     "login": "Login",
     "signup": "Sign Up",
     "logout": "Logout"
@@ -95,7 +107,46 @@
     "software": "Software",
     "techServices": "Tech Services"
   },
-  "shop": {
-    "addToCart": "Add To Cart"
+  "cart": {
+    "addToCart": "Add To Cart",
+    "product": "Product",
+    "price": "Price",
+    "quantity": "Quantity",
+    "subtotal": "Subtotal",
+    "applyCoupon": "Apply Coupon",
+    "couponCode": "Coupon Code",
+    "proceedToCheckout": "Proceed To Checkout",
+    "cartIsEmpty": "Cart Is Empty",
+    "returnToShop": "Return To Shop",
+    "resetCart": "Reset Cart",
+    "cartTotal": "Cart Total",
+    "total": "Total",
+    "shipping": "Shipping",
+    "discount": "Discount",
+    "free": "Free"
+  },
+  "checkout": {
+    "checkout": "Checkout",
+    "name": "Name",
+    "company": "Company Name",
+    "address": "Address",
+    "additionalAddress": "Apartment, floor, etc. (optional)",
+    "city": "City",
+    "country": "Country",
+    "postcode": "Postcode (ZIP)",
+    "phone": "Phone Number",
+    "email": "Email Address",
+    "saveDetails": "Save this information for faster check-out next time",
+    "creditCard": "Credit Card",
+    "cardNumber": "Card Number",
+    "month": "Month",
+    "year": "Year",
+    "cash": "Cash on Delivery",
+    "placeOrder": "Place Order",
+    "emptyCart": "Your cart is empty"
+  },
+  "about": {
+    "aboutUsHeadline": "About Us",
+    "aboutUsText": "Welcome to TechTreasure – your one-stop destination for all things electronics! We're passionate about bringing the latest, most innovative tech products to your doorstep, with a focus on quality, value, and customer satisfaction.\n\nAt TechTreasure, we believe that technology should enhance your life. Whether you're looking for the latest smartphones, cutting-edge gadgets, home entertainment systems, or computer accessories, we've got you covered. Our team carefully selects each item, ensuring that it meets the highest standards of performance and reliability.\n\nWe pride ourselves on offering an easy, seamless shopping experience – from browsing through our extensive collection to enjoying fast and reliable delivery. Our commitment to great customer service means we're always here to assist you, whether you have questions about a product or need help with your order.\n\nThank you for choosing TechTreasure. We are here to help you find the tech you need, at prices you'll love.\n\n"
   }
 }

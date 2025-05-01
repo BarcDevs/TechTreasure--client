@@ -1,7 +1,7 @@
 import {HTMLProps} from 'react'
 import {CheckoutForm} from '@/validations/checkoutForm.ts'
 
-export type ClassName = HTMLProps<HTMLElement>["className"]
+export type ClassName = HTMLProps<HTMLElement>['className']
 
 export type BasicProduct = {
     _id: string
@@ -30,6 +30,12 @@ export type ProductWithColors = Omit<BasicProduct, 'mainImage'> & {
 }
 
 export type Product = BasicProduct | ProductWithColors
+
+export type StoreProduct = {
+    name: string
+    sales: number
+    revenue: number
+}
 
 export type Image = { path: string, color?: string }
 
@@ -61,6 +67,7 @@ export type BaseUser = {
     _id: string
     name: string
     email: string
+    address: string
     role: Role
     billingDetails?: CheckoutForm[]
     cart?: Cart
@@ -68,14 +75,14 @@ export type BaseUser = {
     createdAt: Date
 }
 
-export type Seller = {
-    role: 'seller'
+export type Admin = {
+    role: 'admin'
     store: string
 } & BaseUser
 
-export type User = BaseUser | Seller
+export type User = BaseUser | Admin
 
-export type Role = 'user' | 'seller'
+export type Role = 'user' | 'admin'
 
 export type Cart = {
     items: CartItem[]

@@ -1,8 +1,6 @@
 import {createBrowserRouter} from 'react-router-dom'
 import RootLayout from '@/pages/layouts/RootLayout.tsx'
 import HomePage from '@/pages/HomePage.tsx'
-import NotFoundPage from '@/pages/NotFoundPage.tsx'
-import AuthPage from '@/pages/AuthPage.tsx'
 import WishlistPage from '@/pages/WishlistPage.tsx'
 import CartPage from '@/pages/CartPage.tsx'
 import CheckoutPage from '@/pages/CheckoutPage.tsx'
@@ -11,14 +9,36 @@ import ProductsPage from '@/pages/admin/ProductsPage.tsx'
 import AdminLayout from '@/pages/layouts/AdminLayout.tsx'
 import AddItemPage from '@/pages/admin/AddItemPage.tsx'
 import EditItemPage from '@/pages/admin/EditItemPage.tsx'
-import Logout from '@/pages/Logout.ts'
 import store from '@/store'
 import {loadAuthState} from '@/store/authSlice.ts'
+import ContactPage from '@/pages/ContactPage.tsx'
+import CategoriesPage from '@/pages/CategoriesPage.tsx'
+import Logout from '@/pages/auth/Logout.ts'
+import AuthPage from '@/pages/auth/AuthPage.tsx'
+import PrivacyPage from '@/pages/infoPages/PrivacyPage'
+import TermsPage from '@/pages/infoPages/TermsPage.tsx'
+import FAQ_Page from '@/pages/infoPages/FAQ_Page.tsx'
+import AboutUsPage from '@/pages/infoPages/AboutUsPage.tsx'
+import SuccessPage from '@/pages/infoPages/SuccessPage.tsx'
+import NotFoundPage from '@/pages/infoPages/NotFoundPage.tsx'
+import ItemsPage from '@/pages/ItemsPage.tsx'
+import AccountPage from '@/pages/AccountPage.tsx'
+import AdminHomePage from '@/pages/admin/AdminHomePage.tsx'
+import OrdersPage from '@/pages/admin/OrdersPage.tsx'
+import CustomersPage from '@/pages/admin/CustomersPage.tsx'
+import CustomerProfilePage from '@/pages/admin/CustomerPage.tsx'
+import AnalyticsPage from '@/pages/admin/AnalyticsPage.tsx'
+import ordersLoader from '@/loaders/ordersLoader.ts'
+import accountLoader from '@/loaders/accountLoader.ts'
+import customersLoader from '@/loaders/customersLoader.ts'
+import analyticsLoader from '@/loaders/analyticsLoader.ts'
+import ErrorPage from '@/pages/ErrorPage.tsx'
 
 export const router = createBrowserRouter([
     {
         path: '/',
         element: <RootLayout/>,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '',
@@ -42,41 +62,46 @@ export const router = createBrowserRouter([
                 element: <HomePage/>
             },
             {
-                path: 'account/:id'
-                // element: <AccountPage/>
+                path: 'account/me',
+                element: <AccountPage/>,
+                loader: accountLoader
             },
             {
-                path: 'seller/:id'
-                // element: <SellerPage/>
+                path: 'account/:id',
+                element: <AccountPage/>
             },
             {
                 path: 'categories',
                 children: [
                     {
-                        path: ''
-                        // element: <CategoriesPage/>
-                    },
-                    {
-                        path: ':id'
-                        // element: <CategoryPage/>
+                        path: '',
+                        element: <CategoriesPage/>
                     }
                 ]
             },
             {
-                path: 'items',
+                path: 'products',
                 children: [
                     {
-                        path: ''
-                        // element: <ItemsPage/>
+                        path: '',
+                        element: <ItemsPage/>
+                    },
+                    {
+                        path: '?page',
+                        element: <ItemsPage/>
+                    },
+                    {
+                        path: '?category',
+                        element: <ItemsPage/>
+                    },
+                    {
+                        path: '?search',
+                        element: <ItemsPage/>
                     },
                     {
                         path: ':id',
                         element: <ItemPage/>
                     },
-                    {
-                        path: '?search'
-                        // element: <ItemsPage/>
-                    }
                 ]
             },
             {
@@ -91,13 +116,30 @@ export const router = createBrowserRouter([
                 path: 'checkout',
                 element: <CheckoutPage/>
             },
+
             {
-                path: 'about'
-                // element: <AboutPage/>
+                path: 'contact',
+                element: <ContactPage/>
             },
             {
-                path: 'contact'
-                // element: <ContactPage/>
+                path: 'about',
+                element: <AboutUsPage/>
+            },
+            {
+                path: 'faq',
+                element: <FAQ_Page/>
+            },
+            {
+                path: 'terms',
+                element: <TermsPage/>
+            },
+            {
+                path: 'privacy',
+                element: <PrivacyPage/>
+            },
+            {
+                path: 'success',
+                element: <SuccessPage/>
             },
 
             {
@@ -114,10 +156,11 @@ export const router = createBrowserRouter([
             store.dispatch(loadAuthState(authState))
             return authState
         },
+        errorElement: <ErrorPage />,
         children: [
             {
-                index: true
-                // element: <AdminHomePage/>
+                index: true,
+                element: <AdminHomePage/>
             },
             {
                 path: 'products',
@@ -132,24 +175,23 @@ export const router = createBrowserRouter([
                 element: <EditItemPage/>
             },
             {
-                path: 'orders'
-                // element: <OrdersPage/>
+                path: 'orders',
+                element: <OrdersPage/>,
+                loader: ordersLoader
             },
             {
-                path: 'customers'
-                // element: <CustomersPage/>
+                path: 'customers',
+                element: <CustomersPage/>,
+                loader: customersLoader
             },
             {
-                path: 'customers/:id'
-                // element: <CustomerPage/>
+                path: 'customers/:id',
+                element: <CustomerProfilePage/>
             },
             {
-                path: 'analytics'
-                // element: <AnalyticsPage/>
-            },
-            {
-                path: 'settings'
-                // element: <SettingsPage/>
+                path: 'analytics',
+                element: <AnalyticsPage/>,
+                loader: analyticsLoader
             },
             {
                 path: '*',
