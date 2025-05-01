@@ -21,7 +21,7 @@ import {Badge} from '@/components/ui/badge.tsx'
 import {FC} from 'react'
 import {Customer} from '@/types/customer'
 import StatusBadge from '@/components/admin/StatusBadge.tsx'
-import CustomerTagBadge from '@/components/admin/CustomerTagBadge.tsx'
+import CustomerTagBadge from '@/components/admin/customers/CustomerTagBadge.tsx'
 import CommunicationTypeBadge from '@/components/admin/CommunicationTypeBadge.tsx'
 
 type CustomerProfileProps = {
@@ -57,7 +57,7 @@ const CustomerProfile: FC<CustomerProfileProps> = ({customer}) =>
                                     <h1 className="text-2xl font-bold text-gray-900">{customer.name}</h1>
                                     <StatusBadge status={customer.status}/>
                                 </div>
-                                <p className="text-gray-500">{customer.id}</p>
+                                <p className="text-gray-500">{customer._id}</p>
                                 <div className="mt-1 flex flex-wrap gap-1">
                                     {customer.tags.map((tag) => (
                                         <CustomerTagBadge key={tag} tag={tag}/>
@@ -244,13 +244,13 @@ const CustomerProfile: FC<CustomerProfileProps> = ({customer}) =>
                                 {customer.orders && customer.orders.length > 0 ? (
                                     <div className="space-y-4">
                                         {customer.orders.map((order) => (
-                                            <Card key={order.id}>
+                                            <Card key={order._id}>
                                                 <CardContent className="p-4">
                                                     <div
                                                         className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                                                         <div>
                                                             <div className="flex items-center gap-2">
-                                                                <h4 className="font-medium">{order.id}</h4>
+                                                                <h4 className="font-medium">{order._id}</h4>
                                                                 <StatusBadge status={order.status}/>
                                                             </div>
                                                             <div
