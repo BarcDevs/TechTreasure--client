@@ -1,32 +1,96 @@
-import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card.tsx'
-import CustomerSegment from '@/components/admin/analytics/customerInsights/CustomerSegment.tsx'
+import {
+    Card,
+    CardContent,
+    CardHeader,
+    CardTitle
+} from '@/components/ui/card'
+
+import {
+    ChartContainer,
+    ChartTooltip,
+    ChartTooltipContent
+} from '@/components/ui/chart'
+
+import {Pie, PieChart} from 'recharts'
+
+import CustomerSegment from '@/components/admin/analytics/customerInsights/CustomerSegment'
+
 import {useLoaderData} from 'react-router-dom'
 
 const CustomerRetentionCard = () => {
     const {customerRetention} = useLoaderData() as Analytics
+    const totalCustomers = customerRetention.new + customerRetention.returning
+
+    const colorScheme = {
+        new: 'var(--destructive)',
+        returning: 'var(--destructive)/0.3'
+    }
+
+    const chartData = [
+        {
+            type: 'new',
+            value: customerRetention.new,
+            fill: `hsl(${colorScheme.new})`
+        },
+        {
+            type: 'returning',
+            value: customerRetention.returning,
+            fill: `hsl(${colorScheme.returning})`
+        }
+    ]
+
+    const chartConfig = {
+        new: {
+            label: 'New',
+            color: `hsl(${colorScheme.new})`
+        },
+        returning: {
+            label: 'Returning',
+            color: `hsl(${colorScheme.returning})`
+        }
+    }
 
     return (
         <Card>
-            <CardHeader>
+            <CardHeader className="items-center pb-0">
                 <CardTitle className="text-base">
                     New vs Returning Customers
                 </CardTitle>
             </CardHeader>
-            <CardContent>
-                <div className="flex justify-center">
-                    {/* Placeholder for pie chart */}
-                    <div className="relative size-[180px] rounded-full border-8 border-primary">
-                        <div
-                            className="absolute inset-0 rounded-full bg-blue-400"
-                            style={{
-                                clipPath: `polygon(50% 50%, 50% 0%, ${50 + 50 * Math.cos((customerRetention.new / 100) * 2 * Math.PI)}% ${50 - 50 * Math.sin((customerRetention.new / 100) * 2 * Math.PI)}%, 100% 0%, 100% 100%, 0% 100%, 0% 0%)`
-                            }}
+            <CardContent className="flex-1 pb-0">
+                <ChartContainer
+                    config={chartConfig}
+                    className="mx-auto aspect-square max-h-[250px]"
+                >
+                    <PieChart>
+                        <ChartTooltip
+                            cursor={false}
+                            content={
+                                <ChartTooltipContent hideLabel/>
+                            }
                         />
-                    </div>
-                </div>
+                        <Pie
+                            data={chartData}
+                            dataKey="value"
+                            nameKey="type"
+                            cx="50%"
+                            cy="50%"
+                            outerRadius="100%"
+                            stroke="none"
+                        />
+                    </PieChart>
+                </ChartContainer>
                 <div className="mt-4 flex justify-center gap-6">
-                    <CustomerSegment color="primary" label="Returning" percentage={customerRetention.returning}/>
-                    <CustomerSegment color="blue-400" label="New" percentage={customerRetention.new}/>
+                    <CustomerSegment
+                        color={'red-300'}
+                        label="Returning"
+                        percentage={Math.round((customerRetention.returning / totalCustomers) * 100)}
+                    />
+                    <CustomerSegment
+                        color={'destructive'}
+                        label="New"
+                        percentage={Math.round((customerRetention.new / totalCustomers) * 100)}
+                    />
                 </div>
             </CardContent>
         </Card>
