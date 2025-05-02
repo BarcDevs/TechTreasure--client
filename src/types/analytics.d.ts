@@ -10,6 +10,7 @@ type Sales = {
     today: SalesPeriod;
     week: SalesPeriod;
     month: SalesPeriod;
+    year: SalesPeriod;
 };
 
 type Orders = {
