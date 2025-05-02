@@ -1,4 +1,3 @@
-import {useState} from 'react'
 import AnalyticsHeader from './AnalyticsHeader.tsx'
 import KeyMetricsSection from './keyMetrics/KeyMetricsSection'
 import SalesPerformanceSection from './salesPerformance/SalesPerformanceSection'
@@ -7,17 +6,12 @@ import TrafficAndMarketingAnalytics
 import CustomerInsightsSection from '@/components/admin/analytics/customerInsights/CustomerInsightsSection.tsx'
 import ProductInventorySection from '@/components/admin/analytics/productInventory/ProductInventorySection.tsx'
 
-const AnalyticsDashboard = () => {
-    const [salesTimeframe, setSalesTimeframe] = useState<'today' | 'week' | 'month'>('week')
-
-    return (
+const AnalyticsDashboard = () =>
+    (
         <div className="mx-auto max-w-7xl">
             <AnalyticsHeader/>
 
-            <KeyMetricsSection
-                salesTimeframe={salesTimeframe}
-                setSalesTimeframe={setSalesTimeframe}
-            />
+            <KeyMetricsSection/>
 
             {/* Sales Performance */}
             <SalesPerformanceSection/>
@@ -32,6 +26,5 @@ const AnalyticsDashboard = () => {
             <TrafficAndMarketingAnalytics/>
         </div>
     )
-}
 
 export default AnalyticsDashboard
