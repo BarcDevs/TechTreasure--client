@@ -3,7 +3,10 @@ import ProductItem from '@/components/admin/analytics/salesPerformance/ProductIt
 import {useLoaderData} from 'react-router-dom'
 
 const BestSellingProductsCard = () => {
-    const {bestSellingProducts} = useLoaderData() as Analytics
+    const {productsAnalytics} = useLoaderData() as Analytics
+    const bestSellingProducts = productsAnalytics
+        .sort((a, b) => b.sales - a.sales)
+        .slice(0, 5)
 
     return (
         <Card>

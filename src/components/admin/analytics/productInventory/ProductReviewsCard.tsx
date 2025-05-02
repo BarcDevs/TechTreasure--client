@@ -1,9 +1,11 @@
 import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card.tsx'
 import ProductReviewItem from '@/components/admin/analytics/productInventory/ProductReviewItem.tsx'
-import {useLoaderData} from 'react-router-dom'
+import {Button} from '@/components/ui/button.tsx'
 
-const ProductReviewsCard = () => {
-    const {productReviews} = useLoaderData() as Analytics
+const ProductReviewsCard = ({data}: { data: ProductAnalytics[] }) => {
+    const mostReviewedProducts = data
+        .sort((a, b) => b.reviews - a.reviews)
+        .slice(0, 5)
 
     return (
         <Card>
@@ -14,10 +16,13 @@ const ProductReviewsCard = () => {
             </CardHeader>
             <CardContent>
                 <div className="space-y-4">
-                    {productReviews.map((product, index) => (
+                    {mostReviewedProducts.map((product, index) => (
                         <ProductReviewItem key={index} product={product}/>
                     ))}
                 </div>
+                <Button variant="ghost" size="sm" className="mt-4 w-full">
+                    View All Reviews
+                </Button>
             </CardContent>
         </Card>
     )

@@ -40,23 +40,15 @@ type Revenue = {
     refunds: number;
 };
 
-type ProductSales = {
-    name: string;
-    sales: number;
-    revenue: number;
-};
-
-type LowStockItem = {
-    name: string;
-    stock: number;
-    threshold: number;
-};
-
-type ProductReview = {
-    name: string;
-    rating: number;
-    reviews: number;
-};
+type ProductAnalytics = {
+    name: string
+    stock: number
+    threshold: number
+    sales: number
+    revenue: number
+    rating: number
+    reviews: number
+}
 
 type CustomerRetention = {
     new: number;
@@ -105,9 +97,7 @@ type Analytics = {
     orders: Orders;
     customers: Customers;
     revenue: Revenue;
-    bestSellingProducts: ProductSales[];
-    lowStockItems: LowStockItem[];
-    productReviews: ProductReview[];
+    productsAnalytics: ProductAnalytics[];
     customerRetention: CustomerRetention;
     averageOrderValue: AverageOrderValue;
     peakHours: PeakHour[];

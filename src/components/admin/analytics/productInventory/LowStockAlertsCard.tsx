@@ -3,10 +3,11 @@ import {Badge} from '@/components/ui/badge.tsx'
 import {AlertTriangle} from 'lucide-react'
 import {Button} from '@/components/ui/button.tsx'
 import LowStockItem from '@/components/admin/analytics/productInventory/LowStockItem.tsx'
-import {useLoaderData} from 'react-router-dom'
 
-const LowStockAlertsCard = () => {
-    const {lowStockItems} = useLoaderData() as Analytics
+const LowStockAlertsCard = ({data}: { data: ProductAnalytics[] }) => {
+    const lowStockItems = data
+        .filter(item => item.stock < item.threshold)
+        .sort((a, b) => a.stock - b.stock)
 
     return (
         <Card>
@@ -23,7 +24,7 @@ const LowStockAlertsCard = () => {
             </CardHeader>
             <CardContent>
                 <div className="space-y-4">
-                    {lowStockItems.map((item, index) => (
+                    {lowStockItems.slice(0, 5).map((item, index) => (
                         <LowStockItem key={index} item={item}/>
                     ))}
                 </div>
