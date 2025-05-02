@@ -1,55 +1,47 @@
-import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card.tsx'
-import {formatCurrency, formatPercentage} from '@/lib/utils/format.ts'
-import {ArrowDown, ArrowUp} from 'lucide-react'
+import {Card, CardContent, CardDescription, CardHeader, CardTitle} from '@/components/ui/card'
+import {ArrowUpIcon} from 'lucide-react'
 import {useLoaderData} from 'react-router-dom'
+import {twMerge} from 'tailwind-merge'
 
-const AverageOrderValueCard = () => {
+export default function AverageOrderValueCard() {
     const {averageOrderValue} = useLoaderData() as Analytics
 
     return (
         <Card>
-            <CardHeader>
-                <CardTitle className="text-base">
+            <CardHeader className="pb-4">
+                <CardTitle className="text-base font-semibold tracking-tight">
                     Average Order Value
                 </CardTitle>
+                <CardDescription className="flex items-center text-sm">
+                    vs previous period
+                </CardDescription>
             </CardHeader>
             <CardContent>
-                <div className="flex items-baseline space-x-2">
-                    <span className="text-2xl font-bold">{formatCurrency(averageOrderValue.current)}</span>
-                    <span className={`flex items-center text-xs ${
-                        averageOrderValue.trend === 'up' ? 'text-green-500' : 'text-red-500'
-                    }`}>
-                        {averageOrderValue.trend === 'up' ? (
-                            <ArrowUp className="mr-1 size-3"/>
-                        ) : (
-                            <ArrowDown className="mr-1 size-3"/>
-                        )}
-                        {formatPercentage(averageOrderValue.change)}
-                    </span>
-                </div>
-                <div className="mt-4">
-                    <div className="text-sm text-gray-500">
-                        Previous period: {formatCurrency(averageOrderValue.previous)}
+                <div className="mt-4 flex items-center justify-between">
+                    <div className="space-y-1">
+                        <p className="text-4xl font-bold">
+                            ${averageOrderValue.current.toFixed(2)}
+                        </p>
+                        <p className="text-base text-muted-foreground">
+                            Previous:
+                            ${averageOrderValue.previous.toFixed(2)}
+                        </p>
                     </div>
-                </div>
-                <div className="mt-4 h-[100px]">
-                    {/* Placeholder for AOV trend chart */}
-                    <div className="flex h-full items-end space-x-1">
-                        {Array.from({length: 12}).map((_, i) => (
-                            <div
-                                key={i}
-                                className="w-full rounded-sm bg-primary/20"
-                                style={{
-                                    height: `${Math.max(20, Math.floor(Math.random() * 100))}%`,
-                                    backgroundColor: i >= 9 ? 'hsl(var(--primary))' : 'hsl(var(--primary) / 0.2)'
-                                }}
-                            />
-                        ))}
+                    <div
+                        className={twMerge(
+                            'flex items-center gap-1 rounded-md px-2 py-1 text-xs font-medium',
+                            averageOrderValue.trend === 'up' ?
+                                'bg-emerald-100 text-emerald-700' :
+                                'bg-rose-100 text-rose-700'
+                        )}
+                    >
+                        {averageOrderValue.trend === 'up' ?
+                            <ArrowUpIcon className="size-3"/> :
+                            <ArrowUpIcon className="size-3 rotate-180"/>}
+                        <span>{averageOrderValue.change}%</span>
                     </div>
                 </div>
             </CardContent>
         </Card>
     )
 }
-
-export default AverageOrderValueCard
