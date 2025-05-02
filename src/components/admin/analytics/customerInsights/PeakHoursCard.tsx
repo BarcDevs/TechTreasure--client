@@ -1,9 +1,28 @@
-import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card.tsx'
-import {useLoaderData} from 'react-router-dom'
-import {twMerge} from 'tailwind-merge'
+import { BarChart, Bar, XAxis, CartesianGrid, LabelList } from "recharts"
+import { useLoaderData } from "react-router-dom"
+
+import {
+    Card,
+    CardContent,
+    CardHeader,
+    CardTitle
+} from "@/components/ui/card"
+import {
+    ChartConfig,
+    ChartContainer,
+    ChartTooltip,
+    ChartTooltipContent
+} from "@/components/ui/chart"
 
 const PeakHoursCard = () => {
-    const {peakHours} = useLoaderData() as Analytics
+    const { peakHours } = useLoaderData() as Analytics
+
+    const chartConfig = {
+        orders: {
+            label: "Orders",
+            color: "hsl(var(--primary))"
+        }
+    } satisfies ChartConfig
 
     return (
         <Card>
@@ -13,24 +32,46 @@ const PeakHoursCard = () => {
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <div className="h-[200px]">
-                    <div className="flex h-full items-end space-x-1">
-                        {peakHours.map((hour, i) => (
-                            <div key={i} className="flex flex-1 flex-col items-center">
-                                <div
-                                    className={
-                                        twMerge('w-full rounded-sm bg-primary/20 bg-[hsl(var(--primary) / 0.2)]',
-                                            `h-[${hour.orders / Math.max(...peakHours.map((h) => h.orders))}%]`,
-                                            `bg-[${hour.orders > 100 ? 'hsl(var(--primary))' : 'hsl(var(--primary) / 0.2)'}]`
-                                        )}
-                                    onMouseOver={() => console.log(hour)}
+                <div className="h-[200px] align-middle pt-10">
+                    <ChartContainer config={chartConfig}>
+                        <BarChart
+                            accessibilityLayer
+                            data={peakHours}
+                            margin={{
+                                top: 20,
+                                bottom: 10
+                            }}
+                        >
+                            <CartesianGrid vertical={false} />
+                            <XAxis
+                                dataKey="hour"
+                                tickLine={false}
+                                tickMargin={10}
+                                axisLine={false}
+                            />
+                            <ChartTooltip
+                                cursor={false}
+                                content={
+                                    <ChartTooltipContent
+                                        labelFormatter={(label) => `Hour: ${label}`}
+                                    />
+                                }
+                            />
+                            <Bar
+                                dataKey="orders"
+                                fill="var(--color-orders)"
+                                radius={4}
+                                className="fill-primary"
+                            >
+                                <LabelList
+                                    position="top"
+                                    offset={8}
+                                    className="fill-foreground"
+                                    fontSize={12}
                                 />
-                                <div className="mt-2 text-xs text-gray-500">
-                                    {hour.hour}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                            </Bar>
+                        </BarChart>
+                    </ChartContainer>
                 </div>
             </CardContent>
         </Card>
