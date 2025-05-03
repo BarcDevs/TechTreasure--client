@@ -95,7 +95,7 @@ const SalesTrendsCard = () => {
             {salesTimeframe.charAt(0).toUpperCase() + salesTimeframe.slice(1)} Sales
           </span>
                     <div className="flex items-center gap-2 text-xl font-semibold">
-                        ${salesData.value.toLocaleString(undefined, {
+                        ${salesData.value?.toLocaleString(undefined, {
                         style: 'decimal',
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2

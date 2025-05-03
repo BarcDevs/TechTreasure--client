@@ -1,7 +1,7 @@
 type TrendDirection = 'up' | 'down';
 
 type SalesPeriod = {
-    value: number;
+    value: ValueEntry[];
     change: number;
     trend: TrendDirection;
 };
@@ -12,6 +12,11 @@ type Sales = {
     month: SalesPeriod;
     year: SalesPeriod;
 };
+
+type ValueEntry = {
+    amount: number
+    period: number
+}
 
 type Orders = {
     total: number;
