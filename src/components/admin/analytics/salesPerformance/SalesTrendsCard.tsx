@@ -42,7 +42,7 @@ const SalesTrendsCard = () => {
                     <Select
                         value={salesTimeframe}
                         onValueChange={(val) =>
-                            setSalesTimeframe(val as 'today' | 'week' | 'month' | 'year')
+                            setSalesTimeframe(val as Timeframe)
                         }
                     >
                         <SelectTrigger className="w-[120px]">

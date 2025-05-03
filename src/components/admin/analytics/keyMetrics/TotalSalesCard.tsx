@@ -18,11 +18,11 @@ const chartConfig = {
 const TotalSalesCard = () => {
     const {sales} = useLoaderData() as Analytics
 
-    const [salesTimeframe, setSalesTimeframe] = useState<'today' | 'week' | 'month'>('week')
+    const [salesTimeframe, setSalesTimeframe] = useState<Timeframe>('week')
     const [totalSales, setTotalSales] = useState<number>(0)
 
     const setTimeframe = (timeframe: string) => {
-        setSalesTimeframe(timeframe as 'today' | 'week' | 'month')
+        setSalesTimeframe(timeframe as Timeframe)
     }
 
     const currentData = generateChartData(sales[salesTimeframe])

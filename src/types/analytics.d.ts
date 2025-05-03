@@ -119,3 +119,5 @@ type StoreStats = {
     customers: number
     orders: number
 };
+
+type Timeframe = 'today' | 'week' | 'month' | 'year';
