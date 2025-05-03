@@ -20,7 +20,7 @@ const PeakHoursCard = () => {
     const chartConfig = {
         orders: {
             label: "Orders",
-            color: "hsl(var(--primary))"
+            color: "#3b82f6"
         }
     } satisfies ChartConfig
 
@@ -32,7 +32,7 @@ const PeakHoursCard = () => {
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <div className="h-[200px] align-middle pt-10">
+                <div className="h-[200px] pt-10 align-middle">
                     <ChartContainer config={chartConfig}>
                         <BarChart
                             accessibilityLayer
@@ -59,9 +59,9 @@ const PeakHoursCard = () => {
                             />
                             <Bar
                                 dataKey="orders"
-                                fill="var(--color-orders)"
+                                fill="#3b82f6"
                                 radius={4}
-                                className="fill-primary"
+                                className="fill-blue-400"
                             >
                                 <LabelList
                                     position="top"
