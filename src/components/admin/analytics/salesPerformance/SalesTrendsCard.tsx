@@ -29,6 +29,7 @@ import {
 } from '@/components/ui/chart'
 import SalesTrendIndicator from '@/components/admin/analytics/salesPerformance/SalesTrendIndicator.tsx'
 import {generateChartData} from '@/components/admin/analytics/salesPerformance/generateChartData.ts'
+import {tooltipTimeFormatter} from '@/lib/utils/tooltipTimeFormatter.ts'
 
 const chartColor = '#3b82f6' // Tailwind blue-500
 const chartConfig = {
@@ -116,13 +117,9 @@ const SalesTrendsCard = () => {
                                         <ChartTooltipContent
                                             className="w-[150px]"
                                             nameKey="sales"
-                                            labelFormatter={(value) => {
-                                                return salesTimeframe === 'today' ?
-                                                    `${value}:00` :
-                                                    salesTimeframe === 'week' ?
-                                                        value :
-                                                        `${value}/04/2025`
-                                            }}
+                                            labelFormatter={(value) =>
+                                                tooltipTimeFormatter(value, salesTimeframe, '/04/2025')
+                                            }
                                         />
                                     }
                                 />

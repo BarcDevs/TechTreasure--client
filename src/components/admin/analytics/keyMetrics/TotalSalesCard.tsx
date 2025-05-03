@@ -8,6 +8,7 @@ import {formatCurrency} from '@/lib/utils/format'
 import {generateChartData} from '@/components/admin/analytics/keyMetrics/generateChartData.ts'
 import TrendIndicator from '@/components/admin/analytics/keyMetrics/TrendIndicator.tsx'
 import {getWeekday} from '@/lib/utils/time.ts'
+import {tooltipTimeFormatter} from '@/lib/utils/tooltipTimeFormatter.ts'
 
 const chartConfig = {
     sales: {
@@ -98,7 +99,12 @@ const TotalSalesCard = () => {
                                     className={'capitalize'}
                                     labelFormatter={(_, payload) => {
                                         const {period} = payload[0].payload as { period: number }
-                                        return salesTimeframe === 'week' ? getWeekday(period) : period
+                                        if (salesTimeframe === 'week')
+                                            return getWeekday(period)
+                                        return tooltipTimeFormatter(
+                                            period,
+                                            salesTimeframe,
+                                            '/04/2025')
                                     }}
                                 />}
                             />
