@@ -1,9 +1,10 @@
 import {Outlet, useNavigate} from 'react-router-dom'
 import Header from '@/components/admin/layout/Header.tsx'
-import Sidebar from '@/components/admin/layout/Sidebar.tsx'
+import DesktopSidebar from '@/components/admin/layout/DesktopSidebar.tsx'
 import {useSelector} from 'react-redux'
 import {IRootState} from '@/store'
 import {useEffect} from 'react'
+import MobileNavbar from '@/components/admin/layout/MobileNavbar.tsx'
 
 const AdminLayout = ({}) => {
     const isAdmin = useSelector((state: IRootState) => state.auth.isAdmin)
@@ -18,7 +19,8 @@ const AdminLayout = ({}) => {
     return (
         <>
             <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
-                <Sidebar/>
+                <DesktopSidebar/>
+                <MobileNavbar/>
                 <div className="flex_col">
                     <Header/>
                     <Outlet/>

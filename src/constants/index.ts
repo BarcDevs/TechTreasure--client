@@ -3,7 +3,15 @@ import instagram from '/assets/icons/instagram.svg'
 import twitter from '/assets/icons/twitter.svg'
 import facebook from '/assets/icons/facebook.svg'
 import {LANGUAGE, LINK, SOCIAL_LINK} from '@/types/constants'
-import {HomeIcon, LineChartIcon, PackageIcon, ShoppingCartIcon, UsersIcon} from '@/components/admin/Icons.tsx'
+import {
+    ArrowLeftIcon,
+    HomeIcon,
+    LineChartIcon,
+    PackageIcon, ProfileIcon,
+    ShoppingCartIcon,
+    StoreIcon,
+    UsersIcon, UserSupportIcon
+} from '@/components/admin/Icons.tsx'
 
 export const APP_NAME = 'TechTreasure'
 export const ADMIN_ROOT = '/admin/'
@@ -78,6 +86,38 @@ export const ADMIN_LINKS = [
         icon: LineChartIcon
     }
 ]
+
+export const ADDITIONAL_ADMIN_LINKS = [
+    {
+        link: {
+            name: 'Go to Regular Site',
+            href: '/',
+            icon: StoreIcon
+        }
+    },
+    {
+        link: {
+            name: 'Profile',
+            href: '/account/me',
+            icon: ProfileIcon
+        }
+    },
+    {
+        link: {
+            name: 'Support',
+            href: '/contact',
+            icon: UserSupportIcon
+        }
+    },
+    {
+        link: {
+            name: 'Logout',
+            href: '/logout',
+            icon: ArrowLeftIcon
+        }
+    },
+]
+
 
 export const SOCIAL_LINKS: SOCIAL_LINK[] = [
     {name: 'Facebook', url: 'https://www.facebook.com', icon: facebook},

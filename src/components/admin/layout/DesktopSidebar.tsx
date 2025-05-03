@@ -4,7 +4,7 @@ import {Button} from '@/components/ui/button.tsx'
 import {ADMIN_LINKS} from '@/constants'
 import SidebarLink from '@/components/admin/layout/SidebarLink.tsx'
 
-const Sidebar = ({}) => {
+const DesktopSidebar = ({}) => {
     const storeName = import.meta.env.VITE_STORE_NAME || 'TechTreasure'
 
     return (
@@ -41,4 +41,4 @@ const Sidebar = ({}) => {
 }
 
 
-export default Sidebar
+export default DesktopSidebar
