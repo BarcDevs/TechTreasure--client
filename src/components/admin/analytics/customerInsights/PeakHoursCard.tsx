@@ -52,9 +52,7 @@ const PeakHoursCard = () => {
                             <ChartTooltip
                                 cursor={false}
                                 content={
-                                    <ChartTooltipContent
-                                        labelFormatter={(label) => `Hour: ${label}`}
-                                    />
+                                    <ChartTooltipContent nameKey="hour" />
                                 }
                             />
                             <Bar
