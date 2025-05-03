@@ -7,6 +7,7 @@ import {ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent} from '@/
 import {formatCurrency} from '@/lib/utils/format'
 import {generateChartData} from '@/components/admin/analytics/keyMetrics/generateChartData.ts'
 import TrendIndicator from '@/components/admin/analytics/keyMetrics/TrendIndicator.tsx'
+import {getWeekday} from '@/lib/utils/time.ts'
 
 const chartConfig = {
     sales: {
@@ -95,7 +96,10 @@ const TotalSalesCard = () => {
                                 cursor={true}
                                 content={<ChartTooltipContent
                                     className={'capitalize'}
-                                    hideLabel
+                                    labelFormatter={(_, payload) => {
+                                        const {period} = payload[0].payload as { period: number }
+                                        return salesTimeframe === 'week' ? getWeekday(period) : period
+                                    }}
                                 />}
                             />
                             <Bar
