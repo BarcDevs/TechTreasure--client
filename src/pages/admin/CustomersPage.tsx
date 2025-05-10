@@ -1,11 +1,11 @@
 import {useEffect, useState} from 'react'
 import PageHeader from '@/components/admin/layout/PageHeader.tsx'
 import CustomerStatusTabs from '@/components/admin/customers/CustomerStatusTabs'
-import CustomerPagination from '@/components/admin/customers/CustomerPagination'
 import {Customer} from '@/types/customer'
 import {useLoaderData} from 'react-router-dom'
 import FilterBar from '@/components/admin/FilterBar.tsx'
 import {formatDateTime} from '@/lib/utils/time.ts'
+import PaginationControls from '@/components/admin/PaginationControls.tsx'
 
 const getFilteredCustomers = (
     customers: Customer[] | undefined,
@@ -124,10 +124,11 @@ const CustomersPage = () => {
                 )}
 
                 {filteredCustomers && (
-                    <CustomerPagination
+                    <PaginationControls
                         totalItems={filteredCustomers.length}
                         itemsPerPage={10}
                         currentPage={1}
+                        name={'customers'}
                     />
                 )}
             </div>

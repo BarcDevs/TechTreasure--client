@@ -3,6 +3,7 @@ import {useQuery} from '@tanstack/react-query'
 import {Product} from '@/types'
 import {getErrorMessage} from '@/lib/utils/error.ts'
 import ProductsTable from '@/components/admin/products/table/ProductsTable.tsx'
+import PaginationControls from '@/components/admin/PaginationControls.tsx'
 
 const Products = () => {
     const {data: products, isFetching, isError, error} = useQuery<{
@@ -14,6 +15,8 @@ const Products = () => {
         refetchOnWindowFocus: false,
         staleTime: 60 * 1000
     })
+
+    const extractedProducts = products?.products
 
     // todo: add translations
 
@@ -35,7 +38,7 @@ const Products = () => {
                 {/*</Button>*/}
             </section>
             <section className="rounded-lg border shadow-sm">
-                {(!products || products.products.length === 0) && (
+                {!extractedProducts && (
                     isFetching ? <p>Loading...</p> :
                         isError ?
                             <p>{getErrorMessage(error)}</p> :
@@ -43,7 +46,18 @@ const Products = () => {
                                 You have no products in the store. add one to get started
                             </p>
                 )}
-                <ProductsTable products={products?.products}/>
+
+                <ProductsTable products={extractedProducts}/>
+
+                {extractedProducts && (
+                    <PaginationControls
+                        totalItems={extractedProducts.length}
+                        itemsPerPage={10}
+                        currentPage={1}
+                        name={'orders'}
+                    />
+                )}
+
             </section>
         </>
 

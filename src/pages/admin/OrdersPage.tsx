@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
 import {useLoaderData} from 'react-router-dom'
 import OrderStatusTabs from '@/components/admin/orders/OrderStatusTabs'
-import PaginationControls from '@/components/admin/orders/PaginationControls'
+import PaginationControls from '@/components/admin/PaginationControls'
 import PageHeader from '@/components/admin/layout/PageHeader.tsx'
 import {Order} from '@/types/customer'
 import FilterBar from '@/components/admin/FilterBar.tsx'
@@ -88,6 +88,7 @@ const OrdersPage = () => {
                         totalItems={filteredOrders.length}
                         itemsPerPage={10}
                         currentPage={1}
+                        name={'orders'}
                     />
                 )}
             </div>
