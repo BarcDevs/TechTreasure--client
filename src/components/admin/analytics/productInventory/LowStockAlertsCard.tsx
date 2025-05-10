@@ -3,6 +3,7 @@ import {Badge} from '@/components/ui/badge.tsx'
 import {AlertTriangle} from 'lucide-react'
 import {Button} from '@/components/ui/button.tsx'
 import LowStockItem from '@/components/admin/analytics/productInventory/LowStockItem.tsx'
+import {Link} from 'react-router-dom'
 
 const LowStockAlertsCard = ({data}: { data: ProductAnalytics[] }) => {
     const lowStockItems = data
@@ -28,9 +29,11 @@ const LowStockAlertsCard = ({data}: { data: ProductAnalytics[] }) => {
                         <LowStockItem key={index} item={item}/>
                     ))}
                 </div>
-                <Button variant="ghost" size="sm" className="mt-4 w-full">
-                    View All Inventory
-                </Button>
+                <Link to={'/admin/products'}>
+                    <Button variant="ghost" size="sm" className="mt-4 w-full">
+                        View All Inventory
+                    </Button>
+                </Link>
             </CardContent>
         </Card>
     )
