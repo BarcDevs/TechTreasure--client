@@ -2,7 +2,7 @@ import {getProducts} from '@/api/products.ts'
 import {useQuery} from '@tanstack/react-query'
 import {Product} from '@/types'
 import {getErrorMessage} from '@/lib/utils/error.ts'
-import ProductsTable from '@/components/admin/products/ProductsTable.tsx'
+import ProductsTable from '@/components/admin/products/table/ProductsTable.tsx'
 
 const Products = () => {
     const {data: products, isFetching, isError, error} = useQuery<{
