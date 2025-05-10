@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import type { FC } from 'react'
-import { useMutation } from '@tanstack/react-query'
+import {useState} from 'react'
+import type {FC} from 'react'
+import {useMutation} from '@tanstack/react-query'
 import {
     ColumnDef,
     ColumnFiltersState,
@@ -13,9 +13,8 @@ import {
     getSortedRowModel,
     useReactTable
 } from '@tanstack/react-table'
-import { ArrowDown, ArrowUp, ArrowUpDown } from 'lucide-react'
-
-import { Button } from '@/components/ui/button'
+import {ArrowDown, ArrowUp, ArrowUpDown} from 'lucide-react'
+import {Button} from '@/components/ui/button'
 import {
     Table,
     TableBody,
@@ -24,40 +23,42 @@ import {
     TableHeader,
     TableRow
 } from '@/components/ui/table'
-import { Input } from '@/components/ui/input'
-import { imageUrl } from '@/lib/utils/url'
-import { isProductWithColors } from '@/lib/utils/product'
-import { getImagesOfColor } from '@/lib/utils/image'
+import {Input} from '@/components/ui/input'
+import {imageUrl} from '@/lib/utils/url'
+import {isProductWithColors} from '@/lib/utils/product'
+import {getImagesOfColor} from '@/lib/utils/image'
 import Rating from '@/components/elements/Rating'
 import Icon from '@/components/elements/Icon'
-import { deleteProduct } from '@/api/products'
-import { queryClient } from '@/api'
-import type { Product } from '@/types'
+import {deleteProduct} from '@/api/products'
+import {queryClient} from '@/api'
+import type {Product} from '@/types'
+
+const STOCK_THRESHOLD = 50
 
 const ProductsTable: FC<{
     products: Product[] | undefined
-}> = ({ products = [] }) => {
+}> = ({products = []}) => {
     const [sorting, setSorting] = useState<SortingState>([])
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
     const [rowSelection, setRowSelection] = useState({})
 
-    const { mutate: deleteItem } = useMutation({
+    const {mutate: deleteItem} = useMutation({
         mutationFn: deleteProduct,
         onMutate: (id) => {
             const prevItems = queryClient.getQueryData(['items'])
-            queryClient.cancelQueries({ queryKey: ['items'] })
+            queryClient.cancelQueries({queryKey: ['items']})
             queryClient.setQueryData(['items'], (old: any) => {
                 old.products = old.products.filter((item: Product) => item._id !== id)
             })
 
-            return { prevItems }
+            return {prevItems}
         },
-        onError: (_, __, { prevItems }: any) => {
+        onError: (_, __, {prevItems}: any) => {
             queryClient.setQueryData(['items'], prevItems)
         },
         onSettled: () => {
-            queryClient.invalidateQueries({ queryKey: ['items'] })
+            queryClient.invalidateQueries({queryKey: ['items']})
         }
     })
 
@@ -65,7 +66,7 @@ const ProductsTable: FC<{
         {
             accessorKey: 'image',
             header: () => <></>,
-            cell: ({ row }) => {
+            cell: ({row}) => {
                 const item = row.original
                 return (
                     <div className="flex items-center">
@@ -84,7 +85,7 @@ const ProductsTable: FC<{
         },
         {
             accessorKey: 'name',
-            header: ({ column }) => (
+            header: ({column}) => (
                 <div>
                     <Button
                         variant="ghost"
@@ -92,21 +93,21 @@ const ProductsTable: FC<{
                         onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
                     >
                         Name
-                        {column.getIsSorted() === "asc" ? (
-                            <ArrowUp className="ml-2 size-4" />
-                        ) : column.getIsSorted() === "desc" ? (
-                            <ArrowDown className="ml-2 size-4" />
+                        {column.getIsSorted() === 'asc' ? (
+                            <ArrowUp className="ml-2 size-4"/>
+                        ) : column.getIsSorted() === 'desc' ? (
+                            <ArrowDown className="ml-2 size-4"/>
                         ) : (
-                            <ArrowUpDown className="ml-2 size-4" />
+                            <ArrowUpDown className="ml-2 size-4"/>
                         )}
                     </Button>
                 </div>
             ),
-            cell: ({ row }) => <div className="font-medium">{row.original.name}</div>
+            cell: ({row}) => <div className="font-medium">{row.original.name}</div>
         },
         {
             accessorKey: 'price',
-            header: ({ column }) => (
+            header: ({column}) => (
                 <div className="hidden md:block">
                     <Button
                         variant="ghost"
@@ -114,24 +115,24 @@ const ProductsTable: FC<{
                         onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
                     >
                         Price
-                        {column.getIsSorted() === "asc" ? (
-                            <ArrowUp className="ml-2 size-4" />
-                        ) : column.getIsSorted() === "desc" ? (
-                            <ArrowDown className="ml-2 size-4" />
+                        {column.getIsSorted() === 'asc' ? (
+                            <ArrowUp className="ml-2 size-4"/>
+                        ) : column.getIsSorted() === 'desc' ? (
+                            <ArrowDown className="ml-2 size-4"/>
                         ) : (
-                            <ArrowUpDown className="ml-2 size-4" />
+                            <ArrowUpDown className="ml-2 size-4"/>
                         )}
                     </Button>
                 </div>
             ),
-            cell: ({ row }) => {
+            cell: ({row}) => {
                 const price = parseFloat(row.original.price.toString())
                 return <div className="hidden md:block">${price.toFixed(2)}</div>
             }
         },
         {
             accessorKey: 'stock',
-            header: ({ column }) => (
+            header: ({column}) => (
                 <div className="hidden md:block">
                     <Button
                         variant="ghost"
@@ -139,20 +140,24 @@ const ProductsTable: FC<{
                         onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
                     >
                         Inventory
-                        {column.getIsSorted() === "asc" ? (
-                            <ArrowUp className="ml-2 size-4" />
-                        ) : column.getIsSorted() === "desc" ? (
-                            <ArrowDown className="ml-2 size-4" />
+                        {column.getIsSorted() === 'asc' ? (
+                            <ArrowUp className="ml-2 size-4"/>
+                        ) : column.getIsSorted() === 'desc' ? (
+                            <ArrowDown className="ml-2 size-4"/>
                         ) : (
-                            <ArrowUpDown className="ml-2 size-4" />
+                            <ArrowUpDown className="ml-2 size-4"/>
                         )}
                     </Button>
                 </div>
             ),
-            cell: ({ row }) => {
+            cell: ({row}) => {
                 const stock = row.original.stock
                 return (
-                    <div className={stock === 0 ? 'font-bold text-red-500' : 'text-black'}>
+                    <div className={
+                        stock === 0 ? 'font-bold text-red-500' :
+                            stock < STOCK_THRESHOLD ? 'font-bold text-yellow-500' :
+                                'text-black'
+                    }>
                         {stock === 0 ? 'Out of stock' : `${stock} in stock`}
                     </div>
                 )
@@ -160,7 +165,7 @@ const ProductsTable: FC<{
         },
         {
             accessorKey: 'rating',
-            header: ({ column }) => (
+            header: ({column}) => (
                 <div className="hidden md:block">
                     <Button
                         variant="ghost"
@@ -168,26 +173,26 @@ const ProductsTable: FC<{
                         onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
                     >
                         Rating
-                        {column.getIsSorted() === "asc" ? (
-                            <ArrowUp className="ml-2 size-4" />
-                        ) : column.getIsSorted() === "desc" ? (
-                            <ArrowDown className="ml-2 size-4" />
+                        {column.getIsSorted() === 'asc' ? (
+                            <ArrowUp className="ml-2 size-4"/>
+                        ) : column.getIsSorted() === 'desc' ? (
+                            <ArrowDown className="ml-2 size-4"/>
                         ) : (
-                            <ArrowUpDown className="ml-2 size-4" />
+                            <ArrowUpDown className="ml-2 size-4"/>
                         )}
                     </Button>
                 </div>
             ),
-            cell: ({ row }) => (
+            cell: ({row}) => (
                 <div className="hidden md:block">
-                    <Rating rating={row.original.rating} />
+                    <Rating rating={row.original.rating}/>
                 </div>
             )
         },
         {
             id: 'actions',
             header: () => <div></div>,
-            cell: ({ row }) => {
+            cell: ({row}) => {
                 const product = row.original
 
                 return (
@@ -246,12 +251,14 @@ const ProductsTable: FC<{
                                 {headerGroup.headers.map((header) => (
                                     <TableHead
                                         key={header.id}
-                                        style={{ width: header.column.id === 'image' ? '80px' :
+                                        style={{
+                                            width: header.column.id === 'image' ? '80px' :
                                                 header.column.id === 'name' ? '150px' :
                                                     header.column.id === 'price' ? '100px' :
                                                         header.column.id === 'stock' ? '150px' :
                                                             header.column.id === 'rating' ? '100px' :
-                                                                header.column.id === 'actions' ? '80px' : 'auto' }}
+                                                                header.column.id === 'actions' ? '80px' : 'auto'
+                                        }}
                                     >
                                         {header.isPlaceholder
                                             ? null
@@ -274,12 +281,14 @@ const ProductsTable: FC<{
                                     {row.getVisibleCells().map((cell) => (
                                         <TableCell
                                             key={cell.id}
-                                            style={{ width: cell.column.id === 'image' ? '80px' :
+                                            style={{
+                                                width: cell.column.id === 'image' ? '80px' :
                                                     cell.column.id === 'name' ? '150px' :
                                                         cell.column.id === 'price' ? '100px' :
                                                             cell.column.id === 'stock' ? '150px' :
                                                                 cell.column.id === 'rating' ? '100px' :
-                                                                    cell.column.id === 'actions' ? '80px' : 'auto' }}
+                                                                    cell.column.id === 'actions' ? '80px' : 'auto'
+                                            }}
                                         >
                                             {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                         </TableCell>
