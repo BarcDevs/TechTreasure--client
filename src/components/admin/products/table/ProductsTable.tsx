@@ -28,6 +28,7 @@ import type {Product} from '@/types'
 import productTableColumns from '@/components/admin/products/table/productTableColumns.tsx'
 import {getColumnWidthClass} from '@/components/admin/products/table/getColumnWidthClass.ts'
 import ProductTableBody from '@/components/admin/products/table/ProductTableBody.tsx'
+import ProductPaginationControls from '@/components/admin/products/table/ProductPaginationControls.tsx'
 
 type Props = {
     products: Product[] | undefined
@@ -142,6 +143,7 @@ const ProductsTable: FC<Props> = ({products = []}) => {
                         columns={columns}
                     />
                 </Table>
+                <ProductPaginationControls table={table}/>
             </div>
         </div>
     )

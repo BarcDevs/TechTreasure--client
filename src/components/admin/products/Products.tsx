@@ -3,7 +3,6 @@ import {useQuery} from '@tanstack/react-query'
 import {Product} from '@/types'
 import {getErrorMessage} from '@/lib/utils/error.ts'
 import ProductsTable from '@/components/admin/products/table/ProductsTable.tsx'
-import PaginationControls from '@/components/admin/PaginationControls.tsx'
 
 const Products = () => {
     const {data: products, isFetching, isError, error} = useQuery<{
@@ -48,16 +47,6 @@ const Products = () => {
                 )}
 
                 <ProductsTable products={extractedProducts}/>
-
-                {extractedProducts && (
-                    <PaginationControls
-                        totalItems={extractedProducts.length}
-                        itemsPerPage={10}
-                        currentPage={1}
-                        name={'orders'}
-                    />
-                )}
-
             </section>
         </>
 
