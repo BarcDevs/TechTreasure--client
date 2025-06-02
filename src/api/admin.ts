@@ -35,6 +35,11 @@ const getStoreStats = async (): Promise<StoreStats> => {
     return response.data.data
 }
 
+const getInquiries = async () => {
+    const response = await api.get('/admin/inquiries')
+    return response.data.data
+}
+
 export {
     getCustomers,
     getCustomer,
@@ -42,5 +47,6 @@ export {
     getOrder,
     getOrdersByCustomer,
     getAnalytics,
-    getStoreStats
+    getStoreStats,
+    getInquiries
 }

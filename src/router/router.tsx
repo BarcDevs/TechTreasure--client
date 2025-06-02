@@ -34,6 +34,8 @@ import customersLoader from '@/loaders/customersLoader.ts'
 import analyticsLoader from '@/loaders/analyticsLoader.ts'
 import ErrorPage from '@/pages/ErrorPage.tsx'
 import dashboardLoader from '@/loaders/dashboardLoader.ts'
+import InquiriesPage from '@/pages/admin/InquiriesPage.tsx'
+import inquiriesLoader from '@/loaders/inquiriesLoader.ts'
 
 export const router = createBrowserRouter([
     {
@@ -193,6 +195,11 @@ export const router = createBrowserRouter([
             {
                 path: 'customers/:id',
                 element: <CustomerProfilePage/>
+            },
+            {
+                path: 'inquiries',
+                element: <InquiriesPage/>,
+                loader: inquiriesLoader
             },
             {
                 path: 'analytics',

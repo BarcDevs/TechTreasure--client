@@ -79,4 +79,35 @@ type Customer = {
     averageOrderValue?: number
 }
 
-export {Note, Order, WishlistItem, Review, Communication, EmailPreferences, Customer}
+type Inquiry = {
+    _id: string
+    customer: string
+    customerName: string
+    email: string
+    date: Date
+    item: string
+    message: string
+    status: InquiryStatus
+}
+
+type InquiryStatus = 'open' | 'pending' | 'resolved'
+
+type InquiryCounts = {
+    total: number
+    open: number
+    pending: number
+    resolved: number
+}
+
+export {
+    Note,
+    Order,
+    WishlistItem,
+    Review,
+    Communication,
+    EmailPreferences,
+    Customer,
+    Inquiry,
+    InquiryStatus,
+    InquiryCounts
+}
