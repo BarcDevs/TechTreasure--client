@@ -16,21 +16,39 @@ const formatDateTime = (dateTimeString: string) => {
     return new Date(dateTimeString).toLocaleString('en-US', options)
 }
 
-const timeSince = (dateString: string) => {
-    const registrationDate = new Date(dateString)
-    const currentDate = new Date()
+const timeSince = (dateString: string): string => {
+    const past = new Date(dateString)
+    const now = new Date()
 
-    const diffInMonths =
-        (currentDate.getFullYear() - registrationDate.getFullYear()) * 12 +
-        (currentDate.getMonth() - registrationDate.getMonth())
+    const diffInSeconds = Math.floor((now.getTime() - past.getTime()) / 1000)
 
-    if (diffInMonths < 12) {
-        return `${diffInMonths} months`
-    } else {
-        const years = Math.floor(diffInMonths / 12)
-        const months = diffInMonths % 12
-        return `${years} year${years > 1 ? 's' : ''}${months > 0 ? `, ${months} month${months > 1 ? 's' : ''}` : ''}`
+    const minutes = Math.floor(diffInSeconds / 60)
+    const hours = Math.floor(diffInSeconds / 3600)
+    const days = Math.floor(diffInSeconds / 86400)
+    const months = Math.floor(diffInSeconds / (30 * 86400))
+    const years = Math.floor(diffInSeconds / (365 * 86400))
+
+    if (minutes < 1) {
+        return 'just now'
     }
+
+    if (minutes < 60) {
+        return `${minutes} minute${minutes > 1 ? 's' : ''}`
+    }
+
+    if (hours < 24) {
+        return `${hours} hour${hours > 1 ? 's' : ''}`
+    }
+
+    if (days < 30) {
+        return `${days} day${days > 1 ? 's' : ''}`
+    }
+
+    if (months < 12) {
+        return `${months} month${months > 1 ? 's' : ''}`
+    }
+
+    return `${years} year${years > 1 ? 's' : ''}`
 }
 
 const getWeekday = (day: number) => {
