@@ -53,7 +53,9 @@ const InquiryRow: FC<InquiryRowProps> = ({inquiry, onViewDetails}) => (
                 onClick={() => onViewDetails(inquiry)}
             >
                 <Eye className="mr-1 size-4"/>
-                View
+                <span className="max-md:hidden">
+                    View
+                </span>
             </Button>
         </TableCell>
     </TableRow>

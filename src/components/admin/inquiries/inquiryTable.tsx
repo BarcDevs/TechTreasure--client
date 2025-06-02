@@ -21,13 +21,17 @@ const InquiryTable: FC<InquiryTableProps> = ({inquiries, onViewDetails}) => (
         </CardHeader>
 
         <CardContent>
-            <div className="rounded-md border">
+            <div className="overflow-x-auto rounded-md border">
                 <Table>
                     <TableHeader>
                         <TableRow>
                             {['Customer', 'Date', 'Message Preview', 'Status', 'Actions']
                                 .map((label) => (
-                                    <TableHead key={label}>{label}</TableHead>
+                                    <TableHead
+                                        key={label}
+                                        className={label === 'Actions' ? 'max-md:hidden' : ''}>
+                                        {label}
+                                    </TableHead>
                                 ))}
                         </TableRow>
                     </TableHeader>
