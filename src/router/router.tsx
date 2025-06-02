@@ -169,6 +169,10 @@ export const router = createBrowserRouter([
                 element: <ProductsPage/>
             },
             {
+                path: 'products/low-stock',
+                element: <ProductsPage/>,
+            },
+            {
                 path: 'products/add',
                 element: <AddItemPage/>
             },

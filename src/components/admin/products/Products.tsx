@@ -3,9 +3,12 @@ import {useQuery} from '@tanstack/react-query'
 import {Product} from '@/types'
 import {getErrorMessage} from '@/lib/utils/error.ts'
 import ProductsTable from '@/components/admin/products/table/ProductsTable.tsx'
+import {Link, useLocation} from 'react-router-dom'
+import {useEffect, useState} from 'react'
+import Button from '@/components/elements/Button.tsx'
 
 const Products = () => {
-    const {data: products, isFetching, isError, error} = useQuery<{
+    const {data, isFetching, isError, error} = useQuery<{
         products: Product[],
         totalPages: number
     }>({
@@ -15,7 +18,16 @@ const Products = () => {
         staleTime: 60 * 1000
     })
 
-    const extractedProducts = products?.products
+    const location = useLocation().pathname
+    const [lowStock, setLowStock] = useState(location.includes('low-stock'))
+
+    useEffect(() => {
+        setLowStock(location.includes('low-stock'))
+    }, [location])
+
+    const products = data?.products
+    const lowStockProducts =
+        products?.filter(product => product.stock < 10)
 
     // todo: add translations
 
@@ -37,7 +49,7 @@ const Products = () => {
                 {/*</Button>*/}
             </section>
             <section className="rounded-lg border shadow-sm">
-                {!extractedProducts && (
+                {!products && (
                     isFetching ? <p>Loading...</p> :
                         isError ?
                             <p>{getErrorMessage(error)}</p> :
@@ -46,8 +58,18 @@ const Products = () => {
                             </p>
                 )}
 
-                <ProductsTable products={extractedProducts}/>
+                <ProductsTable products={!lowStock ? products : lowStockProducts}/>
+
             </section>
+            {lowStock && (
+                <div className={'flex_row mt-4 justify-center'}>
+                    <Button>
+                        <Link to={'/admin/products'}>
+                            View all products
+                        </Link>
+                    </Button>
+                </div>
+            )}
         </>
 
     )
