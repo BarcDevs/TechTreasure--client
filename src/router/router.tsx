@@ -33,6 +33,7 @@ import accountLoader from '@/loaders/accountLoader.ts'
 import customersLoader from '@/loaders/customersLoader.ts'
 import analyticsLoader from '@/loaders/analyticsLoader.ts'
 import ErrorPage from '@/pages/ErrorPage.tsx'
+import dashboardLoader from '@/loaders/dashboardLoader.ts'
 
 export const router = createBrowserRouter([
     {
@@ -160,7 +161,8 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <AdminHomePage/>
+                element: <AdminHomePage/>,
+                loader: dashboardLoader
             },
             {
                 path: 'products',
