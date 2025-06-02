@@ -80,28 +80,28 @@ const InquiryDetailsModal = ({inquiry, isOpen, onClose, onStatusUpdate}: Inquiry
                         />
                     </div>
 
-                    <div className="space-y-2">
-                        <Label>
-                            Update Status
-                        </Label>
-                        <Select value={inquiry.status}
-                                onValueChange={
-                                    (value: InquiryStatus) => onStatusUpdate(inquiry._id, value)
-                                }>
-                            <SelectTrigger>
-                                <SelectValue/>
-                            </SelectTrigger>
-                            <SelectContent>
-                                {Object.entries(inquiryStatus)
-                                    .map((status) => (
-                                        status[0] !== 'all' &&
-                                        <SelectItem value={status[0]}>
-                                            {status[1]}
-                                        </SelectItem>
-                                    ))}
-                            </SelectContent>
-                        </Select>
-                    </div>
+                    {/*<div className="space-y-2">*/}
+                    {/*    <Label>*/}
+                    {/*        Update Status*/}
+                    {/*    </Label>*/}
+                    {/*    <Select value={inquiry.status}*/}
+                    {/*            onValueChange={*/}
+                    {/*                (value: InquiryStatus) => onStatusUpdate(inquiry._id, value)*/}
+                    {/*            }>*/}
+                    {/*        <SelectTrigger>*/}
+                    {/*            <SelectValue/>*/}
+                    {/*        </SelectTrigger>*/}
+                    {/*        <SelectContent>*/}
+                    {/*            {Object.entries(inquiryStatus)*/}
+                    {/*                .map((status) => (*/}
+                    {/*                    status[0] !== 'all' &&*/}
+                    {/*                    <SelectItem value={status[0]}>*/}
+                    {/*                        {status[1]}*/}
+                    {/*                    </SelectItem>*/}
+                    {/*                ))}*/}
+                    {/*        </SelectContent>*/}
+                    {/*    </Select>*/}
+                    {/*</div>*/}
                 </div>
             </DialogContent>
         </Dialog>
