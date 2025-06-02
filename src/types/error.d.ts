@@ -1,9 +1,9 @@
 type ApiError = {
-    status: string;
+    status: string
     error?: {
-        statusCode: number;
-        status: string;
-        isOperational: boolean;
-    };
-    message: string;
+        statusCode: number
+        status: string
+        isOperational: boolean
+    }
+    message: string
 }
