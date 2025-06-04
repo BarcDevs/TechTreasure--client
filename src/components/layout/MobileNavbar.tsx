@@ -15,6 +15,7 @@ import {I18N_NAMESPACES, NAVIGATION_LOCALES} from '@/constants/locales.ts'
 import {useSelector} from 'react-redux'
 import {IRootState} from '@/store'
 import ShopButton from '@/components/shop/ShopButton.tsx'
+import LanguagePicker from '@/components/shared/LanguagePicker.tsx'
 
 const MobileNavbar = ({}) => {
     const {t} = useTranslation(I18N_NAMESPACES.navigationLinks)
@@ -25,7 +26,7 @@ const MobileNavbar = ({}) => {
     const isProductsPage = location.startsWith('/products')
 
     return (
-        <nav className={'flex w-full items-center justify-between px-4 py-2 md:hidden'}>
+        <nav className={'flex w-full items-center justify-between px-4 py-2 lg:hidden'}>
             <DropdownMenu>
                 <DropdownMenuTrigger>
                     <Icon
@@ -35,6 +36,7 @@ const MobileNavbar = ({}) => {
                     />
                 </DropdownMenuTrigger>
                 {/*TODO fix dropdown styling*/}
+
                 <DropdownMenuContent className={'border-black bg-white'}>
                     {NAVIGATION_LINKS.map(link => (
                         <DropdownMenuItem
@@ -46,6 +48,7 @@ const MobileNavbar = ({}) => {
                         </DropdownMenuItem>
                     ))}
                     <DropdownMenuSeparator/>
+
                     {!isLoggedIn &&
                         <DropdownMenuItem
                             onSelect={() => navigate('/signup')}
@@ -54,6 +57,7 @@ const MobileNavbar = ({}) => {
                             {t(NAVIGATION_LOCALES.signup)}
                         </DropdownMenuItem>
                     }
+
                     {isLoggedIn &&
                         <>
                             <DropdownMenuItem
@@ -74,6 +78,12 @@ const MobileNavbar = ({}) => {
             </DropdownMenu>
 
             {isProductsPage && <Search/>}
+
+            <div className={'flex w-full justify-end'}>
+                <div className={'w-1/5'}>
+                    <LanguagePicker className={'bg-white text-black md:hidden'}/>
+                </div>
+            </div>
 
             {!isAuthPage &&
                 <div className={'inline-flex h-6 justify-between gap-4'}>

@@ -31,7 +31,7 @@ const DesktopNavbar = ({}) => {
     const isProductsPage = location === '/products'
 
     return (
-        <nav className={'flex-center w-full max-md:hidden'}>
+        <nav className={'flex-center w-full max-lg:hidden'}>
             <div className={'mb-1 mt-10 flex w-[90vw] flex-row items-center justify-between'}>
                 {/*todo: fix logo*/}
                 <a href={'/'} className={'flex_row'}>

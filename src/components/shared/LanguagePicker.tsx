@@ -1,8 +1,14 @@
-import {Select, SelectContent, SelectItem, SelectTrigger} from "@/components/ui/select"
+import {Select, SelectContent, SelectItem, SelectTrigger} from '@/components/ui/select'
 import {LANGUAGES} from '@/constants'
 import {useTranslation} from 'react-i18next'
+import {FC} from 'react'
+import {twMerge} from 'tailwind-merge'
 
-const LanguagePicker = ({}) => {
+type Props = {
+    className?: string
+}
+
+const LanguagePicker: FC<Props> = ({className}) => {
     const {i18n} = useTranslation()
 
     const currentLanguage = () => {
@@ -22,7 +28,10 @@ const LanguagePicker = ({}) => {
     return (
         <Select onValueChange={handleSelectLanguage}>
             <SelectTrigger
-                className={'no-focus text-small inline-flex h-[18px] border-none bg-black text-neutral-50 max-md:hidden'}>
+                className={twMerge(
+                    'no-focus text-small inline-flex h-[18px] border-none bg-black text-neutral-50',
+                    className
+                )}>
                 <span>{currentLanguage().name}</span>
             </SelectTrigger>
             <SelectContent>

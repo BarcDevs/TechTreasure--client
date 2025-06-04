@@ -22,7 +22,7 @@ const Top = ({}) => {
             </div>
 
             <div className="flex w-[100px] items-center justify-center gap-[5px]">
-                <LanguagePicker/>
+                <LanguagePicker className={'max-md:hidden'}/>
 
                 <Link to={'/'}
                       className="text-center font-poppins text-sm font-semibold leading-normal text-neutral-50 underline md:hidden">
