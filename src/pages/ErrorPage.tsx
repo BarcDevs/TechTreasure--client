@@ -9,10 +9,12 @@ type RouteError = {
 }
 
 const ErrorPage = () => {
-    const error = useRouteError() as RouteError
+    const error = useRouteError() as RouteError & { data?: string }
     const isServerError = error.status === 500
 
     const isAdmin = useSelector((state: IRootState) => state.auth.isAdmin)
+
+    console.log(error)
 
     return (
         <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-4">
@@ -32,15 +34,24 @@ const ErrorPage = () => {
                         />
                     </svg>
                 </div>
+
                 <h1 className="mb-2 text-2xl font-bold text-gray-800">
                     {isServerError ? 'Server Error' : 'Oops!'}
                 </h1>
+
                 <p className="mb-3 text-gray-600">
                     Sorry, an unexpected error has occurred.
                 </p>
+
+                {/*error message*/}
                 <p className="mb-6 italic text-gray-500">
-                    {(isAdmin && error.statusText || error.message) || 'Unknown error'}
+                    {isAdmin &&
+                        error.statusText ||
+                        error.data ||
+                        error.toString() ||
+                        'Unknown error occurred. Please try again later.'}
                 </p>
+
                 <div className="flex flex-col space-y-3 sm:flex-row sm:space-x-3 sm:space-y-0">
                     <button
                         onClick={() => window.history.back()}
@@ -50,7 +61,7 @@ const ErrorPage = () => {
                     </button>
                     <button
                         onClick={() => window.location.reload()}
-                        className="w-full rounded-md bg-blue-500 px-4 py-2 font-medium text-white transition duration-150 ease-in-out hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                        className="w-full cursor-pointer rounded-md bg-blue-500 px-4 py-2 font-medium text-white transition duration-150 ease-in-out hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                     >
                         Reload Page
                     </button>

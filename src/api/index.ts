@@ -16,10 +16,15 @@ api.interceptors.response.use(
     error => {
         const errorData = error.response?.data
 
+        if (!error.response) {
+            console.error('Server is offline');
+            return Promise.reject(new Error('Server is offline. Please try again later.'));
+        }
+
         if (errorData?.message === 'jwt expired' ||
             (errorData?.status === 'failed' && errorData?.message === 'jwt expired')) {
 
-            console.log('JWT token expired, logging out user')
+            console.error('JWT token expired, logging out user')
 
             Cookies.remove('token')
 
