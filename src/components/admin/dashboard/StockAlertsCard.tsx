@@ -15,6 +15,7 @@ const StockAlertsCard = ({}) => {
                     Stock Alerts
                 </CardTitle>
             </CardHeader>
+
             <CardContent>
                 <div className="flex items-center justify-between">
                     <div className="flex items-center">

@@ -1,6 +1,7 @@
 import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card.tsx'
-import {useLoaderData} from 'react-router-dom'
+import {Link, useLoaderData} from 'react-router-dom'
 import {Order} from '@/types/customer'
+import {Button} from '@/components/ui/button.tsx'
 
 const OrderStatusCard = ({}) => {
     const {orders} = useLoaderData() as { orders: Order[] }
@@ -12,6 +13,7 @@ const OrderStatusCard = ({}) => {
                     Orders
                 </CardTitle>
             </CardHeader>
+
             <CardContent>
                 <div className="flex items-center justify-between">
                     <div className="text-center">
@@ -41,6 +43,12 @@ const OrderStatusCard = ({}) => {
                         </div>
                     </div>
                 </div>
+
+                <Button variant="link" className="mt-2 h-auto p-0 text-xs">
+                    <Link to={'/admin/orders'}>
+                        View Orders
+                    </Link>
+                </Button>
             </CardContent>
         </Card>
     )
