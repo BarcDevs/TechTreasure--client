@@ -1,4 +1,4 @@
-interface InquiryPageHeaderProps {
+type InquiryPageHeaderProps = {
     title?: string
     description?: string
 }

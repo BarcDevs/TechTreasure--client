@@ -5,7 +5,7 @@ import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from '@/c
 import {Search} from 'lucide-react'
 import {inquiryStatus} from '@/components/admin/inquiries/inquiryUtils.ts'
 
-interface InquiryFiltersProps {
+type InquiryFiltersProps = {
     searchTerm: string
     statusFilter: string
     onSearchChange: (value: string) => void

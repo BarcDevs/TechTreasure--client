@@ -2,13 +2,13 @@ import {useRouteError} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import {IRootState} from '@/store'
 
-interface RouteError {
+type RouteError = {
     statusText?: string;
     message?: string;
     status?: number;
 }
 
-const ErrorPage: React.FC = () => {
+const ErrorPage = () => {
     const error = useRouteError() as RouteError
     const isServerError = error.status === 500
 
@@ -28,7 +28,7 @@ const ErrorPage: React.FC = () => {
                             strokeLinecap="round"
                             strokeLinejoin="round"
                             strokeWidth="2"
-                              d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                         />
                     </svg>
                 </div>

@@ -5,7 +5,7 @@ import {User, Mail, Calendar, Package} from 'lucide-react'
 import {Inquiry, InquiryStatus} from '@/types/customer'
 import {formatDate} from '@/lib/utils/time.ts'
 
-interface InquiryDetailsModalProps {
+type InquiryDetailsModalProps = {
     inquiry: Inquiry | null
     isOpen: boolean
     onClose: () => void
