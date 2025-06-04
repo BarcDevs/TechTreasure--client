@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import InquiryPageHeader from '@/components/admin/inquiries/inquiryPageHeader.tsx'
 import InquiryStatusCards from '@/components/admin/inquiries/inquiryStatusCards.tsx'
 import InquiryFilters from '@/components/admin/inquiries/inquiryFilters.tsx'
@@ -6,27 +6,53 @@ import InquiryTable from '@/components/admin/inquiries/inquiryTable.tsx'
 import InquiryDetailsModal from '@/components/admin/inquiries/inquiryDetailsModal.tsx'
 import {filterInquiries} from '@/components/admin/inquiries/inquiryUtils.ts'
 import {useLoaderData} from 'react-router-dom'
-import {Inquiry, InquiryStatus} from '@/types/customer'
+import {Inquiry} from '@/types/customer'
+import {useMutation, useQueryClient} from '@tanstack/react-query'
+import {updateInquiry} from '@/api/admin.ts'
+
 
 const InquiriesPage = () => {
-    const _inquiries = useLoaderData() as Inquiry[]
+    const inquiries = useLoaderData() as Inquiry[]
     const [searchTerm, setSearchTerm] = useState('')
     const [statusFilter, setStatusFilter] = useState('all')
     const [selectedInquiry, setSelectedInquiry] = useState<Inquiry | null>(null)
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [filteredInquiries, setFilteredInquiries] = useState<Inquiry[]>(inquiries)
 
-    const [inquiries, setInquiries] = useState(_inquiries)
-    const filteredInquiries = filterInquiries(inquiries, searchTerm, statusFilter)
+    const queryClient = useQueryClient()
 
-    const updateInquiryStatus = (inquiryId: string, newStatus: InquiryStatus) => () => {
-        setInquiries((prev) =>
-            prev.map((inquiry) => (
-                inquiry._id === inquiryId ? {...inquiry, status: newStatus} : inquiry))
-        )
-        if (selectedInquiry && selectedInquiry._id === inquiryId) {
-            setSelectedInquiry({...selectedInquiry, status: newStatus})
+    const updateInquiryStatus = useMutation({
+        mutationFn: async (updatedInquiry: Inquiry) => {
+            return await updateInquiry(updatedInquiry)
+        },
+        onMutate: async (newInquiry) => {
+            await queryClient.cancelQueries({queryKey: ['inquiries']})
+
+            const previousInquiries = queryClient.getQueryData(['inquiries'])
+
+            queryClient.setQueryData(['inquiries'], (old: Inquiry[]) =>
+                old.map((item) =>
+                    item._id === newInquiry._id ? newInquiry : item
+                )
+            )
+
+            return {previousInquiries}
+        },
+        onError: (_, __, context) => {
+            if (context?.previousInquiries) {
+                queryClient.setQueryData(['inquiries'], context.previousInquiries)
+            }
+        },
+        onSettled: () => {
+            queryClient.invalidateQueries({queryKey: ['inquiries']})
         }
-    }
+    })
+
+    useEffect(() => {
+        setFilteredInquiries(
+            filterInquiries(inquiries, searchTerm, statusFilter)
+        )
+    }, [inquiries, searchTerm, statusFilter])
 
     const handleViewDetails = (inquiry: Inquiry) => {
         setSelectedInquiry(inquiry)
@@ -51,13 +77,15 @@ const InquiriesPage = () => {
                 onStatusFilterChange={setStatusFilter}
             />
 
-            <InquiryTable inquiries={filteredInquiries} onViewDetails={handleViewDetails}/>
+            {filteredInquiries &&
+                <InquiryTable inquiries={filteredInquiries} onViewDetails={handleViewDetails}/>
+            }
 
             <InquiryDetailsModal
                 inquiry={selectedInquiry}
                 isOpen={isModalOpen}
                 onClose={handleCloseModal}
-                onStatusUpdate={updateInquiryStatus}
+                updateInquiryStatus={updateInquiryStatus.mutate}
             />
         </div>
     )

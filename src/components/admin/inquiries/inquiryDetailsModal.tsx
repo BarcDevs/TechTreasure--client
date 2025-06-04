@@ -4,106 +4,119 @@ import {Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle} fro
 import {User, Mail, Calendar, Package} from 'lucide-react'
 import {Inquiry, InquiryStatus} from '@/types/customer'
 import {formatDate} from '@/lib/utils/time.ts'
+import {Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue} from '@/components/ui/select.tsx'
+import {inquiryStatus} from '@/components/admin/inquiries/inquiryUtils.ts'
+import {FC} from 'react'
 
 type InquiryDetailsModalProps = {
-    inquiry: Inquiry | null
-    isOpen: boolean
-    onClose: () => void
-    onStatusUpdate: (inquiryId: string, newStatus: InquiryStatus) => void
+    inquiry: Inquiry | null;
+    isOpen: boolean;
+    onClose: () => void;
+    updateInquiryStatus: (updatedInquiry: Inquiry) => void;
 }
 
-const InquiryDetailsModal = ({inquiry, isOpen, onClose}: InquiryDetailsModalProps) => {
-    if (!inquiry) return null
+const InquiryDetailsModal: FC<InquiryDetailsModalProps> =
+    ({inquiry, isOpen, onClose, updateInquiryStatus}) => {
 
-    return (
-        <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogContent className="max-w-2xl">
-                <DialogHeader>
-                    <DialogTitle>
-                        Inquiry Details
-                    </DialogTitle>
-                    <DialogDescription>
-                        View and manage customer inquiry
-                    </DialogDescription>
-                </DialogHeader>
 
-                <div className="space-y-6">
-                    <div className="grid grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                            <Label className="flex items-center gap-2">
-                                <User className="size-4"/>
-                                Customer
-                            </Label>
-                            <div className="text-sm font-medium">
-                                {inquiry.customerName}
+        return (
+            !inquiry ? null :
+                <Dialog open={isOpen} onOpenChange={onClose}>
+                    <DialogContent className="max-w-2xl">
+                        <DialogHeader>
+                            <DialogTitle>
+                                Inquiry Details
+                            </DialogTitle>
+                            <DialogDescription>
+                                View and manage customer inquiry
+                            </DialogDescription>
+                        </DialogHeader>
+
+                        <div className="space-y-6">
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="space-y-2">
+                                    <Label className="flex items-center gap-2">
+                                        <User className="size-4"/>
+                                        Customer
+                                    </Label>
+                                    <div className="text-sm font-medium">
+                                        {inquiry.customerName}
+                                    </div>
+                                </div>
+                                <div className="space-y-2">
+                                    <Label className="flex items-center gap-2">
+                                        <Mail className="size-4"/>
+                                        Email
+                                    </Label>
+                                    <div className="text-sm">
+                                        {inquiry.email}
+                                    </div>
+                                </div>
+                                <div className="space-y-2">
+                                    <Label className="flex items-center gap-2">
+                                        <Calendar className="size-4"/>
+                                        Date
+                                    </Label>
+                                    <div className="text-sm">
+                                        {formatDate(inquiry.date.toString())}
+                                    </div>
+                                </div>
+                                <div className="space-y-2">
+                                    <Label className="flex items-center gap-2">
+                                        <Package className="size-4"/>
+                                        Item ID
+                                    </Label>
+                                    <div className="text-sm">
+                                        {inquiry.item}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label>
+                                    Message
+                                </Label>
+                                <Textarea
+                                    value={inquiry.message}
+                                    readOnly
+                                    className="min-h-[100px]"
+                                />
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label>
+                                    Update Status
+                                </Label>
+                                <Select value={inquiry.status}
+                                        onValueChange={(newStatus: InquiryStatus) => {
+                                            if (inquiry) {
+                                                updateInquiryStatus({...inquiry, status: newStatus})
+                                            }
+                                        }}
+
+                                >
+                                    <SelectTrigger>
+                                        <SelectValue/>
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectGroup>
+                                            {Object.entries(inquiryStatus)
+                                                .map((status) => (
+                                                    status[0] !== 'all' &&
+                                                    <SelectItem
+                                                        className={'cursor-pointer'}
+                                                        value={status[0]}>
+                                                        {status[1]}
+                                                    </SelectItem>
+                                                ))}
+                                        </SelectGroup>
+                                    </SelectContent>
+                                </Select>
                             </div>
                         </div>
-                        <div className="space-y-2">
-                            <Label className="flex items-center gap-2">
-                                <Mail className="size-4"/>
-                                Email
-                            </Label>
-                            <div className="text-sm">
-                                {inquiry.email}
-                            </div>
-                        </div>
-                        <div className="space-y-2">
-                            <Label className="flex items-center gap-2">
-                                <Calendar className="size-4"/>
-                                Date
-                            </Label>
-                            <div className="text-sm">
-                                {formatDate(inquiry.date.toString())}
-                            </div>
-                        </div>
-                        <div className="space-y-2">
-                            <Label className="flex items-center gap-2">
-                                <Package className="size-4"/>
-                                Item ID
-                            </Label>
-                            <div className="text-sm">
-                                {inquiry.item}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="space-y-2">
-                        <Label>
-                            Message
-                        </Label>
-                        <Textarea
-                            value={inquiry.message}
-                            readOnly
-                            className="min-h-[100px]"
-                        />
-                    </div>
-
-                    {/*<div className="space-y-2">*/}
-                    {/*    <Label>*/}
-                    {/*        Update Status*/}
-                    {/*    </Label>*/}
-                    {/*    <Select value={inquiry.status}*/}
-                    {/*            onValueChange={*/}
-                    {/*                (value: InquiryStatus) => onStatusUpdate(inquiry._id, value)*/}
-                    {/*            }>*/}
-                    {/*        <SelectTrigger>*/}
-                    {/*            <SelectValue/>*/}
-                    {/*        </SelectTrigger>*/}
-                    {/*        <SelectContent>*/}
-                    {/*            {Object.entries(inquiryStatus)*/}
-                    {/*                .map((status) => (*/}
-                    {/*                    status[0] !== 'all' &&*/}
-                    {/*                    <SelectItem value={status[0]}>*/}
-                    {/*                        {status[1]}*/}
-                    {/*                    </SelectItem>*/}
-                    {/*                ))}*/}
-                    {/*        </SelectContent>*/}
-                    {/*    </Select>*/}
-                    {/*</div>*/}
-                </div>
-            </DialogContent>
-        </Dialog>
-    )
-}
+                    </DialogContent>
+                </Dialog>
+        )
+    }
 
 export default InquiryDetailsModal
