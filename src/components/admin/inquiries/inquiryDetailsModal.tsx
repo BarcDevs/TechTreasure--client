@@ -9,15 +9,27 @@ import {inquiryStatus} from '@/components/admin/inquiries/inquiryUtils.ts'
 import {FC} from 'react'
 
 type InquiryDetailsModalProps = {
-    inquiry: Inquiry | null;
-    isOpen: boolean;
-    onClose: () => void;
-    updateInquiryStatus: (updatedInquiry: Inquiry) => void;
+    inquiry: Inquiry | null
+    isOpen: boolean
+    onClose: () => void
+    updateInquiryStatus: (updatedInquiry: Inquiry) => void
+    setFilteredInquiries: (inquiries: Inquiry[]) => void
 }
 
 const InquiryDetailsModal: FC<InquiryDetailsModalProps> =
-    ({inquiry, isOpen, onClose, updateInquiryStatus}) => {
+    ({inquiry, isOpen, onClose, updateInquiryStatus, setFilteredInquiries}) => {
+        const updateInquiries = (newStatus: InquiryStatus) => {
+            if (!inquiry) return
 
+            inquiry.status = newStatus
+            //@ts-ignore -- showing that prev is not an array
+            setFilteredInquiries((prev) => {
+                    if (!Array.isArray(prev)) return prev
+
+                    prev.map((item) => (item._id === inquiry._id ? {...inquiry, status: newStatus} : item))
+                }
+            )
+        }
 
         return (
             !inquiry ? null :
@@ -89,6 +101,7 @@ const InquiryDetailsModal: FC<InquiryDetailsModalProps> =
                                 </Label>
                                 <Select value={inquiry.status}
                                         onValueChange={(newStatus: InquiryStatus) => {
+                                            updateInquiries(newStatus)
                                             if (inquiry) {
                                                 updateInquiryStatus({...inquiry, status: newStatus})
                                             }

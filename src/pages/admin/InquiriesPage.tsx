@@ -30,8 +30,7 @@ const InquiriesPage = () => {
             const previousInquiries = queryClient.getQueryData(['inquiries'])
 
             queryClient.setQueryData(['inquiries'], (old: Inquiry[]) => {
-                console.log(old)
-                    old.map((item) =>
+                    old?.map((item) =>
                         item._id === newInquiry._id ? newInquiry : item
                     )
                 }
