@@ -1,4 +1,5 @@
 import api from '@/api/index.ts'
+import {Inquiry} from '@/types/customer'
 
 const getCustomers = async () => {
     const response = await api.get('/admin/customers')
@@ -40,6 +41,11 @@ const getInquiries = async () => {
     return response.data.data
 }
 
+const updateInquiry = async (inquiry: Inquiry) => {
+    const response = await api.post(`/admin/inquiries/${inquiry._id}/update`, inquiry)
+    return response.data.data
+}
+
 export {
     getCustomers,
     getCustomer,
@@ -48,5 +54,6 @@ export {
     getOrdersByCustomer,
     getAnalytics,
     getStoreStats,
-    getInquiries
+    getInquiries,
+    updateInquiry
 }
