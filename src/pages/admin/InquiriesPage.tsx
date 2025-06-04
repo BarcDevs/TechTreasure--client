@@ -10,7 +10,6 @@ import {Inquiry} from '@/types/customer'
 import {useMutation, useQueryClient} from '@tanstack/react-query'
 import {updateInquiry} from '@/api/admin.ts'
 
-
 const InquiriesPage = () => {
     const inquiries = useLoaderData() as Inquiry[]
     const [searchTerm, setSearchTerm] = useState('')
@@ -30,18 +29,24 @@ const InquiriesPage = () => {
 
             const previousInquiries = queryClient.getQueryData(['inquiries'])
 
-            queryClient.setQueryData(['inquiries'], (old: Inquiry[]) =>
-                old.map((item) =>
-                    item._id === newInquiry._id ? newInquiry : item
-                )
+            queryClient.setQueryData(['inquiries'], (old: Inquiry[]) => {
+                console.log(old)
+                    old.map((item) =>
+                        item._id === newInquiry._id ? newInquiry : item
+                    )
+                }
             )
 
             return {previousInquiries}
         },
-        onError: (_, __, context) => {
+        onError: (error, _, context) => {
             if (context?.previousInquiries) {
                 queryClient.setQueryData(['inquiries'], context.previousInquiries)
             }
+
+            console.error('Mutation Error:', error)
+
+            throw error
         },
         onSettled: () => {
             queryClient.invalidateQueries({queryKey: ['inquiries']})
@@ -86,6 +91,7 @@ const InquiriesPage = () => {
                 isOpen={isModalOpen}
                 onClose={handleCloseModal}
                 updateInquiryStatus={updateInquiryStatus.mutate}
+                setFilteredInquiries={setFilteredInquiries}
             />
         </div>
     )
