@@ -20,9 +20,11 @@ import LanguagePicker from '@/components/shared/LanguagePicker.tsx'
 const MobileNavbar = ({}) => {
     const {t} = useTranslation(I18N_NAMESPACES.navigationLinks)
     const isLoggedIn = useSelector((state: IRootState) => state.auth.isAuthenticated)
+    const user = useSelector((state: IRootState) => state.auth.user)
     const location = useLocation().pathname
     const navigate = useNavigate()
     const isAuthPage = location === '/login' || location === '/signup'
+    const isAdminPage = location.startsWith('/admin')
     const isProductsPage = location.startsWith('/products')
 
     return (
@@ -66,6 +68,14 @@ const MobileNavbar = ({}) => {
                             >
                                 {t(NAVIGATION_LOCALES.profile)}
                             </DropdownMenuItem>
+
+                            {!isAdminPage && user?.role === 'admin' &&
+                                <DropdownMenuItem
+                                    onSelect={() => navigate('/admin')}
+                                    className={'cursor-pointer'}
+                                >
+                                    {t(NAVIGATION_LOCALES.adminDashboard)}
+                                </DropdownMenuItem>}
 
                             <DropdownMenuItem
                                 onSelect={() => navigate('/logout')}
