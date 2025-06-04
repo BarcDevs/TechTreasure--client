@@ -1,10 +1,8 @@
 import {Label} from '@/components/ui/label'
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from '@/components/ui/select'
 import {Textarea} from '@/components/ui/textarea'
 import {Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle} from '@/components/ui/dialog'
 import {User, Mail, Calendar, Package} from 'lucide-react'
 import {Inquiry, InquiryStatus} from '@/types/customer'
-import {inquiryStatus} from '@/components/admin/inquiries/inquiryUtils.ts'
 import {formatDate} from '@/lib/utils/time.ts'
 
 interface InquiryDetailsModalProps {
@@ -14,7 +12,7 @@ interface InquiryDetailsModalProps {
     onStatusUpdate: (inquiryId: string, newStatus: InquiryStatus) => void
 }
 
-const InquiryDetailsModal = ({inquiry, isOpen, onClose, onStatusUpdate}: InquiryDetailsModalProps) => {
+const InquiryDetailsModal = ({inquiry, isOpen, onClose}: InquiryDetailsModalProps) => {
     if (!inquiry) return null
 
     return (
