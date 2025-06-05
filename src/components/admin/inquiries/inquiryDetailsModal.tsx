@@ -7,6 +7,7 @@ import {Inquiry, InquiryStatus} from '@/types/customer'
 import {formatDate} from '@/lib/utils/time.ts'
 import {Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue} from '@/components/ui/select.tsx'
 import {inquiryStatus} from '@/components/admin/inquiries/inquiryUtils.ts'
+import {updateInquiry} from '@/api/admin.ts'
 
 type InquiryDetailsModalProps = {
     inquiry: Inquiry | null
@@ -19,7 +20,7 @@ const InquiryDetailsModal: FC<InquiryDetailsModalProps> =
     ({inquiry, isOpen, onClose, refetch}) => {
         const [currentInquiry, setCurrentInquiry] = useState<Inquiry>(inquiry!)
 
-        const updateInquiry = (newStatus: InquiryStatus) => {
+        const updateCurrentInquiry = async (newStatus: InquiryStatus) => {
             if (!inquiry) return
 
             setCurrentInquiry((prev) => {
@@ -29,6 +30,8 @@ const InquiryDetailsModal: FC<InquiryDetailsModalProps> =
                     return newInquiry
                 }
             )
+
+            await updateInquiry(currentInquiry)
 
             refetch()
         }
@@ -102,10 +105,7 @@ const InquiryDetailsModal: FC<InquiryDetailsModalProps> =
                                     Update Status
                                 </Label>
                                 <Select value={currentInquiry.status}
-                                        onValueChange={(newStatus: InquiryStatus) => {
-                                            console.log('status', newStatus)
-                                            updateInquiry(newStatus)
-                                        }}
+                                        onValueChange={(newStatus: InquiryStatus) => updateCurrentInquiry(newStatus)}
 
                                 >
                                     <SelectTrigger>

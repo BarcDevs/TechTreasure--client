@@ -10,7 +10,7 @@ import {Inquiry} from '@/types/customer'
 import {getInquiries} from '@/api/admin.ts'
 
 const InquiriesPage = () => {
-    const inquiries = useLoaderData() as Inquiry[]
+    const [inquiries, setInquiries] = useState<Inquiry[]>(useLoaderData() as Inquiry[])
     const [searchTerm, setSearchTerm] = useState('')
     const [statusFilter, setStatusFilter] = useState('all')
     const [selectedInquiry, setSelectedInquiry] = useState<Inquiry | null>(null)
@@ -25,6 +25,7 @@ const InquiriesPage = () => {
 
     const refreshInquiries = async () => {
         const newInquiries = await getInquiries()
+        setInquiries(newInquiries)
         setFilteredInquiries(
             filterInquiries(newInquiries, searchTerm, statusFilter)
         )
@@ -44,7 +45,9 @@ const InquiriesPage = () => {
         <div className="container mx-auto space-y-6 p-6">
             <InquiryPageHeader/>
 
-            <InquiryStatusCards/>
+            <InquiryStatusCards
+                inquiries={inquiries}
+            />
 
             <InquiryFilters
                 searchTerm={searchTerm}
