@@ -8,21 +8,26 @@ import {IRootState} from '@/store'
 import {updateDiscount} from '@/store/cartSlice.ts'
 import {useTranslation} from 'react-i18next'
 import {CART_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
+import {useState} from 'react'
 
 const CartSummary = ({}) => {
     const {t} = useTranslation(I18N_NAMESPACES.cart)
     const dispatch = useDispatch()
     const cart = useSelector((state: IRootState) => state.cart)
+    const [couponsApplied, setCouponsApplied] = useState<string[]>([])
     const handleCoupon = (e: React.FormEvent) => {
         e.preventDefault()
-        // todo real coupon system
         const form = new FormData(e.currentTarget as HTMLFormElement)
         const coupon = form.get('coupon') as string
 
-        coupon === config.GLOBAL_COUPON_CODE &&
+        if (couponsApplied.includes(coupon)) return
+        setCouponsApplied([...couponsApplied, coupon])
+
+        config.COUPON_CODES[coupon] &&
         dispatch(
             updateDiscount({
-                ...cart.discount, percent: (cart.discount?.percent ?? 0) + 5
+                ...cart.discount,
+                percent: (cart.discount?.percent ?? 0) + config.COUPON_CODES[coupon]
             })
         )
     }
