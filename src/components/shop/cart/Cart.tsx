@@ -1,5 +1,5 @@
 import Button from '@/components/elements/Button.tsx'
-import {Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow} from "@/components/ui/table"
+import {Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow} from '@/components/ui/table'
 import {Link} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {IRootState} from '@/store'
@@ -27,19 +27,27 @@ const Cart = ({}) => {
                     <TableHead className={'text-center'}>{t(CART_LOCALES.subtotal)}</TableHead>
                 </TableRow>
             </TableHeader>
+            
             <TableBody>
                 {cart.items.length ? cart.items.map(item => (
-                        <CartItem key={item._id} item={item}/>
+                        <CartItem
+                            key={item._id}
+                            item={item}/>
                     )) :
-                    <TableRow><TableCell colSpan={4} className={'text-center'}>
-                        <p>{t(CART_LOCALES.cartIsEmpty)}</p>
-                    </TableCell></TableRow>}
+                    <TableRow>
+                        <TableCell colSpan={4} className={'text-center'}>
+                            <p>{t(CART_LOCALES.cartIsEmpty)}</p>
+                        </TableCell>
+                    </TableRow>}
             </TableBody>
+
             <TableFooter>
                 <TableRow className={'text-body-medium'}>
                     <TableCell className={'pl-0'}>
                         <Link className={'flex-row-start py-6 pl-10'} to={'/products?page=1'}>
-                            <Button text={t(CART_LOCALES.returnToShop)} variant={'white'}/>
+                            <Button
+                                text={t(CART_LOCALES.returnToShop)}
+                                variant={'white'}/>
                         </Link>
                     </TableCell>
                     <TableCell/>
