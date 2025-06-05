@@ -46,13 +46,14 @@ const DesktopNavbar = ({}) => {
                 </a>
                 {/*menu*/}
                 <div
-                    className={'mx-8 flex h-6 w-[70%] max-w-[450px] justify-around'}>
+                    className={'mx-8 flex h-6 w-[70%] max-w-[450px] justify-around gap-4'}>
                     {NAVIGATION_LINKS.map(link => (
                         <NavbarLink
                             key={link.name}
                             to={link.path}
                             label={t(link.locale)}
-                            location={location}/>
+                            location={location}
+                        />
                     ))}
                     {!isLoggedIn &&
                         <NavbarLink
