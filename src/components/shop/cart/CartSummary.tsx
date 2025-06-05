@@ -1,3 +1,4 @@
+import {config} from '@/config'
 import Button from '@/components/elements/Button.tsx'
 import {Input} from '@/components/ui/input.tsx'
 import {Link} from 'react-router-dom'
@@ -18,9 +19,7 @@ const CartSummary = ({}) => {
         const form = new FormData(e.currentTarget as HTMLFormElement)
         const coupon = form.get('coupon') as string
 
-        console.log(coupon)
-
-        coupon === '5percent' &&
+        coupon === config.GLOBAL_COUPON_CODE &&
         dispatch(
             updateDiscount({
                 ...cart.discount, percent: (cart.discount?.percent ?? 0) + 5
