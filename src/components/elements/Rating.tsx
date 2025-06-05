@@ -1,17 +1,32 @@
-import fullStar from '/assets/icons/star-filled.svg'
-import halfStar from '/assets/icons/star-half.svg'
-import emptyStar from '/assets/icons/star-empty.svg'
-import Icon from '@/components/elements/Icon.tsx'
+import Star from '@/components/shared/Star.tsx'
+import {FC, useState} from 'react'
+import {updateProductRating} from '@/api/products.ts'
 
-const Rating = ({rating}: { rating: number }) => (
-    <div className={'inline-flex'}>
-        {[...Array(5)].map((_, i) => (
-            rating >= i + .9 ? <Icon key={i} path={fullStar} name="star"/> :
-                rating >= i + .4 ? <Icon key={i} path={halfStar} name="star"/> :
-                    <Icon key={i} path={emptyStar} name="star"/>
-        ))}
-    </div>
-)
+type Props = {
+    rating: number
+    id: string
+}
+
+const Rating: FC<Props> = ({rating, id}) => {
+    const [productRating, setProductRating] = useState(rating)
+    const onStarClick = async (newRating: number) => {
+        const product = await updateProductRating(id, newRating)
+
+        setProductRating(product.rating)
+    }
+
+    return (
+        <div className={'inline-flex'}>
+            {[...Array(5)].map((_, i) => (
+                productRating >= i + .9 ?
+                    <Star key={i} rating={i + 1} icon={'full'} onStarClick={onStarClick}/> :
+                    productRating >= i + .4 ?
+                        <Star key={i} rating={i + 1} icon={'half'} onStarClick={onStarClick}/> :
+                        <Star key={i} rating={i + 1} icon={'empty'} onStarClick={onStarClick}/>
+            ))}
+        </div>
+    )
+}
 
 
 export default Rating

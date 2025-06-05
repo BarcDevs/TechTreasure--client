@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {FC, useEffect, useState} from 'react'
 import {Product, ProductWithColors} from '@/types'
 import Rating from '@/components/elements/Rating.tsx'
 import {Separator} from '@/components/ui/separator.tsx'
@@ -15,7 +15,11 @@ import {isProductWithColors} from '@/lib/utils/product.ts'
 import {imageUrl} from '@/lib/utils/url.ts'
 import {IRootState} from '@/store'
 
-const ItemDetails = ({item}: { item: Product }) => {
+type ItemDetailsProps = {
+    item: Product
+}
+
+const ItemDetails: FC<ItemDetailsProps> = ({item}) => {
     const dispatch = useDispatch()
     const isColors = isProductWithColors(item)
 
@@ -41,9 +45,12 @@ const ItemDetails = ({item}: { item: Product }) => {
         setBigImage(() => mainImage || item.mainImage[0])
     }, [item, mainImage])
 
-    const addToCartHandler = () => {
-        dispatch(addToCart({item, quantity, variant: {color: color ?? undefined, size: selectedSize}}))
-    }
+    const addToCartHandler = () =>
+        dispatch(addToCart({
+            item,
+            quantity,
+            variant: {color: color ?? undefined, size: selectedSize}
+        }))
 
     const handleFavoriteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation()
@@ -53,7 +60,6 @@ const ItemDetails = ({item}: { item: Product }) => {
             dispatch(removeFromWishlist(item)) :
             dispatch(addToWishlist(item))
     }
-
 
     return (
         <section className={'flex-row-between w-full max-md:flex-col'}>
@@ -76,15 +82,28 @@ const ItemDetails = ({item}: { item: Product }) => {
             </section>
             <section className={'flex-col-start w-[30%] gap-6 max-md:w-full'}>
                 <div className={'flex-col-start w-full gap-4'}>
-                    <h3 className={'text-large-semibold'}>{item.name}</h3>
+                    <h3 className={'text-large-semibold'}>
+                        {item.name}
+                    </h3>
                     <div className={'flex-row-start gap-2'}>
-                        <Rating rating={item.rating}/>
-                        <p className={'text-small'}><span className={'opacity-50'}>({item.votes} Reviews) | </span><span
-                            className={`${item.stock > 50 ? 'text-green-500 opacity-60' : 'text-red-500 opacity-100'}`}>
-                            {item.stock > 50 ? 'In Stock' : item.stock > 0 ? `Only ${item.stock} left` : 'Out of Stock'}
-                        </span></p>
+                        <Rating
+                            rating={item.rating}
+                            id={item._id}
+                        />
+                        <p className={'text-small'}>
+                            <span className={'opacity-50'}>({item.votes} Reviews) | </span>
+                            <span
+                                className={`${item.stock > 50 ? 'text-green-500 opacity-60' : 'text-red-500 opacity-100'}`}>
+                            {item.stock >
+                            50 ? 'In Stock' : item.stock > 0 ?
+                                `Only ${item.stock} left` :
+                                'Out of Stock'}
+                        </span>
+                        </p>
                     </div>
-                    <p className={'text-large-regular'}>${item.price.toFixed(2)}</p>
+                    <p className={'text-large-regular'}>
+                        ${item.price.toFixed(2)}
+                    </p>
                 </div>
                 <p className={'text-body'}>{item.description}</p>
                 <Separator className={'h-[0.5px] bg-black'}/>

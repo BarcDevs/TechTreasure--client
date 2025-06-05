@@ -2,7 +2,7 @@ import {ProductForm} from '@/validations/productForm.ts'
 import {Product} from '@/types'
 import {extractFileFromArray, extractFileFromObject, generateFileName} from '@/lib/utils/files.ts'
 
-export const convertToProductSchema = (product: ProductForm, store: string): Product => {
+export const convertToProductSchema = (product: ProductForm): Product => {
     const {price, sale, shippingFee, stock} = product
 
     const discount = Number(price) * (sale && (Number(sale) > 0) ?
@@ -15,7 +15,6 @@ export const convertToProductSchema = (product: ProductForm, store: string): Pro
         shippingFee: Number(shippingFee) || undefined,
         stock: Number(stock),
         oldPrice: discount > 0 ? Number(price) : undefined,
-        store,
         // @ts-ignore
         defaultColor: product.colors && product.colors.length ? product.colors[0].name : undefined
     }
