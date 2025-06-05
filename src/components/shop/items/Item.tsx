@@ -1,16 +1,11 @@
 import {Card, CardContent, CardFooter} from '@/components/ui/card.tsx'
 import Rating from '@/components/elements/Rating.tsx'
 import Icon from '@/components/elements/Icon.tsx'
-// import eye from '/assets/icons/eye.svg'
 import trash from '/assets/icons/trash.svg'
-import {Product, ProductWithColors} from '@/types'
+import {Product} from '@/types'
 import {useNavigate} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
 import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
-import {getImagesOfColor} from '@/lib/utils/image.ts'
-import {useState} from 'react'
-import ColorPicker from '@/components/shared/ColorPicker.tsx'
-import {isProductWithColors} from '@/lib/utils/product.ts'
 import {imageUrl} from '@/lib/utils/url.ts'
 import AddToCartButton from '@/components/elements/AddToCartButton.tsx'
 import FavoritesButton from '@/components/elements/FavoritesButton.tsx'
@@ -31,9 +26,12 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
     const navigate = useNavigate()
     const {t} = useTranslation([I18N_NAMESPACES.shop, I18N_NAMESPACES.global])
 
-    const isColors = isProductWithColors(item)
-    const [color, setColor] = useState((item as ProductWithColors).defaultColor || null)
-    const imagePath = isColors ? getImagesOfColor(item.mainImage, color!, true)[0]?.path : item.mainImage[0].path
+    // const isColors = isProductWithColors(item)
+    // const [color, setColor] = useState((item as ProductWithColors).defaultColor || null)
+    const imagePath =
+        // isColors ?
+        // getImagesOfColor(item.mainImage, color!, true)[0]?.path :
+        item.mainImage[0].path
     const handleCardClick = () => {
         navigate(`/products/${item._id}`)
     }
@@ -105,7 +103,7 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
                         />
                         <div className="text-small-semibold text-black opacity-50">({item.votes})</div>
                     </div>}
-                    {isColors && <ColorPicker colors={item.colors} color={color} setColor={setColor}/>}
+                    {/*{isColors && <ColorPicker colors={item.colors} color={color} setColor={setColor}/>}*/}
                 </CardFooter>
             </Card>
         </article>

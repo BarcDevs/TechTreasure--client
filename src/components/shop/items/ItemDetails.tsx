@@ -6,7 +6,6 @@ import QuantitySelector from '@/components/shared/QuantitySelector.tsx'
 import Button from '@/components/elements/Button.tsx'
 import Icon from '@/components/elements/Icon.tsx'
 import DeliveryDetails from '@/components/checkout/DeliveryDetails.tsx'
-import ColorPicker from '@/components/shared/ColorPicker.tsx'
 import {addToWishlist, removeFromWishlist} from '@/store/wishlistSlice.ts'
 import {useDispatch, useSelector} from 'react-redux'
 import {addToCart} from '@/store/cartSlice.ts'
@@ -107,11 +106,11 @@ const ItemDetails: FC<ItemDetailsProps> = ({item}) => {
                 </div>
                 <p className={'text-body'}>{item.description}</p>
                 <Separator className={'h-[0.5px] bg-black'}/>
-                {isColors &&
-                    <div className={'flex_row flex-start-center gap-6'}>
-                        <p className={'text-heading font-inter'}>Colors:</p>
-                        <ColorPicker colors={item.colors} color={color} setColor={setColor}/>
-                    </div>}
+                {/*{isColors &&*/}
+                {/*    <div className={'flex_row flex-start-center gap-6'}>*/}
+                {/*        <p className={'text-heading font-inter'}>Colors:</p>*/}
+                {/*        <ColorPicker colors={item.colors} color={color} setColor={setColor}/>*/}
+                {/*    </div>}*/}
                 {item.sizes &&
                     <div className={'flex-row-start gap-6'}>
                         <p className={'text-heading font-inter'}>Size:</p>
