@@ -92,12 +92,17 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
                         {item.name}
                     </div>
                     <div className="inline-flex-start gap-3">
-                        <div className="text-red-500">${Math.round(item.price)}</div>
+                        <div className="text-red-500">
+                            ${Math.round(item.price)}
+                        </div>
                         {item.oldPrice &&
                             <div className="text-black line-through opacity-50">${Math.round(item.oldPrice)}</div>}
                     </div>
                     {variant !== 'wishlist' && <div className="inline-flex-start gap-2">
-                        <Rating rating={item.rating}/>
+                        <Rating
+                            id={item._id}
+                            rating={item.rating}
+                        />
                         <div className="text-small-semibold text-black opacity-50">({item.votes})</div>
                     </div>}
                     {isColors && <ColorPicker colors={item.colors} color={color} setColor={setColor}/>}
