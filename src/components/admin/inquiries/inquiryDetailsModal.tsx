@@ -1,3 +1,4 @@
+import {FC, useState} from 'react'
 import {Label} from '@/components/ui/label'
 import {Textarea} from '@/components/ui/textarea'
 import {Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle} from '@/components/ui/dialog'
@@ -6,29 +7,30 @@ import {Inquiry, InquiryStatus} from '@/types/customer'
 import {formatDate} from '@/lib/utils/time.ts'
 import {Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue} from '@/components/ui/select.tsx'
 import {inquiryStatus} from '@/components/admin/inquiries/inquiryUtils.ts'
-import {FC} from 'react'
 
 type InquiryDetailsModalProps = {
     inquiry: Inquiry | null
     isOpen: boolean
     onClose: () => void
-    updateInquiryStatus: (updatedInquiry: Inquiry) => void
-    setFilteredInquiries: (inquiries: Inquiry[]) => void
+    refetch: () => void
 }
 
 const InquiryDetailsModal: FC<InquiryDetailsModalProps> =
-    ({inquiry, isOpen, onClose, updateInquiryStatus, setFilteredInquiries}) => {
-        const updateInquiries = (newStatus: InquiryStatus) => {
+    ({inquiry, isOpen, onClose, refetch}) => {
+        const [currentInquiry, setCurrentInquiry] = useState<Inquiry>(inquiry!)
+
+        const updateInquiry = (newStatus: InquiryStatus) => {
             if (!inquiry) return
 
-            inquiry.status = newStatus
-            //@ts-ignore -- showing that prev is not an array
-            setFilteredInquiries((prev) => {
-                    if (!Array.isArray(prev)) return prev
+            setCurrentInquiry((prev) => {
+                    const newInquiry = prev
+                    newInquiry.status = newStatus
 
-                    prev.map((item) => (item._id === inquiry._id ? {...inquiry, status: newStatus} : item))
+                    return newInquiry
                 }
             )
+
+            refetch()
         }
 
         return (
@@ -99,12 +101,10 @@ const InquiryDetailsModal: FC<InquiryDetailsModalProps> =
                                 <Label>
                                     Update Status
                                 </Label>
-                                <Select value={inquiry.status}
+                                <Select value={currentInquiry.status}
                                         onValueChange={(newStatus: InquiryStatus) => {
-                                            updateInquiries(newStatus)
-                                            if (inquiry) {
-                                                updateInquiryStatus({...inquiry, status: newStatus})
-                                            }
+                                            console.log('status', newStatus)
+                                            updateInquiry(newStatus)
                                         }}
 
                                 >
