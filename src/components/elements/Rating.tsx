@@ -5,9 +5,10 @@ import {updateProductRating} from '@/api/products.ts'
 type Props = {
     rating: number
     id: string
+    disabled?: boolean
 }
 
-const Rating: FC<Props> = ({rating, id}) => {
+const Rating: FC<Props> = ({rating, id, disabled = false}) => {
     const [productRating, setProductRating] = useState(rating)
     const onStarClick = async (newRating: number) => {
         const product = await updateProductRating(id, newRating)
@@ -19,10 +20,28 @@ const Rating: FC<Props> = ({rating, id}) => {
         <div className={'inline-flex'}>
             {[...Array(5)].map((_, i) => (
                 productRating >= i + .9 ?
-                    <Star key={i} rating={i + 1} icon={'full'} onStarClick={onStarClick}/> :
+                    <Star
+                        key={i}
+                        rating={i + 1}
+                        icon={'full'}
+                        onStarClick={onStarClick}
+                        disabled={disabled}
+                    /> :
                     productRating >= i + .4 ?
-                        <Star key={i} rating={i + 1} icon={'half'} onStarClick={onStarClick}/> :
-                        <Star key={i} rating={i + 1} icon={'empty'} onStarClick={onStarClick}/>
+                        <Star
+                            key={i}
+                            rating={i + 1}
+                            icon={'half'}
+                            onStarClick={onStarClick}
+                            disabled={disabled}
+                        /> :
+                        <Star
+                            key={i}
+                            rating={i + 1}
+                            icon={'empty'}
+                            onStarClick={onStarClick}
+                            disabled={disabled}
+                        />
             ))}
         </div>
     )

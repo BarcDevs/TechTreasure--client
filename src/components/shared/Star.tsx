@@ -10,15 +10,16 @@ type StarProps = {
     icon: 'empty' | 'half' | 'full'
     rating: number
     onStarClick: (newRating: number) => void
+    disabled?: boolean
 }
 
-const Star: FC<StarProps> = ({icon, rating, onStarClick}) => {
+const Star: FC<StarProps> = ({icon, rating, onStarClick, disabled = false}) => {
     const isLoggedIn = useSelector((state: IRootState) => state.auth.isAuthenticated)
 
     return (
         <button
             onClick={() => onStarClick(rating)}
-            disabled={!isLoggedIn}
+            disabled={disabled || !isLoggedIn}
         >
             <Icon
                 path={icon === 'empty' ?

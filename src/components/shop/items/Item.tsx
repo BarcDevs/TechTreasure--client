@@ -83,7 +83,10 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
                             src={imagePath ? imageUrl(imagePath) : imageUrl(item.mainImage[0]?.path)}
                             alt={item.name}/>
                     </div>
-                    <AddToCartButton item={item} itemVariant={variant} hoverable/>
+                    <AddToCartButton
+                        item={item}
+                        itemVariant={variant}
+                        hoverable/>
                 </CardContent>
                 <CardFooter className={'text-body-medium flex-col-start gap-2'}>
                     <div className="text-black">
@@ -94,14 +97,19 @@ const Item = ({item, variant, onDelete}: ItemProps | WishlistItemProps) => {
                             ${Math.round(item.price)}
                         </div>
                         {item.oldPrice &&
-                            <div className="text-black line-through opacity-50">${Math.round(item.oldPrice)}</div>}
+                            <div className="text-black line-through opacity-50">
+                                ${Math.round(item.oldPrice)}
+                            </div>}
                     </div>
                     {variant !== 'wishlist' && <div className="inline-flex-start gap-2">
                         <Rating
                             id={item._id}
                             rating={item.rating}
+                            disabled={true}
                         />
-                        <div className="text-small-semibold text-black opacity-50">({item.votes})</div>
+                        <div className="text-small-semibold text-black opacity-50">
+                            ({item.votes})
+                        </div>
                     </div>}
                     {/*{isColors && <ColorPicker colors={item.colors} color={color} setColor={setColor}/>}*/}
                 </CardFooter>
