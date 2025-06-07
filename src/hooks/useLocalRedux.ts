@@ -46,6 +46,5 @@ export const useLocalRedux = () => {
             localStorage.setItem('auth-state', JSON.stringify(auth))
         else
             localStorage.removeItem('auth-state')
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     })
 }

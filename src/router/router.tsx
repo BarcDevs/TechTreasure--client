@@ -1,6 +1,6 @@
 import {createBrowserRouter} from 'react-router-dom'
 
-import store from '@/store'
+import {store} from '@/store'
 import {loadAuthState} from '@/store/authSlice.ts'
 
 import RootLayout from '@/pages/layouts/RootLayout.tsx'

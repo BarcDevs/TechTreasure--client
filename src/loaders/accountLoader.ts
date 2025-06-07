@@ -1,4 +1,4 @@
-import store from '@/store'
+import {store} from '@/store'
 import {loadAuthState} from '@/store/authSlice.ts'
 
 const accountLoader = () => {
