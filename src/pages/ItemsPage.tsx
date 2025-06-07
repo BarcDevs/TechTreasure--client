@@ -7,11 +7,11 @@ import {Categories} from '@/constants/categories.ts'
 
 
 const ItemsPage = () => {
-    const pageSize = 8
+    const pageSize = 10
     const [searchParams] = useSearchParams()
     const currentPage = Number(searchParams.get('page')) || 1;
-    const searchTerm = searchParams.get('search')
-    const category = searchParams.get('category')
+    const searchTerm = searchParams.get('search') as string | undefined
+    const category = searchParams.get('category') as string | undefined
 
     const items = useQuery<{
         products: Product[],
@@ -30,7 +30,9 @@ const ItemsPage = () => {
     })
 
     return (
-        <ItemsView items={items.data}/>
+        <ItemsView
+            items={items.data}
+        />
     )
 }
 

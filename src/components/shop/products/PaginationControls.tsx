@@ -1,76 +1,79 @@
 import {
     Pagination,
     PaginationContent,
-    PaginationEllipsis,
     PaginationItem,
-    PaginationLink,
     PaginationNext,
     PaginationPrevious
 } from '@/components/ui/pagination'
+
 import {FC} from 'react'
 import {useSearchParams} from 'react-router-dom'
-import PageLink from '@/components/shop/products/PageLink.tsx'
+import PageLink from '@/components/shop/products/PageLink'
 
 type PaginationControlsProps = {
     totalPages: number
 }
 
-export const PaginationControls: FC<PaginationControlsProps> = ({totalPages}) => {
-    const [searchParams, setSearchParams] = useSearchParams()
-    const currentPage = Number(searchParams.get('page'))
+const PaginationControls: FC<PaginationControlsProps> = ({totalPages}) => {
+    const [searchParams, setParams] = useSearchParams()
+    const currentPage = Number(searchParams.get('page')) || 1
 
     const setPage = (page: number) => {
-        const newPage
-            = page < 1 ? 1 :
-            page > totalPages ? totalPages :
-                page
-        setSearchParams(
-            {page: newPage.toString()}
-        )
+        const clampedPage = Math.max(1, Math.min(page, totalPages))
+        const updatedParams = new URLSearchParams(searchParams)
+        updatedParams.set('page', clampedPage.toString())
+        setParams(updatedParams)
     }
+
+    const getVisiblePages = (): number[] => {
+        if (totalPages === 2) return [1, 2]
+
+        if (currentPage === 1) return [1, 2, 3]
+        if (currentPage === totalPages) return [totalPages - 2, totalPages - 1, totalPages]
+
+        return [currentPage - 1, currentPage, currentPage + 1]
+    }
+
+    const visiblePages = getVisiblePages().filter(
+        (page) => page >= 1 && page <= totalPages
+    )
 
     return (
         <div className="mt-8">
             <Pagination>
                 <PaginationContent>
-                    <PaginationItem>
-                        <PaginationPrevious to={`/products?page=${currentPage - 1}`}
-                                            onClick={() => setPage(currentPage - 1)}
+                    {currentPage > 1 && (
+                        <PaginationItem>
+                            <PaginationPrevious
+                                to="#"
+                                onClick={() => setPage(currentPage - 1)}
+                                className="cursor-pointer"
+                            />
+                        </PaginationItem>
+                    )}
+
+                    {visiblePages.map((page) => (
+                        <PageLink
+                            key={page}
+                            currentPage={currentPage}
+                            setPage={setPage}
+                            page={page}
                         />
-                    </PaginationItem>
-                    <PageLink
-                        currentPage={currentPage}
-                        setPage={setPage}
-                        linkLocation={1}
-                        totalPages={totalPages}
-                    />
-                    <PageLink
-                        currentPage={currentPage}
-                        setPage={setPage}
-                        linkLocation={2}
-                        totalPages={totalPages}
-                    />
-                    <PageLink
-                        currentPage={currentPage}
-                        setPage={setPage}
-                        linkLocation={3}
-                        totalPages={totalPages}
-                    />
-                    <PaginationItem>
-                        <PaginationEllipsis/>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink to={`/products?page=${totalPages}`}
-                                        onClick={() => setPage(totalPages)}>
-                            {totalPages}
-                        </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationNext to={`/products?page=${currentPage + 1}`}
-                                        onClick={() => setPage(currentPage + 1)}/>
-                    </PaginationItem>
+                    ))}
+
+                    {currentPage < totalPages && (
+                        <PaginationItem>
+                            <PaginationNext
+                                to="#"
+                                onClick={() => setPage(currentPage + 1)}
+                                className="cursor-pointer"
+                            />
+                        </PaginationItem>
+                    )}
                 </PaginationContent>
             </Pagination>
         </div>
     )
 }
+
+export default PaginationControls
