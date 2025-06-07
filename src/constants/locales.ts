@@ -41,6 +41,8 @@ export enum GLOBAL_LOCALES {
     viewAll = 'viewAll',
     viewAllProducts = 'viewAllProducts',
     clearFilters = 'clearFilters',
+    prev = 'prev',
+    next = 'next',
 
     notFoundHeadline = 'notFoundHeadline',
     notFoundText = 'notFoundText',
