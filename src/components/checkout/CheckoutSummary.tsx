@@ -1,5 +1,5 @@
 import Summary from '@/components/shared/Summary.tsx'
-import {MutableRefObject, useState} from 'react'
+import {FC, MutableRefObject, useState} from 'react'
 import Button from '@/components/elements/Button.tsx'
 import {FormRef} from '@/types/ui'
 import CheckoutItem from '@/components/checkout/CheckoutItem.tsx'
@@ -14,7 +14,7 @@ type Props = {
     userInfoRef: MutableRefObject<FormRef | null>
 }
 
-const CheckoutSummary: React.FC<Props> = ({userInfoRef}) => {
+const CheckoutSummary: FC<Props> = ({userInfoRef}) => {
     const {t} = useTranslation(I18N_NAMESPACES.checkout)
     const cart = useSelector((state: IRootState) => state.cart)
     const stripe = useStripe()
