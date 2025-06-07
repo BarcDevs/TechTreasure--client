@@ -11,7 +11,6 @@ const SuccessPage = ({}) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        console.log('clear cart')
         dispatch(clearCart())
     }, [])
 
