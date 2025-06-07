@@ -1,6 +1,4 @@
 import Summary from '@/components/shared/Summary.tsx'
-import {RadioGroup, RadioGroupItem} from '@/components/ui/radio-group.tsx'
-import {Label} from '@/components/ui/label.tsx'
 import {MutableRefObject, useState} from 'react'
 import {Input} from '@/components/ui/input.tsx'
 import Button from '@/components/elements/Button.tsx'
@@ -65,20 +63,9 @@ const CheckoutSummary: React.FC<Props> = ({userInfoRef}) => {
                              discount={cart.cartDiscount}/>
                 </div>
 
-                <RadioGroup className={'w-full'}
-                            defaultValue={'creditCard'}>
-                    <div className={'flex_row items-center justify-start gap-4'}>
-                        <RadioGroupItem id={'creditCard'}
-                                        value={'creditCard'}
-                                        className={'border-black text-black'}
-                                        defaultChecked/>
-                        <Label className={'flex-row-between grow items-center'}
-                               htmlFor={'creditCard'}>
-                            <p>{t(CHECKOUT_LOCALES.creditCard)}</p>
-                        </Label>
-                    </div>
+                <div className={'w-full'}>
                     <PaymentElement/>
-                </RadioGroup>
+                </div>
 
                 <div className={'lg:flex_row flex_col gap-4'}>
                     <Input className={'no-focus text-body h-12 min-w-48 border-black placeholder:opacity-50'}

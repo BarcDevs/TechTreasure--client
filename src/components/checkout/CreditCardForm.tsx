@@ -29,6 +29,7 @@ const CreditCardForm = forwardRef(
             }
         })
         const formRef = useRef<HTMLFormElement | null>(null)
+        // @ts-ignore
         useImperativeHandle(ref, () => ({
             submit: () => {
                 form.handleSubmit(onSubmit)()
