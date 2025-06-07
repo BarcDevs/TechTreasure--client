@@ -67,7 +67,6 @@ const cartSlice = createSlice({
 
         },
         updateCoupons: (cart, {payload: coupons}: { payload: string[] }) => {
-            console.log(coupons, 'coupons')
             cart.coupons = coupons
         },
         updateDiscount: (cart, {payload: discount}: { payload: { percent?: number, fixed?: number } }) => {
