@@ -101,6 +101,7 @@ export type Cart = {
         percent?: number
         fixed?: number
     }
+    coupons: string[]
     cartDiscount?: number
     shipping?: number
     total: number

@@ -18,6 +18,8 @@ const cartSlice = createSlice({
         totalItems: 0,
         subtotal: 0,
         shipping: 0,
+        coupons: [] as string[],
+        discount: 0,
         cartDiscount: 0,
         total: 0
     } as Cart,
@@ -42,6 +44,7 @@ const cartSlice = createSlice({
 
             cart.totalItems += 1
             cart.subtotal += item.price
+            cart.coupons = []
             cart.cartDiscount = calculateDiscount(cart)
             cart.shipping = (item.shippingFee ?? 0) + (cart.shipping ?? 0)
             cart.total = calculateCartTotal(cart)
@@ -62,6 +65,10 @@ const cartSlice = createSlice({
             existingItem.quantity = quantity
             existingItem.subtotal = item.price * quantity
 
+        },
+        updateCoupons: (cart, {payload: coupons}: { payload: string[] }) => {
+            console.log(coupons, 'coupons')
+            cart.coupons = coupons
         },
         updateDiscount: (cart, {payload: discount}: { payload: { percent?: number, fixed?: number } }) => {
             cart.discount = discount
@@ -115,6 +122,7 @@ export const {
     deleteFromCart,
     updateCart,
     clearCart,
+    updateCoupons,
     updateDiscount,
     loadCart
 } = cartSlice.actions

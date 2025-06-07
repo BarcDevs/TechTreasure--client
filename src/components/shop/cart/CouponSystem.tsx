@@ -1,6 +1,6 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {config} from '@/config'
-import {updateDiscount} from '@/store/cartSlice.ts'
+import {updateCoupons, updateDiscount} from '@/store/cartSlice.ts'
 import {useDispatch, useSelector} from 'react-redux'
 import {IRootState} from '@/store'
 import Button from '@/components/elements/Button.tsx'
@@ -14,8 +14,10 @@ const CouponSystem = ({}) => {
 
     const dispatch = useDispatch()
     const cart = useSelector((state: IRootState) => state.cart)
+    const coupons = useSelector((state: IRootState) => state.cart.coupons)
 
-    const [couponsApplied, setCouponsApplied] = useState<string[]>([])
+    const [couponsApplied, setCouponsApplied] = useState<string[]>(coupons)
+
     const addCoupon = (e: React.FormEvent) => {
         e.preventDefault()
         const form = new FormData(e.currentTarget as HTMLFormElement)
@@ -44,6 +46,10 @@ const CouponSystem = ({}) => {
             })
         )
     }
+
+    useEffect(() => {
+        dispatch(updateCoupons(couponsApplied))
+    }, [couponsApplied])
 
     return (
         <div>
