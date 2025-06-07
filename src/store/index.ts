@@ -6,20 +6,18 @@ import cartSlice from '@/store/cartSlice'
 import wishlistSlice from '@/store/wishlistSlice'
 import authSlice from '@/store/authSlice'
 import checkoutSlice from '@/store/checkoutSlice'
-import orderDetailsSlice from '@/store/orderDetailsSlice'
 
 const rootReducer = combineReducers({
     cart: cartSlice,
     wishlist: wishlistSlice,
     auth: authSlice,
     checkout: checkoutSlice,
-    orderDetails: orderDetailsSlice
 })
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['orderDetails', 'auth', 'cart', 'checkout']
+    whitelist: ['auth', 'cart', 'checkout']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
