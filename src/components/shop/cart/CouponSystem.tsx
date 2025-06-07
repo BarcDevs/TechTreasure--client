@@ -20,7 +20,8 @@ const CouponSystem = ({}) => {
 
     const addCoupon = (e: React.FormEvent) => {
         e.preventDefault()
-        const form = new FormData(e.currentTarget as HTMLFormElement)
+        const formElement = e.currentTarget as HTMLFormElement
+        const form = new FormData(formElement)
         const coupon = form.get('coupon') as string
 
         if (!config.COUPON_CODES[coupon]) return
@@ -34,6 +35,8 @@ const CouponSystem = ({}) => {
                 percent: (cart.discount?.percent ?? 0) + config.COUPON_CODES[coupon]
             })
         )
+
+        formElement.reset()
     }
 
     const removeCoupon = (coupon: string) => {
