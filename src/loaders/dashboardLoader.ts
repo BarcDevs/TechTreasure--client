@@ -1,7 +1,8 @@
-import {getAnalytics, getInquiries, getOrders} from '@/api/admin.ts'
-import {Order} from '@/types/customer'
+import {getAnalytics, getInquiries} from '@/api/admin.ts'
+import {Inquiry, Order} from '@/types/customer'
 import {getProducts} from '@/api/products.ts'
 import {Product} from '@/types'
+import {getOrders} from '@/api/orders.ts'
 
 const dashboardLoader = async (): Promise<{
     orders: Order[],
