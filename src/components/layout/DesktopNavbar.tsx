@@ -51,7 +51,7 @@ const DesktopNavbar = ({}) => {
                         <NavbarLink
                             key={link.name}
                             to={link.path}
-                            label={t(link.key)}
+                            label={t(link.locale)}
                             location={location}
                         />
                     ))}
