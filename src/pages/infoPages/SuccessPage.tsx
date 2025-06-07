@@ -18,7 +18,7 @@ const SuccessPage = ({}) => {
         <main className={'flex-center-col gap-20'}>
             <div className={'flex-center-col mt-[250px] gap-10'}>
                 <h1
-                    className="font-inter text-[70px] font-medium leading-[115px] tracking-[3.30px] text-black">
+                    className="text-center font-inter text-[70px] font-medium leading-[115px] tracking-[3.30px] text-black">
                     {t(GLOBAL_LOCALES.successHeadline)}
                 </h1>
                 <p className={'text-body text-black'}>
