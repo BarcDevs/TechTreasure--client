@@ -1,14 +1,14 @@
 import Summary from '@/components/shared/Summary.tsx'
 import {MutableRefObject, useState} from 'react'
-import {Input} from '@/components/ui/input.tsx'
 import Button from '@/components/elements/Button.tsx'
 import {FormRef} from '@/types/ui'
 import CheckoutItem from '@/components/checkout/CheckoutItem.tsx'
 import {IRootState} from '@/store'
 import {useSelector} from 'react-redux'
-import {CART_LOCALES, CHECKOUT_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
+import {CHECKOUT_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 import {useTranslation} from 'react-i18next'
 import {PaymentElement, useElements, useStripe} from '@stripe/react-stripe-js'
+import CouponSystem from '@/components/shop/cart/CouponSystem.tsx'
 
 type Props = {
     userInfoRef: MutableRefObject<FormRef | null>
@@ -67,13 +67,12 @@ const CheckoutSummary: React.FC<Props> = ({userInfoRef}) => {
                     <PaymentElement/>
                 </div>
 
-                <div className={'lg:flex_row flex_col gap-4'}>
-                    <Input className={'no-focus text-body h-12 min-w-48 border-black placeholder:opacity-50'}
-                           placeholder={t(CART_LOCALES.couponCode, {ns: I18N_NAMESPACES.cart})}/>
-                    <Button className={'whitespace-nowrap text-nowrap'}
-                            text={t(CART_LOCALES.applyCoupon, {ns: I18N_NAMESPACES.cart})}/>
-                </div>
-                <Button text={t(CHECKOUT_LOCALES.placeOrder)} onClick={handlePlaceOrder}/>
+                <CouponSystem/>
+
+                <Button
+                    text={t(CHECKOUT_LOCALES.placeOrder)}
+                    onClick={handlePlaceOrder}
+                />
 
                 {errorMessage && <p className={'text-red-500'}>{errorMessage}</p>}
             </section>
