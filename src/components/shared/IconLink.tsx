@@ -13,12 +13,13 @@ type Props = {
 
 const IconLink: FC<Props> = ({to, badgeCount, iconPath, iconName, size}) =>
     (
-        <Link to={to} className="relative inline-block">
-            {badgeCount > 0 &&
+        <Link to={to}
+              className="relative inline-block">
+            {badgeCount > 0 ?
                 <Badge
                     className={'absolute -right-2 -top-2 size-4 rounded-full bg-red-600 px-1 text-[0.6rem] text-white'}>
                     {badgeCount}
-                </Badge>
+                </Badge> : null
             }
 
             <Icon path={iconPath}
