@@ -10,3 +10,33 @@ export const getPaymentSecret = async (amount: number) => {
 
     return response.data.data.secret
 }
+
+type StripePayload = {
+    stripe: Stripe,
+    elements: StripeElements,
+    confirmParams: ConfirmPaymentData,
+}
+
+export const confirmPayment =
+    async (
+        {stripe, elements, confirmParams}: StripePayload) => {
+        return await stripe.confirmPayment({
+            elements,
+            confirmParams
+        })
+    }
+
+export const completeOrder = async (
+    orderId: string,
+    amount: number,
+    items: Cart['items'],
+    customerDetails: CustomerDetails) => {
+    const res = await api.post('/payment/complete', {
+        orderId,
+        amount,
+        items,
+        customerDetails
+    })
+
+    return res.data.data
+}
