@@ -7,6 +7,8 @@ import {forwardRef, useImperativeHandle} from 'react'
 import {FormRef} from '@/types/ui'
 import {CHECKOUT_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 import {useTranslation} from 'react-i18next'
+import {updateUserInfo} from '@/store/checkoutSlice.ts'
+import {useDispatch} from 'react-redux'
 
 const FIELDS = [
     {name: 'name', label: CHECKOUT_LOCALES.name, required: true},
@@ -23,6 +25,7 @@ const FIELDS = [
 const CheckoutForm =
     forwardRef<FormRef | null, any>((_, ref) => {
         const {t} = useTranslation(I18N_NAMESPACES.checkout)
+        const dispatch = useDispatch()
 
         const form = useForm<CheckoutFormType>({
             resolver: zodResolver(checkoutFormSchema),
@@ -44,8 +47,10 @@ const CheckoutForm =
         useImperativeHandle(ref, () => ({
             submit: () => {
                 form.trigger()
-                if (form.formState.isValid)
+                if (form.formState.isValid) {
+                    dispatch(updateUserInfo(form.getValues()))
                     return form.getValues()
+                }
                 return undefined
             }
         }))
