@@ -13,6 +13,9 @@
     "new": "Nuevo",
     "viewAll": "Ver Todo",
     "viewAllProducts": "Ver Todos los Productos",
+    "clearFilters": "Limpiar filtros",
+    "prev": "Anterior",
+    "next": "Siguiente",
 
     "notFoundHeadline": "Página No Encontrada",
     "notFoundText": "La página que buscas no existe.",
