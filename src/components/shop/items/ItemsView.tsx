@@ -21,6 +21,12 @@ const ItemsView: FC<ItemsViewProps> = ({items}) => {
 
     const [searchParams, setSearchParams] = useSearchParams()
 
+    const isSearchParamsEmpty = () => {
+        return Array.from(searchParams.entries()).every(([key, value]) =>
+            key === 'page' && value.trim() === ''
+        )
+    }
+
     const maxPages = items?.totalPages || 1
     const products = items?.products
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
@@ -42,16 +48,17 @@ const ItemsView: FC<ItemsViewProps> = ({items}) => {
                     <PaginationControls totalPages={maxPages}/>
                 )}
 
-                {searchParams &&
-                    <div
-                        className={'flex-center-row m-5 w-full'}
-                        onClick={() => setSearchParams()}
+                <div
+                    className={'flex-center-row m-5 w-full'}
+                    onClick={() => setSearchParams()}
+                >
+                    <Button
+                        variant={'outline'}
+                        disabled={!isSearchParamsEmpty()}
                     >
-                        <Button variant={'outline'}>
-                            {t(GLOBAL_LOCALES.clearFilters)}
-                        </Button>
-                    </div>
-                }
+                        {t(GLOBAL_LOCALES.clearFilters)}
+                    </Button>
+                </div>
             </main>
         </div>
     )
