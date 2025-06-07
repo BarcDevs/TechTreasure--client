@@ -46,7 +46,7 @@ const MobileNavbar = ({}) => {
                             onSelect={() => navigate(link.path)}
                             className={'cursor-pointer'}
                         >
-                            {t(link.locale)}
+                            {t(link.key)}
                         </DropdownMenuItem>
                     ))}
                     <DropdownMenuSeparator/>
