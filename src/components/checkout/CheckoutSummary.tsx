@@ -1,5 +1,5 @@
 import Summary from '@/components/shared/Summary.tsx'
-import {FC, MutableRefObject, useState} from 'react'
+import {FC, FormEvent, MutableRefObject, useState} from 'react'
 import Button from '@/components/elements/Button.tsx'
 import {FormRef} from '@/types/ui'
 import CheckoutItem from '@/components/checkout/CheckoutItem.tsx'
@@ -9,6 +9,7 @@ import {CHECKOUT_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 import {useTranslation} from 'react-i18next'
 import {PaymentElement, useElements, useStripe} from '@stripe/react-stripe-js'
 import CouponSystem from '@/components/shop/cart/CouponSystem.tsx'
+import {confirmPayment} from '@/api/payment.ts'
 
 type Props = {
     userInfoRef: MutableRefObject<FormRef | null>
@@ -16,12 +17,17 @@ type Props = {
 
 const CheckoutSummary: FC<Props> = ({userInfoRef}) => {
     const {t} = useTranslation(I18N_NAMESPACES.checkout)
+
     const cart = useSelector((state: IRootState) => state.cart)
+    const userInfo =
+        useSelector((state: IRootState) => state.checkout)
+
     const stripe = useStripe()
     const elements = useElements()
+
     const [errorMessage, setErrorMessage] = useState('')
 
-    const handlePlaceOrder = async (e: React.FormEvent) => {
+    const handlePlaceOrder = async (e: FormEvent) => {
         e.preventDefault()
 
         const userInformation = userInfoRef.current?.submit()
@@ -29,10 +35,12 @@ const CheckoutSummary: FC<Props> = ({userInfoRef}) => {
 
         if (!stripe || !elements) return
 
-        const {error} = await stripe.confirmPayment({
+        const {error} = await confirmPayment({
+            stripe,
             elements,
             confirmParams: {
-                return_url: `${window.location.origin}/success`
+                return_url: `${window.location.origin}/success`,
+                receipt_email: userInfo.email
             }
         })
 
@@ -40,9 +48,6 @@ const CheckoutSummary: FC<Props> = ({userInfoRef}) => {
             setErrorMessage(error.message as string)
             return
         }
-
-        console.log(userInfoRef.current)
-        // todo send address to backend
     }
 
     return (
@@ -74,7 +79,9 @@ const CheckoutSummary: FC<Props> = ({userInfoRef}) => {
                     onClick={handlePlaceOrder}
                 />
 
-                {errorMessage && <p className={'text-red-500'}>{errorMessage}</p>}
+                {errorMessage && <p className={'text-red-500'}>
+                    {errorMessage}
+                </p>}
             </section>
         }</>
     )
