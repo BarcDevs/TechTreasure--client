@@ -1,6 +1,7 @@
 import {useQuery} from '@tanstack/react-query'
-import {getAnalytics, getCustomer, getCustomers, getOrder, getOrders} from '@/api/admin.ts'
+import {getAnalytics, getCustomer, getCustomers} from '@/api/admin.ts'
 import {Customer, Order} from '@/types/customer'
+import {getOrder, getOrders} from '@/api/orders.ts'
 
 type AdminData = {
     customerId?: string | null

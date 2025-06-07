@@ -11,21 +11,6 @@ const getCustomer = async (id: string) => {
     return response.data.data
 }
 
-const getOrders = async () => {
-    const response = await api.get('/admin/orders')
-    return response.data.data
-}
-
-const getOrder = async (id: string) => {
-    const response = await api.get(`/admin/orders/${id}`)
-    return response.data.data
-}
-
-const getOrdersByCustomer = async (customerId: string) => {
-    const response = await api.get(`/admin/orders/customer/${customerId}`)
-    return response.data.data
-}
-
 const getAnalytics = async () => {
     const response = await api.get('/admin/analytics')
     return response.data.data[0]
@@ -49,9 +34,6 @@ const updateInquiry = async (inquiry: Inquiry) => {
 export {
     getCustomers,
     getCustomer,
-    getOrders,
-    getOrder,
-    getOrdersByCustomer,
     getAnalytics,
     getStoreStats,
     getInquiries,

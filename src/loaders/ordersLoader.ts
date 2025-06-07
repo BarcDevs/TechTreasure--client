@@ -1,5 +1,5 @@
-import {getOrders} from '@/api/admin.ts'
 import {Order} from '@/types/customer'
+import {getOrders} from '@/api/orders.ts'
 
 const ordersLoader = async (): Promise<Order[]> => {
     try {
