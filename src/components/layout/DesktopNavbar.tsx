@@ -62,11 +62,13 @@ const DesktopNavbar = ({}) => {
                             location={location}
                         />}
                 </div>
+
                 {/*search & cart*/}
                 <div className={'inline-flex gap-6'}>
                     {isProductsPage &&
                         <Search additionalStyles={isAuthPage ? 'max-lg:[120px]' : 'max-lg:hidden'}/>
                     }
+
                     {!isAuthPage &&
                         <div className={'inline-flex h-6 items-center justify-between gap-4'}>
                             <ShopButton to={'wishlist'} size={30}/>
