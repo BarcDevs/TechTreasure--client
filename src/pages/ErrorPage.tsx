@@ -14,8 +14,6 @@ const ErrorPage = () => {
 
     const isAdmin = useSelector((state: IRootState) => state.auth.isAdmin)
 
-    console.log(error)
-
     return (
         <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-4">
             <div className="w-full max-w-md rounded-lg bg-white p-8 text-center shadow-xl">
