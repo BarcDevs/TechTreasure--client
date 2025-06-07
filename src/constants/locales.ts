@@ -40,6 +40,7 @@ export enum GLOBAL_LOCALES {
     new = 'new',
     viewAll = 'viewAll',
     viewAllProducts = 'viewAllProducts',
+    clearFilters = 'clearFilters',
 
     notFoundHeadline = 'notFoundHeadline',
     notFoundText = 'notFoundText',

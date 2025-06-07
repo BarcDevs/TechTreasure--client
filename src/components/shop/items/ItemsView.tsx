@@ -4,6 +4,10 @@ import {ProductList} from '@/components/shop/products/ProductList.tsx'
 import PaginationControls from '@/components/shop/products/PaginationControls.tsx'
 import {FC, useState} from 'react'
 import {Product} from '@/types'
+import {useSearchParams} from 'react-router-dom'
+import {Button} from '@/components/ui/button.tsx'
+import {useTranslation} from 'react-i18next'
+import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 
 type ItemsViewProps = {
     items: {
@@ -13,9 +17,12 @@ type ItemsViewProps = {
 }
 
 const ItemsView: FC<ItemsViewProps> = ({items}) => {
+    const {t} = useTranslation([I18N_NAMESPACES.global])
+
+    const [searchParams, setSearchParams] = useSearchParams()
+
     const maxPages = items?.totalPages || 1
     const products = items?.products
-    console.log(items)
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
 
     return (
@@ -26,14 +33,25 @@ const ItemsView: FC<ItemsViewProps> = ({items}) => {
                     setViewMode={setViewMode}
                 />
                 {viewMode === 'grid' ? (
-                    <ProductGrid products={products || []} />
+                    <ProductGrid products={products || []}/>
                 ) : (
-                    <ProductList products={products || []} />
+                    <ProductList products={products || []}/>
                 )}
 
                 {maxPages > 1 && (
-                    <PaginationControls totalPages={maxPages} />
+                    <PaginationControls totalPages={maxPages}/>
                 )}
+
+                {searchParams &&
+                    <div
+                        className={'flex-center-row m-5 w-full'}
+                        onClick={() => setSearchParams()}
+                    >
+                        <Button variant={'outline'}>
+                            {t(GLOBAL_LOCALES.clearFilters)}
+                        </Button>
+                    </div>
+                }
             </main>
         </div>
     )
