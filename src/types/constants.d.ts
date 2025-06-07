@@ -5,7 +5,7 @@ export type LANGUAGE = {
 
 export type LINK = {
     name?: string,
-    locale: string,
+    key: string,
     path: string
 }
 
