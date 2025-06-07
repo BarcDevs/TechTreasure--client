@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom'
-import {I18N_NAMESPACES} from '@/constants/locales.ts'
+import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 import {useTranslation} from 'react-i18next'
 import NavigationButton from '@/components/elements/Button.tsx'
 import ContactForm from '@/components/contact/Form.tsx'
@@ -20,7 +20,7 @@ const ContactPage = () => {
 
             <div className={'flex_row flex-center mt-6'}>
                 <Link to={'/'}>
-                    <NavigationButton text={t('backToHome', {ns: I18N_NAMESPACES.global})}/>
+                    <NavigationButton text={t(GLOBAL_LOCALES.backToHome, {ns: I18N_NAMESPACES.global})}/>
                 </Link>
             </div>
         </div>

@@ -3,7 +3,7 @@ import {NAVIGATION_LINKS} from '@/constants'
 import Search from '@/components/shared/Search.tsx'
 import {APP_NAME} from '@/constants'
 import {useTranslation} from 'react-i18next'
-import {I18N_NAMESPACES} from '@/constants/locales.ts'
+import {AUTH_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 import Underline from '@/components/shared/Underline.tsx'
 import UserDropdown from '@/components/layout/UserDropdown.tsx'
 import {useSelector} from 'react-redux'
@@ -58,7 +58,7 @@ const DesktopNavbar = ({}) => {
                     {!isLoggedIn &&
                         <NavbarLink
                             to={'/login'}
-                            label={t('login')}
+                            label={t(AUTH_LOCALES.login)}
                             location={location}
                         />}
                 </div>

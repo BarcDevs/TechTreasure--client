@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom'
 import Button from '@/components/elements/Button.tsx'
 import {useTranslation} from 'react-i18next'
-import {I18N_NAMESPACES} from '@/constants/locales.ts'
+import {GLOBAL_LOCALES, I18N_NAMESPACES} from '@/constants/locales.ts'
 
 const NotFoundPage = ({}) => {
     const {t} = useTranslation(I18N_NAMESPACES.global)
@@ -17,7 +17,7 @@ const NotFoundPage = ({}) => {
                 </p>
             </div>
             <Link to={'/'}>
-                <Button text={t('backToHome')}/>
+                <Button text={t(GLOBAL_LOCALES.backToHome)}/>
             </Link>
         </main>
     )
